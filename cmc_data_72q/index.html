@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My {{BRAND_NAME}} Crypto Edge Report — Free Personalized Report</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --accent: {
+                    {
+                    ACCENT_COLOR
+                }
+            }
+
+            ;
+            /* default: #FF9900 */
+            --ink: #0B0E11;
+            --ink-soft: #58667E;
+            --line: #E6E8EB;
+            --card: #F8F9FA;
+            --white: #FFFFFF;
+            --green: #16C784;
+            --red: #EA3943;
+            --radius: 10px;
+            --maxw: 1120px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--ink);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        .mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(255, 153, 0, 0.1);
+            border: 1px solid rgba(255, 153, 0, 0.35);
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Inter';
+            font-weight: 700;
+            font-size: 15px;
+            padding: 14px 26px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #1A1200;
+            box-shadow: 0 6px 18px rgba(255, 153, 0, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(255, 153, 0, 0.45);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink-soft);
+            border: 1px solid var(--line);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--ink-soft);
+            color: var(--ink);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn[disabled] {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* ---------- TICKER ---------- */
+        .ticker {
+            border-bottom: 1px solid var(--line);
+            background: var(--ink);
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            gap: 36px;
+            padding: 9px 0;
+            animation: scroll 32s linear infinite;
+        }
+
+        .ticker-item {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 12.5px;
+            color: #C6CCD2;
+            display: inline-flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .ticker-item b {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .up {
+            color: var(--green);
+        }
+
+        .down {
+            color: var(--red);
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ---------- NAV ---------- */
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            font-size: 13.5px;
+            font-weight: 700;
+            padding: 10px 18px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 64px 0 56px;
+            text-align: center;
+        }
+
+        .hero .tag {
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            max-width: 780px;
+            margin: 0 auto 18px;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .hero p.sub {
+            font-size: 17px;
+            color: var(--ink-soft);
+            max-width: 560px;
+            margin: 0 auto 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-meta {
+            font-size: 13px;
+            color: var(--ink-soft);
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .trust-row {
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-item .n {
+            font-size: 22px;
+            font-weight: 800;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .trust-item .l {
+            font-size: 12px;
+            color: var(--ink-soft);
+            margin-top: 2px;
+        }
+
+        /* ---------- SECTION SHELL ---------- */
+        section {
+            padding: 64px 0;
+        }
+
+        .section-head {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
+
+        .section-head .tag {
+            margin-bottom: 14px;
+        }
+
+        .section-head h2 {
+            font-size: 30px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+
+        .section-head p {
+            color: var(--ink-soft);
+            font-size: 15.5px;
+        }
+
+        /* ---------- INCLUDES GRID ---------- */
+        .grid4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: left;
+        }
+
+        .card .icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 8px;
+            background: var(--white);
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 13.8px;
+            color: var(--ink-soft);
+            line-height: 1.55;
+        }
+
+        /* ---------- HOW IT WORKS ---------- */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .step {
+            padding: 28px 26px;
+            border-right: 1px solid var(--line);
+        }
+
+        .step:last-child {
+            border-right: none;
+        }
+
+        .step .num {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .step h4 {
+            font-size: 15.5px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step p {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+        }
+
+        /* ---------- QUIZ ---------- */
+        .quiz-section {
+            background: var(--card);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .quiz-shell {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 36px;
+            box-shadow: 0 20px 50px -30px rgba(11, 14, 17, 0.25);
+        }
+
+        .quiz-progress {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 26px;
+        }
+
+        .quiz-progress i {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--line);
+        }
+
+        .quiz-progress i.done {
+            background: var(--accent);
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+        }
+
+        .q-eyebrow {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 11.5px;
+            color: var(--ink-soft);
+            margin-bottom: 8px;
+        }
+
+        .q-title {
+            font-size: 21px;
+            font-weight: 800;
+            margin-bottom: 22px;
+            letter-spacing: -0.01em;
+        }
+
+        .opt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 26px;
+        }
+
+        .opt {
+            border: 1.5px solid var(--line);
+            border-radius: 8px;
+            padding: 14px 16px;
+            font-size: 14.5px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            background: var(--white);
+            transition: border-color .12s, background .12s;
+        }
+
+        .opt:hover {
+            border-color: #C9CDD3;
+        }
+
+        .opt.selected {
+            border-color: var(--accent);
+            background: rgba(255, 153, 0, 0.08);
+            color: #1A1200;
+        }
+
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quiz-nav .btn-ghost {
+            padding: 12px 18px;
+            font-size: 13.5px;
+        }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--ink-soft);
+        }
+
+        .field input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1.5px solid var(--line);
+            border-radius: 8px;
+            font-family: 'Inter';
+            font-size: 15px;
+            outline: none;
+        }
+
+        .field input:focus {
+            border-color: var(--accent);
+        }
+
+        .fineprint {
+            font-size: 12px;
+            color: var(--ink-soft);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* ---------- REPORT ---------- */
+        .report {
+            display: none;
+        }
+
+        .report.active {
+            display: block;
+        }
+
+        .report-head {
+            background: var(--ink);
+            color: #fff;
+            border-radius: 14px 14px 0 0;
+            padding: 30px 32px;
+        }
+
+        .report-head .tag {
+            background: rgba(255, 153, 0, 0.18);
+            border-color: rgba(255, 153, 0, 0.5);
+        }
+
+        .report-head h3 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .report-head p {
+            color: #B7BEC6;
+            font-size: 13.5px;
+            margin-top: 6px;
+        }
+
+        .report-body {
+            border: 1px solid var(--line);
+            border-top: none;
+            border-radius: 0 0 14px 14px;
+            padding: 32px;
+        }
+
+        .r-block {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .r-block:last-of-type {
+            border-bottom: none;
+        }
+
+        .r-block h4 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            font-family: 'Roboto Mono', monospace;
+            margin-bottom: 10px;
+        }
+
+        .r-block p {
+            font-size: 14.5px;
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        .flag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .flag.warn {
+            background: rgba(234, 57, 67, 0.1);
+            color: var(--red);
+        }
+
+        .flag.ok {
+            background: rgba(22, 199, 132, 0.1);
+            color: var(--green);
+        }
+
+        .watchlist {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .wl-chip {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            background: var(--card);
+        }
+
+        .wl-chip .sym {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .wl-chip .why {
+            font-size: 11.5px;
+            color: var(--ink-soft);
+            margin-top: 4px;
+        }
+
+        .next-steps {
+            list-style: none;
+        }
+
+        .next-steps li {
+            display: flex;
+            gap: 10px;
+            font-size: 14.5px;
+            padding: 6px 0;
+        }
+
+        .next-steps li::before {
+            content: "→";
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .report-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .report-cta p {
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            max-width: 340px;
+        }
+
+        .disclaimer {
+            font-size: 11.5px;
+            color: var(--ink-soft);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 32px 0;
+            text-align: center;
+            color: var(--ink-soft);
+            font-size: 12.5px;
+        }
+
+        /* ---------- POPUP ---------- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(11, 14, 17, 0.55);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .popup {
+            background: #fff;
+            border-radius: 16px;
+            max-width: 440px;
+            width: 92%;
+            padding: 0;
+            position: relative;
+            transform: translateY(14px) scale(0.98);
+            transition: transform .25s ease;
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .overlay.show .popup {
+            transform: translateY(0) scale(1);
+        }
+
+        .popup-top {
+            background: var(--ink);
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .popup-top .tag {
+            background: rgba(255, 153, 0, 0.18);
+            border-color: rgba(255, 153, 0, 0.5);
+        }
+
+        .popup-close {
+            background: none;
+            border: none;
+            color: #8A939C;
+            font-size: 20px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 4px;
+        }
+
+        .popup-close:hover {
+            color: #fff;
+        }
+
+        .popup-body {
+            padding: 28px 26px 26px;
+        }
+
+        .popup-body h3 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .popup-body h3 em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        .popup-body p {
+            font-size: 14px;
+            color: var(--ink-soft);
+            margin-bottom: 20px;
+        }
+
+        .popup-body .btn {
+            width: 100%;
+            font-size: 15.5px;
+            padding: 15px;
+        }
+
+        .popup-foot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--ink-soft);
+        }
+
+        .popup-dismiss {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .popup-dismiss button {
+            background: none;
+            border: none;
+            color: var(--ink-soft);
+            font-size: 12.5px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .countdown {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        @media (max-width:860px) {
+            .grid4 {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .step:last-child {
+                border-bottom: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .watchlist {
+                grid-template-columns: 1fr;
+            }
+
+            .report-cta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width:560px) {
+            .grid4 {
+                grid-template-columns: 1fr;
+            }
+
+            .opt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track {
+                animation: none;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body><!-- ============ TICKER (signature element) ============ -->
+    <div class="ticker">
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div><!-- ============ NAV ============ -->
+    <div class="wrap">
+        <nav>
+            <div class="logo">{{BRAND_NAME}}<span>.</span></div> <a href="#quiz" class="btn btn-primary nav-cta">Get My
+                Free Report</a>
+        </nav>
+    </div><!-- ============ HERO ============ -->
+    <header class="hero">
+        <div class="wrap"> <span class="tag">Free Personalized Report</span>
+            <h1>My {{BRAND_NAME}} <em>Crypto Edge</em> Report</h1>
+            <p class="sub">A personal intelligence brief built from your answers and {{BRAND_NAME}}'s live news,
+                technical analysis, and market data. Not generic advice — your edge.</p>
+            <div class="hero-actions"> <a href="#quiz" class="btn btn-primary">Get My Free Report</a> <span
+                    class="hero-meta">60-second quiz · Instant report · No credit card</span> </div>
+            <div class="trust-row">
+                <div class="trust-item">
+                    <div class="n">60s</div>
+                    <div class="l">To your report</div>
+                </div>
+                <div class="trust-item">
+                    <div class="n">5</div>
+                    <div class="l">Quick questions</div>
+                </div>
+                <div class="trust-item">
+                    <div class="n">100%</div>
+                    <div class="l">Free, no card</div>
+                </div>
+                <div class="trust-item">
+                    <div class="n">Live</div>
+                    <div class="l">Market data pipeline</div>
+                </div>
+            </div>
+        </div>
+    </header><!-- ============ WHAT'S INCLUDED ============ -->
+    <section>
+        <div class="wrap">
+            <div class="section-head"> <span class="tag">What's Inside</span>
+                <h2>Built from your answers. Backed by real coverage.</h2>
+                <p>Every report is generated fresh from your quiz responses, matched against {{BRAND_NAME}}'s news feed,
+                    technical indicators, and beginner-friendly market education.</p>
+            </div>
+            <div class="grid4">
+                <div class="card">
+                    <div class="icon">📈</div>
+                    <h3>Chart-Based Observations</h3>
+                    <p>Where your favorite assets sit against key trend lines and momentum indicators — explained in
+                        plain English, not jargon.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">⚠️</div>
+                    <h3>Personal Risk Flags</h3>
+                    <p>A clear read on where your portfolio's risk profile may be exposed, based on your time horizon
+                        and risk tolerance.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">👁️</div>
+                    <h3>Curated Watchlist</h3>
+                    <p>Three to five assets worth watching this week, matched to your trading style and interests.</p>
+                </div>
+                <div class="card">
+                    <div class="icon">✅</div>
+                    <h3>Practical Next Steps</h3>
+                    <p>Concrete actions for the week ahead — not hype, not signals. Just a clear-headed plan.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ============ HOW IT WORKS ============ -->
+    <section style="padding-top:0;">
+        <div class="wrap">
+            <div class="section-head"> <span class="tag">How It Works</span>
+                <h2>Three steps to your report</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="num">01</div>
+                    <h4>Answer 5 quick questions</h4>
+                    <p>Portfolio size, time horizon, risk tolerance, favorite assets, and trading style.</p>
+                </div>
+                <div class="step">
+                    <div class="num">02</div>
+                    <h4>We match it to live coverage</h4>
+                    <p>Your answers are combined with {{BRAND_NAME}}'s news, technical analysis, and market data.</p>
+                </div>
+                <div class="step">
+                    <div class="num">03</div>
+                    <h4>Get your report instantly</h4>
+                    <p>Read it on screen or save it — yours to keep, free.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ============ QUIZ ============ -->
+    <section class="quiz-section" id="quiz">
+        <div class="wrap">
+            <div class="section-head"> <span class="tag">60-Second Quiz</span>
+                <h2>Let's build your report</h2>
+                <p>Five questions. No wrong answers — just answer as you'd trade today.</p>
+            </div>
+            <div class="quiz-shell">
+                <div class="quiz-progress" id="quizProgress"></div>
+                <form id="quizForm"> <!-- Step 1 -->
+                    <div class="quiz-step active" data-step="1">
+                        <div class="q-eyebrow">Question 1 of 5</div>
+                        <div class="q-title">What's your current portfolio size?</div>
+                        <div class="opt-grid" data-field="portfolio"> <button type="button" class="opt">Under
+                                $1,000</button> <button type="button" class="opt">$1,000 – $10,000</button> <button
+                                type="button" class="opt">$10,000 – $100,000</button> <button type="button"
+                                class="opt">$100,000+</button> </div>
+                        <div class="quiz-nav"> <span></span> <button type="button" class="btn btn-primary" disabled
+                                data-next>Continue</button> </div>
+                    </div> <!-- Step 2 -->
+                    <div class="quiz-step" data-step="2">
+                        <div class="q-eyebrow">Question 2 of 5</div>
+                        <div class="q-title">What's your time horizon?</div>
+                        <div class="opt-grid" data-field="horizon"> <button type="button" class="opt">Day
+                                trader</button> <button type="button" class="opt">Swing (weeks–months)</button> <button
+                                type="button" class="opt">Long-term (1yr+)</button> <button type="button"
+                                class="opt">Just exploring</button> </div>
+                        <div class="quiz-nav"> <button type="button" class="btn btn-ghost" data-back>Back</button>
+                            <button type="button" class="btn btn-primary" disabled data-next>Continue</button> </div>
+                    </div> <!-- Step 3 -->
+                    <div class="quiz-step" data-step="3">
+                        <div class="q-eyebrow">Question 3 of 5</div>
+                        <div class="q-title">How would you describe your risk tolerance?</div>
+                        <div class="opt-grid" data-field="risk"> <button type="button" class="opt">Conservative</button>
+                            <button type="button" class="opt">Balanced</button> <button type="button"
+                                class="opt">Aggressive</button> <button type="button" class="opt">High risk / high
+                                reward</button> </div>
+                        <div class="quiz-nav"> <button type="button" class="btn btn-ghost" data-back>Back</button>
+                            <button type="button" class="btn btn-primary" disabled data-next>Continue</button> </div>
+                    </div> <!-- Step 4 -->
+                    <div class="quiz-step" data-step="4">
+                        <div class="q-eyebrow">Question 4 of 5</div>
+                        <div class="q-title">Which assets are you most interested in?</div>
+                        <div class="opt-grid" data-field="assets" data-multi="true"> <button type="button"
+                                class="opt">Bitcoin (BTC)</button> <button type="button" class="opt">Ethereum
+                                (ETH)</button> <button type="button" class="opt">Large-cap altcoins</button> <button
+                                type="button" class="opt">Small-cap / emerging coins</button> <button type="button"
+                                class="opt">Stablecoins & yield</button> <button type="button" class="opt">NFTs &
+                                digital assets</button> </div>
+                        <div class="quiz-nav"> <button type="button" class="btn btn-ghost" data-back>Back</button>
+                            <button type="button" class="btn btn-primary" disabled data-next>Continue</button> </div>
+                    </div> <!-- Step 5 -->
+                    <div class="quiz-step" data-step="5">
+                        <div class="q-eyebrow">Question 5 of 5</div>
+                        <div class="q-title">What's your trading style?</div>
+                        <div class="opt-grid" data-field="style"> <button type="button" class="opt">Fundamentals &
+                                news-driven</button> <button type="button" class="opt">Technical chart analysis</button>
+                            <button type="button" class="opt">Buy & hold</button> <button type="button"
+                                class="opt">Signals & copy trading</button> </div>
+                        <div class="quiz-nav"> <button type="button" class="btn btn-ghost" data-back>Back</button>
+                            <button type="button" class="btn btn-primary" disabled data-next>Continue</button> </div>
+                    </div> <!-- Step 6: email gate -->
+                    <div class="quiz-step" data-step="6">
+                        <div class="q-eyebrow">Last step</div>
+                        <div class="q-title">Where should we send your report?</div>
+                        <div class="field"> <label for="fname">First name</label> <input type="text" id="fname"
+                                placeholder="Alex" required> </div>
+                        <div class="field"> <label for="femail">Email address</label> <input type="email" id="femail"
+                                placeholder="you@example.com" required> </div> <button type="button"
+                            class="btn btn-primary btn-block" id="unlockBtn">Unlock My Crypto Edge</button>
+                        <div class="quiz-nav" style="margin-top:14px;"> <button type="button" class="btn btn-ghost"
+                                data-back>Back</button> <span></span> </div>
+                        <p class="fineprint">Free forever. Unsubscribe anytime. We'll never sell your data.</p>
+                    </div>
+                </form> <!-- REPORT OUTPUT -->
+                <div class="report" id="reportOutput"></div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="wrap">
+            <p>{{BRAND_NAME}} Crypto Edge Report is provided for educational purposes only and does not constitute
+                financial advice. Cryptocurrency markets are volatile — always do your own research.</p>
+            <p style="margin-top:8px;">© 2026 {{BRAND_NAME}}. All rights reserved.</p>
+        </div>
+    </footer><!-- ============ POPUP ============ -->
+    <div class="overlay" id="popupOverlay">
+        <div class="popup">
+            <div class="popup-top"> <span class="tag">Exclusive Access</span> <button class="popup-close"
+                    id="popupClose" aria-label="Close">✕</button> </div>
+            <div class="popup-body">
+                <h3>Your portfolio has a <em>blind spot.</em><br>Find it in 60 seconds.</h3>
+                <p>Answer 5 quick questions and get your free, personalized Crypto Edge Report — built from your risk
+                    profile and {{BRAND_NAME}}'s live market coverage.</p> <a href="#quiz" class="btn btn-primary"
+                    id="popupCta">Unlock My Crypto Edge</a>
+                <div class="popup-foot">Today's data window closes in <span class="countdown"
+                        id="countdown">11:58:03</span></div>
+                <div class="popup-dismiss"><button id="popupDismiss">Not right now</button></div>
+            </div>
+        </div>
+    </div>
+    <script>/* ---------------- TICKER DATA ---------------- */const tickerData = [{ s: 'BTC', p: '$67,412', c: '+2.4%', up: true }, { s: 'ETH', p: '$3,518', c: '+1.1%', up: true }, { s: 'SOL', p: '$168.22', c: '-0.8%', up: false }, { s: 'BNB', p: '$589.10', c: '+0.6%', up: true }, { s: 'XRP', p: '$0.612', c: '-1.3%', up: false }, { s: 'ADA', p: '$0.441', c: '+3.2%', up: true }, { s: 'DOGE', p: '$0.121', c: '+0.4%', up: true }, { s: 'AVAX', p: '$28.77', c: '-2.1%', up: false },]; function renderTicker() { const track = document.getElementById('tickerTrack'); const rowHtml = tickerData.map(t => `<span class="ticker-item"><b>${t.s}</b> ${t.p} <span class="${t.up ? 'up' : 'down'}">${t.c}</span></span>`).join(''); track.innerHTML = rowHtml + rowHtml; // duplicate for seamless loop}renderTicker();/* ---------------- POPUP ---------------- */const overlay = document.getElementById('popupOverlay');function openPopup(){ overlay.classList.add('show'); }function closePopup(){ overlay.classList.remove('show'); }setTimeout(openPopup, 4000);document.getElementById('popupClose').addEventListener('click', closePopup);document.getElementById('popupDismiss').addEventListener('click', closePopup);document.getElementById('popupCta').addEventListener('click', closePopup);overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closePopup(); });// countdown to midnight UTCfunction updateCountdown(){  const now = new Date();  const midnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()+1, 0,0,0));  let diff = Math.max(0, midnight - now);  const h = String(Math.floor(diff/3600000)).padStart(2,'0');  const m = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');  const s = String(Math.floor((diff%60000)/1000)).padStart(2,'0');  document.getElementById('countdown').textContent = `${h}:${m}:${s}`;}updateCountdown();setInterval(updateCountdown, 1000);/* ---------------- QUIZ LOGIC ---------------- */const answers = { portfolio:null, horizon:null, risk:null, assets:[], style:null };const totalSteps = 6;let currentStep = 1;const progressWrap = document.getElementById('quizProgress');for(let i=0;i<totalSteps;i++){  const bar = document.createElement('i');  progressWrap.appendChild(bar);}function refreshProgress(){  [...progressWrap.children].forEach((bar, idx)=>{    bar.classList.toggle('done', idx < currentStep);  });}refreshProgress();function showStep(n){  document.querySelectorAll('.quiz-step').forEach(el=>{    el.classList.toggle('active', Number(el.dataset.step) === n);  });  currentStep = n;  refreshProgress();}document.querySelectorAll('.opt-grid').forEach(grid=>{  const field = grid.dataset.field;  const multi = grid.dataset.multi === 'true';  grid.querySelectorAll('.opt').forEach(btn=>{    btn.addEventListener('click', ()=>{      if(multi){        btn.classList.toggle('selected');        const chosen = [...grid.querySelectorAll('.opt.selected')].map(b=>b.textContent);        answers[field] = chosen;      } else {        grid.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));        btn.classList.add('selected');        answers[field] = btn.textContent;      }      const nextBtn = grid.closest('.quiz-step').querySelector('[data-next]');      const hasAnswer = multi ? answers[field].length > 0 : !!answers[field];      if(nextBtn) nextBtn.disabled = !hasAnswer;    });  });});document.querySelectorAll('[data-next]').forEach(btn=>{  btn.addEventListener('click', ()=> showStep(Math.min(totalSteps, currentStep+1)));});document.querySelectorAll('[data-back]').forEach(btn=>{  btn.addEventListener('click', ()=> showStep(Math.max(1, currentStep-1)));});/* ---------------- REPORT GENERATION ---------------- */const riskCopy = {  'Conservative': {tone:'capital-preservation', flag:'ok', flagText:'Low volatility exposure'},  'Balanced': {tone:'measured growth', flag:'ok', flagText:'Diversification on track'},  'Aggressive': {tone:'growth-seeking', flag:'warn', flagText:'Elevated drawdown risk'},  'High risk / high reward': {tone:'high-conviction', flag:'warn', flagText:'Concentration risk likely'},};const horizonCopy = {  'Day trader': 'intraday price action and short-term momentum',  'Swing (weeks–months)': 'multi-week trend structure and momentum shifts',  'Long-term (1yr+)': 'macro cycles and long-term accumulation zones',  'Just exploring': 'foundational market structure while you get oriented',};const watchlistPool = {  'Bitcoin (BTC)': {sym:'BTC', why:'Market structure leader'},  'Ethereum (ETH)': {sym:'ETH', why:'Network activity trending up'},  'Large-cap altcoins': {sym:'SOL', why:'Relative strength vs. BTC'},  'Small-cap / emerging coins': {sym:'INJ', why:'Elevated volatility, watch closely'},  'Stablecoins & yield': {sym:'USDC', why:'Yield spreads worth tracking'},  'NFTs & digital assets': {sym:'BLUR', why:'Volume picking up this week'},};function buildReport(){  const risk = riskCopy[answers.risk] || riskCopy['Balanced'];  const horizonFocus = horizonCopy[answers.horizon] || horizonCopy['Just exploring'];  const assetList = answers.assets.length ? answers.assets : ['Bitcoin (BTC)'];  const primaryAsset = assetList[0].replace(/\s*\(.*?\)/,'');  const watchlistItems = assetList.slice(0,3).map(a => watchlistPool[a] || {sym:a, why:'Matches your interests'});  while(watchlistItems.length < 3){    const filler = Object.values(watchlistPool).find(w => !watchlistItems.includes(w));    if(!filler) break;    watchlistItems.push(filler);  }  const fname = document.getElementById('fname').value || 'there';  const html = `    <div class="report-head">      <span class="tag">Personalized · Just for you</span>      <h3>${fname}'s Crypto Edge Report</h3>      <p>Built from your quiz answers and matched against live market coverage — generated just now.</p>    </div>    <div class="report-body">      <div class="r-block">        <h4>Chart-Based Observations</h4>        <p>Given your focus on ${horizonFocus}, ${primaryAsset} is currently trading within a well-defined range relative to its recent trend line, with momentum indicators sitting in neutral-to-constructive territory. For a ${answers.horizon.toLowerCase()} approach, the more relevant signal is how price behaves around the nearest support and resistance zones rather than short-term noise.</p>      </div>      <div class="r-block">        <h4>Personal Risk Flags</h4>        <p style="margin-bottom:10px;">Based on a <strong>${answers.risk.toLowerCase()}</strong> risk profile and a portfolio in the <strong>${answers.portfolio}</strong> range, here's what stands out:</p>        <span class="flag ${risk.flag}">${risk.flagText}</span>        <span class="flag ${answers.assets.length > 3 ? 'warn' : 'ok'}">${answers.assets.length > 3 ? 'Broad asset spread — check overlap' : 'Focused asset selection'}</span>        <p style="margin-top:10px;">Your answers suggest a ${risk.tone} strategy. Reports for this profile typically flag position sizing and correlation between holdings as the areas most worth a second look.</p>      </div>      <div class="r-block">        <h4>Curated Watchlist</h4>        <div class="watchlist">          ${watchlistItems.map(w => `<div class="wl-chip"><div class="sym">${w.sym}</div><div class="why">${w.why}</div></div>`).join('')}        </div>      </div>      <div class="r-block">        <h4>Next Steps</h4>        <ul class="next-steps">          <li>Review position sizing against your stated risk tolerance this week.</li>          <li>Set alerts on your top watchlist asset's nearest support level.</li>          <li>Revisit this report after the next major market move — your edge updates with the data.</li>        </ul>      </div>      <div class="report-cta">        <p>Want this delivered daily, tailored to live price action?</p>        <button class="btn btn-primary" type="button">Save My Report</button>      </div>      <p class="disclaimer">This report is generated from your quiz answers combined with general market data and is provided for educational purposes only. It is not financial advice, and past performance does not guarantee future results. Always do your own research before making investment decisions.</p>    </div>  `;  const reportEl = document.getElementById('reportOutput');  reportEl.innerHTML = html;  document.getElementById('quizForm').style.display = 'none';  reportEl.classList.add('active');  reportEl.scrollIntoView({behavior:'smooth', block:'start'});}document.getElementById('unlockBtn').addEventListener('click', ()=>{  const fname = document.getElementById('fname');  const femail = document.getElementById('femail');  if(!fname.value.trim() || !femail.checkValidity()){    femail.style.borderColor = 'var(--red)';    femail.reportValidity();    return;  }  window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';});</script>
+</body>
+
+</html>

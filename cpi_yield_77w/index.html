@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Crypto Passive Income Edge Report | CryptoPassiveIncome</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg-subtle: #F5F9F7;
+            --bg-subtle-2: #EFF7F2;
+            --ink: #0B1512;
+            --ink-soft: #5B6B66;
+            --ink-faint: #8B9895;
+            --border: #E3EAE7;
+            --border-strong: #CFDAD6;
+            --accent: #00E676;
+            --accent-deep: #00B85E;
+            --accent-ink: #02341C;
+            --max: 1180px;
+            --radius: 14px;
+            --shadow-card: 0 1px 2px rgba(11, 21, 18, 0.04), 0 8px 24px -12px rgba(11, 21, 18, 0.10);
+            --shadow-pop: 0 24px 64px -16px rgba(11, 21, 18, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'DM Sans', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        img,
+        svg {
+            display: block;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        @media (max-width:640px) {
+            .wrap {
+                padding: 0 20px;
+            }
+        }
+
+        /* ---------- Header ---------- */
+        header.site {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .site-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+        }
+
+        .logo .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 4px rgba(0, 230, 118, 0.16);
+        }
+
+        nav.site-nav {
+            display: flex;
+            gap: 28px;
+            font-size: 14px;
+            color: var(--ink-soft);
+        }
+
+        nav.site-nav a {
+            text-decoration: none;
+            transition: color .15s;
+        }
+
+        nav.site-nav a:hover {
+            color: var(--ink);
+        }
+
+        @media (max-width:720px) {
+            nav.site-nav {
+                display: none;
+            }
+        }
+
+        .btn-nav {
+            background: var(--ink);
+            color: #fff;
+            font-size: 13.5px;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: 9px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--accent);
+            color: var(--accent-ink);
+            font-weight: 700;
+            font-size: 16px;
+            border: none;
+            border-radius: 11px;
+            padding: 16px 26px;
+            cursor: pointer;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02), 0 10px 24px -8px rgba(0, 230, 118, 0.55);
+            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            background: var(--accent-deep);
+            box-shadow: 0 14px 28px -8px rgba(0, 230, 118, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary svg {
+            transition: transform .15s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(3px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--border-strong);
+            color: var(--ink-soft);
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 9px;
+            padding: 12px 18px;
+            cursor: pointer;
+        }
+
+        /* ---------- Eyebrow / tags ---------- */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+            background: var(--bg-subtle-2);
+            border: 1px solid #CDF2DD;
+            padding: 6px 12px;
+            border-radius: 100px;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow .pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.35;
+            }
+        }
+
+        .tag {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--accent-ink);
+            background: rgba(0, 230, 118, 0.16);
+            padding: 5px 10px;
+            border-radius: 6px;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 64px 0 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        @media (max-width:920px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+        }
+
+        h1 {
+            font-size: clamp(34px, 4.4vw, 54px);
+            line-height: 1.06;
+            letter-spacing: -0.02em;
+            margin: 0 0 18px;
+            font-weight: 800;
+        }
+
+        h1 .hl {
+            color: var(--accent-ink);
+            background: linear-gradient(180deg, transparent 62%, var(--accent) 62%);
+        }
+
+        .hero p.sub {
+            font-size: 18px;
+            color: var(--ink-soft);
+            max-width: 52ch;
+            margin: 0 0 28px;
+        }
+
+        .hero-cta-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .reassure {
+            font-size: 13px;
+            color: var(--ink-faint);
+            margin-top: 12px;
+        }
+
+        .reassure b {
+            color: var(--ink-soft);
+            font-weight: 600;
+        }
+
+        /* ticker card (signature element) */
+        .ticker-card {
+            background: var(--ink);
+            border-radius: 18px;
+            padding: 22px 22px 10px;
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .ticker-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .ticker-title {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: #9CE8BC;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .live-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 1.6s infinite;
+        }
+
+        .ticker-window {
+            overflow: hidden;
+            border-radius: 10px;
+            background: #0F1E19;
+        }
+
+        .ticker-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ticker-row {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: 14px;
+            align-items: center;
+            padding: 13px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .ticker-row:last-child {
+            border-bottom: none;
+        }
+
+        .t-name {
+            color: #EAF5F0;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .t-type {
+            color: #7C948C;
+            font-size: 11.5px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .t-apy {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .ticker-foot {
+            padding: 12px 4px 4px;
+            font-size: 11.5px;
+            color: #66807A;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* ---------- Sections ---------- */
+        section {
+            padding: 76px 0;
+        }
+
+        section.tight {
+            padding: 56px 0;
+        }
+
+        .section-head {
+            max-width: 640px;
+            margin: 0 auto 44px;
+            text-align: left;
+        }
+
+        .section-head h2 {
+            font-size: clamp(26px, 3vw, 36px);
+            letter-spacing: -0.015em;
+            margin: 0 0 12px;
+            font-weight: 800;
+        }
+
+        .section-head p {
+            color: var(--ink-soft);
+            font-size: 16.5px;
+            margin: 0;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            border: none;
+            margin: 0;
+        }
+
+        /* report contents grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width:760px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px;
+            transition: border-color .15s, box-shadow .15s, transform .15s;
+        }
+
+        .card:hover {
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-card);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 19px;
+            margin: 14px 0 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            color: var(--ink-soft);
+            font-size: 14.5px;
+            margin: 0;
+        }
+
+        /* how it works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width:760px) {
+            .steps {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .step {
+            position: relative;
+            padding: 28px 24px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: var(--bg-subtle);
+        }
+
+        .step-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--accent-deep);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .step h4 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .step p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 14.5px;
+        }
+
+        /* trust strip */
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width:760px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .trust-item h4 {
+            font-size: 15.5px;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .trust-item p {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 14px;
+        }
+
+        /* ---------- Quiz section ---------- */
+        .quiz-shell {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .quiz-top {
+            padding: 28px 32px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .quiz-top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .quiz-top h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .quiz-count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--ink-faint);
+        }
+
+        .progress-track {
+            height: 6px;
+            background: var(--border);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 20%;
+            background: var(--accent);
+            border-radius: 100px;
+            transition: width .35s ease;
+        }
+
+        .quiz-body {
+            padding: 32px;
+        }
+
+        .q-step {
+            display: none;
+        }
+
+        .q-step.active {
+            display: block;
+            animation: fade .25s ease;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .q-label {
+            font-size: 12.5px;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--accent-deep);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+        }
+
+        .q-title {
+            font-size: 21px;
+            font-weight: 700;
+            margin: 0 0 22px;
+            letter-spacing: -0.01em;
+        }
+
+        .opt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width:560px) {
+            .opt-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .opt {
+            border: 1.5px solid var(--border-strong);
+            background: #fff;
+            border-radius: 11px;
+            padding: 16px 18px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--ink);
+            transition: border-color .12s, background .12s, transform .1s;
+            text-align: left;
+        }
+
+        .opt:hover {
+            border-color: var(--accent-deep);
+        }
+
+        .opt.selected {
+            border-color: var(--accent-deep);
+            background: rgba(0, 230, 118, 0.10);
+        }
+
+        .opt .opt-sub {
+            display: block;
+            font-weight: 400;
+            font-size: 12.5px;
+            color: var(--ink-soft);
+            margin-top: 4px;
+        }
+
+        .q-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 28px;
+        }
+
+        .q-back {
+            background: none;
+            border: none;
+            color: var(--ink-faint);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .q-back:disabled {
+            visibility: hidden;
+        }
+
+        .q-next {
+            background: var(--ink);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 22px;
+            font-size: 14.5px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background .15s;
+        }
+
+        .q-next.ready {
+            background: var(--accent);
+            color: var(--accent-ink);
+        }
+
+        .q-next:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* email step */
+        .email-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .email-row input {
+            flex: 1;
+            min-width: 220px;
+            padding: 15px 16px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: 11px;
+            font-size: 15px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .email-row input:focus {
+            outline: none;
+            border-color: var(--accent-deep);
+        }
+
+        .email-note {
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            margin-top: 10px;
+        }
+
+        /* generating + result */
+        .gen-wrap {
+            text-align: center;
+            padding: 26px 0 8px;
+        }
+
+        .spinner {
+            width: 46px;
+            height: 46px;
+            margin: 0 auto 20px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .gen-line {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13.5px;
+            color: var(--ink-soft);
+            margin: 6px 0;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 12px 0 6px;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 230, 118, 0.14);
+            color: var(--accent-ink);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12.5px;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .result-card h3 {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+
+        .result-card p {
+            color: var(--ink-soft);
+            font-size: 15px;
+            max-width: 46ch;
+            margin: 0 auto 26px;
+        }
+
+        /* ---------- Final CTA band ---------- */
+        .final-band {
+            background: var(--bg-subtle-2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+            padding: 72px 0;
+        }
+
+        .final-band h2 {
+            font-size: clamp(26px, 3.4vw, 38px);
+            margin: 0 0 14px;
+            letter-spacing: -0.015em;
+        }
+
+        .final-band p {
+            color: var(--ink-soft);
+            font-size: 17px;
+            max-width: 52ch;
+            margin: 0 auto 30px;
+        }
+
+        .disclosure {
+            font-size: 12px;
+            color: var(--ink-faint);
+            max-width: 60ch;
+            margin: 22px auto 0;
+            line-height: 1.6;
+        }
+
+        footer.site-footer {
+            padding: 36px 0;
+            text-align: center;
+            font-size: 13px;
+            color: var(--ink-faint);
+        }
+
+        /* ---------- Popup ---------- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 14, 11, 0.55);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+            backdrop-filter: blur(3px);
+        }
+
+        .overlay.show {
+            display: flex;
+            animation: fadeBg .2s ease;
+        }
+
+        @keyframes fadeBg {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .popup {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 460px;
+            width: 100%;
+            padding: 34px 32px 30px;
+            position: relative;
+            box-shadow: var(--shadow-pop);
+            animation: pop .25s cubic-bezier(.2, .8, .3, 1.2);
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(.94) translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--bg-subtle);
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            color: var(--ink-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .popup h3 {
+            font-size: 24px;
+            line-height: 1.15;
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .popup p.sub {
+            color: var(--ink-soft);
+            font-size: 15px;
+            margin: 0 0 22px;
+        }
+
+        .popup .btn-primary {
+            width: 100%;
+        }
+
+        .popup-proof {
+            font-size: 12.5px;
+            color: var(--ink-faint);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .popup-skip {
+            display: block;
+            text-align: center;
+            margin-top: 14px;
+            font-size: 13px;
+            color: var(--ink-faint);
+            text-decoration: underline;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .popup-urgency {
+            margin-top: 16px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            background: var(--bg-subtle-2);
+            border: 1px solid #CDF2DD;
+            font-size: 12.5px;
+            color: var(--accent-ink);
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site">
+        <div class="wrap site-row">
+            <div class="logo"><span class="dot"></span>CryptoPassiveIncome</div>
+            <nav class="site-nav"> <a href="#report">What's included</a> <a href="#how">How it works</a> <a
+                    href="#quiz">Get my report</a> </nav> <a href="#quiz" class="btn-nav">Get My Report</a>
+        </div>
+    </header><!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <div class="eyebrow"><span class="pulse"></span>Free Personalized Report</div>
+                <h1>Find Out Where Your <span class="hl">Crypto Should Be Working</span> — Not Sitting</h1>
+                <p class="sub">The Crypto Passive Income Edge Report turns your capital, goals, and risk tolerance into
+                    a tailored yield strategy — built from live protocol coverage and CryptoPassiveIncome's safety
+                    vetting matrix.</p>
+                <div class="hero-cta-row"> <a href="#quiz" class="btn-primary"> Get My Free Yield Report <svg width="16"
+                            height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </a> </div>
+                <div class="reassure"><b>Free</b> · Instant download · No wallet connection required</div>
+            </div>
+            <div class="ticker-card">
+                <div class="ticker-head"> <span class="ticker-title"><span class="live-dot"></span>Live Yield
+                        Snapshot</span> <span class="ticker-title" id="clock">--:--:--</span> </div>
+                <div class="ticker-window">
+                    <div class="ticker-list">
+                        <div class="ticker-row">
+                            <div>
+                                <div class="t-name">Stablecoin Lending Pool</div>
+                                <div class="t-type">LOW VOLATILITY</div>
+                            </div>
+                            <div></div>
+                            <div class="t-apy">6.2%</div>
+                        </div>
+                        <div class="ticker-row">
+                            <div>
+                                <div class="t-name">ETH Liquid Staking</div>
+                                <div class="t-type">STAKING</div>
+                            </div>
+                            <div></div>
+                            <div class="t-apy">4.1%</div>
+                        </div>
+                        <div class="ticker-row">
+                            <div>
+                                <div class="t-name">BTC/USDC LP</div>
+                                <div class="t-type">LIQUIDITY PAIR</div>
+                            </div>
+                            <div></div>
+                            <div class="t-apy">11.8%</div>
+                        </div>
+                        <div class="ticker-row">
+                            <div>
+                                <div class="t-name">Structured Yield Vault</div>
+                                <div class="t-type">STRUCTURED</div>
+                            </div>
+                            <div></div>
+                            <div class="t-apy">14.5%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ticker-foot">SAMPLE DATA · YOUR REPORT MATCHES OPPORTUNITIES TO YOUR ANSWERS</div>
+            </div>
+        </div>
+    </section>
+    <hr class="divider"><!-- ================= WHAT'S INCLUDED ================= -->
+    <section id="report">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>This Isn't a Newsletter Signup. It's a Working Document.</h2>
+                <p>Every report is generated from your quiz answers and cross-referenced against current protocol data.
+                    Here's what's inside.</p>
+            </div>
+            <div class="card-grid">
+                <div class="card"> <span class="tag">Allocation Map</span>
+                    <h3>Chart-Based Allocation Ideas</h3>
+                    <p>A visual breakdown of how your capital could be split across yield strategies — stablecoin
+                        lending, liquidity pairs, staking, and structured yield — sized to your target APY and risk
+                        profile.</p>
+                </div>
+                <div class="card"> <span class="tag">Risk Flags</span>
+                    <h3>Structural Risk Flags</h3>
+                    <p>Plain-language breakdown of the risks tied to the assets and strategies you're considering —
+                        impermanent loss exposure, smart contract audit status, and protocol concentration risk.</p>
+                </div>
+                <div class="card"> <span class="tag">Watchlist</span>
+                    <h3>Personalized Yield Watchlist</h3>
+                    <p>A shortlist of protocols and pools that match your stated risk tolerance and management style,
+                        pulled from current coverage — not a stale "best of" list.</p>
+                </div>
+                <div class="card"> <span class="tag">Next Steps</span>
+                    <h3>Practical Steps to Start Compounding</h3>
+                    <p>A step-by-step action sequence — what to set up first, what to monitor, and how often to revisit
+                        your allocation — scaled to hands-off or active management.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ================= HOW IT WORKS ================= -->
+    <section id="how" class="tight"
+        style="background:var(--bg-subtle);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+        <div class="wrap">
+            <div class="section-head">
+                <h2>Three Steps to Your Edge</h2>
+                <p>From quiz to report in about a minute.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">STEP 01</div>
+                    <h4>Answer the quiz</h4>
+                    <p>Capital range, target annual yield, risk tolerance, favorite holding assets, and your preferred
+                        management style. About 60 seconds.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">STEP 02</div>
+                    <h4>We match your answers to live coverage</h4>
+                    <p>Your inputs run against CryptoPassiveIncome's protocol coverage and safety vetting matrix to
+                        filter out anything outside your risk profile.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">STEP 03</div>
+                    <h4>Get instant access to your report</h4>
+                    <p>Your allocation map, risk flags, and watchlist are ready immediately — no waiting, no sales call.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ================= QUIZ ================= -->
+    <section id="quiz">
+        <div class="wrap" style="max-width:760px;">
+            <div class="section-head" style="text-align:center;margin-left:auto;margin-right:auto;">
+                <h2>Build Your Personalized Report</h2>
+                <p>5 questions. Your report is generated the moment you finish.</p>
+            </div>
+            <div class="quiz-shell">
+                <div class="quiz-top">
+                    <div class="quiz-top-row">
+                        <h3>Your Edge Report</h3> <span class="quiz-count mono"><span id="stepNow">1</span> / 6</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+                <div class="quiz-body">
+                    <form id="quizForm"> <!-- Q1 -->
+                        <div class="q-step active" data-step="1">
+                            <div class="q-label">Question 1 of 5</div>
+                            <div class="q-title">What's your current investable crypto capital?</div>
+                            <div class="opt-grid" data-group="capital"> <button type="button" class="opt">Under $5K<span
+                                        class="opt-sub">Just getting started</span></button> <button type="button"
+                                    class="opt">$5K – $25K<span class="opt-sub">Building a base</span></button> <button
+                                    type="button" class="opt">$25K – $100K<span class="opt-sub">Diversifying
+                                        seriously</span></button> <button type="button" class="opt">$100K+<span
+                                        class="opt-sub">Optimizing at scale</span></button> </div>
+                        </div> <!-- Q2 -->
+                        <div class="q-step" data-step="2">
+                            <div class="q-label">Question 2 of 5</div>
+                            <div class="q-title">What annual yield are you targeting?</div>
+                            <div class="opt-grid" data-group="yieldGoal"> <button type="button"
+                                    class="opt">Conservative<span class="opt-sub">3–8% target</span></button> <button
+                                    type="button" class="opt">Moderate<span class="opt-sub">8–15% target</span></button>
+                                <button type="button" class="opt">Aggressive<span class="opt-sub">15%+
+                                        target</span></button> <button type="button" class="opt">Not sure yet<span
+                                        class="opt-sub">Show me what's realistic</span></button> </div>
+                        </div> <!-- Q3 -->
+                        <div class="q-step" data-step="3">
+                            <div class="q-label">Question 3 of 5</div>
+                            <div class="q-title">How do you feel about impermanent loss and smart contract risk?</div>
+                            <div class="opt-grid" data-group="riskTolerance"> <button type="button"
+                                    class="opt">Risk-averse<span class="opt-sub">Capital preservation
+                                        first</span></button> <button type="button" class="opt">Balanced<span
+                                        class="opt-sub">Some risk for better yield</span></button> <button type="button"
+                                    class="opt">Risk-tolerant<span class="opt-sub">I'll chase higher APY</span></button>
+                            </div>
+                        </div> <!-- Q4 -->
+                        <div class="q-step" data-step="4">
+                            <div class="q-label">Question 4 of 5</div>
+                            <div class="q-title">Which assets do you prefer holding?</div>
+                            <div class="opt-grid" data-group="assets"> <button type="button"
+                                    class="opt">Stablecoins<span class="opt-sub">USDC, USDT, DAI</span></button> <button
+                                    type="button" class="opt">BTC & ETH<span class="opt-sub">Blue-chip
+                                        majors</span></button> <button type="button" class="opt">Altcoins<span
+                                        class="opt-sub">Higher variance</span></button> <button type="button"
+                                    class="opt">Mixed portfolio<span class="opt-sub">A bit of everything</span></button>
+                            </div>
+                        </div> <!-- Q5 -->
+                        <div class="q-step" data-step="5">
+                            <div class="q-label">Question 5 of 5</div>
+                            <div class="q-title">How involved do you want to be?</div>
+                            <div class="opt-grid" data-group="style"> <button type="button" class="opt">Fully
+                                    hands-off<span class="opt-sub">Set it and monitor rarely</span></button> <button
+                                    type="button" class="opt">Occasional check-ins<span class="opt-sub">Monthly
+                                        review</span></button> <button type="button" class="opt">Active harvesting<span
+                                        class="opt-sub">Frequent rebalancing</span></button> </div>
+                        </div> <!-- Email step -->
+                        <div class="q-step" data-step="6">
+                            <div class="q-label">Last step</div>
+                            <div class="q-title">Where should we send your report?</div>
+                            <div class="email-row"> <input type="email" id="emailInput" placeholder="you@email.com"
+                                    required> </div>
+                            <div class="email-note">Instant download. We'll also email a copy so you don't lose it.
+                            </div>
+                        </div> <!-- Generating -->
+                        <div class="q-step" data-step="7">
+                            <div class="gen-wrap">
+                                <div class="spinner"></div>
+                                <div class="gen-line" id="genLine">Matching your answers to live protocol coverage…
+                                </div>
+                            </div>
+                        </div> <!-- Result -->
+                        <div class="q-step" data-step="8">
+                            <div class="result-card">
+                                <div class="result-badge">✓ Report ready</div>
+                                <h3>Your Crypto Passive Income Edge Report is ready</h3>
+                                <p>Built from your answers and current protocol coverage — your allocation map, risk
+                                    flags, and watchlist are ready to view.</p> <a href="#" id="downloadBtn"
+                                    class="btn-primary" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';return false;"> Download My Report <svg width="16"
+                                        height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 2v9m0 0l-3.5-3.5M8 11l3.5-3.5M3 14h10" stroke="currentColor"
+                                            stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg> </a>
+                            </div>
+                        </div>
+                        <div class="q-nav" id="quizNav"> <button type="button" class="q-back" id="backBtn">←
+                                Back</button> <button type="button" class="q-next" id="nextBtn" disabled>Continue
+                                →</button> </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section><!-- ================= TRUST STRIP ================= -->
+    <section class="tight" style="background:var(--bg-subtle);border-top:1px solid var(--border);">
+        <div class="wrap">
+            <div class="section-head">
+                <h2 style="font-size:24px;">Why This Isn't Just Another Lead Magnet</h2>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h4>📡 Live Protocol Coverage</h4>
+                    <p>Continuously tracked yield opportunities, not a static list from six months ago.</p>
+                </div>
+                <div class="trust-item">
+                    <h4>🛡️ Safety Vetting Matrix</h4>
+                    <p>Every protocol referenced is screened for audit history, TVL stability, and known exploit
+                        patterns.</p>
+                </div>
+                <div class="trust-item">
+                    <h4>🎓 Built for Beginners</h4>
+                    <p>No jargon-first explanations — every recommendation comes with plain-language reasoning.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ================= FINAL CTA ================= -->
+    <section class="final-band">
+        <div class="wrap">
+            <h2>Every Day of Idle Capital Is a Day of Missed Compounding</h2>
+            <p>Your report is free, personalized, and ready in under a minute. See where your capital fits before the
+                market shifts again.</p> <a href="#quiz" class="btn-primary"> Unlock My Income Edge <svg width="16"
+                    height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg> </a>
+            <p class="disclosure">Educational content only — not financial advice. DeFi yield strategies carry risk,
+                including smart contract failure and impermanent loss. Always do your own research before deploying
+                capital.</p>
+        </div>
+    </section>
+    <footer class="site-footer"> © <span id="year"></span> CryptoPassiveIncome. All yield figures shown are illustrative
+        and subject to change.</footer><!-- ================= EXIT-INTENT / TIMED POPUP ================= -->
+    <div class="overlay" id="popupOverlay">
+        <div class="popup"> <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+            <div class="eyebrow"><span class="pulse"></span>Live Yield Intelligence</div>
+            <h3>Your Idle Crypto Is Losing Ground Every Day You Don't Deploy It</h3>
+            <p class="sub">Answer 5 quick questions and get a personalized report showing exactly where your capital
+                could be compounding — vetted protocols, real APY ranges, and the risk flags most beginners miss.</p> <a
+                href="#quiz" class="btn-primary" id="popupCta"> Unlock My Income Edge <svg width="16" height="16"
+                    viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg> </a>
+            <div class="popup-urgency">Yield opportunities shift weekly. This report reflects current conditions — the
+                longer you wait, the more it drifts out of date.</div> <button class="popup-skip" id="popupSkip">Not
+                now, I'll keep my capital idle</button>
+        </div>
+    </div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();/* live clock in ticker card */function tickClock() { const el = document.getElementById('clock'); if (!el) return; const d = new Date(); el.textContent = d.toTimeString().slice(0, 8); } tickClock(); setInterval(tickClock, 1000);/* ---------------- Popup logic ---------------- */(function () { const overlay = document.getElementById('popupOverlay'); const closeBtn = document.getElementById('popupClose'); const skipBtn = document.getElementById('popupSkip'); const ctaBtn = document.getElementById('popupCta'); const SESSION_KEY = 'cpi_popup_shown'; function showPopup() { if (sessionStorage.getItem(SESSION_KEY)) return; overlay.classList.add('show'); sessionStorage.setItem(SESSION_KEY, '1'); } function hidePopup() { overlay.classList.remove('show'); }  // Exit intent: mouse leaves toward top of viewport  document.addEventListener('mouseleave', (e)=>{    if(e.clientY <= 0) showPopup();  });  // Fallback: timed trigger for mobile / no-mouseleave environments  setTimeout(showPopup, 20000);  closeBtn.addEventListener('click', hidePopup);  skipBtn.addEventListener('click', hidePopup);  ctaBtn.addEventListener('click', hidePopup);  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) hidePopup(); });})();/* ---------------- Quiz logic ---------------- */(function(){  const TOTAL_QUESTION_STEPS = 6; // 5 questions + email  const steps = Array.from(document.querySelectorAll('.q-step'));  const backBtn = document.getElementById('backBtn');  const nextBtn = document.getElementById('nextBtn');  const nav = document.getElementById('quizNav');  const progressFill = document.getElementById('progressFill');  const stepNow = document.getElementById('stepNow');  const emailInput = document.getElementById('emailInput');  let current = 1;  const answers = {};  function setStep(n){    steps.forEach(s => s.classList.toggle('active', Number(s.dataset.step) === n));    current = n;    const pct = Math.min((n / TOTAL_QUESTION_STEPS) * 100, 100);    progressFill.style.width = pct + '%';    stepNow.textContent = Math.min(n, TOTAL_QUESTION_STEPS);    backBtn.disabled = n === 1;    nav.style.display = (n >= 7) ? 'none' : 'flex';    updateNextState();  }  function updateNextState(){    const stepEl = document.querySelector('.q-step[data-step="'+current+'"]');    if(!stepEl) return;    if(current === 6){      const valid = emailInput.checkValidity() && emailInput.value.trim().length > 3;      nextBtn.disabled = !valid;      nextBtn.classList.toggle('ready', valid);      nextBtn.textContent = 'Generate My Report →';      return;    }    const group = stepEl.querySelector('.opt-grid');    if(group){      const key = group.dataset.group;      const has = !!answers[key];      nextBtn.disabled = !has;      nextBtn.classList.toggle('ready', has);      nextBtn.textContent = 'Continue →';    }  }  // Option selection  document.querySelectorAll('.opt-grid').forEach(grid => {    grid.addEventListener('click', (e)=>{      const btn = e.target.closest('.opt');      if(!btn) return;      grid.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));      btn.classList.add('selected');      answers[grid.dataset.group] = btn.childNodes[0].textContent.trim();      updateNextState();    });  });  emailInput.addEventListener('input', updateNextState);  backBtn.addEventListener('click', ()=>{    if(current > 1) setStep(current - 1);  });  const genLines = [    'Matching your answers to live protocol coverage…',    'Running your safety vetting matrix…',    'Building your allocation map…',    'Finalizing your yield watchlist…'  ];  nextBtn.addEventListener('click', ()=>{    if(current < 6){      setStep(current + 1);      return;    }    if(current === 6){      answers.email = emailInput.value.trim();      setStep(7);      runGenerationSequence();      return;    }  });  function runGenerationSequence(){    const genLine = document.getElementById('genLine');    let i = 0;    genLine.textContent = genLines[0];    const interval = setInterval(()=>{      i++;      if(i < genLines.length){        genLine.textContent = genLines[i];      } else {        clearInterval(interval);        submitToWebhook(answers);        setStep(8);      }    }, 700);  }  // GHL webhook stub — replace WEBHOOK_URL with the live CryptoPassiveIncome GHL endpoint  function submitToWebhook(payload){    const WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/REPLACE_WITH_LOCATION_ID/webhook-trigger/REPLACE_WITH_TRIGGER_ID';    fetch(WEBHOOK_URL, {      method: 'POST',      headers: { 'Content-Type': 'application/json' },      body: JSON.stringify({        source: 'cryptopassiveincome-edge-report',        capital: payload.capital,        yieldGoal: payload.yieldGoal,        riskTolerance: payload.riskTolerance,        assets: payload.assets,        managementStyle: payload.style,        email: payload.email,        submittedAt: new Date().toISOString()      })    }).catch(err => console.warn('Webhook submission failed (stub endpoint):', err));  }  setStep(1);})();</script>
+</body>
+
+</html>

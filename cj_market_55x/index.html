@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CoinJournal Crypto Edge Report — Free & Personalized</title>
+    <meta name="description"
+        content="Answer 5 quick questions. Get a free personalized crypto report built from your answers and CoinJournal's analysis — watchlist ideas, portfolio observations, key risks, and opportunities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg2: #F7F9FB;
+            --bg3: #EEF3F8;
+            --surface: #FFFFFF;
+            --surface2: #F0F4F8;
+            --border: #DDE4ED;
+            --border2: #C5D0DE;
+            --text: #0C1A2E;
+            --text2: #2E4460;
+            --text3: #5A7290;
+            --text4: #9AADC4;
+            --teal: #0CB4C7;
+            --teal-dk: #0894A6;
+            --tl: rgba(12, 180, 199, .08);
+            --tb: rgba(12, 180, 199, .22);
+            --red: #EF4444;
+            --rl: rgba(239, 68, 68, .08);
+            --green: #10B981;
+            --gl: rgba(16, 185, 129, .08);
+            --gold: #F59E0B;
+            --gol: rgba(245, 158, 11, .08);
+            --orange: #F97316;
+            --r: 8px;
+            --rl2: 12px;
+            --rxl: 18px;
+            --sh: 0 1px 3px rgba(0, 0, 0, .06), 0 4px 16px rgba(0, 0, 0, .05);
+            --sh2: 0 8px 32px rgba(0, 0, 0, .1);
+            --mx: 1140px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Mulish", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.55;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Mulish", sans-serif;
+            margin: 0;
+            font-weight: 800;
+            letter-spacing: -.015em;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: var(--teal);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: var(--mx);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        /* NAV — white, border-bottom, matches CoinJournal exactly */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--mx);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+            padding: 0 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand-gem {
+            color: var(--teal);
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .brand-name {
+            font-family: "Mulish", sans-serif;
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--text);
+            letter-spacing: -.02em;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text2);
+            padding: 6px 10px;
+            border-radius: var(--r);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: var(--bg2);
+            color: var(--text);
+        }
+
+        .nav-btn {
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 8px 18px;
+            font-size: 13.5px;
+            font-weight: 700;
+            font-family: "Mulish", sans-serif;
+            transition: background .15s, transform .15s;
+        }
+
+        .nav-btn:hover {
+            background: var(--teal-dk);
+            transform: translateY(-1px);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 64px 0 80px;
+            background: linear-gradient(180deg, #EEF8FA 0%, #FFFFFF 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--teal);
+            background: var(--tl);
+            border: 1px solid var(--tb);
+            padding: 5px 12px;
+            border-radius: var(--r);
+            margin-bottom: 20px;
+            font-family: "Mulish", sans-serif;
+        }
+
+        .hero-kicker .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.08;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        .hero-sub {
+            color: var(--text3);
+            font-size: 17px;
+            line-height: 1.65;
+            max-width: 490px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-sub strong {
+            color: var(--text2);
+            font-weight: 700;
+        }
+
+        .hero-acts {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 14px 26px;
+            font-size: 15.5px;
+            font-weight: 700;
+            font-family: "Mulish", sans-serif;
+            transition: background .15s, transform .15s, box-shadow .15s;
+            box-shadow: 0 4px 16px rgba(12, 180, 199, .28);
+        }
+
+        .btn:hover {
+            background: var(--teal-dk);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 28px rgba(12, 180, 199, .36);
+        }
+
+        .hero-note {
+            font-size: 13px;
+            color: var(--text4);
+            font-weight: 600;
+        }
+
+        /* PROOF */
+        .proof {
+            padding: 22px 0;
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+
+        .proof-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            padding: 8px 36px;
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .proof-item:last-child {
+            border-right: none;
+        }
+
+        .proof-n {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--teal);
+        }
+
+        .proof-l {
+            font-size: 11.5px;
+            color: var(--text3);
+            margin-top: 3px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 76px 0;
+        }
+
+        .slabel {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 10px;
+        }
+
+        .sh {
+            font-size: 28px;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .ssub {
+            color: var(--text3);
+            font-size: 16px;
+            line-height: 1.65;
+            max-width: 520px;
+            font-weight: 500;
+        }
+
+        /* STEPS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 44px;
+        }
+
+        .step-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            padding: 26px 22px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--teal);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            flex-shrink: 0;
+        }
+
+        .step-card h3 {
+            font-size: 16.5px;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text3);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        /* REPORT CARDS */
+        .rgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 44px;
+        }
+
+        .rcard {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            overflow: hidden;
+            box-shadow: var(--sh);
+            transition: box-shadow .2s, transform .2s;
+        }
+
+        .rcard:hover {
+            box-shadow: var(--sh2);
+            transform: translateY(-2px);
+        }
+
+        .rviz {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rcopy {
+            padding: 18px 22px 22px;
+        }
+
+        .rcopy .slabel {
+            margin-bottom: 7px;
+        }
+
+        .rcopy h3 {
+            font-size: 16.5px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .rcopy p {
+            font-size: 13.5px;
+            color: var(--text3);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        /* CREDIBILITY */
+        .cred {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 76px 0;
+        }
+
+        .cred-pts {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .cred-pt {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .cpt-bar {
+            width: 3px;
+            background: linear-gradient(180deg, var(--teal), rgba(12, 180, 199, .1));
+            flex-shrink: 0;
+            min-height: 44px;
+            align-self: stretch;
+            border-radius: 2px;
+        }
+
+        .cpt-n {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--teal);
+            line-height: 1;
+        }
+
+        .cpt-l {
+            font-size: 13.5px;
+            color: var(--text3);
+            margin-top: 4px;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        /* SAMPLE BRIEF */
+        .brief {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            max-width: 700px;
+            margin: 38px auto 0;
+            overflow: hidden;
+            box-shadow: var(--sh);
+        }
+
+        .brief-hdr {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .brief-ttl {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text3);
+        }
+
+        .brief-badge {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--teal);
+            background: var(--tl);
+            border: 1px solid var(--tb);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .brief-body {
+            padding: 24px;
+        }
+
+        .bprofile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .bptag {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: 500;
+        }
+
+        .bptag.style {
+            background: var(--tl);
+            color: var(--teal);
+        }
+
+        .bptag.risk {
+            background: var(--gol);
+            color: var(--gold);
+        }
+
+        .bptag.focus {
+            background: var(--gl);
+            color: var(--green);
+        }
+
+        .bsect {
+            border-left: 3px solid var(--teal);
+            padding-left: 14px;
+            margin-bottom: 18px;
+        }
+
+        .bsect:last-child {
+            margin-bottom: 0;
+        }
+
+        .bsect h4 {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 7px;
+        }
+
+        .bsect p {
+            font-size: 13.5px;
+            color: var(--text2);
+            line-height: 1.62;
+            font-weight: 500;
+        }
+
+        .bflag {
+            background: var(--rl);
+            border: 1px solid rgba(239, 68, 68, .2);
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            font-size: 12.5px;
+            color: var(--red);
+            font-family: "JetBrains Mono", monospace;
+            display: flex;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        /* FINAL CTA */
+        .final {
+            text-align: center;
+            padding: 88px 0 100px;
+            background: #fff;
+        }
+
+        .fkicker {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text3);
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 18px;
+        }
+
+        .final h2 {
+            font-size: 34px;
+            max-width: 540px;
+            margin: 0 auto 12px;
+            line-height: 1.2;
+            color: var(--text);
+        }
+
+        .final h2 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        .final p {
+            color: var(--text3);
+            font-size: 16px;
+            margin-bottom: 32px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .fnote {
+            font-size: 12.5px;
+            color: var(--text4);
+            font-family: "JetBrains Mono", monospace;
+            margin-top: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--text);
+            padding: 36px 0;
+        }
+
+        .frow {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fbrand {
+            font-family: "Mulish", sans-serif;
+            font-weight: 800;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .fbrand span {
+            color: var(--teal);
+        }
+
+        .ffine {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, .4);
+            line-height: 1.65;
+            max-width: 420px;
+            text-align: right;
+        }
+
+        /* QUIZ MODAL */
+        .qov {
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 26, 46, .5);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity .24s;
+        }
+
+        .qov.on {
+            display: flex;
+            opacity: 1;
+        }
+
+        .qm {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--rxl);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, .18);
+            transform: translateY(10px) scale(.98);
+            transition: transform .26s;
+            overflow: hidden;
+        }
+
+        .qov.on .qm {
+            transform: none;
+        }
+
+        .qx {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text3);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .qx:hover {
+            background: var(--bg3);
+        }
+
+        .qband {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 13px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qbtl {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text3);
+        }
+
+        .qprog {
+            display: flex;
+            gap: 5px;
+        }
+
+        .qpd {
+            width: 22px;
+            height: 3px;
+            background: var(--border);
+            border-radius: 99px;
+            transition: background .3s;
+        }
+
+        .qpd.done {
+            background: var(--teal);
+        }
+
+        .qbody {
+            padding: 28px 26px 24px;
+        }
+
+        .ql {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .qbody h2 {
+            font-size: 19px;
+            line-height: 1.3;
+            margin-bottom: 22px;
+            color: var(--text);
+        }
+
+        .qopts {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .qopt {
+            padding: 12px 15px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text2);
+            transition: border-color .15s, background .15s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #fff;
+            font-family: "Mulish", sans-serif;
+        }
+
+        .qopt:hover {
+            border-color: var(--teal);
+            background: var(--tl);
+        }
+
+        .qopt.sel {
+            border-color: var(--teal);
+            background: var(--tl);
+            color: var(--text);
+        }
+
+        .qck {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid var(--border2);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            transition: all .15s;
+        }
+
+        .qopt.sel .qck {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: #fff;
+        }
+
+        .qtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .qtag {
+            padding: 8px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text3);
+            cursor: pointer;
+            transition: all .15s;
+            font-family: "Mulish", sans-serif;
+        }
+
+        .qtag:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+
+        .qtag.sel {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: var(--tl);
+        }
+
+        .qn {
+            width: 100%;
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 18px;
+            transition: background .15s, opacity .15s;
+            font-family: "Mulish", sans-serif;
+        }
+
+        .qn:hover {
+            background: var(--teal-dk);
+        }
+
+        .qn:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+            background: var(--teal);
+        }
+
+        .qb {
+            font-size: 13px;
+            color: var(--text3);
+            background: none;
+            border: none;
+            padding: 0;
+            margin-top: 11px;
+            display: block;
+            cursor: pointer;
+            font-family: "Mulish", sans-serif;
+            font-weight: 600;
+        }
+
+        .qb:hover {
+            color: var(--text2);
+        }
+
+        .qinput {
+            width: 100%;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            padding: 13px 15px;
+            font-size: 14.5px;
+            color: var(--text);
+            font-family: "Mulish", sans-serif;
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        .qinput:focus {
+            border-color: var(--teal);
+        }
+
+        .qinput::placeholder {
+            color: var(--text4);
+        }
+
+        .build {
+            padding: 6px 0 4px;
+            text-align: center;
+        }
+
+        .bspin {
+            width: 48px;
+            height: 48px;
+            border: 2.5px solid var(--border);
+            border-top-color: var(--teal);
+            border-radius: 50%;
+            animation: sp .85s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes sp {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blines {
+            text-align: left;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bline {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text3);
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .bck {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--tl);
+            border: 1.5px solid var(--tb);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: var(--teal);
+            opacity: 0;
+            transition: opacity .4s;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .bline.done .bck {
+            opacity: 1;
+        }
+
+        .suc-t {
+            background: linear-gradient(135deg, #EAF8FA, #EEF8FF);
+            border-bottom: 1px solid var(--border);
+            padding: 28px 26px 22px;
+        }
+
+        .suc-ico {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .suc-ico svg {
+            width: 22px;
+            height: 22px;
+            color: #fff;
+        }
+
+        .suc-t h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .suc-t p {
+            font-size: 13.5px;
+            color: var(--text3);
+            font-weight: 500;
+        }
+
+        .suc-b {
+            padding: 22px 26px 28px;
+        }
+
+        .suc-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .suc-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--text2);
+            font-weight: 600;
+        }
+
+        .sic {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            color: #fff;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        /* POPUP */
+        .pov {
+            position: fixed;
+            inset: 0;
+            background: rgba(12, 26, 46, .45);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 400;
+            padding: 0;
+        }
+
+        .pov.on {
+            display: flex;
+            animation: slu .3s ease both;
+        }
+
+        @keyframes slu {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .pc {
+            background: #fff;
+            border-top: 2px solid var(--teal);
+            max-width: 640px;
+            width: 100%;
+            padding: 28px 32px 26px;
+            position: relative;
+            border-radius: var(--rxl) var(--rxl) 0 0;
+            box-shadow: 0 -8px 48px rgba(0, 0, 0, .12);
+        }
+
+        .pcx {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text3);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .pcx:hover {
+            background: var(--bg3);
+        }
+
+        .pk {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--teal);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 600;
+        }
+
+        .pblip {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--teal);
+            animation: pulse 2.2s ease-in-out infinite;
+        }
+
+        .pc h2 {
+            font-size: 21px;
+            line-height: 1.28;
+            margin-bottom: 10px;
+            color: var(--text);
+        }
+
+        .pc h2 em {
+            font-style: italic;
+            color: var(--teal);
+        }
+
+        .pc>p {
+            font-size: 14px;
+            color: var(--text3);
+            line-height: 1.65;
+            margin-bottom: 18px;
+            max-width: 500px;
+            font-weight: 500;
+        }
+
+        .pbuls {
+            list-style: none;
+            margin: 0 0 22px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pbuls li {
+            display: flex;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--text3);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        .pbuls b {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .pbar {
+            width: 3px;
+            background: var(--teal);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        .prow {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .prow .btn {
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .pdis {
+            font-size: 13px;
+            color: var(--text4);
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pdis:hover {
+            color: var(--text3);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:860px) {
+
+            .hero-grid,
+            .cred-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .rgrid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .proof-item {
+                padding: 10px 18px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .proof-item:last-child {
+                border-bottom: none;
+            }
+
+            .section {
+                padding: 52px 0;
+            }
+
+            .final h2 {
+                font-size: 26px;
+            }
+
+            .prow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .qbody {
+                padding: 22px 20px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .frow {
+                flex-direction: column;
+            }
+
+            .ffine {
+                text-align: left;
+            }
+        }
+
+        @media(max-width:480px) {
+            .proof-row {
+                flex-direction: column;
+            }
+
+            .hero-acts {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body><!-- ═══ POPUP ════════════════════════════════════════════════════ -->
+    <div class="pov" id="pov">
+        <div class="pc"> <button class="pcx" id="pcx">✕</button>
+            <div class="pk"><span class="pblip"></span>CoinJournal · Crypto Edge Report · Free</div>
+            <h2>Get a report that's actually<br><em>built around your portfolio.</em></h2>
+            <p>Tell us how you invest and what you're focused on. We'll put together a free personalized report —
+                watchlist ideas, portfolio observations, key risks, and opportunities — drawn from CoinJournal's market
+                coverage and matched to your answers.</p>
+            <ul class="pbuls">
+                <li>
+                    <div class="pbar"></div><span><b>Watchlist Ideas:</b> Specific assets worth watching now, filtered
+                        to your risk tolerance and chosen sectors</span>
+                </li>
+                <li>
+                    <div class="pbar"></div><span><b>Portfolio Observations:</b> How your approach aligns with the
+                        current market — and what might be missing</span>
+                </li>
+                <li>
+                    <div class="pbar"></div><span><b>Risks &amp; Opportunities:</b> What to watch out for right now —
+                        and where the market is creating openings for your profile</span>
+                </li>
+            </ul>
+            <div class="prow"> <button class="btn" id="pCTA"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" style="width:15px;height:15px;">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg> Unlock My Crypto Edge </button> <span class="pdis" id="pdis">No thanks, I'll pass</span>
+            </div>
+        </div>
+    </div><!-- ═══ QUIZ MODAL ════════════════════════════════════════════════ -->
+    <div class="qov" id="qov">
+        <div class="qm"> <button class="qx" id="qx">✕</button>
+            <div id="qs1">
+                <div class="qband"><span class="qbtl">CoinJournal Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">01 / 05 — Your Style</span>
+                    <h2>How would you describe the way you invest in crypto?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="hodl">
+                            <div class="qck">✓</div>Long-term holder — I buy, hold, and ignore short-term noise
+                        </div>
+                        <div class="qopt" data-v="active">
+                            <div class="qck">✓</div>Active trader — I follow the market closely and move with it
+                        </div>
+                        <div class="qopt" data-v="occasional">
+                            <div class="qck">✓</div>Occasional investor — I invest when I see a clear opportunity
+                        </div>
+                        <div class="qopt" data-v="defi">
+                            <div class="qck">✓</div>DeFi participant — I use protocols, earn yield, and go on-chain
+                        </div>
+                        <div class="qopt" data-v="researcher">
+                            <div class="qck">✓</div>Research-first — I study deeply before committing capital
+                        </div>
+                    </div> <button class="qn" id="s1n" disabled>Continue →</button>
+                </div>
+            </div>
+            <div id="qs2" style="display:none;">
+                <div class="qband"><span class="qbtl">CoinJournal Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">02 / 05 — What Matters Most</span>
+                    <h2>What is your primary focus in crypto right now?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="nextgem">
+                            <div class="qck">✓</div>Finding the next breakout coin before it moves
+                        </div>
+                        <div class="qopt" data-v="managerisk">
+                            <div class="qck">✓</div>Managing risk better in a volatile market
+                        </div>
+                        <div class="qopt" data-v="trends">
+                            <div class="qck">✓</div>Understanding the key market trends and narratives
+                        </div>
+                        <div class="qopt" data-v="diversify">
+                            <div class="qck">✓</div>Building a more diversified and resilient portfolio
+                        </div>
+                        <div class="qopt" data-v="yield">
+                            <div class="qck">✓</div>Generating yield or income from my existing holdings
+                        </div>
+                    </div> <button class="qn" id="s2n" disabled>Continue →</button> <button class="qb" id="s2b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs3" style="display:none;">
+                <div class="qband"><span class="qbtl">CoinJournal Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">03 / 05 — Time Horizon</span>
+                    <h2>How long do you typically plan to hold a crypto position?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="weeks">
+                            <div class="qck">✓</div>Days to weeks — I trade the setup, not the story
+                        </div>
+                        <div class="qopt" data-v="months6">
+                            <div class="qck">✓</div>1 to 6 months — I hold through a trend then reassess
+                        </div>
+                        <div class="qopt" data-v="year">
+                            <div class="qck">✓</div>6 months to 2 years — I ride the full cycle leg
+                        </div>
+                        <div class="qopt" data-v="longterm">
+                            <div class="qck">✓</div>2+ years — I hold through multiple market cycles
+                        </div>
+                    </div> <button class="qn" id="s3n" disabled>Continue →</button> <button class="qb" id="s3b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs4" style="display:none;">
+                <div class="qband"><span class="qbtl">CoinJournal Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">04 / 05 — Risk Tolerance</span>
+                    <h2>How do you think about risk in your crypto portfolio?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="careful">
+                            <div class="qck">✓</div>Careful — I prioritize not losing what I've already built
+                        </div>
+                        <div class="qopt" data-v="balanced">
+                            <div class="qck">✓</div>Balanced — I accept some risk when the upside makes sense
+                        </div>
+                        <div class="qopt" data-v="aggressive">
+                            <div class="qck">✓</div>Aggressive — big swings don't scare me for the right opportunity
+                        </div>
+                        <div class="qopt" data-v="mixed">
+                            <div class="qck">✓</div>Mixed — solid core holdings plus some high-risk bets on the side
+                        </div>
+                    </div> <button class="qn" id="s4n" disabled>Continue →</button> <button class="qb" id="s4b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs5" style="display:none;">
+                <div class="qband"><span class="qbtl">CoinJournal Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">05 / 05 — Assets &amp; Delivery</span>
+                    <h2>Which assets or sectors are you most interested in? <span
+                            style="font-weight:500;font-size:15px;color:var(--text3);">Pick all that apply.</span></h2>
+                    <div class="qtags">
+                        <div class="qtag" data-v="btc">BTC</div>
+                        <div class="qtag" data-v="eth">ETH</div>
+                        <div class="qtag" data-v="sol">SOL</div>
+                        <div class="qtag" data-v="altcoins">Altcoins</div>
+                        <div class="qtag" data-v="defi">DeFi</div>
+                        <div class="qtag" data-v="l2">Layer 2s</div>
+                        <div class="qtag" data-v="rwa">Real World Assets</div>
+                        <div class="qtag" data-v="ai">AI Tokens</div>
+                        <div class="qtag" data-v="nft">NFTs &amp; Gaming</div>
+                        <div class="qtag" data-v="stable">Stablecoins &amp; Yield</div>
+                    </div>
+                    <p style="font-size:13px;color:var(--text3);margin-bottom:14px;font-weight:600;">Where should we
+                        send your report?</p> <input type="email" class="qinput" id="eIn" placeholder="you@email.com">
+                    <button class="qn" id="s5n" disabled>Build My Edge Report →</button> <button class="qb" id="s5b">←
+                        Back</button>
+                    <p
+                        style="font-size:12px;color:var(--text4);margin-top:12px;text-align:center;font-family:'JetBrains Mono',monospace;">
+                        Free. No spam. Unsubscribe anytime.</p>
+                </div>
+            </div>
+            <div id="qs6" style="display:none;">
+                <div class="qband"><span class="qbtl">Building Your Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                    </div>
+                </div>
+                <div class="qbody">
+                    <div class="build">
+                        <div class="bspin"></div>
+                        <h2 style="font-size:19px;margin-bottom:6px;">Building your edge report...</h2>
+                        <p style="font-size:13.5px;color:var(--text3);font-weight:500;">Matching your answers to
+                            CoinJournal's current market coverage.</p>
+                        <div class="blines">
+                            <div class="bline" id="bl1">
+                                <div class="bck">✓</div><span>Reading your investing style and goals...</span>
+                            </div>
+                            <div class="bline" id="bl2">
+                                <div class="bck">✓</div><span>Scanning your sectors against current market
+                                    data...</span>
+                            </div>
+                            <div class="bline" id="bl3">
+                                <div class="bck">✓</div><span>Building watchlist ideas and portfolio
+                                    observations...</span>
+                            </div>
+                            <div class="bline" id="bl4">
+                                <div class="bck">✓</div><span>Putting together your personalized report...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="qs7" style="display:none;">
+                <div class="suc-t">
+                    <div class="suc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <h2>Your edge report is ready.</h2>
+                    <p>Your CoinJournal Crypto Edge Report is on its way to your inbox. Download below.</p>
+                </div>
+                <div class="suc-b">
+                    <div class="suc-items">
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Market snapshot matched to your time horizon
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Portfolio observations based on your investing style and goals
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Watchlist ideas filtered to your sectors and risk tolerance
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Key risks specific to your profile and current market conditions
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Market opportunities matched to how you invest and what you watch
+                        </div>
+                    </div> <button class="btn" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';" style="width:100%;justify-content:center;"> <svg viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                        </svg> Download My Edge Report </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- ═══ NAV — matches CoinJournal exactly ════════════════════════ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand"> <span class="brand-gem">◆</span> <span class="brand-name">CoinJournal</span> </div>
+            <div class="nav-right">
+                <div class="nav-links"> <button class="nav-link">News ▾</button> <button class="nav-link">Compare
+                        ▾</button> <button class="nav-link">Invest ▾</button> <button class="nav-link">About ▾</button>
+                </div> <button class="nav-btn" onclick="openQuiz()">Get My Free Report</button>
+            </div>
+        </div>
+    </nav><!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <div class="hero-kicker"><span class="dot"></span>CoinJournal Analysis · Personalized · Free</div>
+                <h1>Your crypto decisions,<br><em>sharper than ever.</em></h1>
+                <p class="hero-sub">Answer five quick questions about how you invest, what you're watching, and what
+                    matters to you right now. Get a free downloadable report that applies <strong>CoinJournal's market
+                        analysis directly to your portfolio and interests</strong> — watchlist ideas, portfolio
+                    observations, key risks, and live market opportunities.</p>
+                <div class="hero-acts"> <button class="btn" onclick="openQuiz()"> <svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" style="width:15px;height:15px;">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg> Unlock My Crypto Edge </button> <span class="hero-note">Free · No account · Instant
+                        download</span> </div>
+            </div> <!-- HERO VISUAL: light-mode CoinJournal editorial report card -->
+            <div style="position:relative;">
+                <div
+                    style="background:#fff;border:1px solid var(--border);border-radius:var(--rl2);box-shadow:var(--sh2);overflow:hidden;">
+                    <!-- Card header — teal strip matching CoinJournal brand -->
+                    <div style="background:linear-gradient(90deg,#0CB4C7,#0894A6);padding:16px 20px;">
+                        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;"> <span
+                                style="color:rgba(255,255,255,.6);font-size:13px;">◆</span> <span
+                                style="font-family:'Mulish',sans-serif;font-weight:800;font-size:12px;color:rgba(255,255,255,.8);letter-spacing:.04em;">COINJOURNAL</span>
+                        </div>
+                        <div
+                            style="font-family:'Mulish',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:10px;">
+                            My Crypto Edge Report</div>
+                        <div style="display:flex;gap:7px;flex-wrap:wrap;"> <span
+                                style="background:rgba(255,255,255,.2);border-radius:5px;padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;">Long-term
+                                Holder</span> <span
+                                style="background:rgba(255,255,255,.2);border-radius:5px;padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;">Balanced
+                                Risk</span> <span
+                                style="background:rgba(255,255,255,.2);border-radius:5px;padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;">BTC
+                                · ETH · L2s</span> </div>
+                    </div> <!-- Chart area -->
+                    <div style="padding:16px 18px;background:var(--bg2);border-bottom:1px solid var(--border);">
+                        <div
+                            style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;">
+                            MARKET SNAPSHOT · 30D</div> <svg viewBox="0 0 280 64" width="100%"
+                            aria-label="Market trend">
+                            <defs>
+                                <linearGradient id="hgrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0CB4C7" stop-opacity=".2" />
+                                    <stop offset="100%" stop-color="#0CB4C7" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M0,52 L23,48 L46,46 L69,50 L92,40 L115,32 L138,26 L161,20 L184,14 L207,8 L230,5 L253,3 L280,1 L280,64 L0,64Z"
+                                fill="url(#hgrad)" />
+                            <path
+                                d="M0,52 L23,48 L46,46 L69,50 L92,40 L115,32 L138,26 L161,20 L184,14 L207,8 L230,5 L253,3 L280,1"
+                                fill="none" stroke="#0CB4C7" stroke-width="2.5" stroke-linecap="round" />
+                            <line x1="0" y1="35" x2="280" y2="35" stroke="var(--border)" stroke-width="1"
+                                stroke-dasharray="3 4" /> <text x="3" y="60" font-family="JetBrains Mono,monospace"
+                                font-size="8" fill="var(--text4)">May</text> <text x="113" y="60"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text4)">Jun</text>
+                            <text x="228" y="60" font-family="JetBrains Mono,monospace" font-size="8"
+                                fill="var(--text4)">Jul</text> <text x="245" y="10"
+                                font-family="JetBrains Mono,monospace" font-size="9" fill="#0CB4C7"
+                                font-weight="700">+16.4%</text>
+                        </svg>
+                    </div> <!-- Signal grid -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);">
+                        <div style="background:#fff;padding:12px 14px;">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">
+                                Watchlist Signal</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--green);">ETH + L2s</div>
+                            <div style="font-size:11.5px;color:var(--text3);font-weight:500;">Volume rotation building
+                            </div>
+                        </div>
+                        <div style="background:#fff;padding:12px 14px;">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">
+                                Risk Flag</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--red);">Leverage Buildup</div>
+                            <div style="font-size:11.5px;color:var(--text3);font-weight:500;">Funding rates elevated
+                            </div>
+                        </div>
+                        <div style="background:#fff;padding:12px 14px;border-top:1px solid var(--border);">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">
+                                Opportunity</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--teal);">DeFi Blue Chips</div>
+                            <div style="font-size:11.5px;color:var(--text3);font-weight:500;">Lagging the market</div>
+                        </div>
+                        <div style="background:#fff;padding:12px 14px;border-top:1px solid var(--border);">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">
+                                Portfolio Note</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--gold);">Alt Timing</div>
+                            <div style="font-size:11.5px;color:var(--text3);font-weight:500;">BTC dom still elevated
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        style="padding:10px 18px;background:var(--bg2);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+                        <span
+                            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);">CoinJournal
+                            · <span id="rdate"></span></span> <span
+                            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);font-weight:700;">PERSONALIZED
+                            REPORT</span> </div>
+                </div> <!-- Floating tag -->
+                <div
+                    style="position:absolute;top:-12px;right:-10px;background:var(--teal);color:#fff;font-family:'Mulish',sans-serif;font-size:11px;font-weight:800;padding:6px 14px;border-radius:99px;box-shadow:0 4px 12px rgba(12,180,199,.35);letter-spacing:.02em;">
+                    FREE REPORT</div>
+            </div>
+        </div>
+    </section><!-- PROOF STRIP — editorial credibility bar -->
+    <section class="proof">
+        <div class="wrap proof-row">
+            <div class="proof-item">
+                <div class="proof-n">10+ Yrs</div>
+                <div class="proof-l">Crypto Coverage</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">1M+</div>
+                <div class="proof-l">Monthly Readers</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">Daily</div>
+                <div class="proof-l">Market Analysis</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">60 sec</div>
+                <div class="proof-l">To Your Free Report</div>
+            </div>
+        </div> <!-- Media logos strip — matching CoinJournal's own trust bar -->
+        <div style="text-align:center;padding:16px 0 8px;border-top:1px solid var(--border);margin-top:4px;">
+            <p style="font-size:12.5px;color:var(--text4);font-weight:600;margin-bottom:14px;">CoinJournal's analysis is
+                trusted by readers and cited by</p>
+            <div
+                style="display:flex;justify-content:center;align-items:center;gap:28px;flex-wrap:wrap;opacity:.5;filter:grayscale(1);">
+                <span style="font-size:14px;font-weight:800;letter-spacing:-.02em;color:var(--text);">The New York
+                    Times</span> <span style="font-size:16px;font-weight:800;font-style:italic;color:var(--text);">The
+                    Guardian</span> <span
+                    style="font-size:14px;font-weight:800;letter-spacing:-.01em;color:var(--text);">Bloomberg</span>
+                <span style="font-size:14px;font-weight:700;color:var(--text);">◈ CoinDesk</span> <span
+                    style="font-size:13px;font-weight:700;color:var(--text);">Investopedia</span> <span
+                    style="font-size:14px;font-weight:800;color:var(--text);">yahoo! finance</span> </div>
+        </div>
+    </section><!-- HOW IT WORKS -->
+    <section class="section" style="background:var(--bg2);border-bottom:1px solid var(--border);">
+        <div class="wrap">
+            <div style="max-width:520px;"> <span class="slabel">How It Works</span>
+                <h2 class="sh">Five questions. One report that's actually about you.</h2>
+                <p class="ssub">Most crypto content tells everyone the same thing. This report starts with your answers
+                    and works outward from there.</p>
+            </div>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Tell us how you invest</h3>
+                    <p>Five quick questions about your investing style, main goals, time horizon, risk tolerance, and
+                        the sectors you're watching. About 60 seconds.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>We match it to CoinJournal's coverage</h3>
+                    <p>Your answers are applied to CoinJournal's current market analysis, price coverage, and sector
+                        reporting to build a brief that fits your exact situation.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Download your report instantly</h3>
+                    <p>Get a free PDF with a market snapshot, portfolio observations, curated watchlist ideas, key risks
+                        to know about, and opportunities relevant to your profile.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- WHAT'S INSIDE -->
+    <section class="section">
+        <div class="wrap"> <span class="slabel">What's Inside Your Report</span>
+            <h2 class="sh" style="max-width:460px;">Five sections. Every one built from your answers.</h2>
+            <p class="ssub">Nothing generic, nothing recycled. Every part of your report is matched to what you told us
+                about your portfolio, goals, and risk tolerance.</p>
+            <div class="rgrid"> <!-- Card 1: Market snapshot chart — light mode -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%" aria-label="Market snapshot trend chart">
+                            <rect width="320" height="175" fill="#F7F9FB" rx="8" /> <text x="14" y="26"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9AADC4"
+                                letter-spacing="1">MARKET SNAPSHOT · 60D TREND</text>
+                            <defs>
+                                <linearGradient id="mcg" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#0CB4C7" stop-opacity=".2" />
+                                    <stop offset="100%" stop-color="#0CB4C7" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <line x1="14" y1="148" x2="308" y2="148" stroke="#DDE4ED" stroke-width="1" />
+                            <line x1="14" y1="108" x2="308" y2="108" stroke="#DDE4ED" stroke-width="1"
+                                stroke-dasharray="3 5" />
+                            <line x1="14" y1="70" x2="308" y2="70" stroke="#DDE4ED" stroke-width="1"
+                                stroke-dasharray="3 5" />
+                            <path
+                                d="M14,132 L46,126 L78,122 L110,130 L142,115 L174,100 L206,88 L238,72 L270,58 L308,46 L308,148 L14,148Z"
+                                fill="url(#mcg)" />
+                            <path d="M14,132 L46,126 L78,122 L110,130 L142,115 L174,100 L206,88 L238,72 L270,58 L308,46"
+                                fill="none" stroke="#0CB4C7" stroke-width="2.5" stroke-linecap="round" />
+                            <!-- ETH secondary -->
+                            <path
+                                d="M14,138 L46,134 L78,130 L110,136 L142,122 L174,112 L206,104 L238,94 L270,86 L308,76"
+                                fill="none" stroke="rgba(139,92,246,.4)" stroke-width="1.5" stroke-linecap="round"
+                                stroke-dasharray="4 3" /> <!-- Current price dot + callout -->
+                            <circle cx="308" cy="46" r="5" fill="#0CB4C7" />
+                            <circle cx="308" cy="46" r="10" fill="rgba(12,180,199,.15)" />
+                            <rect x="252" y="30" width="52" height="18" rx="4" fill="#fff" stroke="#DDE4ED"
+                                stroke-width="1" /> <text x="278" y="42" text-anchor="middle"
+                                font-family="JetBrains Mono,monospace" font-size="9" fill="#0CB4C7"
+                                font-weight="700">+16.4%</text> <!-- Legend -->
+                            <line x1="14" y1="162" x2="28" y2="162" stroke="#0CB4C7" stroke-width="2" /> <text x="32"
+                                y="165" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">BTC</text>
+                            <line x1="58" y1="162" x2="72" y2="162" stroke="rgba(139,92,246,.4)" stroke-width="1.5"
+                                stroke-dasharray="3 3" /> <text x="76" y="165" font-family="JetBrains Mono,monospace"
+                                font-size="8.5" fill="#9AADC4">ETH</text> <text x="14" y="156"
+                                font-family="JetBrains Mono,monospace" font-size="0" fill="white">spacer</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 01</span>
+                        <h3>Market Snapshot</h3>
+                        <p>Where the broader crypto market stands right now, explained in plain terms — with context on
+                            what it means for your stated time horizon and the assets you're focused on.</p>
+                    </div>
+                </div> <!-- Card 2: Portfolio observations — light bar chart -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Portfolio allocation observations">
+                            <rect width="320" height="175" fill="#F7F9FB" rx="8" /> <text x="14" y="26"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9AADC4"
+                                letter-spacing="1">PORTFOLIO OBSERVATIONS</text> <!-- Horizontal allocation bars -->
+                            <text x="14" y="50" font-family="Mulish,sans-serif" font-size="12" font-weight="700"
+                                fill="#2E4460">BTC</text>
+                            <rect x="54" y="40" width="168" height="14" rx="4" fill="rgba(245,158,11,.15)" />
+                            <rect x="54" y="40" width="168" height="14" rx="4" fill="url(#btcb)" />
+                            <defs>
+                                <linearGradient id="btcb" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#F59E0B" stop-opacity=".9" />
+                                    <stop offset="100%" stop-color="#F59E0B" stop-opacity=".3" />
+                                </linearGradient>
+                            </defs> <text x="230" y="50" font-family="JetBrains Mono,monospace" font-size="11"
+                                fill="#F59E0B" font-weight="700">42%</text> <text x="14" y="78"
+                                font-family="Mulish,sans-serif" font-size="12" font-weight="700"
+                                fill="#2E4460">ETH</text>
+                            <rect x="54" y="68" width="102" height="14" rx="4" fill="rgba(139,92,246,.2)" /> <text
+                                x="164" y="78" font-family="JetBrains Mono,monospace" font-size="11" fill="#8B5CF6"
+                                font-weight="700">25%</text> <text x="14" y="106" font-family="Mulish,sans-serif"
+                                font-size="12" font-weight="700" fill="#2E4460">L2s</text>
+                            <rect x="54" y="96" width="78" height="14" rx="4" fill="rgba(12,180,199,.2)" /> <text
+                                x="140" y="106" font-family="JetBrains Mono,monospace" font-size="11" fill="#0CB4C7"
+                                font-weight="700">19%</text> <text x="14" y="134" font-family="Mulish,sans-serif"
+                                font-size="12" font-weight="700" fill="#2E4460">DeFi</text>
+                            <rect x="54" y="124" width="44" height="14" rx="4" fill="rgba(16,185,129,.2)" /> <text
+                                x="106" y="134" font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">11%</text> <text x="14" y="162" font-family="Mulish,sans-serif"
+                                font-size="12" font-weight="700" fill="#2E4460">Other</text>
+                            <rect x="54" y="152" width="12" height="14" rx="4" fill="rgba(0,0,0,.08)" /> <text x="74"
+                                y="162" font-family="JetBrains Mono,monospace" font-size="11" fill="#9AADC4"
+                                font-weight="700">3%</text> <!-- Risk flag -->
+                            <rect x="226" y="112" width="82" height="40" rx="6" fill="rgba(239,68,68,.07)"
+                                stroke="rgba(239,68,68,.2)" stroke-width="1" /> <text x="234" y="127"
+                                font-family="JetBrains Mono,monospace" font-size="7.5" fill="#EF4444"
+                                font-weight="600">⚠ FLAG</text> <text x="234" y="140" font-family="Mulish,sans-serif"
+                                font-size="10" fill="#EF4444" font-weight="700">DeFi underweight</text> <text x="234"
+                                y="152" font-family="Mulish,sans-serif" font-size="10" fill="#5A7290">vs. your stated
+                                goal</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 02</span>
+                        <h3>Portfolio Observations</h3>
+                        <p>How your stated holdings and approach sit against current market conditions — including
+                            anything that looks out of line with your own goals and time horizon.</p>
+                    </div>
+                </div> <!-- Card 3: Watchlist ideas — clean light table -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Watchlist ideas for your profile">
+                            <rect width="320" height="175" fill="#F7F9FB" rx="8" /> <text x="14" y="26"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9AADC4"
+                                letter-spacing="1">WATCHLIST IDEAS · YOUR PROFILE</text>
+                            <rect x="12" y="32" width="296" height="16" rx="3" fill="#EEF3F8" /> <text x="20" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4"
+                                letter-spacing=".4">ASSET</text> <text x="100" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4"
+                                letter-spacing=".4">SECTOR</text> <text x="188" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4"
+                                letter-spacing=".4">30D</text> <text x="228" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4"
+                                letter-spacing=".4">SIGNAL</text>
+                            <line x1="12" y1="65" x2="308" y2="65" stroke="#DDE4ED" stroke-width="1" /> <text x="20"
+                                y="57" font-family="Mulish,sans-serif" font-size="13" font-weight="800"
+                                fill="#0C1A2E">ETH</text> <text x="20" y="70" font-family="Mulish,sans-serif"
+                                font-size="9.5" fill="#9AADC4">Ethereum</text> <text x="100" y="61"
+                                font-family="Mulish,sans-serif" font-size="11" fill="#5A7290">Layer 1</text> <text
+                                x="188" y="61" font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+12.8%</text>
+                            <rect x="226" y="49" width="78" height="16" rx="4" fill="rgba(12,180,199,.1)" /> <text
+                                x="265" y="60" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8.5" fill="#0CB4C7" font-weight="700">WATCH · STRONG</text>
+                            <line x1="12" y1="92" x2="308" y2="92" stroke="#DDE4ED" stroke-width="1" /> <text x="20"
+                                y="84" font-family="Mulish,sans-serif" font-size="13" font-weight="800"
+                                fill="#0C1A2E">ARB</text> <text x="20" y="97" font-family="Mulish,sans-serif"
+                                font-size="9.5" fill="#9AADC4">Arbitrum</text> <text x="100" y="88"
+                                font-family="Mulish,sans-serif" font-size="11" fill="#5A7290">Layer 2</text> <text
+                                x="188" y="88" font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+19.1%</text>
+                            <rect x="226" y="76" width="64" height="16" rx="4" fill="rgba(16,185,129,.1)" /> <text
+                                x="258" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8.5" fill="#10B981" font-weight="700">BUY ZONE</text>
+                            <line x1="12" y1="119" x2="308" y2="119" stroke="#DDE4ED" stroke-width="1" /> <text x="20"
+                                y="111" font-family="Mulish,sans-serif" font-size="13" font-weight="800"
+                                fill="#0C1A2E">AAVE</text> <text x="20" y="124" font-family="Mulish,sans-serif"
+                                font-size="9.5" fill="#9AADC4">Aave Protocol</text> <text x="100" y="115"
+                                font-family="Mulish,sans-serif" font-size="11" fill="#5A7290">DeFi</text> <text x="188"
+                                y="115" font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+16.4%</text>
+                            <rect x="226" y="103" width="64" height="16" rx="4" fill="rgba(16,185,129,.1)" /> <text
+                                x="258" y="114" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8.5" fill="#10B981" font-weight="700">BUY ZONE</text>
+                            <line x1="12" y1="146" x2="308" y2="146" stroke="#DDE4ED" stroke-width="1" /> <text x="20"
+                                y="138" font-family="Mulish,sans-serif" font-size="13" font-weight="800"
+                                fill="#0C1A2E">SOL</text> <text x="20" y="151" font-family="Mulish,sans-serif"
+                                font-size="9.5" fill="#9AADC4">Solana</text> <text x="100" y="142"
+                                font-family="Mulish,sans-serif" font-size="11" fill="#5A7290">Layer 1</text> <text
+                                x="188" y="142" font-family="JetBrains Mono,monospace" font-size="11" fill="#F59E0B"
+                                font-weight="700">+3.2%</text>
+                            <rect x="226" y="130" width="44" height="16" rx="4" fill="rgba(245,158,11,.1)" /> <text
+                                x="248" y="141" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8.5" fill="#F59E0B" font-weight="700">WATCH</text> <text x="14" y="168"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">Filtered: Balanced
+                                risk · L2 + DeFi · 6–24 month hold</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 03</span>
+                        <h3>Watchlist Ideas</h3>
+                        <p>Specific assets worth your attention right now — selected based on your stated sectors, risk
+                            tolerance, and time horizon, each with a clear signal note.</p>
+                    </div>
+                </div> <!-- Card 4: Risks and Opportunities split panel -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Key risks and market opportunities">
+                            <rect width="320" height="175" fill="#F7F9FB" rx="8" /> <text x="14" y="26"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9AADC4"
+                                letter-spacing="1">KEY RISKS &amp; OPPORTUNITIES</text> <!-- Risk column -->
+                            <rect x="12" y="34" width="140" height="130" rx="7" fill="rgba(239,68,68,.04)"
+                                stroke="rgba(239,68,68,.14)" stroke-width="1" /> <text x="82" y="52"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5"
+                                fill="#EF4444" letter-spacing=".5" font-weight="600">⚠ KEY RISKS</text>
+                            <line x1="24" y1="58" x2="140" y2="58" stroke="rgba(239,68,68,.14)" stroke-width="1" />
+                            <text x="24" y="74" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">Leverage buildup</text> <text x="24" y="87"
+                                font-family="Mulish,sans-serif" font-size="10" fill="#9AADC4">Funding rates high</text>
+                            <line x1="24" y1="95" x2="140" y2="95" stroke="rgba(239,68,68,.08)" stroke-width="1" />
+                            <text x="24" y="111" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">BTC dominance</text> <text x="24" y="124" font-family="Mulish,sans-serif"
+                                font-size="10" fill="#9AADC4">Altcoin lag persists</text>
+                            <line x1="24" y1="132" x2="140" y2="132" stroke="rgba(239,68,68,.08)" stroke-width="1" />
+                            <text x="24" y="148" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">Macro headwinds</text> <text x="24" y="161"
+                                font-family="Mulish,sans-serif" font-size="10" fill="#9AADC4">Rate path unclear</text>
+                            <!-- Opportunity column -->
+                            <rect x="168" y="34" width="140" height="130" rx="7" fill="rgba(12,180,199,.05)"
+                                stroke="rgba(12,180,199,.14)" stroke-width="1" /> <text x="238" y="52"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5"
+                                fill="#0CB4C7" letter-spacing=".5" font-weight="600">✦ OPPORTUNITIES</text>
+                            <line x1="180" y1="58" x2="296" y2="58" stroke="rgba(12,180,199,.14)" stroke-width="1" />
+                            <text x="180" y="74" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">DeFi rotation</text> <text x="180" y="87" font-family="Mulish,sans-serif"
+                                font-size="10" fill="#9AADC4">Real yield emerging</text>
+                            <line x1="180" y1="95" x2="296" y2="95" stroke="rgba(12,180,199,.08)" stroke-width="1" />
+                            <text x="180" y="111" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">ETH + L2 setup</text> <text x="180" y="124"
+                                font-family="Mulish,sans-serif" font-size="10" fill="#9AADC4">Volume shift
+                                underway</text>
+                            <line x1="180" y1="132" x2="296" y2="132" stroke="rgba(12,180,199,.08)" stroke-width="1" />
+                            <text x="180" y="148" font-family="Mulish,sans-serif" font-size="11.5" font-weight="700"
+                                fill="#2E4460">Stablecoin yield</text> <text x="180" y="161"
+                                font-family="Mulish,sans-serif" font-size="10" fill="#9AADC4">8–12% APY available</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Sections 04 &amp; 05</span>
+                        <h3>Key Risks &amp; Opportunities</h3>
+                        <p>The risks most relevant to your specific profile — and the market openings that match your
+                            goals, risk tolerance, and the assets you told us you're watching.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- CREDIBILITY + REPORT COVER -->
+    <section class="section cred">
+        <div class="wrap cred-grid">
+            <div> <span class="slabel">Built on Real Coverage</span>
+                <h2 class="sh">CoinJournal's analysis, applied to your exact situation.</h2>
+                <p class="ssub">This isn't a generic newsletter with your name on it. Every section draws on
+                    CoinJournal's day-to-day market reporting — price analysis, sector coverage, and market commentary —
+                    applied to what you told us about how you invest.</p>
+                <div class="cred-pts">
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">10+ Yrs</div>
+                            <div class="cpt-l">Covering crypto markets across multiple cycles — from early Bitcoin
+                                adoption through DeFi, NFTs, and today's altcoin market</div>
+                        </div>
+                    </div>
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">1M+</div>
+                            <div class="cpt-l">Monthly readers rely on CoinJournal for price analysis, market news, and
+                                practical crypto guidance they can act on</div>
+                        </div>
+                    </div>
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">Daily</div>
+                            <div class="cpt-l">Market analysis and sector coverage that feeds the current context behind
+                                your personalized edge report</div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Report cover mockup — light mode editorial -->
+            <div style="display:flex;justify-content:center;align-items:center;"> <svg viewBox="0 0 280 340" width="260"
+                    aria-label="CoinJournal Crypto Edge Report cover mockup"> <!-- Drop shadows behind -->
+                    <rect x="30" y="22" width="226" height="295" rx="10" fill="#DDE4ED" transform="rotate(4 30 22)" />
+                    <rect x="26" y="17" width="226" height="295" rx="10" fill="#EEF3F8" transform="rotate(2 26 17)" />
+                    <!-- Main page — white editorial -->
+                    <rect x="22" y="13" width="236" height="300" rx="12" fill="#fff" stroke="#DDE4ED" stroke-width="1.5"
+                        filter="drop-shadow(0 8px 24px rgba(0,0,0,.1))" /> <!-- Teal header -->
+                    <rect x="22" y="13" width="236" height="66" rx="12" fill="url(#cvhg)" />
+                    <rect x="22" y="53" width="236" height="26" fill="url(#cvhg)" />
+                    <defs>
+                        <linearGradient id="cvhg" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#0CB4C7" />
+                            <stop offset="100%" stop-color="#0894A6" />
+                        </linearGradient>
+                    </defs> <!-- Logo on cover --> <text x="36" y="35" font-family="Mulish,sans-serif" font-size="10"
+                        font-weight="800" fill="rgba(255,255,255,.6)" letter-spacing="1">◆ COINJOURNAL</text> <text
+                        x="36" y="50" font-family="Mulish,sans-serif" font-size="9" font-weight="700"
+                        fill="rgba(255,255,255,.45)">EDGE REPORTS</text> <!-- Title --> <text x="36" y="84"
+                        font-family="Mulish,sans-serif" font-size="15" font-weight="800" fill="#0C1A2E">My Crypto Edge
+                        Report</text> <text x="36" y="100" font-family="Mulish,sans-serif" font-size="12"
+                        font-weight="600" fill="#5A7290">Personalized · Free · Instant</text> <!-- Profile tags -->
+                    <rect x="36" y="108" width="80" height="14" rx="4" fill="rgba(12,180,199,.1)"
+                        stroke="rgba(12,180,199,.25)" stroke-width="1" /> <text x="76" y="118" text-anchor="middle"
+                        font-family="JetBrains Mono,monospace" font-size="7.5" fill="#0CB4C7"
+                        font-weight="600">Long-term Holder</text>
+                    <rect x="122" y="108" width="64" height="14" rx="4" fill="rgba(245,158,11,.1)"
+                        stroke="rgba(245,158,11,.25)" stroke-width="1" /> <text x="154" y="118" text-anchor="middle"
+                        font-family="JetBrains Mono,monospace" font-size="7.5" fill="#F59E0B" font-weight="600">Balanced
+                        Risk</text> <!-- Mini chart on cover -->
+                    <path d="M36,150 L62,146 L88,142 L114,148 L140,134 L166,120 L192,108 L218,94 L242,82" fill="none"
+                        stroke="#0CB4C7" stroke-width="2" stroke-linecap="round" />
+                    <path
+                        d="M36,150 L62,146 L88,142 L114,148 L140,134 L166,120 L192,108 L218,94 L242,82 L242,162 L36,162Z"
+                        fill="rgba(12,180,199,.08)" /> <text x="232" y="92" font-family="JetBrains Mono,monospace"
+                        font-size="8" fill="#0CB4C7" font-weight="700">+16%</text> <!-- Section list -->
+                    <line x1="36" y1="174" x2="242" y2="174" stroke="#DDE4ED" stroke-width="1" /> <text x="36" y="190"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">01 ——</text> <text x="60"
+                        y="190" font-family="Mulish,sans-serif" font-size="10" font-weight="700" fill="#5A7290">Market
+                        Snapshot</text>
+                    <rect x="36" y="196" width="118" height="5" rx="2" fill="#EEF3F8" />
+                    <line x1="36" y1="212" x2="242" y2="212" stroke="#DDE4ED" stroke-width="1" /> <text x="36" y="228"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">02 ——</text> <text x="60"
+                        y="228" font-family="Mulish,sans-serif" font-size="10" font-weight="700"
+                        fill="#5A7290">Portfolio Observations</text>
+                    <rect x="36" y="234" width="148" height="5" rx="2" fill="#EEF3F8" />
+                    <line x1="36" y1="250" x2="242" y2="250" stroke="#DDE4ED" stroke-width="1" /> <text x="36" y="266"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">03 ——</text> <text x="60"
+                        y="266" font-family="Mulish,sans-serif" font-size="10" font-weight="700"
+                        fill="#5A7290">Watchlist Ideas</text>
+                    <rect x="36" y="272" width="98" height="5" rx="2" fill="#EEF3F8" />
+                    <line x1="36" y1="288" x2="242" y2="288" stroke="#DDE4ED" stroke-width="1" /> <text x="36" y="304"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9AADC4">04 ——</text> <text x="60"
+                        y="304" font-family="Mulish,sans-serif" font-size="10" font-weight="700" fill="#5A7290">Key
+                        Risks &amp; Opportunities</text> <!-- Diagonal watermark --> <text x="140" y="340"
+                        text-anchor="middle" transform="rotate(-30 140 220)" font-family="JetBrains Mono,monospace"
+                        font-size="20" font-weight="700" fill="rgba(12,180,199,.06)"
+                        letter-spacing="2">PERSONALIZED</text>
+                </svg> </div>
+        </div>
+    </section><!-- SAMPLE BRIEF — light editorial style -->
+    <section class="section"
+        style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+        <div class="wrap" style="text-align:center;"> <span class="slabel">Sample Report Output</span>
+            <h2 class="sh" style="max-width:500px;margin:0 auto 10px;">Here's what a real edge report looks like.</h2>
+            <p class="ssub" style="margin:0 auto;">Profile: Long-term holder · Finding the next breakout asset · 6–24
+                month horizon · Balanced risk · BTC, ETH, L2s, DeFi.</p>
+            <div class="brief">
+                <div class="brief-hdr"> <span class="brief-ttl">COINJOURNAL · CRYPTO EDGE REPORT · PERSONALIZED</span>
+                    <span class="brief-badge">SAMPLE OUTPUT</span> </div>
+                <div class="brief-body">
+                    <div class="bprofile"> <span class="bptag style">Long-term Holder</span> <span
+                            class="bptag risk">Balanced Risk</span> <span class="bptag focus">BTC + ETH + L2s</span>
+                        <span class="bptag focus">6–24 Month Horizon</span> </div>
+                    <div class="bsect">
+                        <h4>01 — Market Snapshot</h4>
+                        <p>The broader market is moving, but the gains so far this cycle are concentrated. Bitcoin is
+                            pushing toward key resistance levels not seen since late 2024, and total crypto market cap
+                            is up around 18% over the past 60 days. The important detail for a long-term holder watching
+                            ETH and L2s: BTC dominance is still elevated at 55%, which tells you the broader altcoin
+                            rotation hasn't fully started yet. That's actually useful context for your positioning — the
+                            window to accumulate quality ETH and L2 exposure before a potential rotation leg may still
+                            be open.</p>
+                    </div>
+                    <div class="bsect">
+                        <h4>02 — Portfolio Observation</h4>
+                        <p>If you're holding BTC as your largest position alongside ETH and a few L2 tokens, you're
+                            reasonably well-structured for how this cycle typically unfolds — BTC leads, ETH follows,
+                            and L2s tend to run hardest in the later stages. The gap worth flagging is DeFi. You said
+                            finding breakout assets is your primary goal, and right now DeFi blue chips like AAVE and
+                            UNI are lagging the broader market despite genuinely improving fundamentals. For a 6–24
+                            month holder with a growth focus, that gap doesn't typically stay open forever.</p>
+                        <div class="bflag">⚠ NOTE: DeFi exposure appears low relative to your stated goal of finding
+                            breakout opportunities. Price-to-revenue ratios across DeFi blue chips are near multi-year
+                            lows based on CoinJournal's current coverage.</div>
+                    </div>
+                    <div class="bsect">
+                        <h4>03 — Watchlist Idea: ARB and OP</h4>
+                        <p>Arbitrum and Optimism are the two L2 names most worth adding to your watchlist if you're a
+                            balanced-risk holder with a 6–24 month horizon. On-chain activity on both networks is
+                            growing faster than their current token prices suggest — Arbitrum daily active addresses hit
+                            an all-time high in May, and the Optimism stack (including Base) is now processing more
+                            transactions than Ethereum mainnet on some days. CoinJournal's recent market analysis has
+                            flagged both as undervalued relative to actual usage. For your stated profile, current
+                            levels look like a reasonable accumulation zone.</p>
+                    </div>
+                </div>
+            </div>
+            <p
+                style="font-size:12.5px;color:var(--text4);font-family:'JetBrains Mono',monospace;margin-top:18px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.65;">
+                Illustrative sample only. Your actual report is generated from your specific answers and CoinJournal's
+                current market coverage. Not financial advice.</p>
+        </div>
+    </section><!-- FINAL CTA -->
+    <section class="final">
+        <div class="wrap">
+            <div class="fkicker">Free · Instant · Personalized</div>
+            <h2>Don't leave without your <em>crypto edge.</em></h2>
+            <p>Five questions. CoinJournal's analysis. A free report built around how you actually invest — not a
+                generic market roundup with your name pasted in.</p> <button class="btn"
+                style="margin:0 auto;display:inline-flex;" onclick="openQuiz()"> <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" style="width:15px;height:15px;">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                </svg> Unlock My Crypto Edge </button>
+            <p class="fnote">No account required. No payment. Instant download. Not financial advice.</p>
+        </div>
+    </section><!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap frow">
+            <div>
+                <div class="fbrand">◆ COIN<span>JOURNAL</span></div>
+                <div style="font-size:12px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;margin-top:4px;"
+                    id="fyear"></div>
+            </div>
+            <div class="ffine">Report content is drawn from CoinJournal's market coverage and analysis and is for
+                informational purposes only. Nothing in this report constitutes financial advice or a recommendation to
+                buy or sell any asset. We will not sell or share your email address. Unsubscribe anytime.</div>
+        </div>
+    </footer>
+    <script>document.getElementById('fyear').textContent = '© ' + new Date().getFullYear() + ' CoinJournal. All rights reserved.'; document.getElementById('rdate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); var ans = { style: null, goal: null, horizon: null, risk: null, assets: [], email: '' }; function show(n) { for (var i = 1; i <= 7; i++) { var e = document.getElementById('qs' + i); if (e) e.style.display = (i === n) ? '' : 'none'; } } function openQuiz() { closePop(); document.getElementById('qov').classList.add('on'); document.body.style.overflow = 'hidden'; } function closeQuiz() { document.getElementById('qov').classList.remove('on'); document.body.style.overflow = ''; } document.getElementById('qx').onclick = closeQuiz; document.getElementById('qov').addEventListener('click', function (e) { if (e.target === this) closeQuiz(); }); document.querySelectorAll('#qs1 .qopt').forEach(function (o) { o.onclick = function () { document.querySelectorAll('#qs1 .qopt').forEach(function (x) { x.classList.remove('sel'); }); this.classList.add('sel'); ans.style = this.dataset.v; document.getElementById('s1n').disabled = false; }; }); document.getElementById('s1n').onclick = function () { show(2); }; document.querySelectorAll('#qs2 .qopt').forEach(function (o) { o.onclick = function () { document.querySelectorAll('#qs2 .qopt').forEach(function (x) { x.classList.remove('sel'); }); this.classList.add('sel'); ans.goal = this.dataset.v; document.getElementById('s2n').disabled = false; }; }); document.getElementById('s2n').onclick = function () { show(3); }; document.getElementById('s2b').onclick = function () { show(1); }; document.querySelectorAll('#qs3 .qopt').forEach(function (o) { o.onclick = function () { document.querySelectorAll('#qs3 .qopt').forEach(function (x) { x.classList.remove('sel'); }); this.classList.add('sel'); ans.horizon = this.dataset.v; document.getElementById('s3n').disabled = false; }; }); document.getElementById('s3n').onclick = function () { show(4); }; document.getElementById('s3b').onclick = function () { show(2); }; document.querySelectorAll('#qs4 .qopt').forEach(function (o) { o.onclick = function () { document.querySelectorAll('#qs4 .qopt').forEach(function (x) { x.classList.remove('sel'); }); this.classList.add('sel'); ans.risk = this.dataset.v; document.getElementById('s4n').disabled = false; }; }); document.getElementById('s4n').onclick = function () { show(5); }; document.getElementById('s4b').onclick = function () { show(3); }; document.querySelectorAll('#qs5 .qtag').forEach(function (t) { t.onclick = function () { this.classList.toggle('sel'); ans.assets = Array.from(document.querySelectorAll('#qs5 .qtag.sel')).map(function (x) { return x.dataset.v; }); chk5(); }; }); var eIn = document.getElementById('eIn'); eIn.addEventListener('input', function () { ans.email = this.value; chk5(); }); function chk5() { var ok = ans.assets.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ans.email); document.getElementById('s5n').disabled = !ok; } document.getElementById('s5n').onclick = function () { show(6); runBuild(); }; document.getElementById('s5b').onclick = function () { show(4); }; function runBuild() { ['bl1', 'bl2', 'bl3', 'bl4'].forEach(function (id, i) { setTimeout(function () { document.getElementById(id).classList.add('done'); }, 700 + i * 650); }); setTimeout(function () { show(7); }, 4200); } var popShown = false; function showPop() { if (popShown) return; popShown = true; document.getElementById('pov').classList.add('on'); } function closePop() { document.getElementById('pov').classList.remove('on'); } document.getElementById('pcx').onclick = closePop; document.getElementById('pdis').onclick = closePop; document.getElementById('pCTA').onclick = function () { openQuiz(); }; document.getElementById('pov').addEventListener('click', function (e) { if (e.target === this) closePop(); }); setTimeout(showPop, 6500); document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY <= 0) showPop(); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeQuiz(); closePop(); } });// INTEGRATION: POST ans to your GHL webhook on s5n click// fetch('https://your-endpoint/coinjournal-report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(ans)});</script>
+</body>
+
+</html>

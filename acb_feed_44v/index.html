@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Altcoin Buzz Alpha Weekly Report — Free This Week</title>
+    <meta name="description"
+        content="Download this week's Altcoin Buzz Alpha Report free: market read, live watchlist, buy/sell zones, and a project evaluation checklist.">
+    <!--  ====================================================================  ALTCOIN BUZZ — ALPHA WEEKLY REPORT  Single-file landing page + entry popup.  TO WIRE THE EMAIL FORMS TO YOUR BACKEND (GHL, Mailchimp, ConvertKit, etc):  Search this file for "FORM SUBMIT HANDLER" below and replace the  simulated success block with a fetch() POST to your webhook/endpoint.  Both forms (popup + page) call the same handleSubmit() function.  No localStorage/cookies are used (artifact-safe). In production, wire  your own cookie or GHL form-fill suppression logic so returning  visitors who already converted don't see the popup again.  ====================================================================-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0E14;
+            --bg-elevated: #0E131C;
+            --surface: #141A24;
+            --surface-2: #1A212D;
+            --border: #242C3A;
+            --text: #EDF1F6;
+            --text-muted: #8A93A6;
+            --text-dim: #5C6478;
+            --green: #00D993;
+            --green-dim: #0A8F62;
+            --green-glow: rgba(0, 217, 147, 0.35);
+            --red: #FF5C66;
+            --gold: #F0B90B;
+            --radius: 10px;
+            --radius-lg: 16px;
+            --max: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            letter-spacing: -0.01em;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--green);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- Ticker ---------- */
+        .ticker-bar {
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 9px 0;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            animation: ticker-scroll 32s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 0 22px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            border-right: 1px solid var(--border);
+        }
+
+        .ticker-item .sym {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .ticker-item .up {
+            color: var(--green);
+        }
+
+        .ticker-item .down {
+            color: var(--red);
+        }
+
+        @keyframes ticker-scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ---------- Nav ---------- */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-mark {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--green), var(--green-dim));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #06140F;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .nav-tag {
+            font-size: 12px;
+            color: var(--text-dim);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.04em;
+        }
+
+        /* ---------- Badge / eyebrow ---------- */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11.5px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--green);
+            background: rgba(0, 217, 147, 0.08);
+            border: 1px solid rgba(0, 217, 147, 0.25);
+            padding: 6px 12px;
+            border-radius: 999px;
+        }
+
+        .eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 0 0 var(--green-glow);
+            }
+
+            50% {
+                opacity: 0.6;
+                box-shadow: 0 0 0 4px transparent;
+            }
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            padding: 56px 0 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 46px;
+            line-height: 1.08;
+            margin: 18px 0 18px;
+        }
+
+        .hero h1 .accent {
+            color: var(--green);
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.6;
+            max-width: 520px;
+            margin-bottom: 30px;
+        }
+
+        .hero-sub b {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .capture-form {
+            display: flex;
+            gap: 10px;
+            max-width: 460px;
+        }
+
+        .capture-input {
+            flex: 1;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            color: var(--text);
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .capture-input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: #06140F;
+            border: none;
+            border-radius: var(--radius);
+            padding: 14px 22px;
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: transform .15s ease, box-shadow .15s ease;
+            box-shadow: 0 0 0 0 var(--green-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px -6px var(--green-glow);
+        }
+
+        .form-micro {
+            margin-top: 12px;
+            font-size: 12.5px;
+            color: var(--text-dim);
+        }
+
+        .form-success {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 217, 147, 0.08);
+            border: 1px solid rgba(0, 217, 147, 0.3);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            color: var(--green);
+            font-size: 14.5px;
+            font-weight: 600;
+            max-width: 460px;
+        }
+
+        /* ---------- Hero chart visual ---------- */
+        .hero-visual {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 22px 22px 18px;
+            position: relative;
+        }
+
+        .chart-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .chart-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .chart-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--gold);
+            background: rgba(240, 185, 11, 0.1);
+            border: 1px solid rgba(240, 185, 11, 0.3);
+            padding: 4px 9px;
+            border-radius: 6px;
+        }
+
+        /* ---------- Proof strip ---------- */
+        .proof-strip {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 28px 0;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+
+        .proof-num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .proof-label {
+            font-size: 12.5px;
+            color: var(--text-dim);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            margin-top: 4px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ---------- Features ---------- */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-head {
+            max-width: 560px;
+            margin-bottom: 44px;
+        }
+
+        .section-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-head h2 {
+            font-size: 32px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .section-head p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            transition: border-color .2s ease, transform .2s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--green-dim);
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            background: var(--surface-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-card h3 {
+            font-size: 16.5px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ---------- Credibility ---------- */
+        .credibility {
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 56px;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .cred-stat {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 84px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--green);
+        }
+
+        .cred-stat-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-dim);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .cred-copy h2 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+
+        .cred-copy p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.65;
+        }
+
+        .cred-copy p+p {
+            margin-top: 14px;
+        }
+
+        /* ---------- Edition / urgency card ---------- */
+        .edition-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .edition-left .eyebrow {
+            margin-bottom: 16px;
+        }
+
+        .edition-left h2 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .edition-left p {
+            color: var(--text-muted);
+            font-size: 15px;
+            max-width: 460px;
+            line-height: 1.6;
+        }
+
+        .edition-meta {
+            display: flex;
+            gap: 28px;
+        }
+
+        .edition-meta-item {
+            text-align: left;
+        }
+
+        .edition-meta-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .edition-meta-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 17px;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .edition-meta-value.gold {
+            color: var(--gold);
+        }
+
+        /* ---------- Final CTA ---------- */
+        .final-cta {
+            text-align: center;
+            padding: 90px 0 100px;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            max-width: 600px;
+            margin: 0 auto 14px;
+            line-height: 1.2;
+        }
+
+        .final-cta p {
+            color: var(--text-muted);
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+
+        .final-cta .capture-form {
+            margin: 0 auto;
+        }
+
+        .final-cta .form-micro {
+            display: flex;
+            justify-content: center;
+        }
+
+        .final-cta .form-success {
+            margin: 0 auto;
+        }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+        }
+
+        .footer-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .footer-fine {
+            font-size: 12.5px;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* ---------- Popup ---------- */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(4, 6, 10, 0.75);
+            backdrop-filter: blur(3px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity .25s ease;
+        }
+
+        .popup-overlay.is-visible {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-modal {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            max-width: 460px;
+            width: 100%;
+            padding: 34px 32px 28px;
+            position: relative;
+            transform: translateY(12px) scale(0.98);
+            transition: transform .25s ease;
+            box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6);
+        }
+
+        .popup-overlay.is-visible .popup-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        .popup-close:hover {
+            color: var(--text);
+            border-color: var(--text-dim);
+        }
+
+        .popup-modal h2 {
+            font-size: 23px;
+            line-height: 1.25;
+            margin: 14px 0 10px;
+        }
+
+        .popup-modal .hero-sub {
+            font-size: 14.5px;
+            margin-bottom: 20px;
+            max-width: none;
+        }
+
+        .popup-bullets {
+            list-style: none;
+            margin: 0 0 22px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-bullets li {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 9px;
+            align-items: flex-start;
+            line-height: 1.5;
+        }
+
+        .popup-bullets b {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .popup-bullets .tick {
+            color: var(--green);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .popup-modal .capture-form {
+            flex-direction: column;
+            max-width: none;
+        }
+
+        .popup-modal .btn-primary {
+            width: 100%;
+        }
+
+        .popup-modal .form-micro {
+            text-align: center;
+        }
+
+        .popup-dismiss {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 12.5px;
+            color: var(--text-dim);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .popup-dismiss:hover {
+            color: var(--text-muted);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 880px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cred-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding: 56px 0;
+            }
+
+            .cred-stat {
+                font-size: 60px;
+            }
+
+            .edition-card {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .edition-meta {
+                flex-wrap: wrap;
+            }
+
+            .capture-form {
+                flex-direction: column;
+            }
+
+            .final-cta h2 {
+                font-size: 28px;
+            }
+
+            .section {
+                padding: 56px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ticker-track {
+                animation: none;
+            }
+
+            .eyebrow .dot {
+                animation: none;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body><!-- ===== Ticker tape ===== -->
+    <div class="ticker-bar" aria-hidden="true">
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div><!-- ===== Nav ===== -->
+    <nav class="nav">
+        <div class="wrap" style="width:100%; display:flex; justify-content:space-between; align-items:center;">
+            <div class="brand">
+                <div class="brand-mark">AB</div> ALTCOIN BUZZ
+            </div>
+            <div class="nav-tag">ALPHA WEEKLY REPORT</div>
+        </div>
+    </nav><!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div class="hero-content"> <span class="eyebrow"><span class="dot"></span> ALPHA WEEKLY · FREE THIS
+                    EDITION</span>
+                <h1>The intel our community trades on — <span class="accent">free this week.</span></h1>
+                <p class="hero-sub"> The Alpha Weekly Report breaks down <b>this week's market read</b>, our <b>live
+                        altcoin watchlist</b>, and <b>buy/sell zones</b> — the same caliber of insight 200,000+ traders
+                    already rely on. Download free before this edition closes. </p>
+                <form class="capture-form" id="heroForm"> <input type="email" class="capture-input"
+                        placeholder="you@email.com" required aria-label="Email address"> <button type="submit"
+                        class="btn-primary">Download Free Report</button> </form>
+                <p class="form-success" id="heroSuccess">✓ Check your inbox — your Alpha Report is on its way.</p>
+                <p class="form-micro">No spam. Unsubscribe anytime. Takes 10 seconds.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="chart-head"> <span class="chart-label">ALT/USD · 7D</span> <span class="chart-pill">★
+                        WATCHLIST PICK</span> </div> <!-- Custom candlestick chart, original SVG, no stock imagery -->
+                <svg viewBox="0 0 400 280" width="100%" role="img"
+                    aria-label="Illustrative altcoin candlestick chart trending upward">
+                    <defs>
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="5" result="blur" />
+                            <feMerge>
+                                <feMergeNode in="blur" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs> <!-- faint horizontal grid -->
+                    <line x1="0" y1="60" x2="400" y2="60" stroke="#1E2630" stroke-width="1" stroke-dasharray="2 5" />
+                    <line x1="0" y1="140" x2="400" y2="140" stroke="#1E2630" stroke-width="1" stroke-dasharray="2 5" />
+                    <line x1="0" y1="220" x2="400" y2="220" stroke="#1E2630" stroke-width="1" stroke-dasharray="2 5" />
+                    <!-- resistance line, broken by breakout candle -->
+                    <line x1="14" y1="92" x2="330" y2="92" stroke="#F0B90B" stroke-width="1.4" stroke-dasharray="5 4"
+                        opacity="0.55" /> <!-- candles: x, wick y1/y2, body y/h, color --> <!-- 1 bearish -->
+                    <line x1="30" y1="168" x2="30" y2="212" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="22" y="178" width="16" height="22" rx="1.5" fill="#FF5C66" /> <!-- 2 bullish -->
+                    <line x1="62" y1="150" x2="62" y2="198" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="54" y="160" width="16" height="26" rx="1.5" fill="#00D993" /> <!-- 3 bearish small -->
+                    <line x1="94" y1="160" x2="94" y2="196" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="86" y="168" width="16" height="15" rx="1.5" fill="#FF5C66" /> <!-- 4 bullish -->
+                    <line x1="126" y1="124" x2="126" y2="182" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="118" y="140" width="16" height="30" rx="1.5" fill="#00D993" /> <!-- 5 bullish -->
+                    <line x1="158" y1="98" x2="158" y2="152" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="150" y="110" width="16" height="28" rx="1.5" fill="#00D993" />
+                    <!-- 6 bearish small pullback -->
+                    <line x1="190" y1="104" x2="190" y2="146" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="182" y="120" width="16" height="15" rx="1.5" fill="#FF5C66" /> <!-- 7 bullish -->
+                    <line x1="222" y1="74" x2="222" y2="132" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="214" y="86" width="16" height="30" rx="1.5" fill="#00D993" /> <!-- 8 bullish bigger -->
+                    <line x1="254" y1="44" x2="254" y2="100" stroke="#3A4250" stroke-width="1.5" />
+                    <rect x="246" y="56" width="16" height="35" rx="1.5" fill="#00D993" />
+                    <!-- 9 breakout candle, highlighted gold + glow -->
+                    <line x1="294" y1="10" x2="294" y2="72" stroke="#5C5230" stroke-width="1.5" />
+                    <rect x="286" y="20" width="18" height="40" rx="2" fill="#F0B90B" filter="url(#glow)" />
+                    <!-- annotation -->
+                    <line x1="305" y1="30" x2="340" y2="22" stroke="#F0B90B" stroke-width="1.2" />
+                    <rect x="338" y="8" width="52" height="22" rx="5" fill="#1A212D" stroke="#F0B90B"
+                        stroke-width="1" /> <text x="364" y="22" text-anchor="middle"
+                        font-family="JetBrains Mono, monospace" font-size="11" font-weight="700"
+                        fill="#F0B90B">+18.4%</text> <!-- baseline -->
+                    <line x1="0" y1="262" x2="400" y2="262" stroke="#242C3A" stroke-width="1" />
+                </svg>
+            </div>
+        </div>
+    </section><!-- ===== Social proof strip ===== -->
+    <section class="proof-strip">
+        <div class="wrap proof-grid">
+            <div>
+                <div class="proof-num mono">200,000+</div>
+                <div class="proof-label">Traders &amp; watchers</div>
+            </div>
+            <div>
+                <div class="proof-num mono">Mon</div>
+                <div class="proof-label">New edition every week</div>
+            </div>
+            <div>
+                <div class="proof-num mono">100%</div>
+                <div class="proof-label">Free, no membership required</div>
+            </div>
+        </div>
+    </section><!-- ===== What's inside ===== -->
+    <section class="section">
+        <div class="wrap">
+            <div class="section-head"> <span class="section-eyebrow">What's Inside</span>
+                <h2>Four sections. Zero fluff.</h2>
+                <p>Everything in this week's report is built to be read in one sitting and acted on before the next
+                    candle closes.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M3 17L9 11L13 15L21 7" stroke="#00D993" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M15 7H21V13" stroke="#00D993" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Market Read</h3>
+                    <p>This week's macro and altcoin market commentary, distilled into the calls that actually matter.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M12 2L14.6 8.6L21.5 9.2L16.3 13.7L17.9 20.5L12 16.8L6.1 20.5L7.7 13.7L2.5 9.2L9.4 8.6L12 2Z"
+                                stroke="#00D993" stroke-width="2" stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Live Watchlist</h3>
+                    <p>The altcoins and gems currently on our radar — the same names our community is watching right
+                        now.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 14L7 20M7 14L4 17M7 14L10 17" stroke="#00D993" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M17 10L17 4M17 10L14 7M17 10L20 7" stroke="#FF5C66" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Buy/Sell Zones</h3>
+                    <p>Key levels and signal notes for entries, exits, and risk — no fluff, just the zones.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <rect x="4" y="4" width="16" height="16" rx="2" stroke="#00D993" stroke-width="2" />
+                            <path d="M8 12L11 15L16 9" stroke="#00D993" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Project Checklist</h3>
+                    <p>A fast vetting framework to evaluate any new token before you ape in.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- ===== Credibility ===== -->
+    <section class="credibility">
+        <div class="wrap cred-grid">
+            <div>
+                <div class="cred-stat mono">200K+</div>
+                <div class="cred-stat-label">Engaged community members</div>
+            </div>
+            <div class="cred-copy">
+                <h2>Built from the same coverage 200,000+ traders already trust.</h2>
+                <p>Altcoin Buzz has covered crypto markets, projects, and narratives for years, with an actively engaged
+                    community across YouTube and the web.</p>
+                <p>The Alpha Weekly Report condenses what we'd normally reserve for our most engaged followers into one
+                    free download — market read, watchlist, and signals, refreshed every single week.</p>
+            </div>
+        </div>
+    </section><!-- ===== Current edition / urgency ===== -->
+    <section class="section" style="padding-top:64px;">
+        <div class="wrap">
+            <div class="edition-card">
+                <div class="edition-left"> <span class="eyebrow"><span class="dot"></span> CURRENT EDITION</span>
+                    <h2>This edition is live now — and it won't be next week.</h2>
+                    <p>The Alpha Weekly Report refreshes every Monday with a new market read, watchlist, and signal set.
+                        Download this edition before it's replaced.</p>
+                </div>
+                <div class="edition-meta">
+                    <div class="edition-meta-item">
+                        <div class="edition-meta-label">Edition</div>
+                        <div class="edition-meta-value mono" id="editionDate">—</div>
+                    </div>
+                    <div class="edition-meta-item">
+                        <div class="edition-meta-label">Refreshes</div>
+                        <div class="edition-meta-value gold mono" id="nextRefresh">—</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- ===== Final CTA ===== -->
+    <section class="final-cta">
+        <div class="wrap">
+            <h2>Don't trade this week blind.</h2>
+            <p>Get the market read, watchlist, and signals — free, in about 10 seconds.</p>
+            <form class="capture-form" id="finalForm"> <input type="email" class="capture-input"
+                    placeholder="you@email.com" required aria-label="Email address"> <button type="submit"
+                    class="btn-primary">Download Free Report</button> </form>
+            <p class="form-success" id="finalSuccess">✓ Check your inbox — your Alpha Report is on its way.</p>
+            <p class="form-micro">No spam. Unsubscribe anytime.</p>
+        </div>
+    </section><!-- ===== Footer ===== -->
+    <footer class="footer">
+        <div class="wrap footer-row">
+            <div class="footer-brand">ALTCOIN BUZZ</div>
+            <div class="footer-fine"> Free educational content. Not financial advice. We never sell your data.<br> ©
+                <span id="footerYear"></span> Altcoin Buzz · Unsubscribe anytime. </div>
+        </div>
+    </footer><!-- ===== Entry popup ===== -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-modal"> <button class="popup-close" id="popupClose" aria-label="Close popup">✕</button> <span
+                class="eyebrow"><span class="dot"></span> MEMBERS-ONLY INTEL · OPEN THIS WEEK</span>
+            <h2>Get this week's watchlist &amp; signals — free.</h2>
+            <p class="hero-sub">Join 200,000+ traders getting Altcoin Buzz's market calls before they're priced in.</p>
+            <ul class="popup-bullets">
+                <li><span class="tick">✓</span><span><b>Market Read:</b> this week's altcoin market breakdown</span>
+                </li>
+                <li><span class="tick">✓</span><span><b>Live Watchlist:</b> gems currently on our radar</span></li>
+                <li><span class="tick">✓</span><span><b>Buy/Sell Zones:</b> entry, exit, and risk levels</span></li>
+            </ul>
+            <form class="capture-form" id="popupForm"> <input type="email" class="capture-input"
+                    placeholder="you@email.com" required aria-label="Email address"> <button type="submit"
+                    class="btn-primary">Download Free Report</button> </form>
+            <p class="form-success" id="popupSuccess">✓ Check your inbox — your Alpha Report is on its way.</p>
+            <p class="form-micro" style="text-align:center;">Free. Refreshed weekly. No spam.</p> <a href="#"
+                class="popup-dismiss" id="popupDismiss">Continue without this week's intel</a>
+        </div>
+    </div>
+    <script>  // ---------- Ticker tape ----------  const tickerData = [    {sym:'BTC', price:'68,420', change:'+2.4%', up:true},    {sym:'ETH', price:'3,612', change:'+1.8%', up:true},    {sym:'SOL', price:'178.20', change:'+5.1%', up:true},    {sym:'AVAX', price:'41.06', change:'-1.2%', up:false},    {sym:'LINK', price:'17.84', change:'+3.6%', up:true},    {sym:'INJ', price:'24.55', change:'+7.9%', up:true},    {sym:'ARB', price:'1.12', change:'-0.8%', up:false},    {sym:'OP', price:'2.31', change:'+2.0%', up:true},  ];  function renderTicker(){    const track = document.getElementById('tickerTrack');    const itemsHTML = tickerData.map(t => `      <span class="ticker-item">        <span class="sym">${t.sym}</span>        <span>$${t.price}</span>        <span class="${t.up ? 'up' : 'down'}">${t.change}</span>      </span>    `).join('');    // duplicate content for seamless marquee loop    track.innerHTML = itemsHTML + itemsHTML;  }  renderTicker();  // ---------- Dynamic edition dates ----------  function getMostRecentMonday(d){    const day = d.getDay(); // 0 = Sun    const diff = (day === 0) ? 6 : day - 1;    const monday = new Date(d);    monday.setDate(d.getDate() - diff);    return monday;  }  function getNextMonday(d){    const day = d.getDay();    let daysUntil = (1 - day + 7) % 7;    if (daysUntil === 0) daysUntil = 7;    const next = new Date(d);    next.setDate(d.getDate() + daysUntil);    return next;  }  function formatDate(d){    return d.toLocaleDateString('en-US', { month:'short', day:'numeric' });  }  const today = new Date();  document.getElementById('editionDate').textContent = formatDate(getMostRecentMonday(today));  document.getElementById('nextRefresh').textContent = formatDate(getNextMonday(today));  document.getElementById('footerYear').textContent = today.getFullYear();  // ---------- Popup trigger ----------  const popupOverlay = document.getElementById('popupOverlay');  let popupHasBeenShown = false; // in-memory only — no storage APIs used in this artifact  function showPopup(){    if (popupHasBeenShown) return;    popupHasBeenShown = true;    popupOverlay.classList.add('is-visible');  }  function hidePopup(){    popupOverlay.classList.remove('is-visible');  }  // Entry trigger: show shortly after page load  setTimeout(showPopup, 6000);  // Exit-intent trigger: mouse leaves toward top of viewport  document.addEventListener('mouseout', (e) => {    if (!e.relatedTarget && e.clientY <= 0) {      showPopup();    }  });  document.getElementById('popupClose').addEventListener('click', hidePopup);  document.getElementById('popupDismiss').addEventListener('click', (e) => {    e.preventDefault();    hidePopup();  });  popupOverlay.addEventListener('click', (e) => {    if (e.target === popupOverlay) hidePopup();  });  document.addEventListener('keydown', (e) => {    if (e.key === 'Escape') hidePopup();  });  // ---------- FORM SUBMIT HANDLER ----------  // Replace the simulated success block below with a real POST to your  // GHL form webhook / Mailchimp / ConvertKit endpoint. Example:  //  // fetch('https://your-ghl-webhook-url', {  //   method: 'POST',  //   headers: { 'Content-Type': 'application/json' },  //   body: JSON.stringify({ email })  // });  function handleSubmit(formEl, successEl, closePopupAfter){    formEl.addEventListener('submit', function(e){      e.preventDefault();      const email = formEl.querySelector('input[type="email"]').value;      if (!email) return;      // --- simulated success state (swap for real fetch() call) ---      formEl.style.display = 'none';      successEl.style.display = 'flex';      window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';      if (closePopupAfter){        setTimeout(hidePopup, 1800);      }    });  }  handleSubmit(document.getElementById('heroForm'), document.getElementById('heroSuccess'), false);  handleSubmit(document.getElementById('finalForm'), document.getElementById('finalSuccess'), false);  handleSubmit(document.getElementById('popupForm'), document.getElementById('popupSuccess'), true);</script>
+</body>
+
+</html>

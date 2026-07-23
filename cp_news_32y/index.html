@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My CryptoPotato Crypto Edge Report — Free & Personalized</title>
+    <meta name="description"
+        content="Answer 5 quick questions. Get a free personalized crypto report with chart-based analysis, watchlist ideas, risk flags, and practical next steps — built from CryptoPotato's coverage.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --bg2: #F9FAFB;
+            --bg3: #F3F4F6;
+            --surface: #FFFFFF;
+            --surface2: #F9FAFB;
+            --border: #E5E7EB;
+            --border2: #D1D5DB;
+            --text: #111827;
+            --text2: #374151;
+            --text3: #6B7280;
+            --text4: #9CA3AF;
+            --orange: #FF9900;
+            --orange-dk: #E68A00;
+            --ol: rgba(255, 153, 0, .08);
+            --ob: rgba(255, 153, 0, .22);
+            --red: #EF4444;
+            --rl: rgba(239, 68, 68, .08);
+            --green: #10B981;
+            --gl: rgba(16, 185, 129, .1);
+            --blue: #3B82F6;
+            --bl: rgba(59, 130, 246, .1);
+            --r: 6px;
+            --rl2: 10px;
+            --rxl: 16px;
+            --sh: 0 1px 3px rgba(0, 0, 0, .07), 0 4px 12px rgba(0, 0, 0, .05);
+            --sh2: 0 8px 32px rgba(0, 0, 0, .1);
+            --mx: 1140px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.55;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Inter", sans-serif;
+            margin: 0;
+            font-weight: 800;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        img,
+        svg {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--orange);
+            outline-offset: 3px;
+        }
+
+        .wrap {
+            max-width: var(--mx);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .mono {
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        /* ── NAV ─────────────────────────────────────────────── */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: var(--mx);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 58px;
+            padding: 0 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -.025em;
+        }
+
+        .brand-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-icon svg {
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2px;
+        }
+
+        .nav-lnk {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text3);
+            padding: 6px 12px;
+            border-radius: var(--r);
+            background: none;
+            border: none;
+        }
+
+        .nav-lnk:hover {
+            background: var(--bg2);
+            color: var(--text2);
+        }
+
+        .nav-btn {
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 8px 18px;
+            font-size: 13.5px;
+            font-weight: 700;
+            transition: background .15s, transform .15s;
+        }
+
+        .nav-btn:hover {
+            background: var(--orange-dk);
+            transform: translateY(-1px);
+        }
+
+        /* ── HERO ─────────────────────────────────────────────── */
+        .hero {
+            padding: 64px 0 78px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--orange);
+            background: var(--ol);
+            border: 1px solid var(--ob);
+            padding: 5px 12px;
+            border-radius: var(--r);
+            margin-bottom: 18px;
+        }
+
+        .hero-kicker .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--orange);
+            animation: blink 2.2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -.03em;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero-sub {
+            color: var(--text3);
+            font-size: 17px;
+            line-height: 1.65;
+            max-width: 490px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .hero-sub strong {
+            color: var(--text2);
+            font-weight: 700;
+        }
+
+        .hero-acts {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 14px 26px;
+            font-size: 15px;
+            font-weight: 700;
+            transition: background .15s, transform .15s, box-shadow .15s;
+            box-shadow: 0 4px 16px rgba(255, 153, 0, .28);
+        }
+
+        .btn:hover {
+            background: var(--orange-dk);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 28px rgba(255, 153, 0, .36);
+        }
+
+        .hero-note {
+            font-size: 13px;
+            color: var(--text4);
+            font-weight: 600;
+        }
+
+        /* ── PROOF ────────────────────────────────────────────── */
+        .proof {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg2);
+        }
+
+        .proof-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .proof-item {
+            padding: 8px 32px;
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .proof-item:last-child {
+            border-right: none;
+        }
+
+        .proof-n {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .proof-l {
+            font-size: 11px;
+            color: var(--text4);
+            margin-top: 2px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        /* ── SECTIONS ─────────────────────────────────────────── */
+        .section {
+            padding: 72px 0;
+        }
+
+        .slabel {
+            display: block;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+        }
+
+        .sh {
+            font-size: 28px;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            letter-spacing: -.02em;
+        }
+
+        .ssub {
+            color: var(--text3);
+            font-size: 16px;
+            line-height: 1.65;
+            max-width: 520px;
+            font-weight: 500;
+        }
+
+        /* ── STEPS ────────────────────────────────────────────── */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            padding: 26px 22px;
+        }
+
+        .step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: #fff;
+            font-size: 15px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .step-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            letter-spacing: -.01em;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            color: var(--text3);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* ── REPORT CARDS ─────────────────────────────────────── */
+        .rgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 40px;
+        }
+
+        .rcard {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            overflow: hidden;
+            box-shadow: var(--sh);
+            transition: box-shadow .2s, transform .2s;
+        }
+
+        .rcard:hover {
+            box-shadow: var(--sh2);
+            transform: translateY(-2px);
+        }
+
+        .rviz {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .rcopy {
+            padding: 18px 20px 22px;
+        }
+
+        .rcopy .slabel {
+            margin-bottom: 7px;
+        }
+
+        .rcopy h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            letter-spacing: -.01em;
+        }
+
+        .rcopy p {
+            font-size: 13.5px;
+            color: var(--text3);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* ── CREDIBILITY ──────────────────────────────────────── */
+        .cred {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cred-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 72px 0;
+        }
+
+        .cred-pts {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .cred-pt {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .cpt-bar {
+            width: 3px;
+            background: linear-gradient(180deg, var(--orange), rgba(255, 153, 0, .1));
+            flex-shrink: 0;
+            min-height: 42px;
+            align-self: stretch;
+            border-radius: 2px;
+        }
+
+        .cpt-n {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--orange);
+            line-height: 1;
+        }
+
+        .cpt-l {
+            font-size: 13.5px;
+            color: var(--text3);
+            margin-top: 3px;
+            line-height: 1.45;
+            font-weight: 500;
+        }
+
+        /* ── BRIEF ────────────────────────────────────────────── */
+        .brief {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: var(--rl2);
+            max-width: 700px;
+            margin: 38px auto 0;
+            overflow: hidden;
+            box-shadow: var(--sh);
+        }
+
+        .brief-hdr {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .brief-ttl {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text4);
+        }
+
+        .brief-badge {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .07em;
+            text-transform: uppercase;
+            color: var(--orange);
+            background: var(--ol);
+            border: 1px solid var(--ob);
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .brief-body {
+            padding: 24px;
+        }
+
+        .bprofile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .bptag {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .bptag.style {
+            background: var(--ol);
+            color: var(--orange);
+        }
+
+        .bptag.risk {
+            background: var(--gl);
+            color: var(--green);
+        }
+
+        .bptag.focus {
+            background: var(--bl);
+            color: var(--blue);
+        }
+
+        .bsect {
+            border-left: 3px solid var(--orange);
+            padding-left: 14px;
+            margin-bottom: 18px;
+        }
+
+        .bsect:last-child {
+            margin-bottom: 0;
+        }
+
+        .bsect h4 {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text3);
+            margin-bottom: 7px;
+        }
+
+        .bsect p {
+            font-size: 13.5px;
+            color: var(--text2);
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .bflag {
+            background: var(--rl);
+            border: 1px solid rgba(239, 68, 68, .18);
+            border-radius: 6px;
+            padding: 10px 14px;
+            margin-top: 8px;
+            font-size: 12.5px;
+            color: var(--red);
+            font-family: "JetBrains Mono", monospace;
+            display: flex;
+            gap: 8px;
+            line-height: 1.5;
+        }
+
+        /* ── FINAL ────────────────────────────────────────────── */
+        .final {
+            text-align: center;
+            padding: 84px 0 96px;
+        }
+
+        .fkicker {
+            display: inline-block;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text4);
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 4px;
+            margin-bottom: 18px;
+        }
+
+        .final h2 {
+            font-size: 32px;
+            max-width: 520px;
+            margin: 0 auto 12px;
+            line-height: 1.2;
+            letter-spacing: -.02em;
+        }
+
+        .final h2 span {
+            color: var(--orange);
+        }
+
+        .final p {
+            color: var(--text3);
+            font-size: 16px;
+            margin-bottom: 30px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.65;
+            font-weight: 500;
+        }
+
+        .fnote {
+            font-size: 12.5px;
+            color: var(--text4);
+            font-family: "JetBrains Mono", monospace;
+            margin-top: 14px;
+        }
+
+        /* ── FOOTER ───────────────────────────────────────────── */
+        .footer {
+            background: #111827;
+            padding: 36px 0;
+        }
+
+        .frow {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fbrand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .fbrand-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ffine {
+            font-size: 12.5px;
+            color: rgba(255, 255, 255, .35);
+            line-height: 1.65;
+            max-width: 420px;
+            text-align: right;
+        }
+
+        /* ── QUIZ MODAL ───────────────────────────────────────── */
+        .qov {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, .5);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity .24s;
+        }
+
+        .qov.on {
+            display: flex;
+            opacity: 1;
+        }
+
+        .qm {
+            background: #fff;
+            border: 1px solid var(--border2);
+            border-radius: var(--rxl);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, .16);
+            transform: translateY(10px) scale(.98);
+            transition: transform .26s;
+            overflow: hidden;
+        }
+
+        .qov.on .qm {
+            transform: none;
+        }
+
+        .qx {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text3);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .qx:hover {
+            background: var(--bg3);
+        }
+
+        .qband {
+            background: var(--orange);
+            padding: 13px 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .qbtl {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .85);
+        }
+
+        .qprog {
+            display: flex;
+            gap: 5px;
+        }
+
+        .qpd {
+            width: 22px;
+            height: 3px;
+            background: rgba(255, 255, 255, .3);
+            border-radius: 99px;
+            transition: background .3s;
+        }
+
+        .qpd.done {
+            background: #fff;
+        }
+
+        .qbody {
+            padding: 26px 26px 22px;
+        }
+
+        .ql {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 10px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .qbody h2 {
+            font-size: 18.5px;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            letter-spacing: -.02em;
+        }
+
+        .qopts {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .qopt {
+            padding: 11px 15px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text2);
+            transition: border-color .15s, background .15s;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            background: #fff;
+        }
+
+        .qopt:hover {
+            border-color: var(--orange);
+            background: var(--ol);
+        }
+
+        .qopt.sel {
+            border-color: var(--orange);
+            background: var(--ol);
+            color: var(--text);
+        }
+
+        .qck {
+            width: 17px;
+            height: 17px;
+            border: 1.5px solid var(--border2);
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            transition: all .15s;
+        }
+
+        .qopt.sel .qck {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: #fff;
+        }
+
+        .qtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .qtag {
+            padding: 8px 13px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text3);
+            cursor: pointer;
+            transition: all .15s;
+        }
+
+        .qtag:hover {
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        .qtag.sel {
+            border-color: var(--orange);
+            color: var(--orange);
+            background: var(--ol);
+        }
+
+        .qn {
+            width: 100%;
+            background: var(--orange);
+            color: #fff;
+            border: none;
+            border-radius: var(--r);
+            padding: 13px;
+            font-size: 15px;
+            font-weight: 700;
+            margin-top: 16px;
+            transition: background .15s;
+        }
+
+        .qn:hover {
+            background: var(--orange-dk);
+        }
+
+        .qn:disabled {
+            opacity: .25;
+            cursor: not-allowed;
+            background: var(--orange);
+        }
+
+        .qb {
+            font-size: 13px;
+            color: var(--text3);
+            background: none;
+            border: none;
+            padding: 0;
+            margin-top: 10px;
+            display: block;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .qb:hover {
+            color: var(--text2);
+        }
+
+        .qinput {
+            width: 100%;
+            background: #fff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--r);
+            padding: 12px 15px;
+            font-size: 14.5px;
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            outline: none;
+            transition: border-color .15s;
+        }
+
+        .qinput:focus {
+            border-color: var(--orange);
+        }
+
+        .qinput::placeholder {
+            color: var(--text4);
+        }
+
+        .build {
+            text-align: center;
+            padding: 4px 0;
+        }
+
+        .bspin {
+            width: 46px;
+            height: 46px;
+            border: 2.5px solid var(--border);
+            border-top-color: var(--orange);
+            border-radius: 50%;
+            animation: sp .85s linear infinite;
+            margin: 0 auto 18px;
+        }
+
+        @keyframes sp {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .blines {
+            text-align: left;
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .bline {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12.5px;
+            color: var(--text4);
+            font-family: "JetBrains Mono", monospace;
+        }
+
+        .bck {
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--ol);
+            border: 1.5px solid var(--ob);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: var(--orange);
+            opacity: 0;
+            transition: opacity .4s;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        .bline.done .bck {
+            opacity: 1;
+        }
+
+        .suc-t {
+            background: linear-gradient(135deg, #FFF7ED, #FFFBEB);
+            border-bottom: 1px solid var(--border);
+            padding: 26px 26px 20px;
+        }
+
+        .suc-ico {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 13px;
+        }
+
+        .suc-ico svg {
+            width: 22px;
+            height: 22px;
+            color: #fff;
+        }
+
+        .suc-t h2 {
+            font-size: 19px;
+            margin-bottom: 6px;
+            letter-spacing: -.02em;
+        }
+
+        .suc-t p {
+            font-size: 13.5px;
+            color: var(--text3);
+            font-weight: 500;
+        }
+
+        .suc-b {
+            padding: 20px 26px 26px;
+        }
+
+        .suc-items {
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            margin-bottom: 20px;
+        }
+
+        .suc-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 13.5px;
+            color: var(--text2);
+            font-weight: 600;
+        }
+
+        .sic {
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            background: var(--orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8px;
+            color: #fff;
+            flex-shrink: 0;
+            font-weight: 700;
+        }
+
+        /* ── POPUP ────────────────────────────────────────────── */
+        .pov {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 24, 39, .45);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 400;
+            padding: 0;
+        }
+
+        .pov.on {
+            display: flex;
+            animation: slu .3s ease both;
+        }
+
+        @keyframes slu {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .pc {
+            background: #fff;
+            border-top: 3px solid var(--orange);
+            max-width: 640px;
+            width: 100%;
+            padding: 26px 30px 24px;
+            position: relative;
+            border-radius: 14px 14px 0 0;
+            box-shadow: 0 -8px 40px rgba(0, 0, 0, .1);
+        }
+
+        .pcx {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            color: var(--text3);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .pcx:hover {
+            background: var(--bg3);
+        }
+
+        .pk {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 11px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-weight: 700;
+        }
+
+        .pblip {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--orange);
+            animation: blink 2.2s ease-in-out infinite;
+        }
+
+        .pc h2 {
+            font-size: 20px;
+            line-height: 1.28;
+            margin-bottom: 9px;
+            letter-spacing: -.02em;
+        }
+
+        .pc h2 span {
+            color: var(--orange);
+        }
+
+        .pc>p {
+            font-size: 14px;
+            color: var(--text3);
+            line-height: 1.65;
+            margin-bottom: 16px;
+            max-width: 500px;
+            font-weight: 500;
+        }
+
+        .pbuls {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pbuls li {
+            display: flex;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--text3);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        .pbuls b {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .pbar {
+            width: 3px;
+            background: var(--orange);
+            flex-shrink: 0;
+            border-radius: 2px;
+        }
+
+        .prow {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .prow .btn {
+            flex: 1;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .pdis {
+            font-size: 13px;
+            color: var(--text4);
+            cursor: pointer;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .pdis:hover {
+            color: var(--text3);
+        }
+
+        /* ── RESPONSIVE ───────────────────────────────────────── */
+        @media(max-width:860px) {
+
+            .hero-grid,
+            .cred-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .rgrid,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .proof-item {
+                padding: 10px 18px;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .proof-item:last-child {
+                border-bottom: none;
+            }
+
+            .section {
+                padding: 52px 0;
+            }
+
+            .final h2 {
+                font-size: 24px;
+            }
+
+            .prow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .qbody {
+                padding: 22px 20px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .frow {
+                flex-direction: column;
+            }
+
+            .ffine {
+                text-align: left;
+            }
+        }
+
+        @media(max-width:480px) {
+            .proof-row {
+                flex-direction: column;
+            }
+
+            .hero-acts {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body><!-- ═══ POPUP ════════════════════════════════════════════════════ -->
+    <div class="pov" id="pov">
+        <div class="pc"> <button class="pcx" id="pcx">✕</button>
+            <div class="pk"><span class="pblip"></span>CryptoPotato · Edge Report · Free · 60 Seconds</div>
+            <h2>Get a report that reads the market<br><span>for your specific profile.</span></h2>
+            <p>Answer 5 quick questions about how you invest. We'll build you a free personalized report — chart-based
+                analysis, watchlist ideas, risk flags, and practical next steps — drawn from CryptoPotato's market
+                coverage and TA, matched to your answers.</p>
+            <ul class="pbuls">
+                <li>
+                    <div class="pbar"></div><span><b>Chart Analysis:</b> Key support and resistance levels on assets
+                        you're watching, straight from our TA team</span>
+                </li>
+                <li>
+                    <div class="pbar"></div><span><b>Watchlist Ideas:</b> Coins with momentum that fit your risk
+                        tolerance and stated time horizon</span>
+                </li>
+                <li>
+                    <div class="pbar"></div><span><b>Practical Next Steps:</b> Clear, actionable guidance based on your
+                        portfolio style and goals — not generic advice</span>
+                </li>
+            </ul>
+            <div class="prow"> <button class="btn" id="pCTA">Get My Free Report →</button> <span class="pdis"
+                    id="pdis">No thanks</span> </div>
+        </div>
+    </div><!-- ═══ QUIZ MODAL ════════════════════════════════════════════════ -->
+    <div class="qov" id="qov">
+        <div class="qm"> <button class="qx" id="qx">✕</button>
+            <div id="qs1">
+                <div class="qband"><span class="qbtl">CryptoPotato Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">01 / 05 — Experience Level</span>
+                    <h2>How would you describe your experience in crypto?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="beginner">
+                            <div class="qck">✓</div>Just getting started — I'm still learning the basics
+                        </div>
+                        <div class="qopt" data-v="intermediate">
+                            <div class="qck">✓</div>I understand the fundamentals and have been investing for a while
+                        </div>
+                        <div class="qopt" data-v="active">
+                            <div class="qck">✓</div>Active trader — I follow charts and market signals closely
+                        </div>
+                        <div class="qopt" data-v="experienced">
+                            <div class="qck">✓</div>Experienced — I've been through multiple market cycles
+                        </div>
+                    </div> <button class="qn" id="s1n" disabled>Continue →</button>
+                </div>
+            </div>
+            <div id="qs2" style="display:none;">
+                <div class="qband"><span class="qbtl">CryptoPotato Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">02 / 05 — Main Goal</span>
+                    <h2>What is your primary goal in crypto right now?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="build">
+                            <div class="qck">✓</div>Build my first portfolio with the right fundamentals
+                        </div>
+                        <div class="qopt" data-v="opportunity">
+                            <div class="qck">✓</div>Find the next big opportunity before it runs
+                        </div>
+                        <div class="qopt" data-v="improve">
+                            <div class="qck">✓</div>Improve my trading results with better setups and timing
+                        </div>
+                        <div class="qopt" data-v="protect">
+                            <div class="qck">✓</div>Protect and steadily grow what I already hold
+                        </div>
+                        <div class="qopt" data-v="yield">
+                            <div class="qck">✓</div>Generate yield or income from my existing holdings
+                        </div>
+                    </div> <button class="qn" id="s2n" disabled>Continue →</button> <button class="qb" id="s2b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs3" style="display:none;">
+                <div class="qband"><span class="qbtl">CryptoPotato Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">03 / 05 — Time Horizon</span>
+                    <h2>How long are you comfortable holding a position?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="weeks">
+                            <div class="qck">✓</div>Days to weeks — I trade setups, not long-term stories
+                        </div>
+                        <div class="qopt" data-v="months">
+                            <div class="qck">✓</div>1 to 6 months — I ride a trend then reassess
+                        </div>
+                        <div class="qopt" data-v="year">
+                            <div class="qck">✓</div>6 months to 2 years — I hold through a cycle leg
+                        </div>
+                        <div class="qopt" data-v="longterm">
+                            <div class="qck">✓</div>2+ years — I hold through multiple cycles
+                        </div>
+                    </div> <button class="qn" id="s3n" disabled>Continue →</button> <button class="qb" id="s3b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs4" style="display:none;">
+                <div class="qband"><span class="qbtl">CryptoPotato Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">04 / 05 — Risk Tolerance</span>
+                    <h2>How do you feel about risk in your crypto portfolio?</h2>
+                    <div class="qopts">
+                        <div class="qopt" data-v="safe">
+                            <div class="qck">✓</div>Keep it safe — losing money concerns me more than missing gains
+                        </div>
+                        <div class="qopt" data-v="balanced">
+                            <div class="qck">✓</div>Balanced — I'll accept some risk if the upside makes sense
+                        </div>
+                        <div class="qopt" data-v="aggressive">
+                            <div class="qck">✓</div>Aggressive — I accept big volatility for the chance at big gains
+                        </div>
+                        <div class="qopt" data-v="mixed">
+                            <div class="qck">✓</div>Mixed — solid core holdings plus some higher-risk positions
+                        </div>
+                    </div> <button class="qn" id="s4n" disabled>Continue →</button> <button class="qb" id="s4b">←
+                        Back</button>
+                </div>
+            </div>
+            <div id="qs5" style="display:none;">
+                <div class="qband"><span class="qbtl">CryptoPotato Edge Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                    </div>
+                </div>
+                <div class="qbody"> <span class="ql">05 / 05 — Assets &amp; Delivery</span>
+                    <h2>Which assets or sectors are you most focused on? <span
+                            style="font-weight:500;font-size:15px;color:var(--text3);">Pick all that apply.</span></h2>
+                    <div class="qtags">
+                        <div class="qtag" data-v="btc">Bitcoin (BTC)</div>
+                        <div class="qtag" data-v="eth">Ethereum (ETH)</div>
+                        <div class="qtag" data-v="sol">Solana (SOL)</div>
+                        <div class="qtag" data-v="alts">Altcoins</div>
+                        <div class="qtag" data-v="defi">DeFi</div>
+                        <div class="qtag" data-v="l2">Layer 2s</div>
+                        <div class="qtag" data-v="ai">AI Tokens</div>
+                        <div class="qtag" data-v="meme">Memecoins</div>
+                        <div class="qtag" data-v="rwa">Real World Assets</div>
+                        <div class="qtag" data-v="stable">Stablecoins</div>
+                    </div>
+                    <p style="font-size:12.5px;color:var(--text3);margin-bottom:13px;font-weight:600;">Where should we
+                        send your report?</p> <input type="email" class="qinput" id="eIn" placeholder="you@email.com">
+                    <button class="qn" id="s5n" disabled>Build My Edge Report →</button> <button class="qb" id="s5b">←
+                        Back</button>
+                    <p
+                        style="font-size:11.5px;color:var(--text4);margin-top:11px;text-align:center;font-family:'JetBrains Mono',monospace;">
+                        Free. No spam. Unsubscribe anytime.</p>
+                </div>
+            </div>
+            <div id="qs6" style="display:none;">
+                <div class="qband"><span class="qbtl">Building Your Report</span>
+                    <div class="qprog">
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                        <div class="qpd done"></div>
+                    </div>
+                </div>
+                <div class="qbody">
+                    <div class="build">
+                        <div class="bspin"></div>
+                        <h2 style="font-size:18px;margin-bottom:6px;letter-spacing:-.02em;">Analyzing your profile...
+                        </h2>
+                        <p style="font-size:13.5px;color:var(--text3);font-weight:500;">Applying CryptoPotato's TA and
+                            market coverage to your answers.</p>
+                        <div class="blines">
+                            <div class="bline" id="bl1">
+                                <div class="bck">✓</div><span>Reading your experience level and goals...</span>
+                            </div>
+                            <div class="bline" id="bl2">
+                                <div class="bck">✓</div><span>Running chart analysis on your selected assets...</span>
+                            </div>
+                            <div class="bline" id="bl3">
+                                <div class="bck">✓</div><span>Building your watchlist and risk flags...</span>
+                            </div>
+                            <div class="bline" id="bl4">
+                                <div class="bck">✓</div><span>Compiling your practical next steps...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="qs7" style="display:none;">
+                <div class="suc-t">
+                    <div class="suc-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></div>
+                    <h2>Your edge report is ready.</h2>
+                    <p>Check your inbox — your personalized CryptoPotato Edge Report is on the way. Or download below
+                        now.</p>
+                </div>
+                <div class="suc-b">
+                    <div class="suc-items">
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Chart analysis on your focus assets with key price levels
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Risk flags matched to your experience level and risk tolerance
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Watchlist ideas filtered to your sectors and time horizon
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Market opportunities relevant to your stated goals
+                        </div>
+                        <div class="suc-item">
+                            <div class="sic">✓</div>Practical next steps you can act on straight away
+                        </div>
+                    </div> <button class="btn" style="width:100%;justify-content:center;" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd'"> <svg viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" style="width:15px;height:15px;">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                        </svg> Download My Edge Report </button>
+                </div>
+            </div>
+        </div>
+    </div><!-- ═══ NAV ══════════════════════════════════════════════════════ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="brand">
+                <div class="brand-icon"> <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                        <ellipse cx="10" cy="11" rx="7.5" ry="8" fill="#fff" transform="rotate(-10 10 11)" />
+                        <circle cx="8" cy="9" r="1.5" fill="#FF9900" />
+                        <circle cx="13" cy="8" r="1.2" fill="#FF9900" />
+                        <circle cx="10" cy="14" r="1" fill="#FF9900" />
+                    </svg> </div> CryptoPotato
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+                <div class="nav-links"> <button class="nav-lnk">News</button> <button class="nav-lnk">Markets</button>
+                    <button class="nav-lnk">Guides</button> <button class="nav-lnk">Analysis</button> </div> <button
+                    class="nav-btn" onclick="openQuiz()">Get My Free Report</button>
+            </div>
+        </div>
+    </nav><!-- ═══ HERO ══════════════════════════════════════════════════════ -->
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div>
+                <div class="hero-kicker"><span class="dot"></span>CryptoPotato Analysis · Personalized · Free</div>
+                <h1>Your crypto portfolio.<br>Analyzed. <span>Personalized.</span></h1>
+                <p class="hero-sub">Answer five questions about how you invest and what you're watching. Get a free
+                    downloadable report with <strong>chart-based analysis, risk flags, watchlist ideas, and clear next
+                        steps</strong> — drawn from CryptoPotato's TA coverage and matched to your specific profile.</p>
+                <div class="hero-acts"> <button class="btn" onclick="openQuiz()">Get My Free Report →</button> <span
+                        class="hero-note">Free · No account needed · Instant download</span> </div>
+            </div> <!-- HERO VISUAL: CryptoPotato-branded report card with TA chart -->
+            <div style="position:relative;">
+                <div
+                    style="background:#fff;border:1px solid var(--border2);border-radius:var(--rl2);box-shadow:var(--sh2);overflow:hidden;">
+                    <!-- Orange header band -->
+                    <div style="background:var(--orange);padding:14px 18px;">
+                        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                            <div
+                                style="width:16px;height:16px;background:rgba(255,255,255,.2);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+                                <svg width="10" height="10" viewBox="0 0 20 20">
+                                    <ellipse cx="10" cy="11" rx="7.5" ry="8" fill="rgba(255,255,255,.8)"
+                                        transform="rotate(-10 10 11)" />
+                                </svg> </div> <span
+                                style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.8);letter-spacing:.06em;text-transform:uppercase;">CryptoPotato</span>
+                        </div>
+                        <div
+                            style="font-size:15px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.02em;">
+                            My Crypto Edge Report</div>
+                        <div style="display:flex;gap:7px;flex-wrap:wrap;"> <span
+                                style="background:rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;font-weight:600;">Active
+                                Trader</span> <span
+                                style="background:rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;font-weight:600;">Balanced
+                                Risk</span> <span
+                                style="background:rgba(255,255,255,.2);border-radius:4px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#fff;font-weight:600;">BTC
+                                · ETH · SOL</span> </div>
+                    </div> <!-- Mini candlestick area -->
+                    <div style="padding:14px 16px;background:var(--bg2);border-bottom:1px solid var(--border);">
+                        <div
+                            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">
+                            BTC/USDT · CHART ANALYSIS</div> <svg viewBox="0 0 270 64" width="100%"
+                            aria-label="Bitcoin candlestick chart">
+                            <!-- Candlestick chart: 18 candles, uptrend, breakout -->
+                            <line x1="0" y1="50" x2="270" y2="50" stroke="var(--border)" stroke-width="1" />
+                            <line x1="0" y1="32" x2="270" y2="32" stroke="var(--border)" stroke-width="1"
+                                stroke-dasharray="3 4" />
+                            <line x1="0" y1="16" x2="270" y2="16" stroke="var(--border)" stroke-width="1"
+                                stroke-dasharray="3 4" /> <!-- Candles -->
+                            <line x1="8" y1="55" x2="8" y2="48" stroke="#EF4444" stroke-width="1.2" />
+                            <rect x="5" y="50" width="6" height="4" fill="#EF4444" />
+                            <line x1="22" y1="52" x2="22" y2="45" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="19" y="46" width="6" height="5" fill="#10B981" />
+                            <line x1="36" y1="48" x2="36" y2="41" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="33" y="42" width="6" height="5" fill="#10B981" />
+                            <line x1="50" y1="44" x2="50" y2="39" stroke="#EF4444" stroke-width="1.2" />
+                            <rect x="47" y="41" width="6" height="3" fill="#EF4444" />
+                            <line x1="64" y1="42" x2="64" y2="34" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="61" y="35" width="6" height="6" fill="#10B981" />
+                            <line x1="78" y1="38" x2="78" y2="30" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="75" y="31" width="6" height="6" fill="#10B981" />
+                            <line x1="92" y1="33" x2="92" y2="27" stroke="#EF4444" stroke-width="1.2" />
+                            <rect x="89" y="30" width="6" height="3" fill="#EF4444" />
+                            <line x1="106" y1="30" x2="106" y2="21" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="103" y="22" width="6" height="7" fill="#10B981" />
+                            <line x1="120" y1="26" x2="120" y2="18" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="117" y="19" width="6" height="6" fill="#10B981" />
+                            <!-- BREAKOUT candle — big orange glow -->
+                            <line x1="134" y1="20" x2="134" y2="8" stroke="#FF9900" stroke-width="1.5" />
+                            <rect x="131" y="10" width="6" height="9" fill="#FF9900" />
+                            <line x1="148" y1="14" x2="148" y2="6" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="145" y="7" width="6" height="6" fill="#10B981" />
+                            <line x1="162" y1="10" x2="162" y2="4" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="159" y="5" width="6" height="4" fill="#10B981" />
+                            <line x1="176" y1="9" x2="176" y2="14" stroke="#EF4444" stroke-width="1.2" />
+                            <rect x="173" y="10" width="6" height="3" fill="#EF4444" />
+                            <line x1="190" y1="8" x2="190" y2="3" stroke="#10B981" stroke-width="1.2" />
+                            <rect x="187" y="4" width="6" height="3" fill="#10B981" /> <!-- MA line in orange -->
+                            <path d="M3,57 Q60,48 106,28 Q140,15 200,6" fill="none" stroke="var(--orange)"
+                                stroke-width="1.8" stroke-linecap="round" /> <!-- Resistance level now broken -->
+                            <line x1="0" y1="19" x2="270" y2="19" stroke="rgba(239,68,68,.4)" stroke-width="1"
+                                stroke-dasharray="4 3" /> <text x="206" y="17" font-family="JetBrains Mono,monospace"
+                                font-size="7.5" fill="#EF4444">RESISTANCE</text> <!-- Breakout label -->
+                            <rect x="126" y="0" width="50" height="13" rx="3" fill="var(--orange)" /> <text x="151"
+                                y="9.5" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8"
+                                fill="#fff" font-weight="700">BREAKOUT ↑</text>
+                        </svg>
+                    </div> <!-- 2x2 signal grid -->
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);">
+                        <div style="background:#fff;padding:10px 14px;">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;margin-bottom:3px;">
+                                Chart Signal</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--green);">BTC Breakout</div>
+                            <div style="font-size:11px;color:var(--text3);">Above resistance $68K</div>
+                        </div>
+                        <div style="background:#fff;padding:10px 14px;">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;margin-bottom:3px;">
+                                Risk Flag</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--red);">RSI Overbought</div>
+                            <div style="font-size:11px;color:var(--text3);">Potential pullback zone</div>
+                        </div>
+                        <div style="background:#fff;padding:10px 14px;border-top:1px solid var(--border);">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;margin-bottom:3px;">
+                                Watchlist</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--orange);">ETH + L2s</div>
+                            <div style="font-size:11px;color:var(--text3);">Volume building</div>
+                        </div>
+                        <div style="background:#fff;padding:10px 14px;border-top:1px solid var(--border);">
+                            <div
+                                style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);text-transform:uppercase;margin-bottom:3px;">
+                                Next Step</div>
+                            <div style="font-size:13px;font-weight:700;color:var(--blue);">Wait for retest</div>
+                            <div style="font-size:11px;color:var(--text3);">Support at $64K</div>
+                        </div>
+                    </div>
+                    <div
+                        style="padding:9px 16px;background:var(--bg2);border-top:1px solid var(--border);display:flex;justify-content:space-between;">
+                        <span
+                            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text4);">CryptoPotato
+                            · <span id="rdate"></span></span> <span
+                            style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--orange);font-weight:700;">PERSONALIZED</span>
+                    </div>
+                </div>
+                <div
+                    style="position:absolute;top:-11px;right:-8px;background:var(--orange);color:#fff;font-size:11px;font-weight:800;padding:5px 14px;border-radius:99px;box-shadow:0 4px 12px rgba(255,153,0,.35);">
+                    FREE REPORT</div>
+            </div>
+        </div>
+    </section><!-- PROOF STRIP -->
+    <section class="proof">
+        <div class="wrap proof-row">
+            <div class="proof-item">
+                <div class="proof-n">12+ Yrs</div>
+                <div class="proof-l">Crypto Coverage</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">2.5M+</div>
+                <div class="proof-l">Monthly Readers</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">Daily TA</div>
+                <div class="proof-l">Chart Analysis</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-n">60 sec</div>
+                <div class="proof-l">To Your Free Report</div>
+            </div>
+        </div>
+    </section><!-- HOW IT WORKS -->
+    <section class="section" style="background:var(--bg2);border-bottom:1px solid var(--border);">
+        <div class="wrap">
+            <div style="max-width:520px;"> <span class="slabel">How It Works</span>
+                <h2 class="sh">Five questions. One report built around your portfolio.</h2>
+                <p class="ssub">Generic market analysis tells everyone the same thing. Yours is different — it starts
+                    with how you actually invest.</p>
+            </div>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <h3>Tell us about your approach</h3>
+                    <p>Five quick questions covering your experience level, main goal, time horizon, risk tolerance, and
+                        the assets you're watching. Under 60 seconds.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <h3>We run the analysis</h3>
+                    <p>Your answers are matched to CryptoPotato's current TA coverage, market news, and
+                        beginner-to-advanced guides to build a brief that fits your situation.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <h3>Download your report</h3>
+                    <p>Get a free PDF with chart-based observations, a curated watchlist, risk flags, and clear
+                        practical next steps — matched to your profile, not a generic template.</p>
+                </div>
+            </div>
+        </div>
+    </section><!-- WHAT'S IN THE REPORT -->
+    <section class="section">
+        <div class="wrap"> <span class="slabel">What's Inside Your Report</span>
+            <h2 class="sh" style="max-width:460px;">Five sections. All of them built from your answers.</h2>
+            <p class="ssub">Nothing generic, nothing pre-written. Every part is matched to your experience level, goals,
+                and the assets you told us you're watching.</p>
+            <div class="rgrid"> <!-- Card 1: TA chart — candlestick SVG (unique to CryptoPotato) -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Bitcoin technical analysis candlestick chart">
+                            <rect width="320" height="175" fill="#F9FAFB" rx="8" /> <text x="14" y="24"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9CA3AF"
+                                letter-spacing="1">BTC/USDT · 4H · CHART ANALYSIS</text> <!-- Horizontal grid -->
+                            <line x1="14" y1="140" x2="306" y2="140" stroke="#E5E7EB" stroke-width="1" />
+                            <line x1="14" y1="110" x2="306" y2="110" stroke="#E5E7EB" stroke-width="1"
+                                stroke-dasharray="3 5" />
+                            <line x1="14" y1="82" x2="306" y2="82" stroke="#E5E7EB" stroke-width="1"
+                                stroke-dasharray="3 5" />
+                            <line x1="14" y1="54" x2="306" y2="54" stroke="#E5E7EB" stroke-width="1"
+                                stroke-dasharray="3 5" /> <!-- 16 candles - uptrend with breakout at candle 12 -->
+                            <!-- C1 Red  -->
+                            <line x1="22" y1="137" x2="22" y2="147" stroke="#EF4444" stroke-width="1.5" />
+                            <rect x="18" y="139" width="8" height="6" rx="1" fill="#EF4444" /> <!-- C2 Grn  -->
+                            <line x1="38" y1="131" x2="38" y2="141" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="34" y="132" width="8" height="7" rx="1" fill="#10B981" /> <!-- C3 Grn  -->
+                            <line x1="54" y1="126" x2="54" y2="137" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="50" y="127" width="8" height="8" rx="1" fill="#10B981" /> <!-- C4 Red  -->
+                            <line x1="70" y1="128" x2="70" y2="136" stroke="#EF4444" stroke-width="1.5" />
+                            <rect x="66" y="130" width="8" height="4" rx="1" fill="#EF4444" /> <!-- C5 Grn  -->
+                            <line x1="86" y1="118" x2="86" y2="129" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="82" y="120" width="8" height="7" rx="1" fill="#10B981" /> <!-- C6 Grn  -->
+                            <line x1="102" y1="110" x2="102" y2="122" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="98" y="112" width="8" height="8" rx="1" fill="#10B981" /> <!-- C7 Red  -->
+                            <line x1="118" y1="113" x2="118" y2="121" stroke="#EF4444" stroke-width="1.5" />
+                            <rect x="114" y="115" width="8" height="4" rx="1" fill="#EF4444" /> <!-- C8 Grn  -->
+                            <line x1="134" y1="100" x2="134" y2="114" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="130" y="102" width="8" height="10" rx="1" fill="#10B981" /> <!-- C9 Grn  -->
+                            <line x1="150" y1="94" x2="150" y2="105" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="146" y="96" width="8" height="7" rx="1" fill="#10B981" /> <!-- C10 Red -->
+                            <line x1="166" y1="96" x2="166" y2="105" stroke="#EF4444" stroke-width="1.5" />
+                            <rect x="162" y="98" width="8" height="4" rx="1" fill="#EF4444" /> <!-- C11 Grn -->
+                            <line x1="182" y1="85" x2="182" y2="97" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="178" y="87" width="8" height="8" rx="1" fill="#10B981" />
+                            <!-- C12 BREAKOUT (orange) -->
+                            <line x1="198" y1="65" x2="198" y2="92" stroke="#FF9900" stroke-width="2" />
+                            <rect x="194" y="67" width="8" height="22" rx="1" fill="#FF9900" /> <!-- C13 Grn -->
+                            <line x1="214" y1="59" x2="214" y2="71" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="210" y="61" width="8" height="8" rx="1" fill="#10B981" /> <!-- C14 Grn -->
+                            <line x1="230" y1="53" x2="230" y2="64" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="226" y="55" width="8" height="7" rx="1" fill="#10B981" /> <!-- C15 Red -->
+                            <line x1="246" y1="55" x2="246" y2="64" stroke="#EF4444" stroke-width="1.5" />
+                            <rect x="242" y="57" width="8" height="5" rx="1" fill="#EF4444" /> <!-- C16 Grn -->
+                            <line x1="262" y1="47" x2="262" y2="60" stroke="#10B981" stroke-width="1.5" />
+                            <rect x="258" y="49" width="8" height="8" rx="1" fill="#10B981" />
+                            <!-- MA20 line in orange -->
+                            <path d="M14,142 Q80,128 134,108 Q178,90 220,65 Q248,55 276,48" fill="none" stroke="#FF9900"
+                                stroke-width="2" stroke-linecap="round" /> <!-- Support line (green dashed) -->
+                            <line x1="14" y1="130" x2="296" y2="130" stroke="#10B981" stroke-width="1.2"
+                                stroke-dasharray="5 4" /> <text x="240" y="127" font-family="JetBrains Mono,monospace"
+                                font-size="8" fill="#10B981" font-weight="600">SUPPORT</text>
+                            <!-- Resistance line (red dashed, broken) -->
+                            <line x1="14" y1="88" x2="296" y2="88" stroke="#EF4444" stroke-width="1.2"
+                                stroke-dasharray="5 4" /> <text x="216" y="85" font-family="JetBrains Mono,monospace"
+                                font-size="8" fill="#EF4444" font-weight="600">RESISTANCE (BROKEN)</text>
+                            <!-- Breakout annotation -->
+                            <rect x="188" y="36" width="66" height="16" rx="4" fill="#FF9900" /> <text x="221" y="47"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8.5" fill="#fff"
+                                font-weight="700">✦ BREAKOUT</text>
+                            <line x1="198" y1="52" x2="198" y2="65" stroke="#FF9900" stroke-width="1.5" />
+                            <!-- MA label --> <text x="253" y="46" font-family="JetBrains Mono,monospace"
+                                font-size="7.5" fill="#FF9900" font-weight="600">MA20</text> <!-- Axis -->
+                            <line x1="14" y1="155" x2="296" y2="155" stroke="#E5E7EB" stroke-width="1" /> <text x="14"
+                                y="167" font-family="JetBrains Mono,monospace" font-size="8" fill="#9CA3AF">Week
+                                1</text> <text x="122" y="167" font-family="JetBrains Mono,monospace" font-size="8"
+                                fill="#9CA3AF">Week 2</text> <text x="224" y="167"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#9CA3AF">Week 3</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 01</span>
+                        <h3>Chart-Based Analysis</h3>
+                        <p>Key support and resistance levels, moving average positions, and chart signals on the assets
+                            you're watching — written at your stated experience level, not over-complicated.</p>
+                    </div>
+                </div> <!-- Card 2: Risk flags — gauge + flag cards -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%" aria-label="Risk profile assessment">
+                            <rect width="320" height="175" fill="#F9FAFB" rx="8" /> <text x="14" y="24"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9CA3AF"
+                                letter-spacing="1">RISK FLAGS · YOUR PROFILE</text> <!-- Risk meter arc -->
+                            <defs>
+                                <linearGradient id="riskgrad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#10B981" />
+                                    <stop offset="40%" stop-color="#FBBF24" />
+                                    <stop offset="100%" stop-color="#EF4444" />
+                                </linearGradient>
+                            </defs>
+                            <path d="M 60 120 A 100 100 0 0 1 260 120" fill="none" stroke="#E5E7EB" stroke-width="14"
+                                stroke-linecap="round" />
+                            <path d="M 60 120 A 100 100 0 0 1 260 120" fill="none" stroke="url(#riskgrad)"
+                                stroke-width="14" stroke-linecap="round" stroke-dasharray="314"
+                                stroke-dashoffset="110" /> <!-- Needle at "Balanced" position -->
+                            <line x1="160" y1="120" x2="220" y2="68" stroke="#374151" stroke-width="2.5"
+                                stroke-linecap="round" />
+                            <circle cx="160" cy="120" r="6" fill="#374151" /> <!-- Labels --> <text x="55" y="136"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#10B981"
+                                font-weight="600">SAFE</text> <text x="148" y="38"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#FBBF24" font-weight="600"
+                                text-anchor="middle">BALANCED</text> <text x="247" y="136"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#EF4444" font-weight="600"
+                                text-anchor="end">HIGH RISK</text> <!-- Risk flag cards -->
+                            <rect x="14" y="142" width="136" height="24" rx="5" fill="rgba(239,68,68,.07)"
+                                stroke="rgba(239,68,68,.2)" stroke-width="1" /> <text x="22" y="151"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#EF4444" font-weight="600">⚠
+                                RSI Overbought (BTC)</text> <text x="22" y="161" font-family="Inter,sans-serif"
+                                font-size="10" fill="#6B7280">Pullback zone likely</text>
+                            <rect x="158" y="142" width="148" height="24" rx="5" fill="rgba(251,191,36,.08)"
+                                stroke="rgba(251,191,36,.25)" stroke-width="1" /> <text x="166" y="151"
+                                font-family="JetBrains Mono,monospace" font-size="8" fill="#D97706" font-weight="600">⚠
+                                High Leverage (Market)</text> <text x="166" y="161" font-family="Inter,sans-serif"
+                                font-size="10" fill="#6B7280">Funding rates elevated</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 02</span>
+                        <h3>Risk Flags</h3>
+                        <p>The current risks most relevant to your stated profile — including chart-based warning signs,
+                            market leverage conditions, and anything that could affect your stated positions.</p>
+                    </div>
+                </div> <!-- Card 3: Watchlist — table with TA signals -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Personalized watchlist with signals">
+                            <rect width="320" height="175" fill="#F9FAFB" rx="8" /> <text x="14" y="24"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9CA3AF"
+                                letter-spacing="1">WATCHLIST IDEAS · YOUR PROFILE</text>
+                            <rect x="12" y="32" width="296" height="16" rx="3" fill="#F3F4F6" /> <text x="20" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF"
+                                letter-spacing=".4">COIN</text> <text x="88" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF"
+                                letter-spacing=".4">PRICE</text> <text x="152" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF"
+                                letter-spacing=".4">7D</text> <text x="200" y="43"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF"
+                                letter-spacing=".4">TA SIGNAL</text>
+                            <line x1="12" y1="65" x2="308" y2="65" stroke="#E5E7EB" stroke-width="1" /> <text x="20"
+                                y="57" font-size="13" font-weight="800" fill="#111827">BTC</text> <text x="20" y="70"
+                                font-size="9.5" fill="#9CA3AF">Bitcoin</text> <text x="88" y="61"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#374151"
+                                font-weight="600">$68,420</text> <text x="152" y="61"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+14.2%</text>
+                            <rect x="198" y="49" width="64" height="15" rx="4" fill="#FF9900" /> <text x="230" y="60"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#fff"
+                                font-weight="700">BREAKOUT ↑</text>
+                            <line x1="12" y1="92" x2="308" y2="92" stroke="#E5E7EB" stroke-width="1" /> <text x="20"
+                                y="84" font-size="13" font-weight="800" fill="#111827">ETH</text> <text x="20" y="97"
+                                font-size="9.5" fill="#9CA3AF">Ethereum</text> <text x="88" y="88"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#374151"
+                                font-weight="600">$3,620</text> <text x="152" y="88"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+9.8%</text>
+                            <rect x="198" y="76" width="72" height="15" rx="4" fill="rgba(16,185,129,.12)" /> <text
+                                x="234" y="87" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8"
+                                fill="#10B981" font-weight="700">ACCUMULATE</text>
+                            <line x1="12" y1="119" x2="308" y2="119" stroke="#E5E7EB" stroke-width="1" /> <text x="20"
+                                y="111" font-size="13" font-weight="800" fill="#111827">SOL</text> <text x="20" y="124"
+                                font-size="9.5" fill="#9CA3AF">Solana</text> <text x="88" y="115"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#374151"
+                                font-weight="600">$178.40</text> <text x="152" y="115"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+6.3%</text>
+                            <rect x="198" y="103" width="44" height="15" rx="4" fill="rgba(251,191,36,.15)" /> <text
+                                x="220" y="114" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8" fill="#D97706" font-weight="700">WATCH</text>
+                            <line x1="12" y1="146" x2="308" y2="146" stroke="#E5E7EB" stroke-width="1" /> <text x="20"
+                                y="138" font-size="13" font-weight="800" fill="#111827">ARB</text> <text x="20" y="151"
+                                font-size="9.5" fill="#9CA3AF">Arbitrum</text> <text x="88" y="142"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#374151"
+                                font-weight="600">$1.24</text> <text x="152" y="142"
+                                font-family="JetBrains Mono,monospace" font-size="11" fill="#10B981"
+                                font-weight="700">+19.1%</text>
+                            <rect x="198" y="130" width="72" height="15" rx="4" fill="rgba(16,185,129,.12)" /> <text
+                                x="234" y="141" text-anchor="middle" font-family="JetBrains Mono,monospace"
+                                font-size="8" fill="#10B981" font-weight="700">ACCUMULATE</text> <text x="14" y="168"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF">Filtered: Balanced
+                                risk · Active trader · BTC + ETH + SOL + L2s</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 03</span>
+                        <h3>Watchlist Ideas</h3>
+                        <p>Assets worth your attention right now, each with a clear chart-based signal note — BREAKOUT,
+                            ACCUMULATE, or WATCH — filtered to your risk profile and time horizon.</p>
+                    </div>
+                </div> <!-- Card 4: Practical next steps checklist -->
+                <div class="rcard">
+                    <div class="rviz"> <svg viewBox="0 0 320 175" width="100%"
+                            aria-label="Practical next steps for your crypto portfolio">
+                            <rect width="320" height="175" fill="#F9FAFB" rx="8" /> <text x="14" y="24"
+                                font-family="JetBrains Mono,monospace" font-size="9.5" fill="#9CA3AF"
+                                letter-spacing="1">PRACTICAL NEXT STEPS</text> <!-- Step 1 -->
+                            <rect x="12" y="32" width="296" height="34" rx="6" fill="#fff" stroke="#E5E7EB"
+                                stroke-width="1" />
+                            <rect x="20" y="39" width="18" height="18" rx="4" fill="#FF9900" /> <text x="29" y="51"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#fff"
+                                font-weight="700">1</text> <text x="46" y="46" font-size="12.5" font-weight="700"
+                                fill="#111827">Wait for BTC retest at $64K support</text> <text x="46" y="59"
+                                font-size="11" fill="#6B7280">RSI cooling off — better entry likely incoming</text>
+                            <!-- Step 2 -->
+                            <rect x="12" y="73" width="296" height="34" rx="6" fill="#fff" stroke="#E5E7EB"
+                                stroke-width="1" />
+                            <rect x="20" y="80" width="18" height="18" rx="4" fill="#FF9900" /> <text x="29" y="92"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#fff"
+                                font-weight="700">2</text> <text x="46" y="87" font-size="12.5" font-weight="700"
+                                fill="#111827">Start accumulating ETH + ARB on dips</text> <text x="46" y="100"
+                                font-size="11" fill="#6B7280">L2 rotation is early — volume confirming trend</text>
+                            <!-- Step 3 -->
+                            <rect x="12" y="114" width="296" height="34" rx="6" fill="#fff" stroke="#E5E7EB"
+                                stroke-width="1" />
+                            <rect x="20" y="121" width="18" height="18" rx="4" fill="#FF9900" /> <text x="29" y="133"
+                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#fff"
+                                font-weight="700">3</text> <text x="46" y="128" font-size="12.5" font-weight="700"
+                                fill="#111827">Set stop-loss levels — leverage risk is elevated</text> <text x="46"
+                                y="141" font-size="11" fill="#6B7280">Protect existing gains before adding new
+                                exposure</text> <!-- Step 4: educational note -->
+                            <rect x="12" y="152" width="296" height="18" rx="5" fill="rgba(255,153,0,.07)"
+                                stroke="rgba(255,153,0,.2)" stroke-width="1" /> <text x="20" y="164"
+                                font-family="JetBrains Mono,monospace" font-size="8.5" fill="#FF9900"
+                                font-weight="600">📚 Guide included: How to read RSI for better entry timing</text>
+                        </svg> </div>
+                    <div class="rcopy"> <span class="slabel">Section 04 &amp; 05</span>
+                        <h3>Next Steps &amp; Market Opportunities</h3>
+                        <p>Concrete, numbered actions matched to your stated goals and current market conditions — plus
+                            a relevant CryptoPotato guide link to help you execute with confidence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- CREDIBILITY -->
+    <section class="section cred">
+        <div class="wrap cred-grid">
+            <div> <span class="slabel">Built on Real Coverage</span>
+                <h2 class="sh">CryptoPotato's TA and news, applied to your specific situation.</h2>
+                <p class="ssub">This isn't a market summary with your name on it. Your report draws on CryptoPotato's
+                    daily chart analysis, news coverage, and educational guides — then filters all of it through what
+                    you told us about your experience, goals, and risk tolerance.</p>
+                <div class="cred-pts">
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">12+ Yrs</div>
+                            <div class="cpt-l">Covering crypto markets — from the earliest Bitcoin price analysis
+                                through DeFi, NFT cycles, and today's altcoin landscape</div>
+                        </div>
+                    </div>
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">2.5M+</div>
+                            <div class="cpt-l">Monthly readers trust CryptoPotato for daily TA, breaking news, and
+                                guides that explain crypto clearly at every level</div>
+                        </div>
+                    </div>
+                    <div class="cred-pt">
+                        <div class="cpt-bar"></div>
+                        <div>
+                            <div class="cpt-n">Daily TA</div>
+                            <div class="cpt-l">Chart analysis on BTC, ETH, altcoins, and sector trends published every
+                                day — the same data layer behind your personalized report</div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Report cover mockup -->
+            <div style="display:flex;justify-content:center;align-items:center;"> <svg viewBox="0 0 280 340" width="260"
+                    aria-label="CryptoPotato Crypto Edge Report cover mockup">
+                    <rect x="30" y="22" width="226" height="295" rx="10" fill="#E5E7EB" transform="rotate(4 30 22)" />
+                    <rect x="26" y="17" width="226" height="295" rx="10" fill="#F3F4F6" transform="rotate(2 26 17)" />
+                    <rect x="22" y="13" width="236" height="300" rx="12" fill="#fff" stroke="#E5E7EB" stroke-width="1.5"
+                        filter="drop-shadow(0 8px 24px rgba(0,0,0,.1))" /> <!-- Orange header -->
+                    <rect x="22" y="13" width="236" height="66" rx="12" fill="#FF9900" />
+                    <rect x="22" y="53" width="236" height="26" fill="#FF9900" /> <!-- Potato logo on cover -->
+                    <circle cx="37" cy="33" r="10" fill="rgba(255,255,255,.2)" /> <text x="37" y="38"
+                        text-anchor="middle" font-size="12">🥔</text> <!-- Title --> <text x="54" y="30"
+                        font-family="Inter,sans-serif" font-size="10" font-weight="800" fill="rgba(255,255,255,.7)"
+                        letter-spacing=".5">CRYPTOPOTATO</text> <text x="54" y="44" font-family="Inter,sans-serif"
+                        font-size="9" font-weight="600" fill="rgba(255,255,255,.55)">EDGE REPORTS</text> <text x="36"
+                        y="78" font-family="Inter,sans-serif" font-size="14" font-weight="800" fill="#111827">My Crypto
+                        Edge Report</text> <text x="36" y="94" font-family="Inter,sans-serif" font-size="11"
+                        font-weight="500" fill="#6B7280">Personalized · Free · Instant</text> <!-- Tags -->
+                    <rect x="36" y="102" width="68" height="14" rx="4" fill="rgba(255,153,0,.1)"
+                        stroke="rgba(255,153,0,.3)" stroke-width="1" /> <text x="70" y="112" text-anchor="middle"
+                        font-family="JetBrains Mono,monospace" font-size="7.5" fill="#FF9900" font-weight="700">Active
+                        Trader</text>
+                    <rect x="110" y="102" width="72" height="14" rx="4" fill="rgba(16,185,129,.1)"
+                        stroke="rgba(16,185,129,.3)" stroke-width="1" /> <text x="146" y="112" text-anchor="middle"
+                        font-family="JetBrains Mono,monospace" font-size="7.5" fill="#10B981" font-weight="700">Balanced
+                        Risk</text> <!-- Mini candlestick on cover -->
+                    <line x1="36" y1="148" x2="36" y2="154" stroke="#EF4444" stroke-width="1" />
+                    <rect x="34" y="149" width="4" height="4" fill="#EF4444" />
+                    <line x1="46" y1="144" x2="46" y2="150" stroke="#10B981" stroke-width="1" />
+                    <rect x="44" y="145" width="4" height="4" fill="#10B981" />
+                    <line x1="56" y1="138" x2="56" y2="145" stroke="#10B981" stroke-width="1" />
+                    <rect x="54" y="139" width="4" height="5" fill="#10B981" />
+                    <line x1="66" y1="140" x2="66" y2="146" stroke="#EF4444" stroke-width="1" />
+                    <rect x="64" y="141" width="4" height="4" fill="#EF4444" />
+                    <line x1="76" y1="130" x2="76" y2="138" stroke="#10B981" stroke-width="1" />
+                    <rect x="74" y="131" width="4" height="6" fill="#10B981" />
+                    <line x1="86" y1="122" x2="86" y2="130" stroke="#10B981" stroke-width="1" />
+                    <rect x="84" y="123" width="4" height="6" fill="#10B981" />
+                    <line x1="96" y1="110" x2="96" y2="125" stroke="#FF9900" stroke-width="1.5" />
+                    <rect x="94" y="112" width="4" height="12" fill="#FF9900" />
+                    <line x1="106" y1="104" x2="106" y2="112" stroke="#10B981" stroke-width="1" />
+                    <rect x="104" y="105" width="4" height="6" fill="#10B981" />
+                    <path d="M32,154 Q70,140 110,118 Q130,110 140,104" fill="none" stroke="#FF9900" stroke-width="1.5"
+                        stroke-linecap="round" />
+                    <line x1="36" y1="136" x2="148" y2="136" stroke="#10B981" stroke-width=".8"
+                        stroke-dasharray="3 3" />
+                    <line x1="36" y1="118" x2="148" y2="118" stroke="#EF4444" stroke-width=".8"
+                        stroke-dasharray="3 3" /> <!-- Section list -->
+                    <line x1="36" y1="168" x2="242" y2="168" stroke="#E5E7EB" stroke-width="1" /> <text x="36" y="184"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF">01 ——</text> <text x="58"
+                        y="184" font-family="Inter,sans-serif" font-size="9.5" font-weight="700"
+                        fill="#6B7280">Chart-Based Analysis</text>
+                    <rect x="36" y="190" width="118" height="5" rx="2" fill="#F3F4F6" />
+                    <line x1="36" y1="206" x2="242" y2="206" stroke="#E5E7EB" stroke-width="1" /> <text x="36" y="222"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF">02 ——</text> <text x="58"
+                        y="222" font-family="Inter,sans-serif" font-size="9.5" font-weight="700" fill="#6B7280">Risk
+                        Flags</text>
+                    <rect x="36" y="228" width="88" height="5" rx="2" fill="#F3F4F6" />
+                    <line x1="36" y1="244" x2="242" y2="244" stroke="#E5E7EB" stroke-width="1" /> <text x="36" y="260"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF">03 ——</text> <text x="58"
+                        y="260" font-family="Inter,sans-serif" font-size="9.5" font-weight="700"
+                        fill="#6B7280">Watchlist Ideas</text>
+                    <rect x="36" y="266" width="108" height="5" rx="2" fill="#F3F4F6" />
+                    <line x1="36" y1="282" x2="242" y2="282" stroke="#E5E7EB" stroke-width="1" /> <text x="36" y="298"
+                        font-family="JetBrains Mono,monospace" font-size="8.5" fill="#9CA3AF">04 ——</text> <text x="58"
+                        y="298" font-family="Inter,sans-serif" font-size="9.5" font-weight="700"
+                        fill="#6B7280">Practical Next Steps</text> <text x="140" y="340" text-anchor="middle"
+                        transform="rotate(-30 140 220)" font-family="JetBrains Mono,monospace" font-size="20"
+                        font-weight="700" fill="rgba(255,153,0,.05)" letter-spacing="1">PERSONALIZED</text>
+                </svg> </div>
+        </div>
+    </section><!-- SAMPLE BRIEF -->
+    <section class="section"
+        style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+        <div class="wrap" style="text-align:center;"> <span class="slabel">Sample Report Output</span>
+            <h2 class="sh" style="max-width:500px;margin:0 auto 10px;">Here's what a real edge report looks like.</h2>
+            <p class="ssub" style="margin:0 auto;">Profile: Active trader · Goal is improving trading results · 1–6
+                month horizon · Balanced risk · BTC, ETH, SOL, L2s.</p>
+            <div class="brief">
+                <div class="brief-hdr"> <span class="brief-ttl">CRYPTOPOTATO · CRYPTO EDGE REPORT · PERSONALIZED</span>
+                    <span class="brief-badge">SAMPLE OUTPUT</span> </div>
+                <div class="brief-body">
+                    <div class="bprofile"> <span class="bptag style">Active Trader</span> <span
+                            class="bptag risk">Balanced Risk</span> <span class="bptag focus">BTC + ETH + L2s</span>
+                        <span class="bptag focus">1–6 Month Horizon</span> </div>
+                    <div class="bsect">
+                        <h4>01 — Chart Analysis: BTC Breaking Out</h4>
+                        <p>Bitcoin pushed through the $66,000–$68,000 resistance zone that capped price for six weeks.
+                            The 4-hour chart shows a clean breakout candle with strong volume, and the MA20 is pointing
+                            upward — a signal our TA team typically treats as a trend confirmation. The caution flag is
+                            RSI, which is sitting above 72 on the daily timeframe. That doesn't mean sell, but for a
+                            balanced-risk active trader with a 1–6 month horizon, it does mean the most aggressive
+                            entries are now behind you. Waiting for a retest of the breakout zone around $64,000–$65,000
+                            is the higher-probability play for new positions.</p>
+                    </div>
+                    <div class="bsect">
+                        <h4>02 — Risk Flag: Leverage Is High Across the Market</h4>
+                        <p>CryptoPotato's market data is showing elevated funding rates on BTC and ETH perpetuals — a
+                            sign that a lot of leveraged long positions have opened since the breakout. That kind of
+                            setup can accelerate gains in the short term but also creates sharp wick-down liquidation
+                            events that flush out traders with tight stop-losses. For a balanced-risk profile, this is a
+                            flag to keep your position sizing reasonable and your stops a little wider than the obvious
+                            technical levels.</p>
+                        <div class="bflag">⚠ RISK FLAG: BTC funding rates above 0.05% on major exchanges — historically
+                            a signal of crowded longs and elevated short-term liquidation risk.</div>
+                    </div>
+                    <div class="bsect">
+                        <h4>03 — Next Step: Accumulate ETH and ARB on Weakness</h4>
+                        <p>Ethereum and Arbitrum are lagging BTC's recent move, which is actually useful context for a
+                            1–6 month trader. L2 tokens like ARB have historically outperformed ETH once ETH starts its
+                            own breakout leg — and ETH is sitting just below its own key resistance level at $3,800. For
+                            a balanced-risk, active trader watching L2s, the current setup is a gradual accumulation
+                            phase, not a chase. CryptoPotato's technical team has flagged $3,400–$3,500 as the current
+                            ETH support zone worth watching for entries.</p>
+                    </div>
+                </div>
+            </div>
+            <p
+                style="font-size:12.5px;color:var(--text4);font-family:'JetBrains Mono',monospace;margin-top:18px;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.65;">
+                Illustrative sample. Your actual report is generated from your specific answers and CryptoPotato's
+                current market coverage. Not financial advice.</p>
+        </div>
+    </section><!-- FINAL CTA -->
+    <section class="final">
+        <div class="wrap">
+            <div class="fkicker">Free · Instant · Personalized</div>
+            <h2>Don't trade this week without your <span>edge report.</span></h2>
+            <p>Five questions. CryptoPotato's TA and analysis. A free report built around your portfolio, experience
+                level, and the assets you're actually watching.</p> <button class="btn"
+                style="margin:0 auto;display:inline-flex;" onclick="openQuiz()">Get My Free Report →</button>
+            <p class="fnote">No account. No payment. Instant download. Not financial advice.</p>
+        </div>
+    </section><!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap frow">
+            <div>
+                <div class="fbrand">
+                    <div class="fbrand-icon"> <svg width="12" height="12" viewBox="0 0 20 20">
+                            <ellipse cx="10" cy="11" rx="7.5" ry="8" fill="#fff" transform="rotate(-10 10 11)" />
+                        </svg> </div> CryptoPotato
+                </div>
+                <div style="font-size:12px;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;margin-top:4px;"
+                    id="fyear"></div>
+            </div>
+            <div class="ffine">Report content is drawn from CryptoPotato's market coverage and technical analysis and is
+                provided for informational purposes only. Nothing in this report constitutes financial advice or a
+                recommendation to buy or sell any asset. We do not sell or share your email address. Unsubscribe
+                anytime.</div>
+        </div>
+    </footer>
+    <script>document.getElementById('fyear').textContent = '© ' + new Date().getFullYear() + ' CryptoPotato. All rights reserved.'; document.getElementById('rdate').textContent = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }); var ans = { xp: null, goal: null, horizon: null, risk: null, assets: [], email: '' }; function show(n) { for (var i = 1; i <= 7; i++) { var e = document.getElementById('qs' + i); if (e) e.style.display = (i === n) ? '' : 'none'; } } function openQuiz() { closePop(); document.getElementById('qov').classList.add('on'); document.body.style.overflow = 'hidden'; } function closeQuiz() { document.getElementById('qov').classList.remove('on'); document.body.style.overflow = ''; } document.getElementById('qx').onclick = closeQuiz; document.getElementById('qov').addEventListener('click', function (e) { if (e.target === this) closeQuiz(); });['qs1', 'qs2', 'qs3', 'qs4'].forEach(function (sid, si) { var nids = ['s1n', 's2n', 's3n', 's4n'], bids = [null, 's2b', 's3b', 's4b'], keys = ['xp', 'goal', 'horizon', 'risk']; document.querySelectorAll('#' + sid + ' .qopt').forEach(function (o) { o.onclick = function () { document.querySelectorAll('#' + sid + ' .qopt').forEach(function (x) { x.classList.remove('sel'); }); this.classList.add('sel'); ans[keys[si]] = this.dataset.v; document.getElementById(nids[si]).disabled = false; }; }); document.getElementById(nids[si]).onclick = function () { show(si + 2); }; if (bids[si]) document.getElementById(bids[si]).onclick = function () { show(si); }; }); document.querySelectorAll('#qs5 .qtag').forEach(function (t) { t.onclick = function () { this.classList.toggle('sel'); ans.assets = Array.from(document.querySelectorAll('#qs5 .qtag.sel')).map(function (x) { return x.dataset.v; }); chk5(); }; }); var eIn = document.getElementById('eIn'); eIn.addEventListener('input', function () { ans.email = this.value; chk5(); }); function chk5() { var ok = ans.assets.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ans.email); document.getElementById('s5n').disabled = !ok; } document.getElementById('s5n').onclick = function () { show(6); runBuild(); }; document.getElementById('s5b').onclick = function () { show(4); }; function runBuild() { ['bl1', 'bl2', 'bl3', 'bl4'].forEach(function (id, i) { setTimeout(function () { document.getElementById(id).classList.add('done'); }, 700 + i * 650); }); setTimeout(function () { show(7); }, 4200); } var popShown = false; function showPop() { if (popShown) return; popShown = true; document.getElementById('pov').classList.add('on'); } function closePop() { document.getElementById('pov').classList.remove('on'); } document.getElementById('pcx').onclick = closePop; document.getElementById('pdis').onclick = closePop; document.getElementById('pCTA').onclick = function () { openQuiz(); }; document.getElementById('pov').addEventListener('click', function (e) { if (e.target === this) closePop(); }); setTimeout(showPop, 6500); document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY <= 0) showPop(); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeQuiz(); closePop(); } });// INTEGRATION: POST ans to your GHL webhook on s5n click// fetch('https://your-endpoint/cp-report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(ans)});</script>
+</body>
+
+</html>

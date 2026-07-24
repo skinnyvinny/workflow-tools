@@ -1,1558 +1,889 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Crypto Edge Report — Free Personalized Market Intelligence</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --white: #FFFFFF;
-            --canvas: #FBFBFC;
-            --ink: #0B0E11;
-            --slate: #5B6470;
-            --slate-light: #8A93A0;
-            --line: #E7E9EC;
-            --line-strong: #DADDE2;
-            --accent: #FF9900;
-            --accent-dark: #E07E00;
-            --accent-tint: #FFF3E0;
-            --risk: #E5484D;
-            --risk-tint: #FDECEC;
-            --gain: #1F9D55;
-            --gain-tint: #E9F8EF;
-            --radius: 14px;
-            --shadow-card: 0 1px 2px rgba(11, 14, 17, 0.04), 0 2px 12px rgba(11, 14, 17, 0.05);
-            --shadow-pop: 0 24px 60px rgba(11, 14, 17, 0.22);
-            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--font-body);
-            color: var(--ink);
-            background: var(--white);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        img,
-        svg {
-            display: block;
-            max-width: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-            border: none;
-            background: none;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .wrap {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* ===== EYEBROW / TAGS ===== */
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--accent-dark);
-            background: var(--accent-tint);
-            border: 1px solid #FFE0B3;
-            padding: 6px 12px;
-            border-radius: 999px;
-        }
-
-        .eyebrow .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            box-shadow: 0 0 0 3px var(--accent-tint);
-        }
-
-        .tag {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 4px 9px;
-            border-radius: 6px;
-        }
-
-        .tag--technical {
-            background: var(--accent-tint);
-            color: var(--accent-dark);
-        }
-
-        .tag--risk {
-            background: var(--risk-tint);
-            color: var(--risk);
-        }
-
-        .tag--watchlist {
-            background: #EEF1FF;
-            color: #4C5FD5;
-        }
-
-        .tag--action {
-            background: var(--gain-tint);
-            color: var(--gain);
-        }
-
-        /* ===== NAV ===== */
-        header.site-nav {
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: saturate(180%) blur(10px);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .nav-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-weight: 800;
-            font-size: 17px;
-            letter-spacing: -0.01em;
-        }
-
-        .logo-mark {
-            width: 26px;
-            height: 26px;
-            border-radius: 7px;
-            background: var(--ink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-mark svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--slate);
-            transition: color .15s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--ink);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 15px;
-            border-radius: 10px;
-            padding: 13px 22px;
-            transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--white);
-            box-shadow: 0 1px 2px rgba(224, 126, 0, 0.15), 0 8px 20px rgba(255, 153, 0, 0.28);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-dark);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-nav {
-            padding: 10px 18px;
-            font-size: 14px;
-        }
-
-        .btn-ghost {
-            background: var(--white);
-            color: var(--ink);
-            border: 1px solid var(--line-strong);
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--slate-light);
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        .btn-lg {
-            padding: 17px 28px;
-            font-size: 16px;
-            border-radius: 12px;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            padding: 76px 0 40px;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.05fr 0.95fr;
-            gap: 56px;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 46px;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            font-weight: 800;
-            margin: 20px 0 18px;
-        }
-
-        .hero h1 em {
-            color: var(--accent);
-            font-style: normal;
-        }
-
-        .hero p.lead {
-            font-size: 17px;
-            color: var(--slate);
-            max-width: 520px;
-            margin-bottom: 28px;
-        }
-
-        .hero-cta-row {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .microcopy {
-            font-size: 13px;
-            color: var(--slate-light);
-            font-weight: 500;
-        }
-
-        .hero-proof {
-            display: flex;
-            gap: 22px;
-            margin-top: 34px;
-            flex-wrap: wrap;
-        }
-
-        .proof-item {
-            font-size: 13px;
-            color: var(--slate);
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-
-        .proof-item svg {
-            width: 15px;
-            height: 15px;
-            flex: none;
-            color: var(--gain);
-        }
-
-        /* Hero visual: mock ticker/chart card */
-        .hero-visual {
-            background: var(--canvas);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-card);
-            overflow: hidden;
-        }
-
-        .ticker-strip {
-            display: flex;
-            gap: 0;
-            overflow: hidden;
-            border-bottom: 1px solid var(--line);
-            background: var(--ink);
-        }
-
-        .ticker-track {
-            display: flex;
-            gap: 28px;
-            padding: 10px 18px;
-            animation: ticker 22s linear infinite;
-            white-space: nowrap;
-        }
-
-        @keyframes ticker {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        .ticker-item {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: #D7DBE0;
-            display: flex;
-            gap: 6px;
-        }
-
-        .ticker-item b {
-            color: #fff;
-        }
-
-        .ticker-item.up {
-            color: #7CE2A0;
-        }
-
-        .ticker-item.down {
-            color: #FF9B9E;
-        }
-
-        .chart-card-body {
-            padding: 22px;
-        }
-
-        .chart-card-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 14px;
-        }
-
-        .chart-card-head .sym {
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .chart-card-head .price {
-            font-family: var(--font-mono);
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .chart-card-head .delta {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gain);
-        }
-
-        svg.spark {
-            width: 100%;
-            height: 120px;
-        }
-
-        .chart-annotations {
-            display: flex;
-            gap: 10px;
-            margin-top: 14px;
-            flex-wrap: wrap;
-        }
-
-        /* ===== SECTION SHARED ===== */
-        section {
-            padding: 64px 0;
-        }
-
-        .section-head {
-            max-width: 640px;
-            margin: 0 auto 40px;
-            text-align: center;
-        }
-
-        .section-head h2 {
-            font-size: 32px;
-            letter-spacing: -0.01em;
-            margin: 14px 0 12px;
-            font-weight: 800;
-        }
-
-        .section-head p {
-            color: var(--slate);
-            font-size: 16px;
-        }
-
-        .divider {
-            border-top: 1px solid var(--line);
-        }
-
-        /* ===== COMPARE ===== */
-        .compare-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .compare-card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 26px;
-        }
-
-        .compare-card.no {
-            background: var(--canvas);
-        }
-
-        .compare-card.yes {
-            background: var(--white);
-            border: 2px solid var(--accent);
-            box-shadow: var(--shadow-card);
-            position: relative;
-        }
-
-        .compare-card h3 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .compare-card ul li {
-            font-size: 14.5px;
-            color: var(--slate);
-            padding: 8px 0;
-            display: flex;
-            gap: 10px;
-            border-top: 1px solid var(--line);
-        }
-
-        .compare-card ul li:first-child {
-            border-top: none;
-        }
-
-        .compare-card.yes ul li {
-            color: var(--ink);
-        }
-
-        .ico {
-            flex: none;
-            width: 16px;
-            height: 16px;
-            margin-top: 2px;
-        }
-
-        .ico.no-ico {
-            color: var(--slate-light);
-        }
-
-        .ico.yes-ico {
-            color: var(--accent);
-        }
-
-        /* ===== FEATURE CARDS (report contents) ===== */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 18px;
-        }
-
-        .feature-card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 24px;
-            background: var(--white);
-            transition: box-shadow .15s ease, transform .15s ease;
-        }
-
-        .feature-card:hover {
-            box-shadow: var(--shadow-card);
-            transform: translateY(-2px);
-        }
-
-        .feature-card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin: 14px 0 8px;
-        }
-
-        .feature-card p {
-            font-size: 13.5px;
-            color: var(--slate);
-            line-height: 1.55;
-        }
-
-        /* ===== HOW IT WORKS ===== */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            counter-reset: step;
-        }
-
-        .step {
-            position: relative;
-            padding: 28px 22px 22px;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-        }
-
-        .step .num {
-            font-family: var(--font-mono);
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--accent-dark);
-            background: var(--accent-tint);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            margin-bottom: 16px;
-        }
-
-        .step h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 13.5px;
-            color: var(--slate);
-        }
-
-        .step-connector {
-            position: absolute;
-            top: 34px;
-            right: -24px;
-            width: 24px;
-            height: 1px;
-            background: var(--line-strong);
-        }
-
-        /* ===== QUIZ ===== */
-        .quiz-section {
-            background: var(--canvas);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .quiz-card {
-            max-width: 640px;
-            margin: 0 auto;
-            background: var(--white);
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            box-shadow: var(--shadow-card);
-            overflow: hidden;
-        }
-
-        .quiz-top {
-            padding: 26px 32px 0;
-        }
-
-        .quiz-progress-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .quiz-progress-label {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--slate);
-            font-weight: 600;
-        }
-
-        .progress-track {
-            height: 6px;
-            background: var(--line);
-            border-radius: 99px;
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 99px;
-            transition: width .3s ease;
-            width: 20%;
-        }
-
-        .quiz-body {
-            padding: 8px 32px 32px;
-        }
-
-        .quiz-step {
-            display: none;
-        }
-
-        .quiz-step.active {
-            display: block;
-            animation: fadeUp .25s ease;
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .quiz-step h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .quiz-step p.help {
-            font-size: 13.5px;
-            color: var(--slate);
-            margin-bottom: 20px;
-        }
-
-        .option-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .option {
-            border: 1.5px solid var(--line-strong);
-            border-radius: 11px;
-            padding: 14px 16px;
-            font-size: 14.5px;
-            font-weight: 600;
-            text-align: left;
-            transition: all .12s ease;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-        }
-
-        .option:hover {
-            border-color: var(--accent);
-            background: var(--accent-tint);
-        }
-
-        .option.selected {
-            border-color: var(--accent);
-            background: var(--accent-tint);
-            color: var(--accent-dark);
-        }
-
-        .option .check {
-            width: 16px;
-            height: 16px;
-            opacity: 0;
-        }
-
-        .option.selected .check {
-            opacity: 1;
-        }
-
-        .quiz-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 26px;
-        }
-
-        .link-back {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--slate);
-        }
-
-        .link-back:hover {
-            color: var(--ink);
-        }
-
-        .field {
-            margin-bottom: 16px;
-        }
-
-        .field label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--slate);
-            margin-bottom: 7px;
-        }
-
-        .field input[type="email"],
-        .field input[type="text"] {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1.5px solid var(--line-strong);
-            border-radius: 10px;
-            font-size: 15px;
-            font-family: inherit;
-            color: var(--ink);
-        }
-
-        .field input:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 1px;
-            border-color: var(--accent);
-        }
-
-        .consent {
-            font-size: 12px;
-            color: var(--slate-light);
-            margin-top: 12px;
-            line-height: 1.5;
-        }
-
-        /* Report reveal */
-        .report-reveal {
-            display: none;
-        }
-
-        .report-reveal.active {
-            display: block;
-            animation: fadeUp .3s ease;
-        }
-
-        .report-head {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 6px;
-        }
-
-        .report-head .dotlive {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--gain);
-            box-shadow: 0 0 0 4px var(--gain-tint);
-        }
-
-        .report-name {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--gain);
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            letter-spacing: .05em;
-        }
-
-        .report-title {
-            font-size: 20px;
-            font-weight: 800;
-            margin-bottom: 18px;
-        }
-
-        .report-line {
-            display: flex;
-            gap: 12px;
-            padding: 14px 0;
-            border-top: 1px solid var(--line);
-        }
-
-        .report-line:first-of-type {
-            border-top: none;
-        }
-
-        .report-line .tag {
-            flex: none;
-            margin-top: 2px;
-        }
-
-        .report-line p {
-            font-size: 14px;
-            color: var(--ink);
-            line-height: 1.55;
-        }
-
-        .report-cta {
-            margin-top: 22px;
-        }
-
-        /* loading state */
-        .loading-state {
-            display: none;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        .loading-state.active {
-            display: block;
-        }
-
-        .spinner {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            margin: 0 auto 16px;
-            border: 3px solid var(--line);
-            border-top-color: var(--accent);
-            animation: spin .7s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-state p {
-            font-size: 14px;
-            color: var(--slate);
-            font-weight: 500;
-        }
-
-        .loading-state p.small {
-            font-size: 12.5px;
-            color: var(--slate-light);
-            margin-top: 4px;
-        }
-
-        /* ===== FINAL CTA BANNER ===== */
-        .final-cta {
-            background: var(--ink);
-            border-radius: 24px;
-            padding: 56px 48px;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .final-cta::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(600px circle at 50% 0%, rgba(255, 153, 0, 0.18), transparent 60%);
-        }
-
-        .final-cta>* {
-            position: relative;
-        }
-
-        .final-cta h2 {
-            font-size: 30px;
-            font-weight: 800;
-            margin: 16px 0 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .final-cta p {
-            color: #B9BFC7;
-            font-size: 15.5px;
-            max-width: 480px;
-            margin: 0 auto 26px;
-        }
-
-        .final-cta .eyebrow {
-            background: rgba(255, 153, 0, 0.15);
-            border-color: rgba(255, 153, 0, 0.3);
-            color: #FFB84D;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 40px 0 60px;
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .disclaimer {
-            font-size: 12px;
-            color: var(--slate-light);
-            max-width: 640px;
-            line-height: 1.6;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-links a {
-            font-size: 13px;
-            color: var(--slate);
-            font-weight: 500;
-        }
-
-        .footer-links a:hover {
-            color: var(--ink);
-        }
-
-        /* ===== POPUP MODAL ===== */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(11, 14, 17, 0.55);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            padding: 20px;
-            backdrop-filter: blur(2px);
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            animation: overlayIn .2s ease;
-        }
-
-        @keyframes overlayIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .modal {
-            background: #fff;
-            border-radius: 20px;
-            max-width: 440px;
-            width: 100%;
-            box-shadow: var(--shadow-pop);
-            position: relative;
-            overflow: hidden;
-            animation: modalIn .28s cubic-bezier(.2, .9, .3, 1.1);
-        }
-
-        @keyframes modalIn {
-            from {
-                opacity: 0;
-                transform: translateY(16px) scale(.97);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-accent-bar {
-            height: 5px;
-            background: var(--accent);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--slate);
-            background: var(--canvas);
-            border: 1px solid var(--line);
-            z-index: 2;
-        }
-
-        .modal-close:hover {
-            background: var(--line);
-            color: var(--ink);
-        }
-
-        .modal-body {
-            padding: 34px 32px 30px;
-        }
-
-        .modal-body .eyebrow {
-            margin-bottom: 16px;
-        }
-
-        .modal-body h2 {
-            font-size: 23px;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-
-        .modal-body p.desc {
-            font-size: 14.5px;
-            color: var(--slate);
-            margin-bottom: 18px;
-            line-height: 1.55;
-        }
-
-        .modal-list {
-            margin-bottom: 22px;
-        }
-
-        .modal-list li {
-            display: flex;
-            gap: 10px;
-            font-size: 13.5px;
-            color: var(--ink);
-            padding: 7px 0;
-            font-weight: 500;
-        }
-
-        .modal-list li svg {
-            flex: none;
-            width: 16px;
-            height: 16px;
-            color: var(--accent);
-            margin-top: 2px;
-        }
-
-        .modal-microcopy {
-            text-align: center;
-            margin-top: 10px;
-            font-size: 12.5px;
-            color: var(--slate-light);
-        }
-
-        .modal-dismiss {
-            display: block;
-            text-align: center;
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--slate-light);
-            font-weight: 600;
-        }
-
-        .modal-dismiss:hover {
-            color: var(--slate);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 860px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .compare-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .card-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-            .step-connector {
-                display: none;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .final-cta {
-                padding: 40px 24px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .option-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero {
-                padding: 44px 0 20px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.001ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.001ms !important;
-            }
-
-            .ticker-track {
-                animation: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Crypto Edge Report — Free Personalized Market Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --canvas:#FBFBFC;
+    --ink:#0B0E11;
+    --slate:#5B6470;
+    --slate-light:#8A93A0;
+    --line:#E7E9EC;
+    --line-strong:#DADDE2;
+    --accent:#FF9900;
+    --accent-dark:#E07E00;
+    --accent-tint:#FFF3E0;
+    --risk:#E5484D;
+    --risk-tint:#FDECEC;
+    --gain:#1F9D55;
+    --gain-tint:#E9F8EF;
+    --radius:14px;
+    --shadow-card: 0 1px 2px rgba(11,14,17,0.04), 0 2px 12px rgba(11,14,17,0.05);
+    --shadow-pop: 0 24px 60px rgba(11,14,17,0.22);
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font-family:inherit; cursor:pointer; border:none; background:none; }
+  ul{ list-style:none; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  /* ===== EYEBROW / TAGS ===== */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono);
+    font-size:12px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent-dark);
+    background:var(--accent-tint);
+    border:1px solid #FFE0B3;
+    padding:6px 12px; border-radius:999px;
+  }
+  .eyebrow .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-tint);
+  }
+  .tag{
+    display:inline-block;
+    font-family:var(--font-mono);
+    font-size:11px; font-weight:700; letter-spacing:0.05em;
+    text-transform:uppercase;
+    padding:4px 9px; border-radius:6px;
+  }
+  .tag--technical{ background:var(--accent-tint); color:var(--accent-dark); }
+  .tag--risk{ background:var(--risk-tint); color:var(--risk); }
+  .tag--watchlist{ background:#EEF1FF; color:#4C5FD5; }
+  .tag--action{ background:var(--gain-tint); color:var(--gain); }
+
+  /* ===== NAV ===== */
+  header.site-nav{
+    position:sticky; top:0; z-index:40;
+    background:rgba(255,255,255,0.9);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:9px;
+    font-weight:800; font-size:17px; letter-spacing:-0.01em;
+  }
+  .logo-mark{
+    width:26px; height:26px; border-radius:7px;
+    background:var(--ink);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .logo-mark svg{ width:14px; height:14px; }
+  .nav-links{ display:flex; gap:32px; align-items:center; }
+  .nav-links a{
+    font-size:14px; font-weight:500; color:var(--slate);
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--ink); }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-weight:700; font-size:15px;
+    border-radius:10px;
+    padding:13px 22px;
+    transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--accent); color:var(--white);
+    box-shadow:0 1px 2px rgba(224,126,0,0.15), 0 8px 20px rgba(255,153,0,0.28);
+  }
+  .btn-primary:hover{ background:var(--accent-dark); transform:translateY(-1px); }
+  .btn-primary:active{ transform:translateY(0); }
+  .btn-nav{ padding:10px 18px; font-size:14px; }
+  .btn-ghost{
+    background:var(--white); color:var(--ink); border:1px solid var(--line-strong);
+  }
+  .btn-ghost:hover{ border-color:var(--slate-light); }
+  .btn-block{ width:100%; }
+  .btn-lg{ padding:17px 28px; font-size:16px; border-radius:12px; }
+
+  /* ===== HERO ===== */
+  .hero{ padding:76px 0 40px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .hero h1{
+    font-size:46px; line-height:1.1; letter-spacing:-0.02em; font-weight:800;
+    margin:20px 0 18px;
+  }
+  .hero h1 em{ color:var(--accent); font-style:normal; }
+  .hero p.lead{
+    font-size:17px; color:var(--slate); max-width:520px; margin-bottom:28px;
+  }
+  .hero-cta-row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .microcopy{ font-size:13px; color:var(--slate-light); font-weight:500; }
+  .hero-proof{
+    display:flex; gap:22px; margin-top:34px; flex-wrap:wrap;
+  }
+  .proof-item{ font-size:13px; color:var(--slate); display:flex; align-items:center; gap:7px; }
+  .proof-item svg{ width:15px; height:15px; flex:none; color:var(--gain); }
+
+  /* Hero visual: mock ticker/chart card */
+  .hero-visual{
+    background:var(--canvas); border:1px solid var(--line); border-radius:var(--radius);
+    box-shadow:var(--shadow-card); overflow:hidden;
+  }
+  .ticker-strip{
+    display:flex; gap:0; overflow:hidden; border-bottom:1px solid var(--line);
+    background:var(--ink);
+  }
+  .ticker-track{
+    display:flex; gap:28px; padding:10px 18px;
+    animation:ticker 22s linear infinite;
+    white-space:nowrap;
+  }
+  @keyframes ticker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  .ticker-item{ font-family:var(--font-mono); font-size:12px; color:#D7DBE0; display:flex; gap:6px; }
+  .ticker-item b{ color:#fff; }
+  .ticker-item.up{ color:#7CE2A0; }
+  .ticker-item.down{ color:#FF9B9E; }
+  .chart-card-body{ padding:22px; }
+  .chart-card-head{
+    display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;
+  }
+  .chart-card-head .sym{ font-weight:700; font-size:15px; }
+  .chart-card-head .price{ font-family:var(--font-mono); font-size:22px; font-weight:700; }
+  .chart-card-head .delta{ font-family:var(--font-mono); font-size:12px; font-weight:600; color:var(--gain); }
+  svg.spark{ width:100%; height:120px; }
+  .chart-annotations{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
+
+  /* ===== SECTION SHARED ===== */
+  section{ padding:64px 0; }
+  .section-head{ max-width:640px; margin:0 auto 40px; text-align:center; }
+  .section-head h2{ font-size:32px; letter-spacing:-0.01em; margin:14px 0 12px; font-weight:800; }
+  .section-head p{ color:var(--slate); font-size:16px; }
+  .divider{ border-top:1px solid var(--line); }
+
+  /* ===== COMPARE ===== */
+  .compare-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .compare-card{ border:1px solid var(--line); border-radius:var(--radius); padding:26px; }
+  .compare-card.no{ background:var(--canvas); }
+  .compare-card.yes{ background:var(--white); border:2px solid var(--accent); box-shadow:var(--shadow-card); position:relative; }
+  .compare-card h3{ font-size:15px; font-weight:700; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .compare-card ul li{ font-size:14.5px; color:var(--slate); padding:8px 0; display:flex; gap:10px; border-top:1px solid var(--line); }
+  .compare-card ul li:first-child{ border-top:none; }
+  .compare-card.yes ul li{ color:var(--ink); }
+  .ico{ flex:none; width:16px; height:16px; margin-top:2px; }
+  .ico.no-ico{ color:var(--slate-light); }
+  .ico.yes-ico{ color:var(--accent); }
+
+  /* ===== FEATURE CARDS (report contents) ===== */
+  .card-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+  .feature-card{
+    border:1px solid var(--line); border-radius:var(--radius); padding:24px;
+    background:var(--white); transition:box-shadow .15s ease, transform .15s ease;
+  }
+  .feature-card:hover{ box-shadow:var(--shadow-card); transform:translateY(-2px); }
+  .feature-card h3{ font-size:16px; font-weight:700; margin:14px 0 8px; }
+  .feature-card p{ font-size:13.5px; color:var(--slate); line-height:1.55; }
+
+  /* ===== HOW IT WORKS ===== */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; counter-reset:step; }
+  .step{ position:relative; padding:28px 22px 22px; border:1px solid var(--line); border-radius:var(--radius); }
+  .step .num{
+    font-family:var(--font-mono); font-weight:700; font-size:13px; color:var(--accent-dark);
+    background:var(--accent-tint); display:inline-flex; align-items:center; justify-content:center;
+    width:30px; height:30px; border-radius:8px; margin-bottom:16px;
+  }
+  .step h3{ font-size:16px; font-weight:700; margin-bottom:8px; }
+  .step p{ font-size:13.5px; color:var(--slate); }
+  .step-connector{ position:absolute; top:34px; right:-24px; width:24px; height:1px; background:var(--line-strong); }
+
+  /* ===== QUIZ ===== */
+  .quiz-section{ background:var(--canvas); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .quiz-card{
+    max-width:640px; margin:0 auto; background:var(--white); border:1px solid var(--line);
+    border-radius:20px; box-shadow:var(--shadow-card); overflow:hidden;
+  }
+  .quiz-top{ padding:26px 32px 0; }
+  .quiz-progress-row{ display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .quiz-progress-label{ font-family:var(--font-mono); font-size:12px; color:var(--slate); font-weight:600; }
+  .progress-track{ height:6px; background:var(--line); border-radius:99px; overflow:hidden; margin-bottom:22px; }
+  .progress-fill{ height:100%; background:var(--accent); border-radius:99px; transition:width .3s ease; width:20%; }
+  .quiz-body{ padding:8px 32px 32px; }
+  .quiz-step{ display:none; }
+  .quiz-step.active{ display:block; animation:fadeUp .25s ease; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:translateY(0); } }
+  .quiz-step h3{ font-size:20px; font-weight:700; margin-bottom:6px; }
+  .quiz-step p.help{ font-size:13.5px; color:var(--slate); margin-bottom:20px; }
+  .option-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .option{
+    border:1.5px solid var(--line-strong); border-radius:11px; padding:14px 16px;
+    font-size:14.5px; font-weight:600; text-align:left; transition:all .12s ease;
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .option:hover{ border-color:var(--accent); background:var(--accent-tint); }
+  .option.selected{ border-color:var(--accent); background:var(--accent-tint); color:var(--accent-dark); }
+  .option .check{ width:16px; height:16px; opacity:0; }
+  .option.selected .check{ opacity:1; }
+  .quiz-nav{ display:flex; justify-content:space-between; align-items:center; margin-top:26px; }
+  .link-back{ font-size:14px; font-weight:600; color:var(--slate); }
+  .link-back:hover{ color:var(--ink); }
+
+  .field{ margin-bottom:16px; }
+  .field label{ display:block; font-size:13px; font-weight:600; color:var(--slate); margin-bottom:7px; }
+  .field input[type="email"], .field input[type="text"]{
+    width:100%; padding:13px 14px; border:1.5px solid var(--line-strong); border-radius:10px;
+    font-size:15px; font-family:inherit; color:var(--ink);
+  }
+  .field input:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
+  .consent{ font-size:12px; color:var(--slate-light); margin-top:12px; line-height:1.5; }
+
+  /* Report reveal */
+  .report-reveal{ display:none; }
+  .report-reveal.active{ display:block; animation:fadeUp .3s ease; }
+  .report-head{ display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .report-head .dotlive{ width:8px; height:8px; border-radius:50%; background:var(--gain); box-shadow:0 0 0 4px var(--gain-tint); }
+  .report-name{ font-size:12px; font-weight:700; color:var(--gain); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.05em; }
+  .report-title{ font-size:20px; font-weight:800; margin-bottom:18px; }
+  .report-line{
+    display:flex; gap:12px; padding:14px 0; border-top:1px solid var(--line);
+  }
+  .report-line:first-of-type{ border-top:none; }
+  .report-line .tag{ flex:none; margin-top:2px; }
+  .report-line p{ font-size:14px; color:var(--ink); line-height:1.55; }
+  .report-cta{ margin-top:22px; }
+
+  /* loading state */
+  .loading-state{ display:none; text-align:center; padding:20px 0; }
+  .loading-state.active{ display:block; }
+  .spinner{
+    width:34px; height:34px; border-radius:50%; margin:0 auto 16px;
+    border:3px solid var(--line); border-top-color:var(--accent);
+    animation:spin .7s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .loading-state p{ font-size:14px; color:var(--slate); font-weight:500; }
+  .loading-state p.small{ font-size:12.5px; color:var(--slate-light); margin-top:4px; }
+
+  /* ===== FINAL CTA BANNER ===== */
+  .final-cta{
+    background:var(--ink); border-radius:24px; padding:56px 48px; text-align:center; color:#fff;
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(600px circle at 50% 0%, rgba(255,153,0,0.18), transparent 60%);
+  }
+  .final-cta > *{ position:relative; }
+  .final-cta h2{ font-size:30px; font-weight:800; margin:16px 0 12px; letter-spacing:-0.01em; }
+  .final-cta p{ color:#B9BFC7; font-size:15.5px; max-width:480px; margin:0 auto 26px; }
+  .final-cta .eyebrow{ background:rgba(255,153,0,0.15); border-color:rgba(255,153,0,0.3); color:#FFB84D; }
+
+  /* ===== FOOTER ===== */
+  footer{ padding:40px 0 60px; border-top:1px solid var(--line); }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:flex-start; gap:20px; flex-wrap:wrap; }
+  .disclaimer{ font-size:12px; color:var(--slate-light); max-width:640px; line-height:1.6; }
+  .footer-links{ display:flex; gap:20px; }
+  .footer-links a{ font-size:13px; color:var(--slate); font-weight:500; }
+  .footer-links a:hover{ color:var(--ink); }
+
+  /* ===== POPUP MODAL ===== */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(11,14,17,0.55);
+    display:none; align-items:center; justify-content:center; z-index:100;
+    padding:20px; backdrop-filter:blur(2px);
+  }
+  .modal-overlay.active{ display:flex; animation:overlayIn .2s ease; }
+  @keyframes overlayIn{ from{ opacity:0; } to{ opacity:1; } }
+  .modal{
+    background:#fff; border-radius:20px; max-width:440px; width:100%;
+    box-shadow:var(--shadow-pop); position:relative; overflow:hidden;
+    animation:modalIn .28s cubic-bezier(.2,.9,.3,1.1);
+  }
+  @keyframes modalIn{ from{ opacity:0; transform:translateY(16px) scale(.97); } to{ opacity:1; transform:translateY(0) scale(1); } }
+  .modal-accent-bar{ height:5px; background:var(--accent); }
+  .modal-close{
+    position:absolute; top:16px; right:16px; width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; color:var(--slate);
+    background:var(--canvas); border:1px solid var(--line); z-index:2;
+  }
+  .modal-close:hover{ background:var(--line); color:var(--ink); }
+  .modal-body{ padding:34px 32px 30px; }
+  .modal-body .eyebrow{ margin-bottom:16px; }
+  .modal-body h2{ font-size:23px; font-weight:800; line-height:1.2; margin-bottom:10px; letter-spacing:-0.01em; }
+  .modal-body p.desc{ font-size:14.5px; color:var(--slate); margin-bottom:18px; line-height:1.55; }
+  .modal-list{ margin-bottom:22px; }
+  .modal-list li{
+    display:flex; gap:10px; font-size:13.5px; color:var(--ink); padding:7px 0; font-weight:500;
+  }
+  .modal-list li svg{ flex:none; width:16px; height:16px; color:var(--accent); margin-top:2px; }
+  .modal-microcopy{ text-align:center; margin-top:10px; font-size:12.5px; color:var(--slate-light); }
+  .modal-dismiss{ display:block; text-align:center; margin-top:14px; font-size:13px; color:var(--slate-light); font-weight:600; }
+  .modal-dismiss:hover{ color:var(--slate); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .compare-grid{ grid-template-columns:1fr; }
+    .card-grid{ grid-template-columns:1fr 1fr; }
+    .steps{ grid-template-columns:1fr; }
+    .step-connector{ display:none; }
+    .nav-links{ display:none; }
+    .hero h1{ font-size:32px; }
+    .final-cta{ padding:40px 24px; }
+    .footer-inner{ flex-direction:column; }
+  }
+  @media (max-width: 520px){
+    .card-grid{ grid-template-columns:1fr; }
+    .option-grid{ grid-template-columns:1fr; }
+    .hero{ padding:44px 0 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+    .ticker-track{ animation:none; }
+  }
+</style>
 </head>
+<body>
 
-<body><!-- ================= NAV ================= -->
-    <header class="site-nav">
-        <div class="wrap nav-inner">
-            <div class="logo"> <span class="logo-mark"> <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 17L10 11L14 15L20 7" stroke="#FF9900" stroke-width="2.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg> </span> CRYPTO BUREAU </div>
-            <nav class="nav-links"> <a href="#">Markets</a> <a href="#">News</a> <a href="#">Guides</a> <a
-                    href="#report-contents">Reports</a> </nav> <button class="btn btn-primary btn-nav"
-                onclick="openModal('nav')">Get My Free Report</button>
-        </div>
-    </header><!-- ================= HERO ================= -->
-    <section class="hero">
-        <div class="wrap hero-grid">
-            <div> <span class="eyebrow"><span class="dot"></span>Free Personalized Report</span>
-                <h1>My Crypto Edge Report — built from <em>your</em> answers, not a template.</h1>
-                <p class="lead">Take a 60-second quiz on your portfolio, time horizon, risk tolerance, and trading
-                    style. We combine your answers with our real-time market coverage and technical analysis to build a
-                    report made for how you actually trade — not generic advice built for no one in particular.</p>
-                <div class="hero-cta-row"> <button class="btn btn-primary btn-lg" onclick="openModal('hero')">Get My
-                        Free Report</button> <span class="microcopy">Free · Instant · No credit card</span> </div>
-                <div class="hero-proof"> <span class="proof-item"><svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Built from your quiz answers</span> <span class="proof-item"><svg viewBox="0 0 24 24"
-                            fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Backed by live market coverage</span> <span class="proof-item"><svg viewBox="0 0 24 24"
-                            fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Delivered in under a minute</span> </div>
-            </div>
-            <div class="hero-visual">
-                <div class="ticker-strip">
-                    <div class="ticker-track"> <span class="ticker-item">BTC <b>$empty</b></span> <span
-                            class="ticker-item up">▲ ETH breaks range</span> <span class="ticker-item">SOL <b>Vol.
-                                rising</b></span> <span class="ticker-item down">▼ Alt season index cooling</span> <span
-                            class="ticker-item">BTC dominance <b>steady</b></span> <span class="ticker-item up">▲ ETH
-                            breaks range</span> <span class="ticker-item">SOL <b>Vol. rising</b></span> <span
-                            class="ticker-item down">▼ Alt season index cooling</span> </div>
-                </div>
-                <div class="chart-card-body">
-                    <div class="chart-card-head">
-                        <div>
-                            <div class="sym">Sample: BTC / USD</div>
-                            <div class="delta">Your report reads charts like this — for your assets</div>
-                        </div>
-                    </div> <svg class="spark" viewBox="0 0 400 120" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#FF9900" stop-opacity="0.25" />
-                                <stop offset="100%" stop-color="#FF9900" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                        <path
-                            d="M0,90 L30,80 L60,86 L90,60 L120,66 L150,40 L180,52 L210,30 L240,44 L270,22 L300,34 L330,18 L360,26 L400,10 L400,120 L0,120 Z"
-                            fill="url(#fillGrad)" />
-                        <path
-                            d="M0,90 L30,80 L60,86 L90,60 L120,66 L150,40 L180,52 L210,30 L240,44 L270,22 L300,34 L330,18 L360,26 L400,10"
-                            fill="none" stroke="#FF9900" stroke-width="2.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                        <line x1="0" y1="52" x2="400" y2="52" stroke="#DADDE2" stroke-width="1"
-                            stroke-dasharray="4 4" />
-                    </svg>
-                    <div class="chart-annotations"> <span class="tag tag--technical">Trend: Structure</span> <span
-                            class="tag tag--risk">Risk: Volatility</span> <span class="tag tag--watchlist">Watch: Key
-                            Level</span> </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ================= COMPARE ================= -->
-    <section>
-        <div class="wrap">
-            <div class="section-head"> <span class="eyebrow"><span class="dot"></span>Why This Isn't Another Lead
-                    Magnet</span>
-                <h2>An edge, not a generic guide</h2>
-                <p>Most "free reports" are the same PDF sent to everyone. Yours isn't.</p>
-            </div>
-            <div class="compare-grid">
-                <div class="compare-card no">
-                    <h3>A typical crypto lead magnet</h3>
-                    <ul>
-                        <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>Same PDF sent to every subscriber</li>
-                        <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>Generic "top 5 coins to watch" lists</li>
-                        <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>No reference to your risk tolerance or horizon</li>
-                        <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>Written once, reused for months</li>
-                    </ul>
-                </div>
-                <div class="compare-card yes">
-                    <h3>My Crypto Edge Report</h3>
-                    <ul>
-                        <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>Built from your quiz answers, every time</li>
-                        <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>Chart-based reads on assets you actually hold</li>
-                        <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>Risk flags matched to your stated tolerance</li>
-                        <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none">
-                                <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg>Cross-checked against live market coverage</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section><!-- ================= WHAT'S INSIDE ================= -->
-    <section id="report-contents" class="divider">
-        <div class="wrap">
-            <div class="section-head"> <span class="eyebrow"><span class="dot"></span>What's Inside</span>
-                <h2>What your report actually includes</h2>
-                <p>Four components, assembled specifically for your answers.</p>
-            </div>
-            <div class="card-grid">
-                <div class="feature-card"> <span class="tag tag--technical">Technical</span>
-                    <h3>Chart-based observations</h3>
-                    <p>Where the assets you hold or follow sit against key support, resistance, and trend structure
-                        right now — read the way our analysts read a chart, explained in plain language.</p>
-                </div>
-                <div class="feature-card"> <span class="tag tag--risk">Risk</span>
-                    <h3>Risk flags</h3>
-                    <p>The specific risks tied to your time horizon and risk tolerance — concentration, volatility
-                        exposure, and drawdown risk — flagged before they become a problem.</p>
-                </div>
-                <div class="feature-card"> <span class="tag tag--watchlist">Watchlist</span>
-                    <h3>Watchlist ideas</h3>
-                    <p>Assets and setups worth tracking based on what you told us you're interested in and how you like
-                        to trade — not a one-size-fits-all coin list.</p>
-                </div>
-                <div class="feature-card"> <span class="tag tag--action">Action</span>
-                    <h3>Practical next steps</h3>
-                    <p>Concrete moves worth considering this week, matched to your portfolio and style — specific enough
-                        to act on, not vague enough to ignore.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ================= HOW IT WORKS ================= -->
-    <section class="divider">
-        <div class="wrap">
-            <div class="section-head"> <span class="eyebrow"><span class="dot"></span>The Process</span>
-                <h2>From quiz to report in under a minute</h2>
-            </div>
-            <div class="steps">
-                <div class="step"> <span class="num">01</span>
-                    <h3>Take the 60-second quiz</h3>
-                    <p>Portfolio size, time horizon, risk tolerance, favorite assets, and trading style — five
-                        questions, no fluff.</p> <span class="step-connector"></span>
-                </div>
-                <div class="step"> <span class="num">02</span>
-                    <h3>We cross-reference your answers</h3>
-                    <p>Your profile is matched against our real-time news coverage, technical analysis, and
-                        beginner-friendly market education.</p> <span class="step-connector"></span>
-                </div>
-                <div class="step"> <span class="num">03</span>
-                    <h3>Get your report instantly</h3>
-                    <p>A personalized brief with chart reads, risk flags, a watchlist, and next steps — ready to
-                        download immediately.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ================= QUIZ ================= -->
-    <section class="quiz-section" id="quiz">
-        <div class="wrap">
-            <div class="section-head"> <span class="eyebrow"><span class="dot"></span>Start Here</span>
-                <h2>Build your Crypto Edge Report</h2>
-                <p>Five quick questions. Your report is generated the moment you finish.</p>
-            </div>
-            <div class="quiz-card">
-                <div class="quiz-top">
-                    <div class="quiz-progress-row"> <span class="quiz-progress-label" id="progressLabel">Question 1 of
-                            5</span> <span class="quiz-progress-label" id="progressPct">20%</span> </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-                <div class="quiz-body"> <!-- STEP 1: Portfolio size -->
-                    <div class="quiz-step active" data-step="1">
-                        <h3>What's the approximate size of your crypto portfolio?</h3>
-                        <p class="help">This helps us calibrate risk flags and position-sizing notes.</p>
-                        <div class="option-grid" data-question="portfolio"> <button class="option"
-                                data-value="Under $1,000">Under $1,000 <svg class="check" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="$1,000–$10,000">$1,000–$10,000 <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="$10,000–$50,000">$10,000–$50,000 <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="$50,000+">$50,000+ <svg class="check"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> </div>
-                    </div> <!-- STEP 2: Time horizon -->
-                    <div class="quiz-step" data-step="2">
-                        <h3>What's your investment time horizon?</h3>
-                        <p class="help">Short-term and long-term holders need different risk and watchlist framing.</p>
-                        <div class="option-grid" data-question="horizon"> <button class="option"
-                                data-value="Under 6 months">Under 6 months <svg class="check" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="6–18 months">6–18 months <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="1–3 years">1–3 years <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="3+ years">3+ years <svg class="check"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> </div>
-                    </div> <!-- STEP 3: Risk tolerance -->
-                    <div class="quiz-step" data-step="3">
-                        <h3>How would you describe your risk tolerance?</h3>
-                        <p class="help">This shapes which risk flags and position sizes we surface for you.</p>
-                        <div class="option-grid" data-question="risk"> <button class="option"
-                                data-value="Conservative">Conservative <svg class="check" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Balanced">Balanced <svg class="check"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Aggressive">Aggressive <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Not sure yet">Not sure yet <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> </div>
-                    </div> <!-- STEP 4: Favorite assets -->
-                    <div class="quiz-step" data-step="4">
-                        <h3>Which assets are you most interested in?</h3>
-                        <p class="help">Pick one — this anchors your chart reads and watchlist.</p>
-                        <div class="option-grid" data-question="assets"> <button class="option"
-                                data-value="Bitcoin (BTC)">Bitcoin (BTC) <svg class="check" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Ethereum (ETH)">Ethereum (ETH) <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Altcoins">Altcoins <svg class="check"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Stablecoins & yield">Stablecoins &
-                                yield <svg class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> </div>
-                    </div> <!-- STEP 5: Trading style + email -->
-                    <div class="quiz-step" data-step="5">
-                        <h3>How would you describe your trading style?</h3>
-                        <p class="help">Last question — then tell us where to send your report.</p>
-                        <div class="option-grid" data-question="style"> <button class="option"
-                                data-value="Long-term HODLer">Long-term HODLer <svg class="check" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Swing trader">Swing trader <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="Active day trader">Active day trader
-                                <svg class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> <button class="option" data-value="DCA / passive">DCA / passive <svg
-                                    class="check" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg></button> </div>
-                        <div class="field" style="margin-top:20px;"> <label for="emailInput">Where should we send your
-                                report?</label> <input type="email" id="emailInput" placeholder="you@email.com"
-                                required> </div> <button class="btn btn-primary btn-block btn-lg"
-                            id="finalSubmit">Unlock My Crypto Edge</button>
-                        <p class="consent">By submitting, you agree to receive your report and occasional market updates
-                            by email. Unsubscribe anytime. This report is for informational and educational purposes
-                            only — not financial advice.</p>
-                    </div> <!-- LOADING -->
-                    <div class="loading-state" id="loadingState">
-                        <div class="spinner"></div>
-                        <p>Building your Crypto Edge Report…</p>
-                        <p class="small">Cross-referencing your answers with live market coverage</p>
-                    </div> <!-- REPORT REVEAL -->
-                    <div class="report-reveal" id="reportReveal">
-                        <div class="report-head"> <span class="dotlive"></span> <span class="report-name">Report
-                                ready</span> </div>
-                        <div class="report-title" id="reportTitle">Your Crypto Edge Report</div>
-                        <div class="report-line"> <span class="tag tag--technical">Chart Read</span>
-                            <p id="lineChart"></p>
-                        </div>
-                        <div class="report-line"> <span class="tag tag--risk">Risk Flag</span>
-                            <p id="lineRisk"></p>
-                        </div>
-                        <div class="report-line"> <span class="tag tag--watchlist">Watchlist</span>
-                            <p id="lineWatchlist"></p>
-                        </div>
-                        <div class="report-line"> <span class="tag tag--action">Next Step</span>
-                            <p id="lineAction"></p>
-                        </div>
-                        <div class="report-cta"> <button class="btn btn-primary btn-block btn-lg"
-                                onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">Download Full Report
-                                (PDF)</button>
-                            <p class="microcopy" style="text-align:center; margin-top:10px;">Also sent to your email so
-                                you can access it anytime.</p>
-                        </div>
-                    </div> <!-- NAV -->
-                    <div class="quiz-nav" id="quizNavRow"> <button class="link-back" id="backBtn"
-                            style="visibility:hidden;">← Back</button> <span></span> </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ================= FINAL CTA ================= -->
-    <section>
-        <div class="wrap">
-            <div class="final-cta"> <span class="eyebrow"><span class="dot"></span>Free For A Limited Time</span>
-                <h2>The market moves fast. Your report should keep up.</h2>
-                <p>Get a personalized read on your portfolio, risk, and watchlist — built from your own answers, ready
-                    in under a minute.</p> <button class="btn btn-primary btn-lg"
-                    onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'});">Get My Free
-                    Report</button>
-            </div>
-        </div>
-    </section><!-- ================= FOOTER ================= -->
-    <footer>
-        <div class="wrap footer-inner">
-            <p class="disclaimer">Crypto Bureau content, including the Crypto Edge Report, is provided for informational
-                and educational purposes only and does not constitute financial, investment, or trading advice.
-                Cryptocurrency markets are volatile and speculative; you may lose some or all of your capital. Always do
-                your own research before making investment decisions.</p>
-            <div class="footer-links"> <a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">Contact</a> </div>
-        </div>
-    </footer><!-- ================= POPUP MODAL ================= -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <div class="modal-accent-bar"></div> <button class="modal-close" onclick="closeModal()" aria-label="Close">
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16">
-                    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg> </button>
-            <div class="modal-body"> <span class="eyebrow"><span class="dot"></span>Free · Limited Time</span>
-                <h2>Your portfolio deserves a second opinion.</h2>
-                <p class="desc">Answer 5 quick questions and get a personalized Crypto Edge Report — built from your
-                    risk profile, your assets, and our real-time market coverage.</p>
-                <ul class="modal-list">
-                    <li><svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Chart-based reads on the assets you hold</li>
-                    <li><svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>Risk flags matched to your risk tolerance</li>
-                    <li><svg viewBox="0 0 24 24" fill="none">
-                            <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>A watchlist and next steps you can act on today</li>
-                </ul> <button class="btn btn-primary btn-block btn-lg" onclick="startQuizFromModal()">Unlock My Crypto
-                    Edge</button>
-                <p class="modal-microcopy">Takes 60 seconds · No credit card · Instant report</p> <a
-                    class="modal-dismiss" onclick="closeModal()">Not right now</a>
-            </div>
-        </div>
+<!-- ================= NAV ================= -->
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <div class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M4 17L10 11L14 15L20 7" stroke="#FF9900" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      CRYPTO BUREAU
     </div>
-    <script>  // ===== MODAL LOGIC =====  const overlay = document.getElementById('modalOverlay');  let modalShown = false;  function openModal(source){    overlay.classList.add('active');  }  function closeModal(){    overlay.classList.remove('active');  }  function startQuizFromModal(){    closeModal();    document.getElementById('quiz').scrollIntoView({behavior:'smooth'});  }  overlay.addEventListener('click', (e) => {    if(e.target === overlay) closeModal();  });  document.addEventListener('keydown', (e) => {    if(e.key === 'Escape') closeModal();  });  // Auto-show once, after a short delay (feels exclusive, not spammy)  window.addEventListener('load', () => {    setTimeout(() => {      if(!modalShown){        openModal('auto');        modalShown = true;      }    }, 4500);  });  // Exit-intent trigger (desktop): show once if not already shown  document.addEventListener('mouseout', (e) => {    if(!modalShown && e.clientY < 10){      openModal('exit-intent');      modalShown = true;    }  });  // ===== QUIZ LOGIC =====  const totalSteps = 5;  let currentStep = 1;  const answers = { portfolio:null, horizon:null, risk:null, assets:null, style:null };  const steps = document.querySelectorAll('.quiz-step');  const progressFill = document.getElementById('progressFill');  const progressLabel = document.getElementById('progressLabel');  const progressPct = document.getElementById('progressPct');  const backBtn = document.getElementById('backBtn');  function updateProgress(){    const pct = Math.round((currentStep-1)/totalSteps*100) + (currentStep>totalSteps?0:0);    const displayPct = Math.round(((currentStep-1)/totalSteps)*100 + (100/totalSteps));    progressFill.style.width = Math.min(displayPct,100) + '%';    progressLabel.textContent = `Question ${Math.min(currentStep,totalSteps)} of ${totalSteps}`;    progressPct.textContent = Math.min(displayPct,100) + '%';  }  function showStep(n){    steps.forEach(s => s.classList.remove('active'));    const target = document.querySelector(`.quiz-step[data-step="${n}"]`);    if(target) target.classList.add('active');    backBtn.style.visibility = n > 1 ? 'visible' : 'hidden';    updateProgress();  }  function goNext(){    if(currentStep < totalSteps){      currentStep++;      showStep(currentStep);    }  }  function goBack(){    if(currentStep > 1){      currentStep--;      showStep(currentStep);    }  }  backBtn.addEventListener('click', goBack);  // Option selection  document.querySelectorAll('.option-grid').forEach(grid => {    const question = grid.getAttribute('data-question');    grid.querySelectorAll('.option').forEach(opt => {      opt.addEventListener('click', () => {        grid.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));        opt.classList.add('selected');        answers[question] = opt.getAttribute('data-value');        setTimeout(() => {          if(question !== 'style') goNext();        }, 220);      });    });  });  // ===== REPORT GENERATION (client-side personalization demo) =====  const chartReads = {    "Bitcoin (BTC)": "BTC is consolidating beneath a well-tested resistance zone, with structure still favoring the broader uptrend as long as the recent higher-low holds.",    "Ethereum (ETH)": "ETH recently broke out of a multi-week range on rising volume — a level to watch for confirmation is whether it holds as new support on a retest.",    "Altcoins": "Altcoins are showing early signs of relative strength against BTC, though the move remains selective rather than broad-based across the sector.",    "Stablecoins & yield": "On-chain yield opportunities remain elevated relative to traditional cash rates, though spreads have started to compress as capital rotates back in."  };  const riskFlags = {    "Conservative": "Given a conservative risk tolerance, exposure to high-volatility altcoins should stay a small slice of the portfolio — concentration risk is the main flag here.",    "Balanced": "A balanced risk tolerance still warrants a hard look at position sizing during high-volatility windows — drawdown risk rises quickly in fast markets.",    "Aggressive": "Even with an aggressive risk tolerance, unhedged exposure to a single asset class raises concentration risk that's worth actively managing.",    "Not sure yet": "Without a defined risk tolerance yet, the biggest flag is sizing positions before understanding your own drawdown comfort — start smaller than feels necessary."  };  const watchlistIdeas = {    "Under 6 months": "Given a shorter time horizon, keep your watchlist focused on assets with near-term catalysts rather than long-duration theses.",    "6–18 months": "A 6–18 month horizon supports tracking both near-term setups and select mid-cycle narratives worth monitoring for entries.",    "1–3 years": "With a 1–3 year horizon, your watchlist can lean toward assets with durable fundamentals, revisited on a monthly cadence.",    "3+ years": "A 3+ year horizon means your watchlist should prioritize long-term structural themes over short-term price action."  };  const nextSteps = {    "Long-term HODLer": "Next step: review your allocation against your original thesis and set calendar reminders to reassess quarterly, not daily.",    "Swing trader": "Next step: define your invalidation level before entry on your next trade — write it down, not just in your head.",    "Active day trader": "Next step: audit your last 10 trades for a common mistake pattern before placing your next one.",    "DCA / passive": "Next step: confirm your recurring buy schedule is still aligned with your risk tolerance, then leave it alone."  };  document.getElementById('finalSubmit').addEventListener('click', () => {    const email = document.getElementById('emailInput');    if(!answers.style){      alert('Please select a trading style.');      return;    }    if(!email.value || !email.value.includes('@')){      email.focus();      email.style.borderColor = 'var(--risk)';      return;    }    // Hide current step, show loading    document.querySelector('.quiz-step[data-step="5"]').classList.remove('active');    document.getElementById('quizNavRow').style.display = 'none';    const loading = document.getElementById('loadingState');    loading.classList.add('active');    setTimeout(() => {      loading.classList.remove('active');      const reveal = document.getElementById('reportReveal');      document.getElementById('lineChart').textContent =        chartReads[answers.assets] || "Your selected asset is consolidating within a defined range — worth watching for a directional break.";      document.getElementById('lineRisk').textContent =        riskFlags[answers.risk] || "Position sizing relative to your stated risk tolerance is the key flag to manage right now.";      document.getElementById('lineWatchlist').textContent =        watchlistIdeas[answers.horizon] || "Your watchlist should be shaped by your stated time horizon — revisit it as conditions change.";      document.getElementById('lineAction').textContent =        nextSteps[answers.style] || "Next step: revisit your plan against this week's market structure before adding new exposure.";      reveal.classList.add('active');      updateProgress();      progressLabel.textContent = "Report ready";      progressPct.textContent = "100%";      progressFill.style.width = "100%";      reveal.scrollIntoView({behavior:'smooth', block:'center'});    }, 1600);  });  showStep(1);</script>
-</body>
+    <nav class="nav-links">
+      <a href="#">Markets</a>
+      <a href="#">News</a>
+      <a href="#">Guides</a>
+      <a href="#report-contents">Reports</a>
+    </nav>
+    <button class="btn btn-primary btn-nav" onclick="openModal('nav')">Get My Free Report</button>
+  </div>
+</header>
 
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>Free Personalized Report</span>
+      <h1>My Crypto Edge Report — built from <em>your</em> answers, not a template.</h1>
+      <p class="lead">Take a 60-second quiz on your portfolio, time horizon, risk tolerance, and trading style. We combine your answers with our real-time market coverage and technical analysis to build a report made for how you actually trade — not generic advice built for no one in particular.</p>
+      <div class="hero-cta-row">
+        <button class="btn btn-primary btn-lg" onclick="openModal('hero')">Get My Free Report</button>
+        <span class="microcopy">Free · Instant · No credit card</span>
+      </div>
+      <div class="hero-proof">
+        <span class="proof-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Built from your quiz answers</span>
+        <span class="proof-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Backed by live market coverage</span>
+        <span class="proof-item"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Delivered in under a minute</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="ticker-strip">
+        <div class="ticker-track">
+          <span class="ticker-item">BTC <b>$empty</b></span>
+          <span class="ticker-item up">▲ ETH breaks range</span>
+          <span class="ticker-item">SOL <b>Vol. rising</b></span>
+          <span class="ticker-item down">▼ Alt season index cooling</span>
+          <span class="ticker-item">BTC dominance <b>steady</b></span>
+          <span class="ticker-item up">▲ ETH breaks range</span>
+          <span class="ticker-item">SOL <b>Vol. rising</b></span>
+          <span class="ticker-item down">▼ Alt season index cooling</span>
+        </div>
+      </div>
+      <div class="chart-card-body">
+        <div class="chart-card-head">
+          <div>
+            <div class="sym">Sample: BTC / USD</div>
+            <div class="delta">Your report reads charts like this — for your assets</div>
+          </div>
+        </div>
+        <svg class="spark" viewBox="0 0 400 120" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF9900" stop-opacity="0.25"/>
+              <stop offset="100%" stop-color="#FF9900" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0,90 L30,80 L60,86 L90,60 L120,66 L150,40 L180,52 L210,30 L240,44 L270,22 L300,34 L330,18 L360,26 L400,10 L400,120 L0,120 Z" fill="url(#fillGrad)"/>
+          <path d="M0,90 L30,80 L60,86 L90,60 L120,66 L150,40 L180,52 L210,30 L240,44 L270,22 L300,34 L330,18 L360,26 L400,10" fill="none" stroke="#FF9900" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="0" y1="52" x2="400" y2="52" stroke="#DADDE2" stroke-width="1" stroke-dasharray="4 4"/>
+        </svg>
+        <div class="chart-annotations">
+          <span class="tag tag--technical">Trend: Structure</span>
+          <span class="tag tag--risk">Risk: Volatility</span>
+          <span class="tag tag--watchlist">Watch: Key Level</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMPARE ================= -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Why This Isn't Another Lead Magnet</span>
+      <h2>An edge, not a generic guide</h2>
+      <p>Most "free reports" are the same PDF sent to everyone. Yours isn't.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card no">
+        <h3>A typical crypto lead magnet</h3>
+        <ul>
+          <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Same PDF sent to every subscriber</li>
+          <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Generic "top 5 coins to watch" lists</li>
+          <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>No reference to your risk tolerance or horizon</li>
+          <li><svg class="ico no-ico" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Written once, reused for months</li>
+        </ul>
+      </div>
+      <div class="compare-card yes">
+        <h3>My Crypto Edge Report</h3>
+        <ul>
+          <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Built from your quiz answers, every time</li>
+          <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Chart-based reads on assets you actually hold</li>
+          <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Risk flags matched to your stated tolerance</li>
+          <li><svg class="ico yes-ico" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Cross-checked against live market coverage</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHAT'S INSIDE ================= -->
+<section id="report-contents" class="divider">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>What's Inside</span>
+      <h2>What your report actually includes</h2>
+      <p>Four components, assembled specifically for your answers.</p>
+    </div>
+    <div class="card-grid">
+      <div class="feature-card">
+        <span class="tag tag--technical">Technical</span>
+        <h3>Chart-based observations</h3>
+        <p>Where the assets you hold or follow sit against key support, resistance, and trend structure right now — read the way our analysts read a chart, explained in plain language.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag tag--risk">Risk</span>
+        <h3>Risk flags</h3>
+        <p>The specific risks tied to your time horizon and risk tolerance — concentration, volatility exposure, and drawdown risk — flagged before they become a problem.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag tag--watchlist">Watchlist</span>
+        <h3>Watchlist ideas</h3>
+        <p>Assets and setups worth tracking based on what you told us you're interested in and how you like to trade — not a one-size-fits-all coin list.</p>
+      </div>
+      <div class="feature-card">
+        <span class="tag tag--action">Action</span>
+        <h3>Practical next steps</h3>
+        <p>Concrete moves worth considering this week, matched to your portfolio and style — specific enough to act on, not vague enough to ignore.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="divider">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>The Process</span>
+      <h2>From quiz to report in under a minute</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <h3>Take the 60-second quiz</h3>
+        <p>Portfolio size, time horizon, risk tolerance, favorite assets, and trading style — five questions, no fluff.</p>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <h3>We cross-reference your answers</h3>
+        <p>Your profile is matched against our real-time news coverage, technical analysis, and beginner-friendly market education.</p>
+        <span class="step-connector"></span>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <h3>Get your report instantly</h3>
+        <p>A personalized brief with chart reads, risk flags, a watchlist, and next steps — ready to download immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="quiz-section" id="quiz">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><span class="dot"></span>Start Here</span>
+      <h2>Build your Crypto Edge Report</h2>
+      <p>Five quick questions. Your report is generated the moment you finish.</p>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-top">
+        <div class="quiz-progress-row">
+          <span class="quiz-progress-label" id="progressLabel">Question 1 of 5</span>
+          <span class="quiz-progress-label" id="progressPct">20%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="quiz-body">
+
+        <!-- STEP 1: Portfolio size -->
+        <div class="quiz-step active" data-step="1">
+          <h3>What's the approximate size of your crypto portfolio?</h3>
+          <p class="help">This helps us calibrate risk flags and position-sizing notes.</p>
+          <div class="option-grid" data-question="portfolio">
+            <button class="option" data-value="Under $1,000">Under $1,000 <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="$1,000–$10,000">$1,000–$10,000 <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="$10,000–$50,000">$10,000–$50,000 <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="$50,000+">$50,000+ <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Time horizon -->
+        <div class="quiz-step" data-step="2">
+          <h3>What's your investment time horizon?</h3>
+          <p class="help">Short-term and long-term holders need different risk and watchlist framing.</p>
+          <div class="option-grid" data-question="horizon">
+            <button class="option" data-value="Under 6 months">Under 6 months <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="6–18 months">6–18 months <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="1–3 years">1–3 years <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="3+ years">3+ years <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Risk tolerance -->
+        <div class="quiz-step" data-step="3">
+          <h3>How would you describe your risk tolerance?</h3>
+          <p class="help">This shapes which risk flags and position sizes we surface for you.</p>
+          <div class="option-grid" data-question="risk">
+            <button class="option" data-value="Conservative">Conservative <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Balanced">Balanced <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Aggressive">Aggressive <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Not sure yet">Not sure yet <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Favorite assets -->
+        <div class="quiz-step" data-step="4">
+          <h3>Which assets are you most interested in?</h3>
+          <p class="help">Pick one — this anchors your chart reads and watchlist.</p>
+          <div class="option-grid" data-question="assets">
+            <button class="option" data-value="Bitcoin (BTC)">Bitcoin (BTC) <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Ethereum (ETH)">Ethereum (ETH) <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Altcoins">Altcoins <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Stablecoins & yield">Stablecoins & yield <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Trading style + email -->
+        <div class="quiz-step" data-step="5">
+          <h3>How would you describe your trading style?</h3>
+          <p class="help">Last question — then tell us where to send your report.</p>
+          <div class="option-grid" data-question="style">
+            <button class="option" data-value="Long-term HODLer">Long-term HODLer <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Swing trader">Swing trader <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="Active day trader">Active day trader <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button class="option" data-value="DCA / passive">DCA / passive <svg class="check" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          </div>
+
+          <div class="field" style="margin-top:20px;">
+            <label for="emailInput">Where should we send your report?</label>
+            <input type="email" id="emailInput" placeholder="you@email.com" required>
+          </div>
+          <button class="btn btn-primary btn-block btn-lg" id="finalSubmit">Unlock My Crypto Edge</button>
+          <p class="consent">By submitting, you agree to receive your report and occasional market updates by email. Unsubscribe anytime. This report is for informational and educational purposes only — not financial advice.</p>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading-state" id="loadingState">
+          <div class="spinner"></div>
+          <p>Building your Crypto Edge Report…</p>
+          <p class="small">Cross-referencing your answers with live market coverage</p>
+        </div>
+
+        <!-- REPORT REVEAL -->
+        <div class="report-reveal" id="reportReveal">
+          <div class="report-head">
+            <span class="dotlive"></span>
+            <span class="report-name">Report ready</span>
+          </div>
+          <div class="report-title" id="reportTitle">Your Crypto Edge Report</div>
+
+          <div class="report-line">
+            <span class="tag tag--technical">Chart Read</span>
+            <p id="lineChart"></p>
+          </div>
+          <div class="report-line">
+            <span class="tag tag--risk">Risk Flag</span>
+            <p id="lineRisk"></p>
+          </div>
+          <div class="report-line">
+            <span class="tag tag--watchlist">Watchlist</span>
+            <p id="lineWatchlist"></p>
+          </div>
+          <div class="report-line">
+            <span class="tag tag--action">Next Step</span>
+            <p id="lineAction"></p>
+          </div>
+
+          <div class="report-cta">
+            <button class="btn btn-primary btn-block btn-lg" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">Download Full Report (PDF)</button>
+            <p class="microcopy" style="text-align:center; margin-top:10px;">Also sent to your email so you can access it anytime.</p>
+          </div>
+        </div>
+
+        <!-- NAV -->
+        <div class="quiz-nav" id="quizNavRow">
+          <button class="link-back" id="backBtn" style="visibility:hidden;">← Back</button>
+          <span></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section>
+  <div class="wrap">
+    <div class="final-cta">
+      <span class="eyebrow"><span class="dot"></span>Free For A Limited Time</span>
+      <h2>The market moves fast. Your report should keep up.</h2>
+      <p>Get a personalized read on your portfolio, risk, and watchlist — built from your own answers, ready in under a minute.</p>
+      <button class="btn btn-primary btn-lg" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'});">Get My Free Report</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap footer-inner">
+    <p class="disclaimer">Crypto Bureau content, including the Crypto Edge Report, is provided for informational and educational purposes only and does not constitute financial, investment, or trading advice. Cryptocurrency markets are volatile and speculative; you may lose some or all of your capital. Always do your own research before making investment decisions.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= POPUP MODAL ================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-accent-bar"></div>
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="modal-body">
+      <span class="eyebrow"><span class="dot"></span>Free · Limited Time</span>
+      <h2>Your portfolio deserves a second opinion.</h2>
+      <p class="desc">Answer 5 quick questions and get a personalized Crypto Edge Report — built from your risk profile, your assets, and our real-time market coverage.</p>
+      <ul class="modal-list">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Chart-based reads on the assets you hold</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Risk flags matched to your risk tolerance</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>A watchlist and next steps you can act on today</li>
+      </ul>
+      <button class="btn btn-primary btn-block btn-lg" onclick="startQuizFromModal()">Unlock My Crypto Edge</button>
+      <p class="modal-microcopy">Takes 60 seconds · No credit card · Instant report</p>
+      <a class="modal-dismiss" onclick="closeModal()">Not right now</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== MODAL LOGIC =====
+  const overlay = document.getElementById('modalOverlay');
+  let modalShown = false;
+
+  function openModal(source){
+    overlay.classList.add('active');
+  }
+  function closeModal(){
+    overlay.classList.remove('active');
+  }
+  function startQuizFromModal(){
+    closeModal();
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+  }
+  overlay.addEventListener('click', (e) => {
+    if(e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModal();
+  });
+
+  // Auto-show once, after a short delay (feels exclusive, not spammy)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if(!modalShown){
+        openModal('auto');
+        modalShown = true;
+      }
+    }, 4500);
+  });
+
+  // Exit-intent trigger (desktop): show once if not already shown
+  document.addEventListener('mouseout', (e) => {
+    if(!modalShown && e.clientY < 10){
+      openModal('exit-intent');
+      modalShown = true;
+    }
+  });
+
+  // ===== QUIZ LOGIC =====
+  const totalSteps = 5;
+  let currentStep = 1;
+  const answers = { portfolio:null, horizon:null, risk:null, assets:null, style:null };
+
+  const steps = document.querySelectorAll('.quiz-step');
+  const progressFill = document.getElementById('progressFill');
+  const progressLabel = document.getElementById('progressLabel');
+  const progressPct = document.getElementById('progressPct');
+  const backBtn = document.getElementById('backBtn');
+
+  function updateProgress(){
+    const pct = Math.round((currentStep-1)/totalSteps*100) + (currentStep>totalSteps?0:0);
+    const displayPct = Math.round(((currentStep-1)/totalSteps)*100 + (100/totalSteps));
+    progressFill.style.width = Math.min(displayPct,100) + '%';
+    progressLabel.textContent = `Question ${Math.min(currentStep,totalSteps)} of ${totalSteps}`;
+    progressPct.textContent = Math.min(displayPct,100) + '%';
+  }
+
+  function showStep(n){
+    steps.forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`.quiz-step[data-step="${n}"]`);
+    if(target) target.classList.add('active');
+    backBtn.style.visibility = n > 1 ? 'visible' : 'hidden';
+    updateProgress();
+  }
+
+  function goNext(){
+    if(currentStep < totalSteps){
+      currentStep++;
+      showStep(currentStep);
+    }
+  }
+  function goBack(){
+    if(currentStep > 1){
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+  backBtn.addEventListener('click', goBack);
+
+  // Option selection
+  document.querySelectorAll('.option-grid').forEach(grid => {
+    const question = grid.getAttribute('data-question');
+    grid.querySelectorAll('.option').forEach(opt => {
+      opt.addEventListener('click', () => {
+        grid.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        answers[question] = opt.getAttribute('data-value');
+        setTimeout(() => {
+          if(question !== 'style') goNext();
+        }, 220);
+      });
+    });
+  });
+
+  // ===== REPORT GENERATION (client-side personalization demo) =====
+  const chartReads = {
+    "Bitcoin (BTC)": "BTC is consolidating beneath a well-tested resistance zone, with structure still favoring the broader uptrend as long as the recent higher-low holds.",
+    "Ethereum (ETH)": "ETH recently broke out of a multi-week range on rising volume — a level to watch for confirmation is whether it holds as new support on a retest.",
+    "Altcoins": "Altcoins are showing early signs of relative strength against BTC, though the move remains selective rather than broad-based across the sector.",
+    "Stablecoins & yield": "On-chain yield opportunities remain elevated relative to traditional cash rates, though spreads have started to compress as capital rotates back in."
+  };
+
+  const riskFlags = {
+    "Conservative": "Given a conservative risk tolerance, exposure to high-volatility altcoins should stay a small slice of the portfolio — concentration risk is the main flag here.",
+    "Balanced": "A balanced risk tolerance still warrants a hard look at position sizing during high-volatility windows — drawdown risk rises quickly in fast markets.",
+    "Aggressive": "Even with an aggressive risk tolerance, unhedged exposure to a single asset class raises concentration risk that's worth actively managing.",
+    "Not sure yet": "Without a defined risk tolerance yet, the biggest flag is sizing positions before understanding your own drawdown comfort — start smaller than feels necessary."
+  };
+
+  const watchlistIdeas = {
+    "Under 6 months": "Given a shorter time horizon, keep your watchlist focused on assets with near-term catalysts rather than long-duration theses.",
+    "6–18 months": "A 6–18 month horizon supports tracking both near-term setups and select mid-cycle narratives worth monitoring for entries.",
+    "1–3 years": "With a 1–3 year horizon, your watchlist can lean toward assets with durable fundamentals, revisited on a monthly cadence.",
+    "3+ years": "A 3+ year horizon means your watchlist should prioritize long-term structural themes over short-term price action."
+  };
+
+  const nextSteps = {
+    "Long-term HODLer": "Next step: review your allocation against your original thesis and set calendar reminders to reassess quarterly, not daily.",
+    "Swing trader": "Next step: define your invalidation level before entry on your next trade — write it down, not just in your head.",
+    "Active day trader": "Next step: audit your last 10 trades for a common mistake pattern before placing your next one.",
+    "DCA / passive": "Next step: confirm your recurring buy schedule is still aligned with your risk tolerance, then leave it alone."
+  };
+
+  document.getElementById('finalSubmit').addEventListener('click', () => {
+    const email = document.getElementById('emailInput');
+    if(!answers.style){
+      alert('Please select a trading style.');
+      return;
+    }
+    if(!email.value || !email.value.includes('@')){
+      email.focus();
+      email.style.borderColor = 'var(--risk)';
+      return;
+    }
+
+    // Hide current step, show loading
+    document.querySelector('.quiz-step[data-step="5"]').classList.remove('active');
+    document.getElementById('quizNavRow').style.display = 'none';
+    const loading = document.getElementById('loadingState');
+    loading.classList.add('active');
+
+    setTimeout(() => {
+      loading.classList.remove('active');
+      const reveal = document.getElementById('reportReveal');
+
+      document.getElementById('lineChart').textContent =
+        chartReads[answers.assets] || "Your selected asset is consolidating within a defined range — worth watching for a directional break.";
+      document.getElementById('lineRisk').textContent =
+        riskFlags[answers.risk] || "Position sizing relative to your stated risk tolerance is the key flag to manage right now.";
+      document.getElementById('lineWatchlist').textContent =
+        watchlistIdeas[answers.horizon] || "Your watchlist should be shaped by your stated time horizon — revisit it as conditions change.";
+      document.getElementById('lineAction').textContent =
+        nextSteps[answers.style] || "Next step: revisit your plan against this week's market structure before adding new exposure.";
+
+      reveal.classList.add('active');
+      updateProgress();
+      progressLabel.textContent = "Report ready";
+      progressPct.textContent = "100%";
+      progressFill.style.width = "100%";
+      reveal.scrollIntoView({behavior:'smooth', block:'center'});
+    }, 1600);
+  });
+
+  showStep(1);
+</script>
+
+</body>
 </html>

@@ -1,1044 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Babypips Forex Readiness Report</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
-        :root {
-            --cream: #FFF8EC;
-            --forest: #0E3B2E;
-            --pip-green: #3CB878;
-            --pip-green-dark: #2A9461;
-            --leaf: #DCEFE1;
-            --yolk: #FFC93C;
-            --coral: #FF6B5B;
-            --ink: #1B2A22;
-            --paper: #FFFFFF;
-            --line: rgba(14, 59, 46, 0.12);
-            --shadow: 0 18px 40px rgba(14, 59, 46, 0.14);
-            --radius-lg: 28px;
-            --radius-md: 18px;
-            --radius-sm: 12px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--cream);
-            color: var(--ink);
-            line-height: 1.5;
-        }
-
-        h1,
-        h2,
-        h3,
-        .display {
-            font-family: 'Baloo 2', sans-serif;
-            color: var(--forest);
-            line-height: 1.12;
-            letter-spacing: -0.01em;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        img,
-        svg {
-            display: block;
-        }
-
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--pip-green-dark);
-            background: var(--leaf);
-            padding: 7px 14px;
-            border-radius: 100px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 700;
-            font-size: 17px;
-            padding: 16px 30px;
-            border-radius: 100px;
-            border: none;
-            cursor: pointer;
-            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-        }
-
-        .btn:focus-visible {
-            outline: 3px solid var(--forest);
-            outline-offset: 3px;
-        }
-
-        .btn-primary {
-            background: var(--pip-green);
-            color: #fff;
-            box-shadow: 0 10px 24px rgba(60, 184, 120, 0.4);
-        }
-
-        .btn-primary:hover {
-            background: var(--pip-green-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(60, 184, 120, 0.48);
-        }
-
-        .btn-coral {
-            background: var(--coral);
-            color: #fff;
-            box-shadow: 0 10px 24px rgba(255, 107, 91, 0.4);
-        }
-
-        .btn-coral:hover {
-            background: #ec5142;
-            transform: translateY(-2px);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--forest);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            padding: 10px 6px;
-            font-weight: 600;
-        }
-
-        .micro {
-            font-size: 13px;
-            color: rgba(27, 42, 34, 0.6);
-            font-weight: 500;
-        }
-
-        /* ---------- DEMO TOGGLE BAR ---------- */
-        .demo-bar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: var(--forest);
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .demo-bar button {
-            background: var(--yolk);
-            color: var(--forest);
-            border: none;
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 700;
-            padding: 7px 16px;
-            border-radius: 100px;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 13px;
-        }
-
-        /* ---------- POPUP MODAL ---------- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(14, 59, 46, 0.55);
-            backdrop-filter: blur(3px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            padding: 20px;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-card {
-            position: relative;
-            background: var(--paper);
-            border-radius: var(--radius-lg);
-            max-width: 460px;
-            width: 100%;
-            padding: 38px 34px 30px;
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
-            text-align: center;
-            animation: pop .35s cubic-bezier(.2, 1.4, .4, 1);
-        }
-
-        @keyframes pop {
-            from {
-                transform: scale(.9);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 16px;
-            background: var(--leaf);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-            color: var(--forest);
-            font-weight: 700;
-        }
-
-        .modal-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--coral);
-            color: #fff;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 6px 12px;
-            border-radius: 100px;
-            margin-bottom: 18px;
-        }
-
-        .modal-card h2 {
-            font-size: 26px;
-            margin-bottom: 12px;
-        }
-
-        .modal-card p.sub {
-            font-size: 15.5px;
-            color: rgba(27, 42, 34, 0.78);
-            margin-bottom: 18px;
-        }
-
-        .modal-trust {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            font-size: 12.5px;
-            color: var(--pip-green-dark);
-            font-weight: 600;
-            margin-bottom: 22px;
-        }
-
-        .modal-trust span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .modal-card .btn-primary {
-            width: 100%;
-        }
-
-        .modal-urgency {
-            margin-top: 14px;
-            font-size: 12.5px;
-            color: rgba(27, 42, 34, 0.55);
-        }
-
-        .modal-dismiss {
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        /* ---------- HERO ---------- */
-        header.hero {
-            padding: 64px 0 56px;
-            background: radial-gradient(circle at 85% -10%, rgba(60, 184, 120, 0.18), transparent 55%), radial-gradient(circle at 0% 110%, rgba(255, 201, 60, 0.22), transparent 50%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 48px;
-        }
-
-        .logo {
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 800;
-            font-size: 20px;
-            color: var(--forest);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo .dot {
-            width: 10px;
-            height: 10px;
-            background: var(--pip-green);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 48px;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 50px;
-            margin: 18px 0 18px;
-        }
-
-        .hero p.sub {
-            font-size: 18px;
-            color: rgba(27, 42, 34, 0.78);
-            max-width: 480px;
-            margin-bottom: 28px;
-        }
-
-        .hero-cta-row {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-
-        .trust-row {
-            display: flex;
-            gap: 22px;
-            flex-wrap: wrap;
-            margin-top: 22px;
-        }
-
-        .trust-row .item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--forest);
-        }
-
-        /* hero visual: report mockup */
-        .report-mock {
-            background: var(--paper);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 26px;
-            border: 1px solid var(--line);
-            transform: rotate(2deg);
-        }
-
-        .report-mock .rm-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        .rm-pill {
-            background: var(--leaf);
-            color: var(--pip-green-dark);
-            font-size: 11px;
-            font-weight: 700;
-            padding: 5px 10px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .rm-score {
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-
-        .rm-score .num {
-            font-family: 'Baloo 2', sans-serif;
-            font-size: 44px;
-            font-weight: 800;
-            color: var(--pip-green-dark);
-        }
-
-        .rm-score .label {
-            font-size: 13px;
-            color: rgba(27, 42, 34, 0.6);
-            font-weight: 600;
-        }
-
-        .rm-bar {
-            height: 10px;
-            background: var(--leaf);
-            border-radius: 100px;
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .rm-bar>div {
-            height: 100%;
-            width: 64%;
-            background: linear-gradient(90deg, var(--pip-green), var(--yolk));
-        }
-
-        .rm-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 11px 0;
-            border-top: 1px solid var(--line);
-            font-size: 13.5px;
-            font-weight: 600;
-        }
-
-        .rm-row:first-of-type {
-            border-top: none;
-        }
-
-        .rm-row span.tag {
-            font-size: 11px;
-            padding: 3px 9px;
-            border-radius: 100px;
-            font-weight: 700;
-        }
-
-        .tag-gap {
-            background: #FFE9D6;
-            color: #C2530F;
-        }
-
-        .tag-ok {
-            background: var(--leaf);
-            color: var(--pip-green-dark);
-        }
-
-        /* ---------- SECTION SHARED ---------- */
-        section {
-            padding: 78px 0;
-        }
-
-        .section-head {
-            max-width: 620px;
-            margin-bottom: 48px;
-        }
-
-        .section-head .eyebrow {
-            margin-bottom: 14px;
-        }
-
-        .section-head h2 {
-            font-size: 36px;
-            margin-bottom: 14px;
-        }
-
-        .section-head p {
-            font-size: 16.5px;
-            color: rgba(27, 42, 34, 0.75);
-        }
-
-        .what-you-get {
-            background: var(--forest);
-            color: #fff;
-            border-radius: var(--radius-lg);
-        }
-
-        .what-you-get .section-head h2,
-        .what-you-get .section-head p {
-            color: #fff;
-        }
-
-        .what-you-get .section-head p {
-            opacity: 0.8;
-        }
-
-        .what-you-get .eyebrow {
-            background: rgba(255, 255, 255, 0.12);
-            color: var(--yolk);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            border-radius: var(--radius-md);
-            padding: 26px;
-        }
-
-        .feature-card .icon {
-            font-size: 26px;
-            margin-bottom: 14px;
-        }
-
-        .feature-card h3 {
-            color: #fff;
-            font-size: 19px;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            font-size: 14.5px;
-            color: rgba(255, 255, 255, 0.78);
-        }
-
-        /* how it works */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .step-card {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 28px;
-            position: relative;
-        }
-
-        .step-num {
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 800;
-            font-size: 15px;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--leaf);
-            color: var(--pip-green-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .step-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .step-card p {
-            font-size: 14.5px;
-            color: rgba(27, 42, 34, 0.72);
-        }
-
-        /* form section */
-        .form-section {
-            background: var(--leaf);
-            border-radius: var(--radius-lg);
-        }
-
-        .form-wrap {
-            background: var(--paper);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 44px;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        .progress-track {
-            height: 8px;
-            background: var(--leaf);
-            border-radius: 100px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-track>div {
-            height: 100%;
-            width: 20%;
-            background: var(--pip-green);
-            border-radius: 100px;
-        }
-
-        .q-block {
-            margin-bottom: 30px;
-        }
-
-        .q-block label.q-title {
-            display: block;
-            font-family: 'Baloo 2', sans-serif;
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--forest);
-            margin-bottom: 14px;
-        }
-
-        .opt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .opt {
-            border: 2px solid var(--line);
-            border-radius: var(--radius-sm);
-            padding: 13px 16px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--ink);
-            cursor: pointer;
-            transition: border-color .15s ease, background .15s ease;
-            background: var(--paper);
-        }
-
-        .opt:hover {
-            border-color: var(--pip-green);
-            background: var(--leaf);
-        }
-
-        .opt.selected {
-            border-color: var(--pip-green);
-            background: var(--leaf);
-            color: var(--pip-green-dark);
-        }
-
-        .email-field {
-            margin-bottom: 24px;
-        }
-
-        .email-field label {
-            display: block;
-            font-weight: 700;
-            font-size: 14px;
-            margin-bottom: 8px;
-            color: var(--forest);
-        }
-
-        .email-field input {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: var(--radius-sm);
-            border: 2px solid var(--line);
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .email-field input:focus {
-            outline: none;
-            border-color: var(--pip-green);
-        }
-
-        .form-wrap .btn-primary {
-            width: 100%;
-        }
-
-        .form-foot {
-            text-align: center;
-            margin-top: 14px;
-        }
-
-        /* credibility */
-        .credibility {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .stat-card {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 22px;
-        }
-
-        .stat-card .num {
-            font-family: 'Baloo 2', sans-serif;
-            font-size: 30px;
-            font-weight: 800;
-            color: var(--pip-green-dark);
-        }
-
-        .stat-card .lbl {
-            font-size: 13px;
-            color: rgba(27, 42, 34, 0.65);
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        /* final cta */
-        .final-cta {
-            background: linear-gradient(135deg, var(--forest), #103E2F);
-            border-radius: var(--radius-lg);
-            padding: 64px 48px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .final-cta h2 {
-            color: #fff;
-            font-size: 36px;
-            max-width: 640px;
-            margin: 0 auto 16px;
-        }
-
-        .final-cta p {
-            color: rgba(255, 255, 255, 0.78);
-            max-width: 540px;
-            margin: 0 auto 30px;
-            font-size: 16.5px;
-        }
-
-        .final-cta .micro {
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 14px;
-        }
-
-        /* faq */
-        .faq-item {
-            border-bottom: 1px solid var(--line);
-            padding: 22px 0;
-        }
-
-        .faq-item h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
-
-        .faq-item p {
-            font-size: 14.5px;
-            color: rgba(27, 42, 34, 0.72);
-        }
-
-        footer {
-            padding: 36px 0;
-            text-align: center;
-            font-size: 13px;
-            color: rgba(27, 42, 34, 0.5);
-        }
-
-        @media(max-width:860px) {
-
-            .hero-grid,
-            .credibility {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .feature-grid,
-            .steps,
-            .stat-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .opt-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-wrap {
-                padding: 28px;
-            }
-
-            .final-cta {
-                padding: 48px 24px;
-            }
-
-            .final-cta h2 {
-                font-size: 28px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Babypips Forex Readiness Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --cream:#FFF8EC;
+    --forest:#0E3B2E;
+    --pip-green:#3CB878;
+    --pip-green-dark:#2A9461;
+    --leaf:#DCEFE1;
+    --yolk:#FFC93C;
+    --coral:#FF6B5B;
+    --ink:#1B2A22;
+    --paper:#FFFFFF;
+    --line: rgba(14,59,46,0.12);
+    --shadow: 0 18px 40px rgba(14,59,46,0.14);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --radius-sm: 12px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', sans-serif;
+    color:var(--forest);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{display:block;}
+  .container{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--pip-green-dark);
+    background:var(--leaf);
+    padding:7px 14px;
+    border-radius:100px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:17px;
+    padding:16px 30px;
+    border-radius:100px;
+    border:none;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--forest); outline-offset:3px;}
+  .btn-primary{
+    background:var(--pip-green);
+    color:#fff;
+    box-shadow:0 10px 24px rgba(60,184,120,0.4);
+  }
+  .btn-primary:hover{ background:var(--pip-green-dark); transform:translateY(-2px); box-shadow:0 14px 28px rgba(60,184,120,0.48);}
+  .btn-coral{
+    background:var(--coral);
+    color:#fff;
+    box-shadow:0 10px 24px rgba(255,107,91,0.4);
+  }
+  .btn-coral:hover{ background:#ec5142; transform:translateY(-2px);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--forest);
+    text-decoration:underline;
+    text-underline-offset:3px;
+    padding:10px 6px;
+    font-weight:600;
+  }
+  .micro{ font-size:13px; color:rgba(27,42,34,0.6); font-weight:500; }
+
+  /* ---------- DEMO TOGGLE BAR ---------- */
+  .demo-bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--forest); color:#fff;
+    padding:10px 20px; text-align:center;
+    font-size:13px; font-weight:600;
+  }
+  .demo-bar button{
+    background:var(--yolk); color:var(--forest); border:none;
+    font-family:'Baloo 2',sans-serif; font-weight:700;
+    padding:7px 16px; border-radius:100px; cursor:pointer; margin-left:10px;
+    font-size:13px;
+  }
+
+  /* ---------- POPUP MODAL ---------- */
+  .modal-overlay{
+    position:fixed; inset:0;
+    background:rgba(14,59,46,0.55);
+    backdrop-filter:blur(3px);
+    display:none;
+    align-items:center; justify-content:center;
+    z-index:100;
+    padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-card{
+    position:relative;
+    background:var(--paper);
+    border-radius:var(--radius-lg);
+    max-width:460px; width:100%;
+    padding:38px 34px 30px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.35);
+    text-align:center;
+    animation:pop .35s cubic-bezier(.2,1.4,.4,1);
+  }
+  @keyframes pop{ from{ transform:scale(.9); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .modal-close{
+    position:absolute; top:14px; right:16px;
+    background:var(--leaf); border:none; width:32px; height:32px;
+    border-radius:50%; font-size:16px; cursor:pointer; color:var(--forest);
+    font-weight:700;
+  }
+  .modal-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--coral); color:#fff; font-weight:700;
+    font-size:12px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:6px 12px; border-radius:100px; margin-bottom:18px;
+  }
+  .modal-card h2{ font-size:26px; margin-bottom:12px; }
+  .modal-card p.sub{ font-size:15.5px; color:rgba(27,42,34,0.78); margin-bottom:18px; }
+  .modal-trust{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    font-size:12.5px; color:var(--pip-green-dark); font-weight:600;
+    margin-bottom:22px;
+  }
+  .modal-trust span{ display:flex; align-items:center; gap:5px; }
+  .modal-card .btn-primary{ width:100%; }
+  .modal-urgency{
+    margin-top:14px; font-size:12.5px; color:rgba(27,42,34,0.55);
+  }
+  .modal-dismiss{ margin-top:10px; font-size:13px; }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:64px 0 56px;
+    background:
+      radial-gradient(circle at 85% -10%, rgba(60,184,120,0.18), transparent 55%),
+      radial-gradient(circle at 0% 110%, rgba(255,201,60,0.22), transparent 50%);
+    position:relative; overflow:hidden;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:48px;
+  }
+  .logo{
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:20px;
+    color:var(--forest); display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{ width:10px; height:10px; background:var(--pip-green); border-radius:50%; display:inline-block;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center;
+  }
+  .hero h1{ font-size:50px; margin:18px 0 18px; }
+  .hero p.sub{
+    font-size:18px; color:rgba(27,42,34,0.78); max-width:480px; margin-bottom:28px;
+  }
+  .hero-cta-row{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:14px;}
+  .trust-row{
+    display:flex; gap:22px; flex-wrap:wrap; margin-top:22px;
+  }
+  .trust-row .item{ display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:var(--forest); }
+
+  /* hero visual: report mockup */
+  .report-mock{
+    background:var(--paper);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    padding:26px;
+    border:1px solid var(--line);
+    transform:rotate(2deg);
+  }
+  .report-mock .rm-head{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;
+  }
+  .rm-pill{ background:var(--leaf); color:var(--pip-green-dark); font-size:11px; font-weight:700; padding:5px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:0.04em;}
+  .rm-score{
+    display:flex; align-items:baseline; gap:6px; margin-bottom:6px;
+  }
+  .rm-score .num{ font-family:'Baloo 2',sans-serif; font-size:44px; font-weight:800; color:var(--pip-green-dark); }
+  .rm-score .label{ font-size:13px; color:rgba(27,42,34,0.6); font-weight:600; }
+  .rm-bar{ height:10px; background:var(--leaf); border-radius:100px; overflow:hidden; margin-bottom:22px;}
+  .rm-bar > div{ height:100%; width:64%; background:linear-gradient(90deg, var(--pip-green), var(--yolk)); }
+  .rm-row{ display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-top:1px solid var(--line); font-size:13.5px; font-weight:600;}
+  .rm-row:first-of-type{ border-top:none; }
+  .rm-row span.tag{ font-size:11px; padding:3px 9px; border-radius:100px; font-weight:700;}
+  .tag-gap{ background:#FFE9D6; color:#C2530F; }
+  .tag-ok{ background:var(--leaf); color:var(--pip-green-dark); }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:78px 0; }
+  .section-head{ max-width:620px; margin-bottom:48px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:36px; margin-bottom:14px; }
+  .section-head p{ font-size:16.5px; color:rgba(27,42,34,0.75); }
+
+  .what-you-get{ background:var(--forest); color:#fff; border-radius:var(--radius-lg); }
+  .what-you-get .section-head h2, .what-you-get .section-head p{ color:#fff; }
+  .what-you-get .section-head p{ opacity:0.8; }
+  .what-you-get .eyebrow{ background:rgba(255,255,255,0.12); color:var(--yolk); }
+  .feature-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:20px;
+  }
+  .feature-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:var(--radius-md);
+    padding:26px;
+  }
+  .feature-card .icon{ font-size:26px; margin-bottom:14px; }
+  .feature-card h3{ color:#fff; font-size:19px; margin-bottom:8px; }
+  .feature-card p{ font-size:14.5px; color:rgba(255,255,255,0.78); }
+
+  /* how it works */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .step-card{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:28px; position:relative;
+  }
+  .step-num{
+    font-family:'Baloo 2',sans-serif; font-weight:800; font-size:15px;
+    width:34px; height:34px; border-radius:50%; background:var(--leaf); color:var(--pip-green-dark);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .step-card h3{ font-size:18px; margin-bottom:8px; }
+  .step-card p{ font-size:14.5px; color:rgba(27,42,34,0.72); }
+
+  /* form section */
+  .form-section{
+    background:var(--leaf);
+    border-radius:var(--radius-lg);
+  }
+  .form-wrap{
+    background:var(--paper);
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    padding:44px;
+    max-width:680px; margin:0 auto;
+  }
+  .progress-track{
+    height:8px; background:var(--leaf); border-radius:100px; margin-bottom:30px; overflow:hidden;
+  }
+  .progress-track > div{ height:100%; width:20%; background:var(--pip-green); border-radius:100px; }
+  .q-block{ margin-bottom:30px; }
+  .q-block label.q-title{
+    display:block; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:17px;
+    color:var(--forest); margin-bottom:14px;
+  }
+  .opt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opt{
+    border:2px solid var(--line); border-radius:var(--radius-sm);
+    padding:13px 16px; font-size:14px; font-weight:600; color:var(--ink);
+    cursor:pointer; transition:border-color .15s ease, background .15s ease;
+    background:var(--paper);
+  }
+  .opt:hover{ border-color:var(--pip-green); background:var(--leaf); }
+  .opt.selected{ border-color:var(--pip-green); background:var(--leaf); color:var(--pip-green-dark); }
+  .email-field{ margin-bottom:24px; }
+  .email-field label{ display:block; font-weight:700; font-size:14px; margin-bottom:8px; color:var(--forest); }
+  .email-field input{
+    width:100%; padding:14px 16px; border-radius:var(--radius-sm); border:2px solid var(--line);
+    font-size:15px; font-family:'Inter',sans-serif;
+  }
+  .email-field input:focus{ outline:none; border-color:var(--pip-green); }
+  .form-wrap .btn-primary{ width:100%; }
+  .form-foot{ text-align:center; margin-top:14px; }
+
+  /* credibility */
+  .credibility{
+    display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;
+  }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .stat-card{ background:var(--paper); border:1px solid var(--line); border-radius:var(--radius-md); padding:22px; }
+  .stat-card .num{ font-family:'Baloo 2',sans-serif; font-size:30px; font-weight:800; color:var(--pip-green-dark); }
+  .stat-card .lbl{ font-size:13px; color:rgba(27,42,34,0.65); font-weight:600; margin-top:4px; }
+
+  /* final cta */
+  .final-cta{
+    background:linear-gradient(135deg, var(--forest), #103E2F);
+    border-radius:var(--radius-lg);
+    padding:64px 48px;
+    text-align:center;
+    color:#fff;
+  }
+  .final-cta h2{ color:#fff; font-size:36px; max-width:640px; margin:0 auto 16px; }
+  .final-cta p{ color:rgba(255,255,255,0.78); max-width:540px; margin:0 auto 30px; font-size:16.5px; }
+  .final-cta .micro{ color:rgba(255,255,255,0.6); margin-top:14px; }
+
+  /* faq */
+  .faq-item{
+    border-bottom:1px solid var(--line); padding:22px 0;
+  }
+  .faq-item h3{ font-size:17px; margin-bottom:8px; }
+  .faq-item p{ font-size:14.5px; color:rgba(27,42,34,0.72); }
+
+  footer{
+    padding:36px 0; text-align:center; font-size:13px; color:rgba(27,42,34,0.5);
+  }
+
+  @media(max-width:860px){
+    .hero-grid, .credibility{ grid-template-columns:1fr; }
+    .hero h1{ font-size:36px; }
+    .feature-grid, .steps, .stat-grid{ grid-template-columns:1fr; }
+    .opt-grid{ grid-template-columns:1fr; }
+    .form-wrap{ padding:28px; }
+    .final-cta{ padding:48px 24px; }
+    .final-cta h2{ font-size:28px; }
+  }
+</style>
 </head>
-
 <body>
-    <div class="demo-bar"> Demo: this is how the popup appears on page load / exit-intent <button
-            onclick="document.getElementById('popupModal').classList.add('open')">Show popup</button></div>
-    <!-- ============ POPUP ============ -->
-    <div class="modal-overlay" id="popupModal">
-        <div class="modal-card"> <button class="modal-close"
-                onclick="document.getElementById('popupModal').classList.remove('open')" aria-label="Close">✕</button>
-            <div class="modal-badge">🎯 Free Personalized Report</div>
-            <h2>Find Out Exactly Where You Stand as a Forex Trader</h2>
-            <p class="sub">Answer 5 quick questions and we'll build your free Forex Readiness Report — your skill gaps,
-                the mistakes traders like you tend to make, and your exact next-step learning path from the School of
-                Pipsology.</p>
-            <div class="modal-trust"> <span>⏱️ 60 seconds</span> <span>🔰 No experience needed</span> <span>💸 100%
-                    free</span> </div> <a href="#quiz" class="btn btn-primary"
-                onclick="document.getElementById('popupModal').classList.remove('open')">Unlock My Forex Readiness →</a>
-            <p class="modal-urgency">Most new traders skip this step — and it shows. Don't be most traders.</p>
-            <div class="modal-dismiss"> <a href="#" class="btn-ghost"
-                    onclick="document.getElementById('popupModal').classList.remove('open'); return false;">Maybe later,
-                    I'll figure it out myself</a> </div>
-        </div>
-    </div><!-- ============ LANDING PAGE ============ -->
-    <header class="hero">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo"><span class="dot"></span> babypips</div>
-                <div class="micro">School of Pipsology</div>
-            </nav>
-            <div class="hero-grid">
-                <div> <span class="eyebrow">🎯 Free · Personalized · Instant</span>
-                    <h1>Your Forex Journey, Mapped Out For You</h1>
-                    <p class="sub">Take our 60-second readiness quiz and get a free, personalized report that shows you
-                        exactly where you stand, what's holding you back, and what to learn next — built from your
-                        answers and our School of Pipsology framework.</p>
-                    <div class="hero-cta-row"> <a href="#quiz" class="btn btn-primary">Get My Free Report</a> </div>
-                    <div class="trust-row">
-                        <div class="item">✅ Free forever</div>
-                        <div class="item">⏱️ ~60 seconds</div>
-                        <div class="item">⚡ Instant results</div>
-                    </div>
-                </div>
-                <div class="report-mock">
-                    <div class="rm-head"> <strong style="font-family:'Baloo 2',sans-serif;color:var(--forest);">Your
-                            Readiness Report</strong> <span class="rm-pill">Preview</span> </div>
-                    <div class="rm-score"> <span class="num">64%</span> <span class="label">Forex Readiness Score</span>
-                    </div>
-                    <div class="rm-bar">
-                        <div></div>
-                    </div>
-                    <div class="rm-row"><span>Risk management basics</span><span class="tag tag-gap">Gap found</span>
-                    </div>
-                    <div class="rm-row"><span>Reading currency pairs</span><span class="tag tag-ok">Solid</span></div>
-                    <div class="rm-row"><span>Position sizing</span><span class="tag tag-gap">Gap found</span></div>
-                    <div class="rm-row"><span>Trading psychology</span><span class="tag tag-ok">Solid</span></div>
-                </div>
-            </div>
-        </div>
-    </header><!-- WHAT YOU GET -->
-    <section>
-        <div class="container what-you-get" style="padding:60px 48px;">
-            <div class="section-head"> <span class="eyebrow">What's Inside</span>
-                <h2>This Isn't a Generic Quiz Result</h2>
-                <p>Most "trading quizzes" hand you a label and call it a day. Your report goes further — built from your
-                    specific experience level, account size, risk tolerance, time commitment, and goals.</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon">📊</div>
-                    <h3>Your Skill Gap Breakdown</h3>
-                    <p>See precisely which concepts you've got covered and which ones are quietly working against you —
-                        before they cost you real money.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⚠️</div>
-                    <h3>Mistakes Traders Like You Make</h3>
-                    <p>Every trader profile has its own blind spots. We'll flag the specific, avoidable mistakes that
-                        match your risk tolerance and time commitment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">📚</div>
-                    <h3>A Learning Path Built for You</h3>
-                    <p>No more guessing which Pipsology lesson to start on. Get a curated path through our curriculum,
-                        sequenced for your level and goals.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🧭</div>
-                    <h3>Your Suggested Next Step</h3>
-                    <p>One clear, specific action to take today — not "keep learning," but the actual next move based on
-                        where you are right now.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- HOW IT WORKS -->
-    <section>
-        <div class="container">
-            <div class="section-head"> <span class="eyebrow">How It Works</span>
-                <h2>Three Steps to Your Personalized Report</h2>
-                <p>No account needed to see your results — just five honest answers.</p>
-            </div>
-            <div class="steps">
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <h3>Answer 5 quick questions</h3>
-                    <p>Experience level, account size, risk comfort, time you can commit, and your trading goals. About
-                        60 seconds.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <h3>We match it to our framework</h3>
-                    <p>Your answers are run against the School of Pipsology curriculum and what we know about how
-                        traders at your stage actually succeed.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">3</div>
-                    <h3>Get your report instantly</h3>
-                    <p>View it on screen immediately, and download a copy to keep — no waiting, no email delay.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- QUIZ / FORM -->
-    <section id="quiz">
-        <div class="container form-section" style="padding:60px 20px;">
-            <div class="form-wrap"> <span class="eyebrow" style="margin-bottom:16px; display:inline-flex;">Let's Build
-                    Your Report</span>
-                <h2 style="font-size:26px; margin:10px 0 6px;">Be Honest — This Is Just For You</h2>
-                <p style="color:rgba(27,42,34,0.7); font-size:14.5px; margin-bottom:26px;">The more accurate your
-                    answers, the sharper your report.</p>
-                <div class="progress-track">
-                    <div></div>
-                </div>
-                <div class="q-block"> <label class="q-title">1. What's your experience level with forex trading?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Complete beginner</div>
-                        <div class="opt">Some experience</div>
-                        <div class="opt">Active trader</div>
-                        <div class="opt">Experienced</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">2. What's your starting account size?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Under $500</div>
-                        <div class="opt">$500 – $2,000</div>
-                        <div class="opt">$2,000 – $10,000</div>
-                        <div class="opt">Haven't funded yet</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">3. How would you describe your risk tolerance?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Cautious</div>
-                        <div class="opt">Balanced</div>
-                        <div class="opt">Aggressive</div>
-                        <div class="opt">Not sure yet</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">4. How much time can you commit weekly?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Less than 2 hrs</div>
-                        <div class="opt">2 – 5 hrs</div>
-                        <div class="opt">5 – 10 hrs</div>
-                        <div class="opt">10+ hrs</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">5. What's your main goal with forex trading?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Learn the basics</div>
-                        <div class="opt">Build a strategy</div>
-                        <div class="opt">Supplemental income</div>
-                        <div class="opt">Trade full-time</div>
-                    </div>
-                </div>
-                <div class="email-field"> <label for="email">Email address</label> <input type="email" id="email"
-                        placeholder="you@example.com">
-                    <p class="micro" style="margin-top:6px;">So we can send your report and save your results.</p>
-                </div> <button class="btn btn-primary" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">Get My Instant Report →</button>
-                <div class="form-foot">
-                    <p class="micro">🔒 We respect your inbox. No spam — just your report and occasional Pipsology tips.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section><!-- CREDIBILITY -->
-    <section>
-        <div class="container credibility">
-            <div> <span class="eyebrow">Why Trust This</span>
-                <h2 style="font-size:32px; margin:16px 0;">Built on the Curriculum Millions Started With</h2>
-                <p style="color:rgba(27,42,34,0.75); font-size:16px;">Babypips has taught beginner traders since 2005
-                    through the School of Pipsology — the same step-by-step framework behind your personalized report.
-                    We've helped a huge community go from "what's a pip?" to placing their first confident trade. Your
-                    report draws directly from that experience, tailored to you.</p>
-            </div>
-            <div class="stat-grid">
-                <div class="stat-card">
-                    <div class="num">2005</div>
-                    <div class="lbl">Teaching traders since</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">5</div>
-                    <div class="lbl">Quiz questions, 60 seconds</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">100%</div>
-                    <div class="lbl">Free, no card required</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">1:1</div>
-                    <div class="lbl">Personalized to your answers</div>
-                </div>
-            </div>
-        </div>
-    </section><!-- FINAL CTA -->
-    <section>
-        <div class="container">
-            <div class="final-cta">
-                <h2>Don't Trade Blind. Trade Informed.</h2>
-                <p>Every day you trade without knowing your specific skill gaps is a day you're leaving room for
-                    avoidable mistakes. This report takes 60 seconds to generate and could save you weeks of learning
-                    things the hard way.</p> <a href="#quiz" class="btn btn-coral">Unlock My Forex Readiness Report</a>
-                <p class="micro">Free. Personalized. Yours in under a minute.</p>
-            </div>
-        </div>
-    </section><!-- FAQ -->
-    <section>
-        <div class="container">
-            <div class="section-head"> <span class="eyebrow">Questions</span>
-                <h2>Before You Start</h2>
-            </div>
-            <div class="faq-item">
-                <h3>Is this really free?</h3>
-                <p>Yes — 100% free, no credit card, no catch. It's part of how we help new traders get started the right
-                    way.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Will this work even if I'm a total beginner?</h3>
-                <p>Especially if you're a beginner. The report is built to meet you exactly where you are, whether
-                    that's day one or trade one thousand.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What happens after I get my report?</h3>
-                <p>You'll see your results instantly on screen and can download a copy. We'll also point you to the
-                    exact Pipsology lessons that match your gaps.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you sell or share my information?</h3>
-                <p>No. We use your answers only to build your report and occasionally send you useful Pipsology content
-                    — nothing else.</p>
-            </div>
-        </div>
-    </section>
-    <footer> © Babypips · School of Pipsology · This is a content/design mockup</footer>
-    <script>  // simple option selection toggle for the form demo  document.querySelectorAll('.opt-grid').forEach(grid=>{    grid.addEventListener('click', e=>{      const opt = e.target.closest('.opt');      if(!opt) return;      grid.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));      opt.classList.add('selected');    });  });  // auto-show popup once on load (after slight delay), like a real site would  window.addEventListener('load', ()=>{    setTimeout(()=>{      document.getElementById('popupModal').classList.add('open');    }, 600);  });</script>
-</body>
 
+<div class="demo-bar">
+  Demo: this is how the popup appears on page load / exit-intent
+  <button onclick="document.getElementById('popupModal').classList.add('open')">Show popup</button>
+</div>
+
+<!-- ============ POPUP ============ -->
+<div class="modal-overlay" id="popupModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="document.getElementById('popupModal').classList.remove('open')" aria-label="Close">✕</button>
+    <div class="modal-badge">🎯 Free Personalized Report</div>
+    <h2>Find Out Exactly Where You Stand as a Forex Trader</h2>
+    <p class="sub">Answer 5 quick questions and we'll build your free Forex Readiness Report — your skill gaps, the mistakes traders like you tend to make, and your exact next-step learning path from the School of Pipsology.</p>
+    <div class="modal-trust">
+      <span>⏱️ 60 seconds</span>
+      <span>🔰 No experience needed</span>
+      <span>💸 100% free</span>
+    </div>
+    <a href="#quiz" class="btn btn-primary" onclick="document.getElementById('popupModal').classList.remove('open')">Unlock My Forex Readiness →</a>
+    <p class="modal-urgency">Most new traders skip this step — and it shows. Don't be most traders.</p>
+    <div class="modal-dismiss">
+      <a href="#" class="btn-ghost" onclick="document.getElementById('popupModal').classList.remove('open'); return false;">Maybe later, I'll figure it out myself</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LANDING PAGE ============ -->
+
+<header class="hero">
+  <div class="container">
+    <nav class="nav">
+      <div class="logo"><span class="dot"></span> babypips</div>
+      <div class="micro">School of Pipsology</div>
+    </nav>
+
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">🎯 Free · Personalized · Instant</span>
+        <h1>Your Forex Journey, Mapped Out For You</h1>
+        <p class="sub">Take our 60-second readiness quiz and get a free, personalized report that shows you exactly where you stand, what's holding you back, and what to learn next — built from your answers and our School of Pipsology framework.</p>
+        <div class="hero-cta-row">
+          <a href="#quiz" class="btn btn-primary">Get My Free Report</a>
+        </div>
+        <div class="trust-row">
+          <div class="item">✅ Free forever</div>
+          <div class="item">⏱️ ~60 seconds</div>
+          <div class="item">⚡ Instant results</div>
+        </div>
+      </div>
+
+      <div class="report-mock">
+        <div class="rm-head">
+          <strong style="font-family:'Baloo 2',sans-serif;color:var(--forest);">Your Readiness Report</strong>
+          <span class="rm-pill">Preview</span>
+        </div>
+        <div class="rm-score">
+          <span class="num">64%</span>
+          <span class="label">Forex Readiness Score</span>
+        </div>
+        <div class="rm-bar"><div></div></div>
+        <div class="rm-row"><span>Risk management basics</span><span class="tag tag-gap">Gap found</span></div>
+        <div class="rm-row"><span>Reading currency pairs</span><span class="tag tag-ok">Solid</span></div>
+        <div class="rm-row"><span>Position sizing</span><span class="tag tag-gap">Gap found</span></div>
+        <div class="rm-row"><span>Trading psychology</span><span class="tag tag-ok">Solid</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="container what-you-get" style="padding:60px 48px;">
+    <div class="section-head">
+      <span class="eyebrow">What's Inside</span>
+      <h2>This Isn't a Generic Quiz Result</h2>
+      <p>Most "trading quizzes" hand you a label and call it a day. Your report goes further — built from your specific experience level, account size, risk tolerance, time commitment, and goals.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Your Skill Gap Breakdown</h3>
+        <p>See precisely which concepts you've got covered and which ones are quietly working against you — before they cost you real money.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">⚠️</div>
+        <h3>Mistakes Traders Like You Make</h3>
+        <p>Every trader profile has its own blind spots. We'll flag the specific, avoidable mistakes that match your risk tolerance and time commitment.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📚</div>
+        <h3>A Learning Path Built for You</h3>
+        <p>No more guessing which Pipsology lesson to start on. Get a curated path through our curriculum, sequenced for your level and goals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🧭</div>
+        <h3>Your Suggested Next Step</h3>
+        <p>One clear, specific action to take today — not "keep learning," but the actual next move based on where you are right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How It Works</span>
+      <h2>Three Steps to Your Personalized Report</h2>
+      <p>No account needed to see your results — just five honest answers.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Answer 5 quick questions</h3>
+        <p>Experience level, account size, risk comfort, time you can commit, and your trading goals. About 60 seconds.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>We match it to our framework</h3>
+        <p>Your answers are run against the School of Pipsology curriculum and what we know about how traders at your stage actually succeed.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get your report instantly</h3>
+        <p>View it on screen immediately, and download a copy to keep — no waiting, no email delay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ / FORM -->
+<section id="quiz">
+  <div class="container form-section" style="padding:60px 20px;">
+    <div class="form-wrap">
+      <span class="eyebrow" style="margin-bottom:16px; display:inline-flex;">Let's Build Your Report</span>
+      <h2 style="font-size:26px; margin:10px 0 6px;">Be Honest — This Is Just For You</h2>
+      <p style="color:rgba(27,42,34,0.7); font-size:14.5px; margin-bottom:26px;">The more accurate your answers, the sharper your report.</p>
+
+      <div class="progress-track"><div></div></div>
+
+      <div class="q-block">
+        <label class="q-title">1. What's your experience level with forex trading?</label>
+        <div class="opt-grid">
+          <div class="opt">Complete beginner</div>
+          <div class="opt">Some experience</div>
+          <div class="opt">Active trader</div>
+          <div class="opt">Experienced</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">2. What's your starting account size?</label>
+        <div class="opt-grid">
+          <div class="opt">Under $500</div>
+          <div class="opt">$500 – $2,000</div>
+          <div class="opt">$2,000 – $10,000</div>
+          <div class="opt">Haven't funded yet</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">3. How would you describe your risk tolerance?</label>
+        <div class="opt-grid">
+          <div class="opt">Cautious</div>
+          <div class="opt">Balanced</div>
+          <div class="opt">Aggressive</div>
+          <div class="opt">Not sure yet</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">4. How much time can you commit weekly?</label>
+        <div class="opt-grid">
+          <div class="opt">Less than 2 hrs</div>
+          <div class="opt">2 – 5 hrs</div>
+          <div class="opt">5 – 10 hrs</div>
+          <div class="opt">10+ hrs</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">5. What's your main goal with forex trading?</label>
+        <div class="opt-grid">
+          <div class="opt">Learn the basics</div>
+          <div class="opt">Build a strategy</div>
+          <div class="opt">Supplemental income</div>
+          <div class="opt">Trade full-time</div>
+        </div>
+      </div>
+
+      <div class="email-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com">
+        <p class="micro" style="margin-top:6px;">So we can send your report and save your results.</p>
+      </div>
+
+      <button class="btn btn-primary">Get My Instant Report →</button>
+      <div class="form-foot">
+        <p class="micro">🔒 We respect your inbox. No spam — just your report and occasional Pipsology tips.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section>
+  <div class="container credibility">
+    <div>
+      <span class="eyebrow">Why Trust This</span>
+      <h2 style="font-size:32px; margin:16px 0;">Built on the Curriculum Millions Started With</h2>
+      <p style="color:rgba(27,42,34,0.75); font-size:16px;">Babypips has taught beginner traders since 2005 through the School of Pipsology — the same step-by-step framework behind your personalized report. We've helped a huge community go from "what's a pip?" to placing their first confident trade. Your report draws directly from that experience, tailored to you.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">2005</div><div class="lbl">Teaching traders since</div></div>
+      <div class="stat-card"><div class="num">5</div><div class="lbl">Quiz questions, 60 seconds</div></div>
+      <div class="stat-card"><div class="num">100%</div><div class="lbl">Free, no card required</div></div>
+      <div class="stat-card"><div class="num">1:1</div><div class="lbl">Personalized to your answers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta">
+      <h2>Don't Trade Blind. Trade Informed.</h2>
+      <p>Every day you trade without knowing your specific skill gaps is a day you're leaving room for avoidable mistakes. This report takes 60 seconds to generate and could save you weeks of learning things the hard way.</p>
+      <a href="#quiz" class="btn btn-coral">Unlock My Forex Readiness Report</a>
+      <p class="micro">Free. Personalized. Yours in under a minute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Before You Start</h2>
+    </div>
+    <div class="faq-item">
+      <h3>Is this really free?</h3>
+      <p>Yes — 100% free, no credit card, no catch. It's part of how we help new traders get started the right way.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will this work even if I'm a total beginner?</h3>
+      <p>Especially if you're a beginner. The report is built to meet you exactly where you are, whether that's day one or trade one thousand.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens after I get my report?</h3>
+      <p>You'll see your results instantly on screen and can download a copy. We'll also point you to the exact Pipsology lessons that match your gaps.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you sell or share my information?</h3>
+      <p>No. We use your answers only to build your report and occasionally send you useful Pipsology content — nothing else.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © Babypips · School of Pipsology · This is a content/design mockup
+</footer>
+
+<script>
+  // simple option selection toggle for the form demo
+  document.querySelectorAll('.opt-grid').forEach(grid=>{
+    grid.addEventListener('click', e=>{
+      const opt = e.target.closest('.opt');
+      if(!opt) return;
+      grid.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+    });
+  });
+
+  // auto-show popup once on load (after slight delay), like a real site would
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+      document.getElementById('popupModal').classList.add('open');
+    }, 600);
+  });
+</script>
+
+</body>
 </html>

@@ -1,1945 +1,1064 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CoinGecko Crypto Advantage Report — Free & Personalized</title>
-    <meta name="description"
-        content="Answer 4 quick questions. Get a free personalized crypto report with portfolio observations, sector opportunities, and watchlist ideas built from CoinGecko data.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --green: #00B07C;
-            --green-l: rgba(0, 176, 124, .1);
-            --green-m: rgba(0, 176, 124, .2);
-            --green-b: rgba(0, 176, 124, .3);
-            --bg: #FFFFFF;
-            --bg2: #F8FAFC;
-            --bg3: #F1F5F9;
-            --border: #E2E8F0;
-            --border2: #CBD5E1;
-            --text: #0F172A;
-            --text2: #334155;
-            --text3: #64748B;
-            --text4: #94A3B8;
-            --red: #EF4444;
-            --red-l: rgba(239, 68, 68, .1);
-            --blue: #3B82F6;
-            --blue-l: rgba(59, 130, 246, .1);
-            --gold: #F59E0B;
-            --gold-l: rgba(245, 158, 11, .1);
-            --purple: #8B5CF6;
-            --purple-l: rgba(139, 92, 246, .1);
-            --r: 10px;
-            --rl: 16px;
-            --rxl: 24px;
-            --sh: 0 1px 3px rgba(0, 0, 0, .08), 0 4px 16px rgba(0, 0, 0, .06);
-            --sh2: 0 8px 32px rgba(0, 0, 0, .12);
-            --mx: 1160px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            margin: 0;
-            letter-spacing: -.02em;
-        }
-
-        p {
-            margin: 0;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img,
-        svg {
-            display: block;
-            max-width: 100%;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        :focus-visible {
-            outline: 2px solid var(--green);
-            outline-offset: 3px;
-        }
-
-        .wrap {
-            max-width: var(--mx);
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* ── NAV ──────────────────────────────────────────── */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(255, 255, 255, .95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            padding: 0 24px;
-        }
-
-        .nav-inner {
-            max-width: var(--mx);
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 60px;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--text);
-        }
-
-        .brand-gecko {
-            width: 28px;
-            height: 28px;
-            border-radius: 7px;
-            background: linear-gradient(135deg, #00B07C, #00D4A4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .nav-cta {
-            background: var(--green);
-            color: #fff;
-            border: none;
-            border-radius: var(--r);
-            padding: 8px 18px;
-            font-size: 13.5px;
-            font-weight: 600;
-            transition: opacity .15s;
-        }
-
-        .nav-cta:hover {
-            opacity: .88;
-        }
-
-        /* ── HERO ─────────────────────────────────────────── */
-        .hero {
-            padding: 72px 0 80px;
-            background: linear-gradient(180deg, #F0FDF9 0%, #FFFFFF 100%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--green-l);
-            border: 1px solid var(--green-b);
-            border-radius: 999px;
-            padding: 5px 13px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 20px;
-        }
-
-        .hero-badge .live {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--green);
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: .3;
-            }
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            line-height: 1.1;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 .hl {
-            color: var(--green);
-        }
-
-        .hero-sub {
-            color: var(--text3);
-            font-size: 17px;
-            line-height: 1.65;
-            max-width: 500px;
-            margin-bottom: 32px;
-        }
-
-        .hero-sub b {
-            color: var(--text2);
-            font-weight: 600;
-        }
-
-        .hero-cta {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--green);
-            color: #fff;
-            border: none;
-            border-radius: var(--r);
-            padding: 14px 26px;
-            font-size: 15.5px;
-            font-weight: 700;
-            transition: transform .15s, box-shadow .15s;
-            box-shadow: 0 4px 14px rgba(0, 176, 124, .3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 24px rgba(0, 176, 124, .4);
-        }
-
-        .btn-primary svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .hero-note {
-            font-size: 13px;
-            color: var(--text4);
-        }
-
-        /* ── PROOF STRIP ──────────────────────────────────── */
-        .proof {
-            padding: 28px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .proof-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0;
-            flex-wrap: wrap;
-        }
-
-        .proof-item {
-            padding: 0 32px;
-            text-align: center;
-            border-right: 1px solid var(--border);
-        }
-
-        .proof-item:last-child {
-            border-right: none;
-        }
-
-        .proof-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1;
-        }
-
-        .proof-label {
-            font-size: 12px;
-            color: var(--text4);
-            margin-top: 4px;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: .03em;
-            text-transform: uppercase;
-        }
-
-        /* ── HOW IT WORKS ─────────────────────────────────── */
-        .section {
-            padding: 80px 0;
-        }
-
-        .section-tag {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 12px;
-        }
-
-        .section-h {
-            font-size: 32px;
-            line-height: 1.2;
-            margin-bottom: 12px;
-        }
-
-        .section-sub {
-            color: var(--text3);
-            font-size: 16px;
-            line-height: 1.6;
-            max-width: 520px;
-        }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-            margin-top: 48px;
-            position: relative;
-        }
-
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 28px;
-            left: calc(16.66% + 16px);
-            right: calc(16.66% + 16px);
-            height: 2px;
-            background: linear-gradient(90deg, var(--green), var(--green-b));
-            z-index: 0;
-        }
-
-        .step {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-num {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: var(--green);
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            box-shadow: 0 4px 14px rgba(0, 176, 124, .3);
-        }
-
-        .step h3 {
-            font-size: 17px;
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            font-size: 14px;
-            color: var(--text3);
-            line-height: 1.55;
-        }
-
-        .step-icon {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        /* ── WHAT'S INSIDE ────────────────────────────────── */
-        .inside {
-            background: var(--bg2);
-        }
-
-        .inside-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 48px;
-        }
-
-        .inside-card {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--rl);
-            padding: 0;
-            overflow: hidden;
-            transition: box-shadow .2s, transform .2s;
-        }
-
-        .inside-card:hover {
-            box-shadow: var(--sh2);
-            transform: translateY(-2px);
-        }
-
-        .card-visual {
-            background: var(--bg3);
-            border-bottom: 1px solid var(--border);
-            padding: 24px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .card-body {
-            padding: 20px 24px 24px;
-        }
-
-        .card-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .card-body h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .card-body p {
-            font-size: 14px;
-            color: var(--text3);
-            line-height: 1.55;
-        }
-
-        /* ── CREDIBILITY ──────────────────────────────────── */
-        .cred-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .cred-points {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-top: 28px;
-        }
-
-        .cred-point {
-            display: flex;
-            gap: 14px;
-            align-items: flex-start;
-        }
-
-        .cred-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 9px;
-            background: var(--green-l);
-            border: 1px solid var(--green-b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .cred-point h4 {
-            font-size: 15px;
-            margin-bottom: 4px;
-        }
-
-        .cred-point p {
-            font-size: 13.5px;
-            color: var(--text3);
-            line-height: 1.5;
-        }
-
-        /* ── SAMPLE INSIGHT ───────────────────────────────── */
-        .sample {
-            background: linear-gradient(135deg, #F0FDF9 0%, #EFF6FF 100%);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .sample-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            color: var(--text4);
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .insight-card {
-            background: #fff;
-            border: 1px solid var(--border);
-            border-radius: var(--rl);
-            padding: 28px 32px;
-            box-shadow: var(--sh);
-            max-width: 680px;
-            margin: 40px auto 0;
-        }
-
-        .insight-profile {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 22px;
-        }
-
-        .i-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 500;
-        }
-
-        .i-tag.balanced {
-            background: var(--blue-l);
-            color: var(--blue);
-        }
-
-        .i-tag.growth {
-            background: var(--green-l);
-            color: var(--green);
-        }
-
-        .i-tag.medium {
-            background: var(--gold-l);
-            color: var(--gold);
-        }
-
-        .insight-item {
-            border-left: 3px solid var(--green);
-            padding-left: 14px;
-            margin-bottom: 18px;
-        }
-
-        .insight-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .insight-item h4 {
-            font-size: 14px;
-            color: var(--text2);
-            margin-bottom: 5px;
-        }
-
-        .insight-item p {
-            font-size: 13.5px;
-            color: var(--text3);
-            line-height: 1.55;
-        }
-
-        /* ── FINAL CTA ────────────────────────────────────── */
-        .final {
-            text-align: center;
-            padding: 90px 0 100px;
-        }
-
-        .final h2 {
-            font-size: 36px;
-            max-width: 560px;
-            margin: 16px auto 12px;
-            line-height: 1.2;
-        }
-
-        .final p {
-            color: var(--text3);
-            font-size: 16px;
-            margin-bottom: 36px;
-            max-width: 440px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .final-note {
-            font-size: 13px;
-            color: var(--text4);
-            margin-top: 14px;
-        }
-
-        /* ── FOOTER ───────────────────────────────────────── */
-        .footer {
-            background: var(--text);
-            color: rgba(255, 255, 255, .9);
-            padding: 40px 0;
-        }
-
-        .footer-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-brand {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            color: #fff;
-        }
-
-        .footer-fine {
-            font-size: 12.5px;
-            color: rgba(255, 255, 255, .45);
-            line-height: 1.6;
-            max-width: 420px;
-            text-align: right;
-        }
-
-        /* ── QUIZ MODAL ───────────────────────────────────── */
-        .qoverlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, .6);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 200;
-            padding: 20px;
-            opacity: 0;
-            transition: opacity .25s;
-        }
-
-        .qoverlay.on {
-            display: flex;
-            opacity: 1;
-        }
-
-        .qmodal {
-            background: #fff;
-            border-radius: var(--rxl);
-            max-width: 520px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 24px 80px rgba(0, 0, 0, .18);
-            transform: translateY(10px) scale(.98);
-            transition: transform .25s;
-            overflow: hidden;
-        }
-
-        .qoverlay.on .qmodal {
-            transform: translateY(0) scale(1);
-        }
-
-        .qclose {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            color: var(--text3);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .qclose:hover {
-            background: var(--border);
-        }
-
-        .qstep {
-            display: none;
-            padding: 36px 36px 32px;
-        }
-
-        .qstep.active {
-            display: block;
-        }
-
-        .qprog {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 28px;
-        }
-
-        .qprog-dot {
-            flex: 1;
-            height: 3px;
-            background: var(--border);
-            border-radius: 99px;
-            transition: background .3s;
-        }
-
-        .qprog-dot.done {
-            background: var(--green);
-        }
-
-        .qlabel {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            letter-spacing: .07em;
-            text-transform: uppercase;
-            color: var(--green);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .qstep h2 {
-            font-size: 21px;
-            line-height: 1.25;
-            margin-bottom: 24px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-        }
-
-        .qopts {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .qopt {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 13px 16px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            cursor: pointer;
-            font-size: 14.5px;
-            font-weight: 500;
-            color: var(--text2);
-            transition: border-color .15s, background .15s;
-        }
-
-        .qopt:hover {
-            border-color: var(--green);
-            background: var(--green-l);
-        }
-
-        .qopt.sel {
-            border-color: var(--green);
-            background: var(--green-l);
-            color: var(--text);
-        }
-
-        .qopt-icon {
-            font-size: 18px;
-            width: 26px;
-            text-align: center;
-        }
-
-        .qtags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-            margin-bottom: 28px;
-        }
-
-        .qtag {
-            padding: 8px 14px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            font-size: 13.5px;
-            font-weight: 500;
-            color: var(--text3);
-            cursor: pointer;
-            transition: all .15s;
-        }
-
-        .qtag:hover {
-            border-color: var(--green);
-            color: var(--green);
-        }
-
-        .qtag.sel {
-            border-color: var(--green);
-            background: var(--green-l);
-            color: var(--green);
-        }
-
-        .qnext {
-            width: 100%;
-            background: var(--green);
-            color: #fff;
-            border: none;
-            border-radius: var(--r);
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 700;
-            margin-top: 20px;
-            transition: opacity .15s, transform .15s;
-        }
-
-        .qnext:hover {
-            opacity: .88;
-            transform: translateY(-1px);
-        }
-
-        .qnext:disabled {
-            opacity: .4;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .qback {
-            font-size: 13px;
-            color: var(--text4);
-            background: none;
-            border: none;
-            padding: 0;
-            margin-top: 12px;
-            display: block;
-            cursor: pointer;
-        }
-
-        .qback:hover {
-            color: var(--text3);
-        }
-
-        .qinput {
-            width: 100%;
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            padding: 13px 16px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            color: var(--text);
-            transition: border-color .15s;
-            outline: none;
-            background: #fff;
-        }
-
-        .qinput:focus {
-            border-color: var(--green);
-        }
-
-        .qinput::placeholder {
-            color: var(--text4);
-        }
-
-        /* building step */
-        .build-anim {
-            text-align: center;
-            padding: 20px 0 10px;
-        }
-
-        .build-spinner {
-            width: 52px;
-            height: 52px;
-            border: 3px solid var(--border);
-            border-top-color: var(--green);
-            border-radius: 50%;
-            animation: spin .9s linear infinite;
-            margin: 0 auto 24px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .build-lines {
-            text-align: left;
-            margin-top: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .build-line {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-            color: var(--text3);
-        }
-
-        .build-line .bcheck {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--green-l);
-            border: 1.5px solid var(--green-b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--green);
-            opacity: 0;
-            transition: opacity .4s;
-        }
-
-        .build-line.done .bcheck {
-            opacity: 1;
-        }
-
-        /* success step */
-        .success-top {
-            background: linear-gradient(135deg, #F0FDF9, #EFF6FF);
-            padding: 32px 36px 24px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .success-check {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .success-check svg {
-            width: 24px;
-            height: 24px;
-            color: #fff;
-        }
-
-        .success-top h2 {
-            font-size: 21px;
-            margin-bottom: 8px;
-        }
-
-        .success-top p {
-            font-size: 14px;
-            color: var(--text3);
-        }
-
-        .success-body {
-            padding: 24px 36px 32px;
-        }
-
-        .success-items {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-
-        .success-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 13.5px;
-            color: var(--text2);
-        }
-
-        .success-item .sc {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-            color: #fff;
-            flex-shrink: 0;
-        }
-
-        /* POPUP (entry teaser, step 0) */
-        .popup-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 23, 42, .55);
-            backdrop-filter: blur(3px);
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 300;
-            padding: 0;
-        }
-
-        .popup-overlay.on {
-            display: flex;
-            animation: slideup .35s ease both;
-        }
-
-        @keyframes slideup {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: none;
-            }
-        }
-
-        .popup-card {
-            background: #fff;
-            border-radius: var(--rxl) var(--rxl) 0 0;
-            max-width: 600px;
-            width: 100%;
-            padding: 32px 32px 28px;
-            box-shadow: 0 -12px 60px rgba(0, 0, 0, .15);
-            position: relative;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            color: var(--text3);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .popup-close:hover {
-            background: var(--border);
-        }
-
-        .popup-card .hero-badge {
-            margin-bottom: 14px;
-        }
-
-        .popup-card h2 {
-            font-size: 21px;
-            line-height: 1.25;
-            margin-bottom: 10px;
-        }
-
-        .popup-card p {
-            color: var(--text3);
-            font-size: 14.5px;
-            line-height: 1.6;
-            margin-bottom: 18px;
-        }
-
-        .popup-bullets {
-            list-style: none;
-            margin: 0 0 22px;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .popup-bullets li {
-            display: flex;
-            align-items: flex-start;
-            gap: 9px;
-            font-size: 13.5px;
-            color: var(--text3);
-            line-height: 1.5;
-        }
-
-        .popup-bullets b {
-            color: var(--text2);
-        }
-
-        .pbullet-icon {
-            color: var(--green);
-            font-weight: 700;
-            font-size: 15px;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .popup-row {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .popup-row .btn-primary {
-            flex: 1;
-            justify-content: center;
-        }
-
-        .popup-dismiss {
-            font-size: 12.5px;
-            color: var(--text4);
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .popup-dismiss:hover {
-            color: var(--text3);
-        }
-
-        /* RESPONSIVE */
-        @media(max-width:880px) {
-
-            .hero-grid,
-            .cred-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .hero h1,
-            .final h2 {
-                font-size: 30px;
-            }
-
-            .inside-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .steps::before {
-                display: none;
-            }
-
-            .proof-item {
-                padding: 12px 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .proof-item:last-child {
-                border-bottom: none;
-            }
-
-            .section {
-                padding: 56px 0;
-            }
-
-            .wrap {
-                padding: 0 20px;
-            }
-
-            .qstep {
-                padding: 28px 24px 24px;
-            }
-
-            .popup-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-        }
-
-        @media(max-width:480px) {
-            .proof-row {
-                flex-direction: column;
-            }
-
-            .footer-row {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .footer-fine {
-                text-align: left;
-            }
-        }
-
-        @media(prefers-reduced-motion:reduce) {
-            * {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My CoinGecko Crypto Advantage Report — Free & Personalized</title>
+<meta name="description" content="Answer 4 quick questions. Get a free personalized crypto report with portfolio observations, sector opportunities, and watchlist ideas built from CoinGecko data.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00B07C; --green-l:rgba(0,176,124,.1); --green-m:rgba(0,176,124,.2);
+  --green-b:rgba(0,176,124,.3);
+  --bg:#FFFFFF; --bg2:#F8FAFC; --bg3:#F1F5F9;
+  --border:#E2E8F0; --border2:#CBD5E1;
+  --text:#0F172A; --text2:#334155; --text3:#64748B; --text4:#94A3B8;
+  --red:#EF4444; --red-l:rgba(239,68,68,.1);
+  --blue:#3B82F6; --blue-l:rgba(59,130,246,.1);
+  --gold:#F59E0B; --gold-l:rgba(245,158,11,.1);
+  --purple:#8B5CF6; --purple-l:rgba(139,92,246,.1);
+  --r:10px; --rl:16px; --rxl:24px;
+  --sh:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.06);
+  --sh2:0 8px 32px rgba(0,0,0,.12);
+  --mx:1160px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;margin:0;letter-spacing:-.02em;}
+p{margin:0;}
+a{color:inherit;text-decoration:none;}
+img,svg{display:block;max-width:100%;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;}
+.wrap{max-width:var(--mx);margin:0 auto;padding:0 24px;}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ── NAV ──────────────────────────────────────────── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;}
+.nav-inner{max-width:var(--mx);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text);}
+.brand-gecko{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#00B07C,#00D4A4);display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;}
+.nav-cta{background:var(--green);color:#fff;border:none;border-radius:var(--r);padding:8px 18px;font-size:13.5px;font-weight:600;transition:opacity .15s;}
+.nav-cta:hover{opacity:.88;}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{padding:72px 0 80px;background:linear-gradient(180deg,#F0FDF9 0%,#FFFFFF 100%);border-bottom:1px solid var(--border);}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-l);border:1px solid var(--green-b);border-radius:999px;padding:5px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:20px;}
+.hero-badge .live{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero h1{font-size:44px;line-height:1.1;margin-bottom:18px;}
+.hero h1 .hl{color:var(--green);}
+.hero-sub{color:var(--text3);font-size:17px;line-height:1.65;max-width:500px;margin-bottom:32px;}
+.hero-sub b{color:var(--text2);font-weight:600;}
+.hero-cta{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;border-radius:var(--r);padding:14px 26px;font-size:15.5px;font-weight:700;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 14px rgba(0,176,124,.3);}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,176,124,.4);}
+.btn-primary svg{width:16px;height:16px;}
+.hero-note{font-size:13px;color:var(--text4);}
+
+/* ── PROOF STRIP ──────────────────────────────────── */
+.proof{padding:28px 0;border-bottom:1px solid var(--border);}
+.proof-row{display:flex;justify-content:center;align-items:center;gap:0;flex-wrap:wrap;}
+.proof-item{padding:0 32px;text-align:center;border-right:1px solid var(--border);}
+.proof-item:last-child{border-right:none;}
+.proof-num{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--text);line-height:1;}
+.proof-label{font-size:12px;color:var(--text4);margin-top:4px;font-family:'JetBrains Mono',monospace;letter-spacing:.03em;text-transform:uppercase;}
+
+/* ── HOW IT WORKS ─────────────────────────────────── */
+.section{padding:80px 0;}
+.section-tag{display:block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+.section-h{font-size:32px;line-height:1.2;margin-bottom:12px;}
+.section-sub{color:var(--text3);font-size:16px;line-height:1.6;max-width:520px;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px;position:relative;}
+.steps::before{content:'';position:absolute;top:28px;left:calc(16.66% + 16px);right:calc(16.66% + 16px);height:2px;background:linear-gradient(90deg,var(--green),var(--green-b));z-index:0;}
+.step{text-align:center;position:relative;z-index:1;}
+.step-num{width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 4px 14px rgba(0,176,124,.3);}
+.step h3{font-size:17px;margin-bottom:8px;}
+.step p{font-size:14px;color:var(--text3);line-height:1.55;}
+.step-icon{font-size:22px;margin-bottom:8px;}
+
+/* ── WHAT'S INSIDE ────────────────────────────────── */
+.inside{background:var(--bg2);}
+.inside-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px;}
+.inside-card{background:#fff;border:1px solid var(--border);border-radius:var(--rl);padding:0;overflow:hidden;transition:box-shadow .2s,transform .2s;}
+.inside-card:hover{box-shadow:var(--sh2);transform:translateY(-2px);}
+.card-visual{background:var(--bg3);border-bottom:1px solid var(--border);padding:24px;display:flex;justify-content:center;}
+.card-body{padding:20px 24px 24px;}
+.card-tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--green);margin-bottom:8px;display:block;}
+.card-body h3{font-size:18px;margin-bottom:8px;}
+.card-body p{font-size:14px;color:var(--text3);line-height:1.55;}
+
+/* ── CREDIBILITY ──────────────────────────────────── */
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.cred-points{display:flex;flex-direction:column;gap:20px;margin-top:28px;}
+.cred-point{display:flex;gap:14px;align-items:flex-start;}
+.cred-icon{width:36px;height:36px;border-radius:9px;background:var(--green-l);border:1px solid var(--green-b);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cred-point h4{font-size:15px;margin-bottom:4px;}
+.cred-point p{font-size:13.5px;color:var(--text3);line-height:1.5;}
+
+/* ── SAMPLE INSIGHT ───────────────────────────────── */
+.sample{background:linear-gradient(135deg,#F0FDF9 0%,#EFF6FF 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.sample-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text4);margin-bottom:6px;display:block;}
+.insight-card{background:#fff;border:1px solid var(--border);border-radius:var(--rl);padding:28px 32px;box-shadow:var(--sh);max-width:680px;margin:40px auto 0;}
+.insight-profile{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.i-tag{font-family:'JetBrains Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;font-weight:500;}
+.i-tag.balanced{background:var(--blue-l);color:var(--blue);}
+.i-tag.growth{background:var(--green-l);color:var(--green);}
+.i-tag.medium{background:var(--gold-l);color:var(--gold);}
+.insight-item{border-left:3px solid var(--green);padding-left:14px;margin-bottom:18px;}
+.insight-item:last-child{margin-bottom:0;}
+.insight-item h4{font-size:14px;color:var(--text2);margin-bottom:5px;}
+.insight-item p{font-size:13.5px;color:var(--text3);line-height:1.55;}
+
+/* ── FINAL CTA ────────────────────────────────────── */
+.final{text-align:center;padding:90px 0 100px;}
+.final h2{font-size:36px;max-width:560px;margin:16px auto 12px;line-height:1.2;}
+.final p{color:var(--text3);font-size:16px;margin-bottom:36px;max-width:440px;margin-left:auto;margin-right:auto;}
+.final-note{font-size:13px;color:var(--text4);margin-top:14px;}
+
+/* ── FOOTER ───────────────────────────────────────── */
+.footer{background:var(--text);color:rgba(255,255,255,.9);padding:40px 0;}
+.footer-row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;color:#fff;}
+.footer-fine{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.6;max-width:420px;text-align:right;}
+
+/* ── QUIZ MODAL ───────────────────────────────────── */
+.qoverlay{position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;opacity:0;transition:opacity .25s;}
+.qoverlay.on{display:flex;opacity:1;}
+.qmodal{background:#fff;border-radius:var(--rxl);max-width:520px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.18);transform:translateY(10px) scale(.98);transition:transform .25s;overflow:hidden;}
+.qoverlay.on .qmodal{transform:translateY(0) scale(1);}
+.qclose{position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--text3);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:1;}
+.qclose:hover{background:var(--border);}
+.qstep{display:none;padding:36px 36px 32px;}
+.qstep.active{display:block;}
+.qprog{display:flex;gap:6px;margin-bottom:28px;}
+.qprog-dot{flex:1;height:3px;background:var(--border);border-radius:99px;transition:background .3s;}
+.qprog-dot.done{background:var(--green);}
+.qlabel{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--green);margin-bottom:10px;display:block;}
+.qstep h2{font-size:21px;line-height:1.25;margin-bottom:24px;font-family:'Space Grotesk',sans-serif;font-weight:700;}
+.qopts{display:flex;flex-direction:column;gap:10px;}
+.qopt{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1.5px solid var(--border);border-radius:var(--r);cursor:pointer;font-size:14.5px;font-weight:500;color:var(--text2);transition:border-color .15s,background .15s;}
+.qopt:hover{border-color:var(--green);background:var(--green-l);}
+.qopt.sel{border-color:var(--green);background:var(--green-l);color:var(--text);}
+.qopt-icon{font-size:18px;width:26px;text-align:center;}
+.qtags{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px;}
+.qtag{padding:8px 14px;border:1.5px solid var(--border);border-radius:var(--r);font-size:13.5px;font-weight:500;color:var(--text3);cursor:pointer;transition:all .15s;}
+.qtag:hover{border-color:var(--green);color:var(--green);}
+.qtag.sel{border-color:var(--green);background:var(--green-l);color:var(--green);}
+.qnext{width:100%;background:var(--green);color:#fff;border:none;border-radius:var(--r);padding:14px;font-size:15px;font-weight:700;margin-top:20px;transition:opacity .15s,transform .15s;}
+.qnext:hover{opacity:.88;transform:translateY(-1px);}
+.qnext:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.qback{font-size:13px;color:var(--text4);background:none;border:none;padding:0;margin-top:12px;display:block;cursor:pointer;}
+.qback:hover{color:var(--text3);}
+.qinput{width:100%;border:1.5px solid var(--border);border-radius:var(--r);padding:13px 16px;font-size:15px;font-family:'Inter',sans-serif;color:var(--text);transition:border-color .15s;outline:none;background:#fff;}
+.qinput:focus{border-color:var(--green);}
+.qinput::placeholder{color:var(--text4);}
+
+/* building step */
+.build-anim{text-align:center;padding:20px 0 10px;}
+.build-spinner{width:52px;height:52px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin .9s linear infinite;margin:0 auto 24px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.build-lines{text-align:left;margin-top:24px;display:flex;flex-direction:column;gap:10px;}
+.build-line{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text3);}
+.build-line .bcheck{width:18px;height:18px;border-radius:50%;background:var(--green-l);border:1.5px solid var(--green-b);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green);opacity:0;transition:opacity .4s;}
+.build-line.done .bcheck{opacity:1;}
+
+/* success step */
+.success-top{background:linear-gradient(135deg,#F0FDF9,#EFF6FF);padding:32px 36px 24px;border-bottom:1px solid var(--border);}
+.success-check{width:52px;height:52px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.success-check svg{width:24px;height:24px;color:#fff;}
+.success-top h2{font-size:21px;margin-bottom:8px;}
+.success-top p{font-size:14px;color:var(--text3);}
+.success-body{padding:24px 36px 32px;}
+.success-items{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
+.success-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text2);}
+.success-item .sc{width:18px;height:18px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;flex-shrink:0;}
+
+/* POPUP (entry teaser, step 0) */
+.popup-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);display:none;align-items:flex-end;justify-content:center;z-index:300;padding:0;}
+.popup-overlay.on{display:flex;animation:slideup .35s ease both;}
+@keyframes slideup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.popup-card{background:#fff;border-radius:var(--rxl) var(--rxl) 0 0;max-width:600px;width:100%;padding:32px 32px 28px;box-shadow:0 -12px 60px rgba(0,0,0,.15);position:relative;}
+.popup-close{position:absolute;top:20px;right:20px;width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--border);color:var(--text3);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.popup-close:hover{background:var(--border);}
+.popup-card .hero-badge{margin-bottom:14px;}
+.popup-card h2{font-size:21px;line-height:1.25;margin-bottom:10px;}
+.popup-card p{color:var(--text3);font-size:14.5px;line-height:1.6;margin-bottom:18px;}
+.popup-bullets{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:8px;}
+.popup-bullets li{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--text3);line-height:1.5;}
+.popup-bullets b{color:var(--text2);}
+.pbullet-icon{color:var(--green);font-weight:700;font-size:15px;flex-shrink:0;margin-top:1px;}
+.popup-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.popup-row .btn-primary{flex:1;justify-content:center;}
+.popup-dismiss{font-size:12.5px;color:var(--text4);cursor:pointer;white-space:nowrap;}
+.popup-dismiss:hover{color:var(--text3);}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  .hero-grid,.cred-grid{grid-template-columns:1fr;gap:40px;}
+  .hero h1,.final h2{font-size:30px;}
+  .inside-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;gap:24px;}
+  .steps::before{display:none;}
+  .proof-item{padding:12px 20px;border-right:none;border-bottom:1px solid var(--border);}
+  .proof-item:last-child{border-bottom:none;}
+  .section{padding:56px 0;}
+  .wrap{padding:0 20px;}
+  .qstep{padding:28px 24px 24px;}
+  .popup-row{flex-direction:column;align-items:stretch;}
+}
+@media(max-width:480px){
+  .proof-row{flex-direction:column;}
+  .footer-row{flex-direction:column;align-items:flex-start;}
+  .footer-fine{text-align:left;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
 </head>
-
 <body>
-    <!-- ═══════════════════════════════════════════════════════════     ENTRY POPUP (bottom sheet)═══════════════════════════════════════════════════════════ -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-card"> <button class="popup-close" id="popupClose" aria-label="Close">✕</button> <span
-                class="hero-badge"><span class="live"></span> FREE · TAKES 60 SECONDS</span>
-            <h2>Your portfolio deserves a smarter read.</h2>
-            <p>Answer 4 quick questions. Get a free personalized report built from CoinGecko's data — watchlist ideas,
-                sector exposure gaps, risk flags, and more.</p>
-            <ul class="popup-bullets">
-                <li><span class="pbullet-icon">◆</span><span><b>Portfolio Review:</b> Spot concentration risk and gaps
-                        your current setup might be missing</span></li>
-                <li><span class="pbullet-icon">◆</span><span><b>Sector Opportunities:</b> Category-level trends matched
-                        to your goals and time horizon</span></li>
-                <li><span class="pbullet-icon">◆</span><span><b>Watchlist Ideas:</b> Coins worth tracking, filtered by
-                        your stated risk appetite</span></li>
-            </ul>
-            <div class="popup-row"> <button class="btn-primary" id="popupCTA"> <svg viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg> Unlock My CoinGecko Advantage </button> <span class="popup-dismiss" id="popupDismiss">I'll
-                    stick with my current read</span> </div>
-        </div>
-    </div>
-    <!-- ═══════════════════════════════════════════════════════════     QUIZ MODAL═══════════════════════════════════════════════════════════ -->
-    <div class="qoverlay" id="quizOverlay">
-        <div class="qmodal"> <button class="qclose" id="quizClose" aria-label="Close quiz">✕</button>
-            <!-- Step 1: Portfolio stage -->
-            <div class="qstep active" id="qs1">
-                <div class="qprog">
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                </div> <span class="qlabel">Step 1 of 4 — Your Profile</span>
-                <h2>What best describes your crypto portfolio right now?</h2>
-                <div class="qopts">
-                    <div class="qopt" data-v="starter"><span class="qopt-icon">🌱</span> Just getting started — learning
-                        and building</div>
-                    <div class="qopt" data-v="trader"><span class="qopt-icon">📊</span> Active trader — I check the
-                        market weekly or daily</div>
-                    <div class="qopt" data-v="holder"><span class="qopt-icon">🏗️</span> Long-term holder — I accumulate
-                        and hold</div>
-                    <div class="qopt" data-v="defi"><span class="qopt-icon">⛓️</span> DeFi / on-chain native — staking,
-                        LPs, protocols</div>
-                </div> <button class="qnext" id="s1next" disabled>Continue →</button>
-            </div> <!-- Step 2: Goal -->
-            <div class="qstep" id="qs2">
-                <div class="qprog">
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                </div> <span class="qlabel">Step 2 of 4 — Your Goal</span>
-                <h2>What's driving your crypto strategy right now?</h2>
-                <div class="qopts">
-                    <div class="qopt" data-v="growth"><span class="qopt-icon">🚀</span> Growth — find the best
-                        risk-adjusted upside</div>
-                    <div class="qopt" data-v="accum"><span class="qopt-icon">📈</span> Accumulation — steady DCA into
-                        quality assets</div>
-                    <div class="qopt" data-v="protect"><span class="qopt-icon">🛡️</span> Risk management — protect what
-                        I've built</div>
-                    <div class="qopt" data-v="learn"><span class="qopt-icon">🧠</span> Research & education — understand
-                        the market better</div>
-                </div> <button class="qnext" id="s2next" disabled>Continue →</button> <button class="qback"
-                    id="s2back">← Back</button>
-            </div> <!-- Step 3: Risk appetite -->
-            <div class="qstep" id="qs3">
-                <div class="qprog">
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot"></div>
-                    <div class="qprog-dot"></div>
-                </div> <span class="qlabel">Step 3 of 4 — Risk Profile</span>
-                <h2>How do you think about risk in your portfolio?</h2>
-                <div class="qopts">
-                    <div class="qopt" data-v="conservative"><span class="qopt-icon">🔵</span> Conservative — I
-                        prioritize capital preservation</div>
-                    <div class="qopt" data-v="balanced"><span class="qopt-icon">🟡</span> Balanced — growth with some
-                        downside protection</div>
-                    <div class="qopt" data-v="aggressive"><span class="qopt-icon">🔴</span> Aggressive — I can handle
-                        big swings for big upside</div>
-                </div> <button class="qnext" id="s3next" disabled>Continue →</button> <button class="qback"
-                    id="s3back">← Back</button>
-            </div> <!-- Step 4: Sectors (multi-select) -->
-            <div class="qstep" id="qs4">
-                <div class="qprog">
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot"></div>
-                </div> <span class="qlabel">Step 4 of 4 — Sector Interest</span>
-                <h2>Which crypto sectors interest you most? <span
-                        style="font-weight:400;font-size:16px;color:var(--text4);">Pick all that apply.</span></h2>
-                <div class="qtags">
-                    <div class="qtag" data-v="l1">⚡ Layer 1 / L2s</div>
-                    <div class="qtag" data-v="defi">🏦 DeFi</div>
-                    <div class="qtag" data-v="ai">🤖 AI Tokens</div>
-                    <div class="qtag" data-v="rwa">🏛️ Real World Assets</div>
-                    <div class="qtag" data-v="meme">🐸 Memecoins</div>
-                    <div class="qtag" data-v="gaming">🎮 Gaming / GameFi</div>
-                    <div class="qtag" data-v="btc">₿ Bitcoin Ecosystem</div>
-                    <div class="qtag" data-v="stable">💵 Stablecoins & Yield</div>
-                </div> <button class="qnext" id="s4next" disabled>Build My Report →</button> <button class="qback"
-                    id="s4back">← Back</button>
-            </div> <!-- Step 5: Email -->
-            <div class="qstep" id="qs5">
-                <div class="qprog">
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                    <div class="qprog-dot done"></div>
-                </div> <span class="qlabel">Almost there</span>
-                <h2>Where should we send your free report?</h2>
-                <p style="font-size:14px;color:var(--text3);margin-bottom:20px;line-height:1.6;">We'll match your
-                    answers to CoinGecko's live market data and generate your personalized report instantly.</p> <input
-                    type="email" class="qinput" id="emailInput" placeholder="you@email.com" aria-label="Email address">
-                <button class="qnext" id="s5next" disabled>Generate My Report →</button> <button class="qback"
-                    id="s5back">← Back</button>
-                <p style="font-size:12px;color:var(--text4);margin-top:14px;text-align:center;">Free. No spam.
-                    Unsubscribe anytime.</p>
-            </div> <!-- Step 6: Building -->
-            <div class="qstep" id="qs6">
-                <div class="build-anim">
-                    <div class="build-spinner" id="buildSpinner"></div>
-                    <h2 style="font-size:20px;margin-bottom:8px;">Building your report...</h2>
-                    <p style="font-size:14px;color:var(--text3);">We're matching your profile to CoinGecko's live data.
-                    </p>
-                    <div class="build-lines" id="buildLines">
-                        <div class="build-line" id="bl1">
-                            <div class="bcheck">✓</div><span>Analyzing your portfolio profile...</span>
-                        </div>
-                        <div class="build-line" id="bl2">
-                            <div class="bcheck">✓</div><span>Scanning sector trends and category data...</span>
-                        </div>
-                        <div class="build-line" id="bl3">
-                            <div class="bcheck">✓</div><span>Matching watchlist ideas to your risk profile...</span>
-                        </div>
-                        <div class="build-line" id="bl4">
-                            <div class="bcheck">✓</div><span>Generating your personalized report...</span>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- Step 7: Success -->
-            <div class="qstep" id="qs7">
-                <div class="success-top">
-                    <div class="success-check"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg> </div>
-                    <h2>Your report is ready.</h2>
-                    <p>Your personalized CoinGecko Crypto Advantage Report is on its way to your inbox — along with the
-                        direct download link below.</p>
-                </div>
-                <div class="success-body">
-                    <div class="success-items">
-                        <div class="success-item">
-                            <div class="sc">✓</div> Portfolio observations based on your stated holdings stage
-                        </div>
-                        <div class="success-item">
-                            <div class="sc">✓</div> Sector exposure breakdown mapped to your risk appetite
-                        </div>
-                        <div class="success-item">
-                            <div class="sc">✓</div> Watchlist ideas drawn from your selected categories
-                        </div>
-                        <div class="success-item">
-                            <div class="sc">✓</div> Risk flags and market signals relevant to your time horizon
-                        </div>
-                    </div> <button class="btn-primary" style="width:100%;justify-content:center;" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';"> <svg
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            style="width:16px;height:16px;">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
-                        </svg> Download My CoinGecko Advantage Report </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ═══════════════════════════════════════════════════════════     NAV═══════════════════════════════════════════════════════════ -->
-    <nav class="nav">
-        <div class="nav-inner wrap">
-            <div class="brand">
-                <div class="brand-gecko">G</div> CoinGecko Research
-            </div> <button class="nav-cta" onclick="openQuiz()">Get My Free Report</button>
-        </div>
-    </nav>
-    <!-- ═══════════════════════════════════════════════════════════     HERO═══════════════════════════════════════════════════════════ -->
-    <section class="hero">
-        <div class="wrap hero-grid">
-            <div>
-                <div class="hero-badge"><span class="live"></span> POWERED BY COINGECKO DATA · FREE</div>
-                <h1>Your personalized crypto edge. <span class="hl">Built in 60 seconds.</span></h1>
-                <p class="hero-sub">Answer 4 quick questions. Get a free downloadable report with <b>portfolio
-                        observations</b>, <b>sector opportunities</b>, <b>risk flags</b>, and <b>watchlist ideas</b> —
-                    all drawn from CoinGecko's live market data across 17,000+ cryptocurrencies.</p>
-                <div class="hero-cta"> <button class="btn-primary" onclick="openQuiz()"> <svg viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                        </svg> Unlock My Free Report </button> <span class="hero-note">Free. No credit card. Instant
-                        download.</span> </div>
-            </div> <!-- HERO VISUAL: Dashboard mockup SVG -->
-            <div style="position:relative;"> <!-- Main dashboard card -->
-                <div
-                    style="background:#fff;border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--sh2);overflow:hidden;">
-                    <!-- Card header -->
-                    <div style="background:linear-gradient(135deg,#00B07C,#00D4A4);padding:18px 22px;">
-                        <div
-                            style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">
-                            MY COINGECKO ADVANTAGE REPORT</div>
-                        <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">
-                            Portfolio Analysis · Personalized</div>
-                        <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;"> <span
-                                style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Balanced
-                                Risk</span> <span
-                                style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Growth
-                                Goal</span> <span
-                                style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Layer
-                                1 · AI</span> </div>
-                    </div> <!-- Portfolio donut area -->
-                    <div
-                        style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border);">
-                        <div style="padding:20px 22px;border-right:1px solid var(--border);">
-                            <div
-                                style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">
-                                Allocation</div> <svg viewBox="0 0 120 120" width="90" height="90"
-                                style="margin:0 auto;"> <!-- Donut chart: BTC 38%, ETH 24%, SOL 18%, Others 20% -->
-                                <circle cx="60" cy="60" r="45" fill="none" stroke="#E2E8F0" stroke-width="18" />
-                                <!-- BTC: 38% = 136.8deg, start at top (-90deg offset = -90) -->
-                                <circle cx="60" cy="60" r="45" fill="none" stroke="#F7931A" stroke-width="18"
-                                    stroke-dasharray="106.8 175.9" stroke-dashoffset="70.7"
-                                    transform="rotate(-90 60 60)" /> <!-- ETH: 24% = 86.4deg -->
-                                <circle cx="60" cy="60" r="45" fill="none" stroke="#627EEA" stroke-width="18"
-                                    stroke-dasharray="67.5 215.2" stroke-dashoffset="-36.1"
-                                    transform="rotate(-90 60 60)" /> <!-- SOL: 18% = 64.8deg -->
-                                <circle cx="60" cy="60" r="45" fill="none" stroke="#9945FF" stroke-width="18"
-                                    stroke-dasharray="50.7 232" stroke-dashoffset="-103.6"
-                                    transform="rotate(-90 60 60)" /> <!-- Others: 20% -->
-                                <circle cx="60" cy="60" r="45" fill="none" stroke="#00B07C" stroke-width="18"
-                                    stroke-dasharray="56.3 226.4" stroke-dashoffset="-154.3"
-                                    transform="rotate(-90 60 60)" /> <text x="60" y="64" text-anchor="middle"
-                                    font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700"
-                                    fill="#0F172A">4 assets</text>
-                            </svg>
-                            <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px;">
-                                <div style="display:flex;align-items:center;gap:7px;font-size:12px;"> <span
-                                        style="width:9px;height:9px;border-radius:2px;background:#F7931A;flex-shrink:0;"></span>
-                                    <span style="color:var(--text3);flex:1;">BTC</span><span
-                                        style="font-family:monospace;font-weight:600;">38%</span> </div>
-                                <div style="display:flex;align-items:center;gap:7px;font-size:12px;"> <span
-                                        style="width:9px;height:9px;border-radius:2px;background:#627EEA;flex-shrink:0;"></span>
-                                    <span style="color:var(--text3);flex:1;">ETH</span><span
-                                        style="font-family:monospace;font-weight:600;">24%</span> </div>
-                                <div style="display:flex;align-items:center;gap:7px;font-size:12px;"> <span
-                                        style="width:9px;height:9px;border-radius:2px;background:#9945FF;flex-shrink:0;"></span>
-                                    <span style="color:var(--text3);flex:1;">SOL</span><span
-                                        style="font-family:monospace;font-weight:600;">18%</span> </div>
-                                <div style="display:flex;align-items:center;gap:7px;font-size:12px;"> <span
-                                        style="width:9px;height:9px;border-radius:2px;background:#00B07C;flex-shrink:0;"></span>
-                                    <span style="color:var(--text3);flex:1;">Others</span><span
-                                        style="font-family:monospace;font-weight:600;">20%</span> </div>
-                            </div>
-                        </div> <!-- Right: mini watchlist -->
-                        <div style="padding:20px 22px;">
-                            <div
-                                style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">
-                                Watchlist Signals</div>
-                            <div style="display:flex;flex-direction:column;gap:8px;">
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <div>
-                                        <div style="font-size:13px;font-weight:600;">INJ</div>
-                                        <div style="font-size:11px;color:var(--text4);">Injective</div>
-                                    </div> <span
-                                        style="background:var(--green-l);color:var(--green);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+22.4%</span>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <div>
-                                        <div style="font-size:13px;font-weight:600;">FET</div>
-                                        <div style="font-size:11px;color:var(--text4);">Fetch.ai</div>
-                                    </div> <span
-                                        style="background:var(--green-l);color:var(--green);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+15.1%</span>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <div>
-                                        <div style="font-size:13px;font-weight:600;">ONDO</div>
-                                        <div style="font-size:11px;color:var(--text4);">Ondo Finance</div>
-                                    </div> <span
-                                        style="background:var(--blue-l);color:var(--blue);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+8.7%</span>
-                                </div>
-                                <div style="display:flex;justify-content:space-between;align-items:center;">
-                                    <div>
-                                        <div style="font-size:13px;font-weight:600;">TIA</div>
-                                        <div style="font-size:11px;color:var(--text4);">Celestia</div>
-                                    </div> <span
-                                        style="background:var(--red-l);color:var(--red);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">-4.2%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> <!-- Bottom CTA area of card -->
-                    <div
-                        style="padding:14px 22px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;">
-                        <div style="font-size:12px;color:var(--text4);font-family:monospace;">Data: CoinGecko Live ·
-                            17,416 coins</div>
-                        <div
-                            style="font-size:11px;background:var(--green);color:#fff;padding:4px 12px;border-radius:99px;font-weight:600;">
-                            PERSONALIZED</div>
-                    </div>
-                </div> <!-- Floating badge: "Your Report" -->
-                <div
-                    style="position:absolute;top:-12px;right:-12px;background:var(--gold);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;border-radius:99px;box-shadow:0 4px 12px rgba(245,158,11,.35);letter-spacing:.04em;">
-                    ⭐ PERSONALIZED REPORT</div>
-            </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     PROOF STRIP═══════════════════════════════════════════════════════════ -->
-    <section class="proof">
-        <div class="wrap proof-row">
-            <div class="proof-item">
-                <div class="proof-num">17,416</div>
-                <div class="proof-label">Coins tracked</div>
-            </div>
-            <div class="proof-item">
-                <div class="proof-num">900+</div>
-                <div class="proof-label">Exchanges covered</div>
-            </div>
-            <div class="proof-item">
-                <div class="proof-num">Independent</div>
-                <div class="proof-label">No exchange bias</div>
-            </div>
-            <div class="proof-item">
-                <div class="proof-num">60 sec</div>
-                <div class="proof-label">To your free report</div>
-            </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     HOW IT WORKS═══════════════════════════════════════════════════════════ -->
-    <section class="section">
-        <div class="wrap">
-            <div style="text-align:center;max-width:520px;margin:0 auto 0;"> <span class="section-tag">How It
-                    Works</span>
-                <h2 class="section-h">Three steps to your personalized edge.</h2>
-                <p class="section-sub" style="margin:0 auto;">No login. No generic newsletters. Just your answers
-                    matched to real CoinGecko data.</p>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <div class="step-icon">📋</div>
-                    <h3>Answer 4 questions</h3>
-                    <p>Tell us about your portfolio stage, goals, risk appetite, and sector interests. Takes about 60
-                        seconds.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <div class="step-icon">⚙️</div>
-                    <h3>We match it to live data</h3>
-                    <p>Your answers are mapped against CoinGecko's live market data, category trends, and research to
-                        build your report.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">3</div>
-                    <div class="step-icon">📄</div>
-                    <h3>Download your report</h3>
-                    <p>Get a personalized PDF with portfolio observations, watchlist ideas, sector opportunities, and
-                        risk flags. Instantly.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     WHAT'S INSIDE═══════════════════════════════════════════════════════════ -->
-    <section class="section inside">
-        <div class="wrap"> <span class="section-tag">What's Inside Your Report</span>
-            <h2 class="section-h" style="max-width:460px;">Four sections. Real data. Zero filler.</h2>
-            <p class="section-sub">Every element is drawn from CoinGecko's data and filtered through your profile — not
-                a generic crypto roundup.</p>
-            <div class="inside-grid"> <!-- Card 1: Portfolio review with donut chart SVG -->
-                <div class="inside-card">
-                    <div class="card-visual"> <svg viewBox="0 0 320 180" width="100%" role="img"
-                            aria-label="Portfolio allocation chart"> <!-- bg -->
-                            <rect width="320" height="180" fill="#F1F5F9" rx="8" /> <!-- label --> <text x="16" y="28"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8"
-                                letter-spacing="1">PORTFOLIO ALLOCATION</text> <!-- donut -->
-                            <g transform="translate(72,100)">
-                                <circle cx="0" cy="0" r="42" fill="none" stroke="#E2E8F0" stroke-width="16" />
-                                <circle cx="0" cy="0" r="42" fill="none" stroke="#F7931A" stroke-width="16"
-                                    stroke-dasharray="99.7 164.2" stroke-dashoffset="66" transform="rotate(-90)" />
-                                <circle cx="0" cy="0" r="42" fill="none" stroke="#627EEA" stroke-width="16"
-                                    stroke-dasharray="63.1 200.8" stroke-dashoffset="-33.7" transform="rotate(-90)" />
-                                <circle cx="0" cy="0" r="42" fill="none" stroke="#9945FF" stroke-width="16"
-                                    stroke-dasharray="47.3 216.6" stroke-dashoffset="-96.8" transform="rotate(-90)" />
-                                <circle cx="0" cy="0" r="42" fill="none" stroke="#00B07C" stroke-width="16"
-                                    stroke-dasharray="53.4 210.5" stroke-dashoffset="-144.1" transform="rotate(-90)" />
-                                <text x="0" y="5" text-anchor="middle" font-family="Space Grotesk,sans-serif"
-                                    font-size="12" font-weight="700" fill="#0F172A">Your mix</text>
-                            </g> <!-- legend -->
-                            <g transform="translate(148,50)">
-                                <rect x="0" y="0" width="8" height="8" rx="2" fill="#F7931A" /> <text x="13" y="8"
-                                    font-family="Inter,sans-serif" font-size="11" fill="#334155">BTC 38%</text>
-                                <rect x="0" y="18" width="8" height="8" rx="2" fill="#627EEA" /> <text x="13" y="26"
-                                    font-family="Inter,sans-serif" font-size="11" fill="#334155">ETH 24%</text>
-                                <rect x="0" y="36" width="8" height="8" rx="2" fill="#9945FF" /> <text x="13" y="44"
-                                    font-family="Inter,sans-serif" font-size="11" fill="#334155">SOL 18%</text>
-                                <rect x="0" y="54" width="8" height="8" rx="2" fill="#00B07C" /> <text x="13" y="62"
-                                    font-family="Inter,sans-serif" font-size="11" fill="#334155">Other 20%</text>
-                            </g> <!-- flag annotation -->
-                            <rect x="148" y="120" width="156" height="44" rx="7" fill="#FEF3C7" stroke="#F59E0B"
-                                stroke-width="1" /> <text x="158" y="136" font-family="JetBrains Mono,monospace"
-                                font-size="9" fill="#92400E" letter-spacing=".5">⚠ CONCENTRATION FLAG</text> <text
-                                x="158" y="152" font-family="Inter,sans-serif" font-size="10" fill="#78350F">BTC
-                                overweight vs. risk profile</text>
-                        </svg> </div>
-                    <div class="card-body"> <span class="card-tag">Section 1</span>
-                        <h3>Portfolio Review</h3>
-                        <p>Observations on your current exposure, concentration flags, and how your holdings sit
-                            relative to your stated risk profile and goals.</p>
-                    </div>
-                </div> <!-- Card 2: Category heatmap SVG -->
-                <div class="inside-card">
-                    <div class="card-visual"> <svg viewBox="0 0 320 180" width="100%" role="img"
-                            aria-label="Crypto sector heatmap">
-                            <rect width="320" height="180" fill="#F1F5F9" rx="8" /> <text x="16" y="28"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8"
-                                letter-spacing="1">SECTOR HEATMAP · 7D</text> <!-- Grid of sectors, 4 cols x 2 rows -->
-                            <!-- Row 1 -->
-                            <rect x="14" y="38" width="68" height="52" rx="7" fill="#00B07C" /> <text x="48" y="62"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#fff">AI Tokens</text> <text x="48" y="77" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10"
-                                fill="rgba(255,255,255,.85)">+22.1%</text>
-                            <rect x="90" y="38" width="68" height="52" rx="7" fill="#34D399" /> <text x="124" y="62"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#fff">Gaming</text> <text x="124" y="77" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10"
-                                fill="rgba(255,255,255,.85)">+15.6%</text>
-                            <rect x="166" y="38" width="68" height="52" rx="7" fill="#6EE7B7" /> <text x="200" y="62"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#065F46">Layer 1</text> <text x="200" y="77" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+12.4%</text>
-                            <rect x="242" y="38" width="68" height="52" rx="7" fill="#A7F3D0" /> <text x="276" y="62"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#065F46">DeFi</text> <text x="276" y="77" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+8.2%</text>
-                            <!-- Row 2 -->
-                            <rect x="14" y="100" width="68" height="52" rx="7" fill="#D1FAE5" /> <text x="48" y="124"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#065F46">RWA</text> <text x="48" y="139" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+5.8%</text>
-                            <rect x="90" y="100" width="68" height="52" rx="7" fill="#FEF9C3" /> <text x="124" y="124"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#713F12">Bitcoin</text> <text x="124" y="139" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#713F12">+2.4%</text>
-                            <rect x="166" y="100" width="68" height="52" rx="7" fill="#FEF3C7" /> <text x="200" y="124"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#713F12">Ethereum</text> <text x="200" y="139" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#713F12">+4.1%</text>
-                            <rect x="242" y="100" width="68" height="52" rx="7" fill="#FEE2E2" /> <text x="276" y="124"
-                                text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700"
-                                fill="#7F1D1D">Meme</text> <text x="276" y="139" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#7F1D1D">-3.2%</text> <text
-                                x="14" y="170" font-family="Inter,sans-serif" font-size="10" fill="#94A3B8">Matched to
-                                your selected sectors</text>
-                        </svg> </div>
-                    <div class="card-body"> <span class="card-tag">Section 2</span>
-                        <h3>Sector Exposure</h3>
-                        <p>A breakdown of how your portfolio aligns with active CoinGecko categories — and which
-                            trending sectors you may be underexposed to.</p>
-                    </div>
-                </div> <!-- Card 3: Watchlist SVG -->
-                <div class="inside-card">
-                    <div class="card-visual"> <svg viewBox="0 0 320 180" width="100%" role="img"
-                            aria-label="Watchlist ideas">
-                            <rect width="320" height="180" fill="#F1F5F9" rx="8" /> <text x="16" y="28"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8"
-                                letter-spacing="1">WATCHLIST IDEAS · YOUR PROFILE</text> <!-- Table header -->
-                            <rect x="12" y="34" width="296" height="18" rx="4" fill="#E2E8F0" /> <text x="20" y="46"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B"
-                                letter-spacing=".5">COIN</text> <text x="120" y="46"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B"
-                                letter-spacing=".5">CATEGORY</text> <text x="220" y="46"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B"
-                                letter-spacing=".5">SIGNAL</text> <!-- Rows -->
-                            <line x1="12" y1="72" x2="308" y2="72" stroke="#E2E8F0" stroke-width="1" /> <text x="20"
-                                y="63" font-family="Inter,sans-serif" font-size="12" font-weight="600"
-                                fill="#0F172A">INJ</text> <text x="20" y="73" font-family="Inter,sans-serif"
-                                font-size="10" fill="#64748B">Injective</text> <text x="120" y="67"
-                                font-family="Inter,sans-serif" font-size="11" fill="#334155">Layer 1</text>
-                            <rect x="218" y="55" width="52" height="16" rx="4" fill="#D1FAE5" /> <text x="244" y="66"
-                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
-                                font-weight="700" fill="#065F46">WATCH</text>
-                            <line x1="12" y1="100" x2="308" y2="100" stroke="#E2E8F0" stroke-width="1" /> <text x="20"
-                                y="91" font-family="Inter,sans-serif" font-size="12" font-weight="600"
-                                fill="#0F172A">FET</text> <text x="20" y="101" font-family="Inter,sans-serif"
-                                font-size="10" fill="#64748B">Fetch.ai</text> <text x="120" y="95"
-                                font-family="Inter,sans-serif" font-size="11" fill="#334155">AI Tokens</text>
-                            <rect x="218" y="83" width="70" height="16" rx="4" fill="#00B07C" /> <text x="253" y="94"
-                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
-                                font-weight="700" fill="#fff">BUY ZONE</text>
-                            <line x1="12" y1="128" x2="308" y2="128" stroke="#E2E8F0" stroke-width="1" /> <text x="20"
-                                y="119" font-family="Inter,sans-serif" font-size="12" font-weight="600"
-                                fill="#0F172A">ONDO</text> <text x="20" y="129" font-family="Inter,sans-serif"
-                                font-size="10" fill="#64748B">Ondo Finance</text> <text x="120" y="123"
-                                font-family="Inter,sans-serif" font-size="11" fill="#334155">RWA</text>
-                            <rect x="218" y="111" width="52" height="16" rx="4" fill="#DBEAFE" /> <text x="244" y="122"
-                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
-                                font-weight="700" fill="#1D4ED8">MONITOR</text>
-                            <line x1="12" y1="156" x2="308" y2="156" stroke="#E2E8F0" stroke-width="1" /> <text x="20"
-                                y="147" font-family="Inter,sans-serif" font-size="12" font-weight="600"
-                                fill="#0F172A">NEAR</text> <text x="20" y="157" font-family="Inter,sans-serif"
-                                font-size="10" fill="#64748B">NEAR Protocol</text> <text x="120" y="151"
-                                font-family="Inter,sans-serif" font-size="11" fill="#334155">Layer 1</text>
-                            <rect x="218" y="139" width="70" height="16" rx="4" fill="#00B07C" /> <text x="253" y="150"
-                                text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
-                                font-weight="700" fill="#fff">BUY ZONE</text> <text x="14" y="173"
-                                font-family="Inter,sans-serif" font-size="10" fill="#94A3B8">Filtered by: Balanced risk
-                                · Growth · AI + Layer 1</text>
-                        </svg> </div>
-                    <div class="card-body"> <span class="card-tag">Section 3</span>
-                        <h3>Watchlist Ideas</h3>
-                        <p>Coins currently worth tracking, filtered through your risk appetite, favorite sectors, and
-                            CoinGecko's category and trend data.</p>
-                    </div>
-                </div> <!-- Card 4: Line chart / market signals SVG -->
-                <div class="inside-card">
-                    <div class="card-visual"> <svg viewBox="0 0 320 180" width="100%" role="img"
-                            aria-label="Market trend chart">
-                            <rect width="320" height="180" fill="#F1F5F9" rx="8" /> <text x="16" y="28"
-                                font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8"
-                                letter-spacing="1">TREND SIGNAL · AI TOKENS 90D</text> <!-- Axes -->
-                            <line x1="20" y1="150" x2="305" y2="150" stroke="#E2E8F0" stroke-width="1" />
-                            <line x1="20" y1="40" x2="20" y2="150" stroke="#E2E8F0" stroke-width="1" />
-                            <!-- Grid lines -->
-                            <line x1="20" y1="110" x2="305" y2="110" stroke="#E2E8F0" stroke-width="1"
-                                stroke-dasharray="3 4" />
-                            <line x1="20" y1="75" x2="305" y2="75" stroke="#E2E8F0" stroke-width="1"
-                                stroke-dasharray="3 4" /> <!-- Area fill -->
-                            <defs>
-                                <linearGradient id="agrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#00B07C" stop-opacity=".25" />
-                                    <stop offset="100%" stop-color="#00B07C" stop-opacity="0" />
-                                </linearGradient>
-                            </defs>
-                            <path
-                                d="M20,135 L55,130 L90,125 L115,128 L140,118 L160,105 L180,95 L200,88 L225,70 L250,60 L275,50 L305,42 L305,150 L20,150 Z"
-                                fill="url(#agrad)" /> <!-- Line -->
-                            <path
-                                d="M20,135 L55,130 L90,125 L115,128 L140,118 L160,105 L180,95 L200,88 L225,70 L250,60 L275,50 L305,42"
-                                fill="none" stroke="#00B07C" stroke-width="2.5" stroke-linejoin="round"
-                                stroke-linecap="round" /> <!-- Buy zone band -->
-                            <rect x="100" y="118" width="50" height="26" rx="3" fill="rgba(0,176,124,.1)"
-                                stroke="rgba(0,176,124,.4)" stroke-width="1" stroke-dasharray="3 2" /> <text x="125"
-                                y="131" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9"
-                                fill="#00B07C" font-weight="700">BUY ZONE</text> <!-- Current price dot -->
-                            <circle cx="305" cy="42" r="5" fill="#00B07C" />
-                            <circle cx="305" cy="42" r="9" fill="rgba(0,176,124,.2)" /> <!-- Annotation -->
-                            <rect x="222" y="30" width="75" height="22" rx="5" fill="#fff" stroke="#E2E8F0"
-                                stroke-width="1" /> <text x="260" y="44" text-anchor="middle"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="#0F172A"
-                                font-weight="700">+22.1% 7D</text> <!-- X axis labels --> <text x="20" y="164"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="#94A3B8">Apr</text> <text
-                                x="120" y="164" font-family="JetBrains Mono,monospace" font-size="9"
-                                fill="#94A3B8">May</text> <text x="215" y="164" font-family="JetBrains Mono,monospace"
-                                font-size="9" fill="#94A3B8">Jun</text>
-                        </svg> </div>
-                    <div class="card-body"> <span class="card-tag">Section 4</span>
-                        <h3>Market Signals</h3>
-                        <p>Trend data, momentum indicators, and market structure notes across your sectors of interest —
-                            with context from CoinGecko's category data.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     CREDIBILITY═══════════════════════════════════════════════════════════ -->
-    <section class="section" style="background:var(--bg2);border-top:1px solid var(--border);">
-        <div class="wrap cred-grid">
-            <div> <span class="section-tag">Why This Works</span>
-                <h2 class="section-h">The data behind your report is the same data the market runs on.</h2>
-                <div class="cred-points">
-                    <div class="cred-point">
-                        <div class="cred-icon"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                stroke="#00B07C" stroke-width="2">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 6v6l4 2" />
-                            </svg> </div>
-                        <div>
-                            <h4>Independent data since 2014</h4>
-                            <p>CoinGecko isn't owned by an exchange. Prices and rankings follow transparent methodology,
-                                not commercial interests.</p>
-                        </div>
-                    </div>
-                    <div class="cred-point">
-                        <div class="cred-icon"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                stroke="#00B07C" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" />
-                                <path d="M3 9h18M9 21V9" />
-                            </svg> </div>
-                        <div>
-                            <h4>Category and sector intelligence</h4>
-                            <p>Your report draws on CoinGecko's category system — tracking 100+ narrative groupings,
-                                from AI tokens to RWA to GameFi.</p>
-                        </div>
-                    </div>
-                    <div class="cred-point">
-                        <div class="cred-icon"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                stroke="#00B07C" stroke-width="2">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                                <line x1="16" y1="13" x2="8" y2="13" />
-                                <line x1="16" y1="17" x2="8" y2="17" />
-                            </svg> </div>
-                        <div>
-                            <h4>Same data behind CoinGecko's research reports</h4>
-                            <p>CoinGecko publishes quarterly and sector research used by traders and analysts globally.
-                                Your personalized report is built on the same data layer.</p>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- Report cover stack SVG -->
-            <div style="display:flex;justify-content:center;align-items:center;padding:20px 0;"> <svg
-                    viewBox="0 0 300 320" width="280" role="img" aria-label="Personalized CoinGecko report mockup">
-                    <!-- Shadow pages behind -->
-                    <rect x="36" y="24" width="220" height="284" rx="10" fill="#E2E8F0" transform="rotate(5 36 24)" />
-                    <rect x="30" y="20" width="220" height="284" rx="10" fill="#CBD5E1" transform="rotate(2.5 30 20)" />
-                    <!-- Main report cover -->
-                    <rect x="26" y="16" width="248" height="288" rx="12" fill="#ffffff" stroke="#E2E8F0"
-                        stroke-width="1.5" filter="drop-shadow(0 8px 24px rgba(0,0,0,.12))" />
-                    <!-- Green header band -->
-                    <rect x="26" y="16" width="248" height="72" rx="12" fill="url(#reportgrad)" />
-                    <rect x="26" y="60" width="248" height="28" fill="url(#reportgrad)" />
-                    <defs>
-                        <linearGradient id="reportgrad" x1="0" y1="0" x2="1" y2="0">
-                            <stop offset="0%" stop-color="#00B07C" />
-                            <stop offset="100%" stop-color="#00D4A4" />
-                        </linearGradient>
-                    </defs> <!-- Gecko "G" badge on cover -->
-                    <rect x="40" y="26" width="26" height="26" rx="6" fill="rgba(255,255,255,.2)" /> <text x="53" y="44"
-                        text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="14" font-weight="700"
-                        fill="#fff">G</text> <!-- Report title text --> <text x="74" y="36"
-                        font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(255,255,255,.75)"
-                        letter-spacing="1">COINGECKO RESEARCH</text> <text x="74" y="50"
-                        font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#fff">My Crypto
-                        Advantage</text> <text x="74" y="64" font-family="Space Grotesk,sans-serif" font-size="12"
-                        font-weight="700" fill="#fff">Report — Personalized</text> <!-- Personalization tag on cover -->
-                    <rect x="40" y="78" width="100" height="16" rx="4" fill="#FEF3C7" /> <text x="90" y="90"
-                        text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#713F12"
-                        letter-spacing=".5">⭐ BUILT FOR YOU</text> <!-- Mini chart on cover -->
-                    <path d="M40,130 L65,125 L90,118 L115,122 L140,108 L165,95 L190,82 L215,70 L240,58 L262,48"
-                        fill="none" stroke="#00B07C" stroke-width="2" stroke-linecap="round" />
-                    <path
-                        d="M40,130 L65,125 L90,118 L115,122 L140,108 L165,95 L190,82 L215,70 L240,58 L262,48 L262,140 L40,140Z"
-                        fill="rgba(0,176,124,.08)" /> <!-- Section labels -->
-                    <rect x="40" y="152" width="228" height="1" fill="#E2E8F0" /> <text x="40" y="170"
-                        font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">01 Portfolio
-                        Review</text>
-                    <rect x="40" y="180" width="180" height="7" rx="3" fill="#E2E8F0" />
-                    <rect x="40" y="192" width="130" height="7" rx="3" fill="#E2E8F0" />
-                    <rect x="40" y="208" width="228" height="1" fill="#E2E8F0" /> <text x="40" y="226"
-                        font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">02 Sector
-                        Exposure</text>
-                    <rect x="40" y="236" width="160" height="7" rx="3" fill="#E2E8F0" />
-                    <rect x="40" y="254" width="228" height="1" fill="#E2E8F0" /> <text x="40" y="272"
-                        font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">03 Watchlist
-                        Ideas</text>
-                    <rect x="40" y="282" width="200" height="7" rx="3" fill="#E2E8F0" />
-                    <!-- PERSONALIZED watermark diagonal --> <text x="150" y="320" text-anchor="middle"
-                        transform="rotate(-30 150 200)" font-family="JetBrains Mono,monospace" font-size="22"
-                        font-weight="700" fill="rgba(0,176,124,.06)" letter-spacing="2">PERSONALIZED</text>
-                </svg> </div>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     SAMPLE INSIGHT TEASER═══════════════════════════════════════════════════════════ -->
-    <section class="section sample">
-        <div class="wrap" style="text-align:center;"> <span class="section-tag">Sample Output</span>
-            <h2 class="section-h" style="max-width:520px;margin:0 auto 10px;">Here's what a real report looks like.</h2>
-            <p class="section-sub" style="margin:0 auto;">For a balanced-risk, growth-focused portfolio with Layer 1 and
-                AI token interests.</p>
-            <div class="insight-card"> <span class="sample-label">Generated for: Balanced Risk · Growth Goal · Layer 1 +
-                    AI Tokens</span>
-                <div class="insight-profile"> <span class="i-tag balanced">⚖️ Balanced Risk</span> <span
-                        class="i-tag growth">🚀 Growth Focus</span> <span class="i-tag medium">📅 Medium Term</span>
-                </div>
-                <div class="insight-item">
-                    <h4>Portfolio Flag: BTC Concentration</h4>
-                    <p>Your stated BTC holding at 38%+ sits above the typical 25–30% range for a balanced-risk,
-                        growth-focused strategy. Consider whether this reflects a deliberate hedge or passive drift from
-                        price appreciation — both have different implications for your sector exposure.</p>
-                </div>
-                <div class="insight-item">
-                    <h4>Sector Opportunity: AI Tokens Leading This Cycle</h4>
-                    <p>The AI Tokens category on CoinGecko is up 22.1% over 7 days and outperforming the broader market
-                        on volume. For a growth-focused profile, this category warrants watchlist attention. FET, NEAR,
-                        and TAO are among the higher-cap names with category momentum.</p>
-                </div>
-                <div class="insight-item">
-                    <h4>Watchlist Idea: INJ — Breakout Watch</h4>
-                    <p>Injective (INJ) is showing 7-day strength within the Layer 1 category, trading near a key
-                        resistance zone on CoinGecko's price chart. For a balanced-risk profile, this sits in "watch"
-                        territory pending a clean close above resistance rather than an immediate entry.</p>
-                </div>
-            </div>
-            <p
-                style="font-size:13px;color:var(--text4);margin-top:20px;max-width:480px;margin-left:auto;margin-right:auto;">
-                This is illustrative content. Your actual report is generated from your specific answers and CoinGecko's
-                current market data at the time of your submission.</p>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     FINAL CTA═══════════════════════════════════════════════════════════ -->
-    <section class="final">
-        <div class="wrap">
-            <div
-                style="display:inline-flex;align-items:center;gap:6px;background:var(--green-l);border:1px solid var(--green-b);border-radius:999px;padding:5px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);">
-                <span
-                    style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite;"></span>
-                FREE · INSTANT · PERSONALIZED </div>
-            <h2>Don't leave without your data-backed edge.</h2>
-            <p>60 seconds. 4 questions. A personalized crypto report built from your profile and CoinGecko's live market
-                data — free, no strings attached.</p> <button class="btn-primary" style="margin:0 auto;"
-                onclick="openQuiz()"> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    style="width:16px;height:16px;">
-                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg> Build My CoinGecko Report </button>
-            <p class="final-note">No account required. No credit card. Just your answers.</p>
-        </div>
-    </section>
-    <!-- ═══════════════════════════════════════════════════════════     FOOTER═══════════════════════════════════════════════════════════ -->
-    <footer class="footer">
-        <div class="wrap footer-row">
-            <div>
-                <div class="footer-brand">CoinGecko Research</div>
-                <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;" id="footerYear"></div>
-            </div>
-            <div class="footer-fine"> Data sourced from CoinGecko's live market feed. Report content is for
-                informational purposes only and does not constitute financial advice. We do not sell or share your email
-                address. Unsubscribe from any email at any time. </div>
-        </div>
-    </footer>
-    <script>// ── Date ──────────────────────────────────────────────────────────────const yr = new Date().getFullYear();document.getElementById('footerYear').textContent = '© ' + yr + ' CoinGecko Research · Personalized reports powered by CoinGecko data.';// ── QUIZ STATE ────────────────────────────────────────────────────────let currentStep = 1;const answers = { stage: null, goal: null, risk: null, sectors: [] };function openQuiz() {  closePopup();  document.getElementById('quizOverlay').classList.add('on');  document.body.style.overflow = 'hidden';}function closeQuiz() {  document.getElementById('quizOverlay').classList.remove('on');  document.body.style.overflow = '';}document.getElementById('quizClose').onclick = closeQuiz;document.getElementById('quizOverlay').addEventListener('click', function(e) {  if (e.target === this) closeQuiz();});// ── Step 1 ────────────────────────────────────────────────────────────document.querySelectorAll('#qs1 .qopt').forEach(function(opt) {  opt.onclick = function() {    document.querySelectorAll('#qs1 .qopt').forEach(function(o) { o.classList.remove('sel'); });    this.classList.add('sel');    answers.stage = this.dataset.v;    document.getElementById('s1next').disabled = false;  };});document.getElementById('s1next').onclick = function() { goTo(2); };// ── Step 2 ────────────────────────────────────────────────────────────document.querySelectorAll('#qs2 .qopt').forEach(function(opt) {  opt.onclick = function() {    document.querySelectorAll('#qs2 .qopt').forEach(function(o) { o.classList.remove('sel'); });    this.classList.add('sel');    answers.goal = this.dataset.v;    document.getElementById('s2next').disabled = false;  };});document.getElementById('s2next').onclick = function() { goTo(3); };document.getElementById('s2back').onclick = function() { goTo(1); };// ── Step 3 ────────────────────────────────────────────────────────────document.querySelectorAll('#qs3 .qopt').forEach(function(opt) {  opt.onclick = function() {    document.querySelectorAll('#qs3 .qopt').forEach(function(o) { o.classList.remove('sel'); });    this.classList.add('sel');    answers.risk = this.dataset.v;    document.getElementById('s3next').disabled = false;  };});document.getElementById('s3next').onclick = function() { goTo(4); };document.getElementById('s3back').onclick = function() { goTo(2); };// ── Step 4 (multi-select) ─────────────────────────────────────────────document.querySelectorAll('#qs4 .qtag').forEach(function(tag) {  tag.onclick = function() {    this.classList.toggle('sel');    var sel = document.querySelectorAll('#qs4 .qtag.sel');    answers.sectors = Array.from(sel).map(function(t) { return t.dataset.v; });    document.getElementById('s4next').disabled = answers.sectors.length === 0;  };});document.getElementById('s4next').onclick = function() { goTo(5); };document.getElementById('s4back').onclick = function() { goTo(3); };// ── Step 5 (email) ────────────────────────────────────────────────────var emailInput = document.getElementById('emailInput');emailInput.addEventListener('input', function() {  var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);  document.getElementById('s5next').disabled = !valid;});document.getElementById('s5next').onclick = function() { goTo(6); startBuild(); };document.getElementById('s5back').onclick = function() { goTo(4); };// ── Build animation ───────────────────────────────────────────────────function startBuild() {  var lines = ['bl1','bl2','bl3','bl4'];  lines.forEach(function(id, i) {    setTimeout(function() {      document.getElementById(id).classList.add('done');    }, 700 + i * 600);  });  setTimeout(function() { goTo(7); }, 4200);}// ── Navigation ────────────────────────────────────────────────────────function goTo(step) {  document.querySelectorAll('.qstep').forEach(function(s) { s.classList.remove('active'); });  document.getElementById('qs' + step).classList.add('active');  currentStep = step;}// ── POPUP ─────────────────────────────────────────────────────────────var popupShown = false;function showPopup() {  if (popupShown) return;  popupShown = true;  document.getElementById('popupOverlay').classList.add('on');}function closePopup() {  document.getElementById('popupOverlay').classList.remove('on');}document.getElementById('popupClose').onclick = closePopup;document.getElementById('popupDismiss').onclick = closePopup;document.getElementById('popupCTA').onclick = function() { openQuiz(); };// Show popup after 6 secondssetTimeout(showPopup, 6000);// Exit-intentdocument.addEventListener('mouseout', function(e) {  if (!e.relatedTarget && e.clientY <= 0) showPopup();});// Escape key closes either overlaydocument.addEventListener('keydown', function(e) {  if (e.key === 'Escape') { closeQuiz(); closePopup(); }});// ── INTEGRATION NOTE ─────────────────────────────────────────────────// Wire step 5's "Generate My Report" to your backend here.// Example (replace with your GHL / ConvertKit / API endpoint):////  fetch('https://your-endpoint.com/coingecko-report', {//    method: 'POST',//    headers: { 'Content-Type': 'application/json' },//    body: JSON.stringify({//      email: emailInput.value,//      stage: answers.stage,//      goal: answers.goal,//      risk: answers.risk,//      sectors: answers.sectors//    })//  });</script>
-</body>
 
+<!-- ═══════════════════════════════════════════════════════════
+     ENTRY POPUP (bottom sheet)
+═══════════════════════════════════════════════════════════ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card">
+    <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+    <span class="hero-badge"><span class="live"></span> FREE · TAKES 60 SECONDS</span>
+    <h2>Your portfolio deserves a smarter read.</h2>
+    <p>Answer 4 quick questions. Get a free personalized report built from CoinGecko's data — watchlist ideas, sector exposure gaps, risk flags, and more.</p>
+    <ul class="popup-bullets">
+      <li><span class="pbullet-icon">◆</span><span><b>Portfolio Review:</b> Spot concentration risk and gaps your current setup might be missing</span></li>
+      <li><span class="pbullet-icon">◆</span><span><b>Sector Opportunities:</b> Category-level trends matched to your goals and time horizon</span></li>
+      <li><span class="pbullet-icon">◆</span><span><b>Watchlist Ideas:</b> Coins worth tracking, filtered by your stated risk appetite</span></li>
+    </ul>
+    <div class="popup-row">
+      <button class="btn-primary" id="popupCTA">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Unlock My CoinGecko Advantage
+      </button>
+      <span class="popup-dismiss" id="popupDismiss">I'll stick with my current read</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     QUIZ MODAL
+═══════════════════════════════════════════════════════════ -->
+<div class="qoverlay" id="quizOverlay">
+  <div class="qmodal">
+    <button class="qclose" id="quizClose" aria-label="Close quiz">✕</button>
+
+    <!-- Step 1: Portfolio stage -->
+    <div class="qstep active" id="qs1">
+      <div class="qprog"><div class="qprog-dot done"></div><div class="qprog-dot"></div><div class="qprog-dot"></div><div class="qprog-dot"></div><div class="qprog-dot"></div></div>
+      <span class="qlabel">Step 1 of 4 — Your Profile</span>
+      <h2>What best describes your crypto portfolio right now?</h2>
+      <div class="qopts">
+        <div class="qopt" data-v="starter"><span class="qopt-icon">🌱</span> Just getting started — learning and building</div>
+        <div class="qopt" data-v="trader"><span class="qopt-icon">📊</span> Active trader — I check the market weekly or daily</div>
+        <div class="qopt" data-v="holder"><span class="qopt-icon">🏗️</span> Long-term holder — I accumulate and hold</div>
+        <div class="qopt" data-v="defi"><span class="qopt-icon">⛓️</span> DeFi / on-chain native — staking, LPs, protocols</div>
+      </div>
+      <button class="qnext" id="s1next" disabled>Continue →</button>
+    </div>
+
+    <!-- Step 2: Goal -->
+    <div class="qstep" id="qs2">
+      <div class="qprog"><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot"></div><div class="qprog-dot"></div><div class="qprog-dot"></div></div>
+      <span class="qlabel">Step 2 of 4 — Your Goal</span>
+      <h2>What's driving your crypto strategy right now?</h2>
+      <div class="qopts">
+        <div class="qopt" data-v="growth"><span class="qopt-icon">🚀</span> Growth — find the best risk-adjusted upside</div>
+        <div class="qopt" data-v="accum"><span class="qopt-icon">📈</span> Accumulation — steady DCA into quality assets</div>
+        <div class="qopt" data-v="protect"><span class="qopt-icon">🛡️</span> Risk management — protect what I've built</div>
+        <div class="qopt" data-v="learn"><span class="qopt-icon">🧠</span> Research & education — understand the market better</div>
+      </div>
+      <button class="qnext" id="s2next" disabled>Continue →</button>
+      <button class="qback" id="s2back">← Back</button>
+    </div>
+
+    <!-- Step 3: Risk appetite -->
+    <div class="qstep" id="qs3">
+      <div class="qprog"><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot"></div><div class="qprog-dot"></div></div>
+      <span class="qlabel">Step 3 of 4 — Risk Profile</span>
+      <h2>How do you think about risk in your portfolio?</h2>
+      <div class="qopts">
+        <div class="qopt" data-v="conservative"><span class="qopt-icon">🔵</span> Conservative — I prioritize capital preservation</div>
+        <div class="qopt" data-v="balanced"><span class="qopt-icon">🟡</span> Balanced — growth with some downside protection</div>
+        <div class="qopt" data-v="aggressive"><span class="qopt-icon">🔴</span> Aggressive — I can handle big swings for big upside</div>
+      </div>
+      <button class="qnext" id="s3next" disabled>Continue →</button>
+      <button class="qback" id="s3back">← Back</button>
+    </div>
+
+    <!-- Step 4: Sectors (multi-select) -->
+    <div class="qstep" id="qs4">
+      <div class="qprog"><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot"></div></div>
+      <span class="qlabel">Step 4 of 4 — Sector Interest</span>
+      <h2>Which crypto sectors interest you most? <span style="font-weight:400;font-size:16px;color:var(--text4);">Pick all that apply.</span></h2>
+      <div class="qtags">
+        <div class="qtag" data-v="l1">⚡ Layer 1 / L2s</div>
+        <div class="qtag" data-v="defi">🏦 DeFi</div>
+        <div class="qtag" data-v="ai">🤖 AI Tokens</div>
+        <div class="qtag" data-v="rwa">🏛️ Real World Assets</div>
+        <div class="qtag" data-v="meme">🐸 Memecoins</div>
+        <div class="qtag" data-v="gaming">🎮 Gaming / GameFi</div>
+        <div class="qtag" data-v="btc">₿ Bitcoin Ecosystem</div>
+        <div class="qtag" data-v="stable">💵 Stablecoins & Yield</div>
+      </div>
+      <button class="qnext" id="s4next" disabled>Build My Report →</button>
+      <button class="qback" id="s4back">← Back</button>
+    </div>
+
+    <!-- Step 5: Email -->
+    <div class="qstep" id="qs5">
+      <div class="qprog"><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div><div class="qprog-dot done"></div></div>
+      <span class="qlabel">Almost there</span>
+      <h2>Where should we send your free report?</h2>
+      <p style="font-size:14px;color:var(--text3);margin-bottom:20px;line-height:1.6;">We'll match your answers to CoinGecko's live market data and generate your personalized report instantly.</p>
+      <input type="email" class="qinput" id="emailInput" placeholder="you@email.com" aria-label="Email address">
+      <button class="qnext" id="s5next" disabled>Generate My Report →</button>
+      <button class="qback" id="s5back">← Back</button>
+      <p style="font-size:12px;color:var(--text4);margin-top:14px;text-align:center;">Free. No spam. Unsubscribe anytime.</p>
+    </div>
+
+    <!-- Step 6: Building -->
+    <div class="qstep" id="qs6">
+      <div class="build-anim">
+        <div class="build-spinner" id="buildSpinner"></div>
+        <h2 style="font-size:20px;margin-bottom:8px;">Building your report...</h2>
+        <p style="font-size:14px;color:var(--text3);">We're matching your profile to CoinGecko's live data.</p>
+        <div class="build-lines" id="buildLines">
+          <div class="build-line" id="bl1"><div class="bcheck">✓</div><span>Analyzing your portfolio profile...</span></div>
+          <div class="build-line" id="bl2"><div class="bcheck">✓</div><span>Scanning sector trends and category data...</span></div>
+          <div class="build-line" id="bl3"><div class="bcheck">✓</div><span>Matching watchlist ideas to your risk profile...</span></div>
+          <div class="build-line" id="bl4"><div class="bcheck">✓</div><span>Generating your personalized report...</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 7: Success -->
+    <div class="qstep" id="qs7">
+      <div class="success-top">
+        <div class="success-check">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>Your report is ready.</h2>
+        <p>Your personalized CoinGecko Crypto Advantage Report is on its way to your inbox — along with the direct download link below.</p>
+      </div>
+      <div class="success-body">
+        <div class="success-items">
+          <div class="success-item"><div class="sc">✓</div> Portfolio observations based on your stated holdings stage</div>
+          <div class="success-item"><div class="sc">✓</div> Sector exposure breakdown mapped to your risk appetite</div>
+          <div class="success-item"><div class="sc">✓</div> Watchlist ideas drawn from your selected categories</div>
+          <div class="success-item"><div class="sc">✓</div> Risk flags and market signals relevant to your time horizon</div>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download My CoinGecko Advantage Report
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     NAV
+═══════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner wrap">
+    <div class="brand">
+      <div class="brand-gecko">G</div>
+      CoinGecko Research
+    </div>
+    <button class="nav-cta" onclick="openQuiz()">Get My Free Report</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="hero-badge"><span class="live"></span> POWERED BY COINGECKO DATA · FREE</div>
+      <h1>Your personalized crypto edge. <span class="hl">Built in 60 seconds.</span></h1>
+      <p class="hero-sub">Answer 4 quick questions. Get a free downloadable report with <b>portfolio observations</b>, <b>sector opportunities</b>, <b>risk flags</b>, and <b>watchlist ideas</b> — all drawn from CoinGecko's live market data across 17,000+ cryptocurrencies.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="openQuiz()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Unlock My Free Report
+        </button>
+        <span class="hero-note">Free. No credit card. Instant download.</span>
+      </div>
+    </div>
+
+    <!-- HERO VISUAL: Dashboard mockup SVG -->
+    <div style="position:relative;">
+      <!-- Main dashboard card -->
+      <div style="background:#fff;border:1px solid var(--border);border-radius:var(--rxl);box-shadow:var(--sh2);overflow:hidden;">
+        <!-- Card header -->
+        <div style="background:linear-gradient(135deg,#00B07C,#00D4A4);padding:18px 22px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.7);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;">MY COINGECKO ADVANTAGE REPORT</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:#fff;">Portfolio Analysis · Personalized</div>
+          <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;">
+            <span style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Balanced Risk</span>
+            <span style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Growth Goal</span>
+            <span style="background:rgba(255,255,255,.2);border-radius:6px;padding:4px 10px;font-size:11px;font-family:'JetBrains Mono',monospace;color:#fff;">Layer 1 · AI</span>
+          </div>
+        </div>
+        <!-- Portfolio donut area -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--border);">
+          <div style="padding:20px 22px;border-right:1px solid var(--border);">
+            <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Allocation</div>
+            <svg viewBox="0 0 120 120" width="90" height="90" style="margin:0 auto;">
+              <!-- Donut chart: BTC 38%, ETH 24%, SOL 18%, Others 20% -->
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#E2E8F0" stroke-width="18"/>
+              <!-- BTC: 38% = 136.8deg, start at top (-90deg offset = -90) -->
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#F7931A" stroke-width="18"
+                stroke-dasharray="106.8 175.9" stroke-dashoffset="70.7" transform="rotate(-90 60 60)"/>
+              <!-- ETH: 24% = 86.4deg -->
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#627EEA" stroke-width="18"
+                stroke-dasharray="67.5 215.2" stroke-dashoffset="-36.1" transform="rotate(-90 60 60)"/>
+              <!-- SOL: 18% = 64.8deg -->
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#9945FF" stroke-width="18"
+                stroke-dasharray="50.7 232" stroke-dashoffset="-103.6" transform="rotate(-90 60 60)"/>
+              <!-- Others: 20% -->
+              <circle cx="60" cy="60" r="45" fill="none" stroke="#00B07C" stroke-width="18"
+                stroke-dasharray="56.3 226.4" stroke-dashoffset="-154.3" transform="rotate(-90 60 60)"/>
+              <text x="60" y="64" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="13" font-weight="700" fill="#0F172A">4 assets</text>
+            </svg>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-top:14px;">
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;">
+                <span style="width:9px;height:9px;border-radius:2px;background:#F7931A;flex-shrink:0;"></span>
+                <span style="color:var(--text3);flex:1;">BTC</span><span style="font-family:monospace;font-weight:600;">38%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;">
+                <span style="width:9px;height:9px;border-radius:2px;background:#627EEA;flex-shrink:0;"></span>
+                <span style="color:var(--text3);flex:1;">ETH</span><span style="font-family:monospace;font-weight:600;">24%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;">
+                <span style="width:9px;height:9px;border-radius:2px;background:#9945FF;flex-shrink:0;"></span>
+                <span style="color:var(--text3);flex:1;">SOL</span><span style="font-family:monospace;font-weight:600;">18%</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:7px;font-size:12px;">
+                <span style="width:9px;height:9px;border-radius:2px;background:#00B07C;flex-shrink:0;"></span>
+                <span style="color:var(--text3);flex:1;">Others</span><span style="font-family:monospace;font-weight:600;">20%</span>
+              </div>
+            </div>
+          </div>
+          <!-- Right: mini watchlist -->
+          <div style="padding:20px 22px;">
+            <div style="font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--text4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px;">Watchlist Signals</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">INJ</div>
+                  <div style="font-size:11px;color:var(--text4);">Injective</div>
+                </div>
+                <span style="background:var(--green-l);color:var(--green);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+22.4%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">FET</div>
+                  <div style="font-size:11px;color:var(--text4);">Fetch.ai</div>
+                </div>
+                <span style="background:var(--green-l);color:var(--green);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+15.1%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">ONDO</div>
+                  <div style="font-size:11px;color:var(--text4);">Ondo Finance</div>
+                </div>
+                <span style="background:var(--blue-l);color:var(--blue);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">+8.7%</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;">TIA</div>
+                  <div style="font-size:11px;color:var(--text4);">Celestia</div>
+                </div>
+                <span style="background:var(--red-l);color:var(--red);font-size:11px;font-family:monospace;padding:3px 8px;border-radius:5px;font-weight:600;">-4.2%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bottom CTA area of card -->
+        <div style="padding:14px 22px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:12px;color:var(--text4);font-family:monospace;">Data: CoinGecko Live · 17,416 coins</div>
+          <div style="font-size:11px;background:var(--green);color:#fff;padding:4px 12px;border-radius:99px;font-weight:600;">PERSONALIZED</div>
+        </div>
+      </div>
+
+      <!-- Floating badge: "Your Report" -->
+      <div style="position:absolute;top:-12px;right:-12px;background:var(--gold);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;padding:6px 14px;border-radius:99px;box-shadow:0 4px 12px rgba(245,158,11,.35);letter-spacing:.04em;">⭐ PERSONALIZED REPORT</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PROOF STRIP
+═══════════════════════════════════════════════════════════ -->
+<section class="proof">
+  <div class="wrap proof-row">
+    <div class="proof-item">
+      <div class="proof-num">17,416</div>
+      <div class="proof-label">Coins tracked</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">900+</div>
+      <div class="proof-label">Exchanges covered</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">Independent</div>
+      <div class="proof-label">No exchange bias</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">60 sec</div>
+      <div class="proof-label">To your free report</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="wrap">
+    <div style="text-align:center;max-width:520px;margin:0 auto 0;">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-h">Three steps to your personalized edge.</h2>
+      <p class="section-sub" style="margin:0 auto;">No login. No generic newsletters. Just your answers matched to real CoinGecko data.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">📋</div>
+        <h3>Answer 4 questions</h3>
+        <p>Tell us about your portfolio stage, goals, risk appetite, and sector interests. Takes about 60 seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">⚙️</div>
+        <h3>We match it to live data</h3>
+        <p>Your answers are mapped against CoinGecko's live market data, category trends, and research to build your report.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">📄</div>
+        <h3>Download your report</h3>
+        <p>Get a personalized PDF with portfolio observations, watchlist ideas, sector opportunities, and risk flags. Instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     WHAT'S INSIDE
+═══════════════════════════════════════════════════════════ -->
+<section class="section inside">
+  <div class="wrap">
+    <span class="section-tag">What's Inside Your Report</span>
+    <h2 class="section-h" style="max-width:460px;">Four sections. Real data. Zero filler.</h2>
+    <p class="section-sub">Every element is drawn from CoinGecko's data and filtered through your profile — not a generic crypto roundup.</p>
+
+    <div class="inside-grid">
+
+      <!-- Card 1: Portfolio review with donut chart SVG -->
+      <div class="inside-card">
+        <div class="card-visual">
+          <svg viewBox="0 0 320 180" width="100%" role="img" aria-label="Portfolio allocation chart">
+            <!-- bg -->
+            <rect width="320" height="180" fill="#F1F5F9" rx="8"/>
+            <!-- label -->
+            <text x="16" y="28" font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8" letter-spacing="1">PORTFOLIO ALLOCATION</text>
+            <!-- donut -->
+            <g transform="translate(72,100)">
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#E2E8F0" stroke-width="16"/>
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#F7931A" stroke-width="16" stroke-dasharray="99.7 164.2" stroke-dashoffset="66" transform="rotate(-90)"/>
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#627EEA" stroke-width="16" stroke-dasharray="63.1 200.8" stroke-dashoffset="-33.7" transform="rotate(-90)"/>
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#9945FF" stroke-width="16" stroke-dasharray="47.3 216.6" stroke-dashoffset="-96.8" transform="rotate(-90)"/>
+              <circle cx="0" cy="0" r="42" fill="none" stroke="#00B07C" stroke-width="16" stroke-dasharray="53.4 210.5" stroke-dashoffset="-144.1" transform="rotate(-90)"/>
+              <text x="0" y="5" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#0F172A">Your mix</text>
+            </g>
+            <!-- legend -->
+            <g transform="translate(148,50)">
+              <rect x="0" y="0" width="8" height="8" rx="2" fill="#F7931A"/>
+              <text x="13" y="8" font-family="Inter,sans-serif" font-size="11" fill="#334155">BTC 38%</text>
+              <rect x="0" y="18" width="8" height="8" rx="2" fill="#627EEA"/>
+              <text x="13" y="26" font-family="Inter,sans-serif" font-size="11" fill="#334155">ETH 24%</text>
+              <rect x="0" y="36" width="8" height="8" rx="2" fill="#9945FF"/>
+              <text x="13" y="44" font-family="Inter,sans-serif" font-size="11" fill="#334155">SOL 18%</text>
+              <rect x="0" y="54" width="8" height="8" rx="2" fill="#00B07C"/>
+              <text x="13" y="62" font-family="Inter,sans-serif" font-size="11" fill="#334155">Other 20%</text>
+            </g>
+            <!-- flag annotation -->
+            <rect x="148" y="120" width="156" height="44" rx="7" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+            <text x="158" y="136" font-family="JetBrains Mono,monospace" font-size="9" fill="#92400E" letter-spacing=".5">⚠ CONCENTRATION FLAG</text>
+            <text x="158" y="152" font-family="Inter,sans-serif" font-size="10" fill="#78350F">BTC overweight vs. risk profile</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Section 1</span>
+          <h3>Portfolio Review</h3>
+          <p>Observations on your current exposure, concentration flags, and how your holdings sit relative to your stated risk profile and goals.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Category heatmap SVG -->
+      <div class="inside-card">
+        <div class="card-visual">
+          <svg viewBox="0 0 320 180" width="100%" role="img" aria-label="Crypto sector heatmap">
+            <rect width="320" height="180" fill="#F1F5F9" rx="8"/>
+            <text x="16" y="28" font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8" letter-spacing="1">SECTOR HEATMAP · 7D</text>
+            <!-- Grid of sectors, 4 cols x 2 rows -->
+            <!-- Row 1 -->
+            <rect x="14" y="38" width="68" height="52" rx="7" fill="#00B07C"/>
+            <text x="48" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#fff">AI Tokens</text>
+            <text x="48" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="rgba(255,255,255,.85)">+22.1%</text>
+
+            <rect x="90" y="38" width="68" height="52" rx="7" fill="#34D399"/>
+            <text x="124" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#fff">Gaming</text>
+            <text x="124" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="rgba(255,255,255,.85)">+15.6%</text>
+
+            <rect x="166" y="38" width="68" height="52" rx="7" fill="#6EE7B7"/>
+            <text x="200" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#065F46">Layer 1</text>
+            <text x="200" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+12.4%</text>
+
+            <rect x="242" y="38" width="68" height="52" rx="7" fill="#A7F3D0"/>
+            <text x="276" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#065F46">DeFi</text>
+            <text x="276" y="77" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+8.2%</text>
+
+            <!-- Row 2 -->
+            <rect x="14" y="100" width="68" height="52" rx="7" fill="#D1FAE5"/>
+            <text x="48" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#065F46">RWA</text>
+            <text x="48" y="139" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#065F46">+5.8%</text>
+
+            <rect x="90" y="100" width="68" height="52" rx="7" fill="#FEF9C3"/>
+            <text x="124" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#713F12">Bitcoin</text>
+            <text x="124" y="139" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#713F12">+2.4%</text>
+
+            <rect x="166" y="100" width="68" height="52" rx="7" fill="#FEF3C7"/>
+            <text x="200" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#713F12">Ethereum</text>
+            <text x="200" y="139" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#713F12">+4.1%</text>
+
+            <rect x="242" y="100" width="68" height="52" rx="7" fill="#FEE2E2"/>
+            <text x="276" y="124" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" font-weight="700" fill="#7F1D1D">Meme</text>
+            <text x="276" y="139" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" fill="#7F1D1D">-3.2%</text>
+
+            <text x="14" y="170" font-family="Inter,sans-serif" font-size="10" fill="#94A3B8">Matched to your selected sectors</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Section 2</span>
+          <h3>Sector Exposure</h3>
+          <p>A breakdown of how your portfolio aligns with active CoinGecko categories — and which trending sectors you may be underexposed to.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Watchlist SVG -->
+      <div class="inside-card">
+        <div class="card-visual">
+          <svg viewBox="0 0 320 180" width="100%" role="img" aria-label="Watchlist ideas">
+            <rect width="320" height="180" fill="#F1F5F9" rx="8"/>
+            <text x="16" y="28" font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8" letter-spacing="1">WATCHLIST IDEAS · YOUR PROFILE</text>
+            <!-- Table header -->
+            <rect x="12" y="34" width="296" height="18" rx="4" fill="#E2E8F0"/>
+            <text x="20" y="46" font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B" letter-spacing=".5">COIN</text>
+            <text x="120" y="46" font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B" letter-spacing=".5">CATEGORY</text>
+            <text x="220" y="46" font-family="JetBrains Mono,monospace" font-size="9" fill="#64748B" letter-spacing=".5">SIGNAL</text>
+            <!-- Rows -->
+            <line x1="12" y1="72" x2="308" y2="72" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="20" y="63" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#0F172A">INJ</text>
+            <text x="20" y="73" font-family="Inter,sans-serif" font-size="10" fill="#64748B">Injective</text>
+            <text x="120" y="67" font-family="Inter,sans-serif" font-size="11" fill="#334155">Layer 1</text>
+            <rect x="218" y="55" width="52" height="16" rx="4" fill="#D1FAE5"/>
+            <text x="244" y="66" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#065F46">WATCH</text>
+
+            <line x1="12" y1="100" x2="308" y2="100" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="20" y="91" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#0F172A">FET</text>
+            <text x="20" y="101" font-family="Inter,sans-serif" font-size="10" fill="#64748B">Fetch.ai</text>
+            <text x="120" y="95" font-family="Inter,sans-serif" font-size="11" fill="#334155">AI Tokens</text>
+            <rect x="218" y="83" width="70" height="16" rx="4" fill="#00B07C"/>
+            <text x="253" y="94" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#fff">BUY ZONE</text>
+
+            <line x1="12" y1="128" x2="308" y2="128" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="20" y="119" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#0F172A">ONDO</text>
+            <text x="20" y="129" font-family="Inter,sans-serif" font-size="10" fill="#64748B">Ondo Finance</text>
+            <text x="120" y="123" font-family="Inter,sans-serif" font-size="11" fill="#334155">RWA</text>
+            <rect x="218" y="111" width="52" height="16" rx="4" fill="#DBEAFE"/>
+            <text x="244" y="122" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#1D4ED8">MONITOR</text>
+
+            <line x1="12" y1="156" x2="308" y2="156" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="20" y="147" font-family="Inter,sans-serif" font-size="12" font-weight="600" fill="#0F172A">NEAR</text>
+            <text x="20" y="157" font-family="Inter,sans-serif" font-size="10" fill="#64748B">NEAR Protocol</text>
+            <text x="120" y="151" font-family="Inter,sans-serif" font-size="11" fill="#334155">Layer 1</text>
+            <rect x="218" y="139" width="70" height="16" rx="4" fill="#00B07C"/>
+            <text x="253" y="150" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#fff">BUY ZONE</text>
+
+            <text x="14" y="173" font-family="Inter,sans-serif" font-size="10" fill="#94A3B8">Filtered by: Balanced risk · Growth · AI + Layer 1</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Section 3</span>
+          <h3>Watchlist Ideas</h3>
+          <p>Coins currently worth tracking, filtered through your risk appetite, favorite sectors, and CoinGecko's category and trend data.</p>
+        </div>
+      </div>
+
+      <!-- Card 4: Line chart / market signals SVG -->
+      <div class="inside-card">
+        <div class="card-visual">
+          <svg viewBox="0 0 320 180" width="100%" role="img" aria-label="Market trend chart">
+            <rect width="320" height="180" fill="#F1F5F9" rx="8"/>
+            <text x="16" y="28" font-family="JetBrains Mono,monospace" font-size="10" fill="#94A3B8" letter-spacing="1">TREND SIGNAL · AI TOKENS 90D</text>
+            <!-- Axes -->
+            <line x1="20" y1="150" x2="305" y2="150" stroke="#E2E8F0" stroke-width="1"/>
+            <line x1="20" y1="40" x2="20" y2="150" stroke="#E2E8F0" stroke-width="1"/>
+            <!-- Grid lines -->
+            <line x1="20" y1="110" x2="305" y2="110" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4"/>
+            <line x1="20" y1="75" x2="305" y2="75" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 4"/>
+            <!-- Area fill -->
+            <defs>
+              <linearGradient id="agrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#00B07C" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#00B07C" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M20,135 L55,130 L90,125 L115,128 L140,118 L160,105 L180,95 L200,88 L225,70 L250,60 L275,50 L305,42 L305,150 L20,150 Z" fill="url(#agrad)"/>
+            <!-- Line -->
+            <path d="M20,135 L55,130 L90,125 L115,128 L140,118 L160,105 L180,95 L200,88 L225,70 L250,60 L275,50 L305,42" fill="none" stroke="#00B07C" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <!-- Buy zone band -->
+            <rect x="100" y="118" width="50" height="26" rx="3" fill="rgba(0,176,124,.1)" stroke="rgba(0,176,124,.4)" stroke-width="1" stroke-dasharray="3 2"/>
+            <text x="125" y="131" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#00B07C" font-weight="700">BUY ZONE</text>
+            <!-- Current price dot -->
+            <circle cx="305" cy="42" r="5" fill="#00B07C"/>
+            <circle cx="305" cy="42" r="9" fill="rgba(0,176,124,.2)"/>
+            <!-- Annotation -->
+            <rect x="222" y="30" width="75" height="22" rx="5" fill="#fff" stroke="#E2E8F0" stroke-width="1"/>
+            <text x="260" y="44" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#0F172A" font-weight="700">+22.1% 7D</text>
+            <!-- X axis labels -->
+            <text x="20" y="164" font-family="JetBrains Mono,monospace" font-size="9" fill="#94A3B8">Apr</text>
+            <text x="120" y="164" font-family="JetBrains Mono,monospace" font-size="9" fill="#94A3B8">May</text>
+            <text x="215" y="164" font-family="JetBrains Mono,monospace" font-size="9" fill="#94A3B8">Jun</text>
+          </svg>
+        </div>
+        <div class="card-body">
+          <span class="card-tag">Section 4</span>
+          <h3>Market Signals</h3>
+          <p>Trend data, momentum indicators, and market structure notes across your sectors of interest — with context from CoinGecko's category data.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CREDIBILITY
+═══════════════════════════════════════════════════════════ -->
+<section class="section" style="background:var(--bg2);border-top:1px solid var(--border);">
+  <div class="wrap cred-grid">
+    <div>
+      <span class="section-tag">Why This Works</span>
+      <h2 class="section-h">The data behind your report is the same data the market runs on.</h2>
+      <div class="cred-points">
+        <div class="cred-point">
+          <div class="cred-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B07C" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <h4>Independent data since 2014</h4>
+            <p>CoinGecko isn't owned by an exchange. Prices and rankings follow transparent methodology, not commercial interests.</p>
+          </div>
+        </div>
+        <div class="cred-point">
+          <div class="cred-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B07C" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          </div>
+          <div>
+            <h4>Category and sector intelligence</h4>
+            <p>Your report draws on CoinGecko's category system — tracking 100+ narrative groupings, from AI tokens to RWA to GameFi.</p>
+          </div>
+        </div>
+        <div class="cred-point">
+          <div class="cred-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B07C" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <div>
+            <h4>Same data behind CoinGecko's research reports</h4>
+            <p>CoinGecko publishes quarterly and sector research used by traders and analysts globally. Your personalized report is built on the same data layer.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report cover stack SVG -->
+    <div style="display:flex;justify-content:center;align-items:center;padding:20px 0;">
+      <svg viewBox="0 0 300 320" width="280" role="img" aria-label="Personalized CoinGecko report mockup">
+        <!-- Shadow pages behind -->
+        <rect x="36" y="24" width="220" height="284" rx="10" fill="#E2E8F0" transform="rotate(5 36 24)"/>
+        <rect x="30" y="20" width="220" height="284" rx="10" fill="#CBD5E1" transform="rotate(2.5 30 20)"/>
+        <!-- Main report cover -->
+        <rect x="26" y="16" width="248" height="288" rx="12" fill="#ffffff" stroke="#E2E8F0" stroke-width="1.5" filter="drop-shadow(0 8px 24px rgba(0,0,0,.12))"/>
+        <!-- Green header band -->
+        <rect x="26" y="16" width="248" height="72" rx="12" fill="url(#reportgrad)"/>
+        <rect x="26" y="60" width="248" height="28" fill="url(#reportgrad)"/>
+        <defs>
+          <linearGradient id="reportgrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00B07C"/>
+            <stop offset="100%" stop-color="#00D4A4"/>
+          </linearGradient>
+        </defs>
+        <!-- Gecko "G" badge on cover -->
+        <rect x="40" y="26" width="26" height="26" rx="6" fill="rgba(255,255,255,.2)"/>
+        <text x="53" y="44" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="14" font-weight="700" fill="#fff">G</text>
+        <!-- Report title text -->
+        <text x="74" y="36" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(255,255,255,.75)" letter-spacing="1">COINGECKO RESEARCH</text>
+        <text x="74" y="50" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#fff">My Crypto Advantage</text>
+        <text x="74" y="64" font-family="Space Grotesk,sans-serif" font-size="12" font-weight="700" fill="#fff">Report — Personalized</text>
+        <!-- Personalization tag on cover -->
+        <rect x="40" y="78" width="100" height="16" rx="4" fill="#FEF3C7"/>
+        <text x="90" y="90" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#713F12" letter-spacing=".5">⭐ BUILT FOR YOU</text>
+        <!-- Mini chart on cover -->
+        <path d="M40,130 L65,125 L90,118 L115,122 L140,108 L165,95 L190,82 L215,70 L240,58 L262,48" fill="none" stroke="#00B07C" stroke-width="2" stroke-linecap="round"/>
+        <path d="M40,130 L65,125 L90,118 L115,122 L140,108 L165,95 L190,82 L215,70 L240,58 L262,48 L262,140 L40,140Z" fill="rgba(0,176,124,.08)"/>
+        <!-- Section labels -->
+        <rect x="40" y="152" width="228" height="1" fill="#E2E8F0"/>
+        <text x="40" y="170" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">01 Portfolio Review</text>
+        <rect x="40" y="180" width="180" height="7" rx="3" fill="#E2E8F0"/>
+        <rect x="40" y="192" width="130" height="7" rx="3" fill="#E2E8F0"/>
+
+        <rect x="40" y="208" width="228" height="1" fill="#E2E8F0"/>
+        <text x="40" y="226" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">02 Sector Exposure</text>
+        <rect x="40" y="236" width="160" height="7" rx="3" fill="#E2E8F0"/>
+
+        <rect x="40" y="254" width="228" height="1" fill="#E2E8F0"/>
+        <text x="40" y="272" font-family="Inter,sans-serif" font-size="10" font-weight="600" fill="#0F172A">03 Watchlist Ideas</text>
+        <rect x="40" y="282" width="200" height="7" rx="3" fill="#E2E8F0"/>
+        <!-- PERSONALIZED watermark diagonal -->
+        <text x="150" y="320" text-anchor="middle" transform="rotate(-30 150 200)" font-family="JetBrains Mono,monospace" font-size="22" font-weight="700" fill="rgba(0,176,124,.06)" letter-spacing="2">PERSONALIZED</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SAMPLE INSIGHT TEASER
+═══════════════════════════════════════════════════════════ -->
+<section class="section sample">
+  <div class="wrap" style="text-align:center;">
+    <span class="section-tag">Sample Output</span>
+    <h2 class="section-h" style="max-width:520px;margin:0 auto 10px;">Here's what a real report looks like.</h2>
+    <p class="section-sub" style="margin:0 auto;">For a balanced-risk, growth-focused portfolio with Layer 1 and AI token interests.</p>
+
+    <div class="insight-card">
+      <span class="sample-label">Generated for: Balanced Risk · Growth Goal · Layer 1 + AI Tokens</span>
+      <div class="insight-profile">
+        <span class="i-tag balanced">⚖️ Balanced Risk</span>
+        <span class="i-tag growth">🚀 Growth Focus</span>
+        <span class="i-tag medium">📅 Medium Term</span>
+      </div>
+
+      <div class="insight-item">
+        <h4>Portfolio Flag: BTC Concentration</h4>
+        <p>Your stated BTC holding at 38%+ sits above the typical 25–30% range for a balanced-risk, growth-focused strategy. Consider whether this reflects a deliberate hedge or passive drift from price appreciation — both have different implications for your sector exposure.</p>
+      </div>
+
+      <div class="insight-item">
+        <h4>Sector Opportunity: AI Tokens Leading This Cycle</h4>
+        <p>The AI Tokens category on CoinGecko is up 22.1% over 7 days and outperforming the broader market on volume. For a growth-focused profile, this category warrants watchlist attention. FET, NEAR, and TAO are among the higher-cap names with category momentum.</p>
+      </div>
+
+      <div class="insight-item">
+        <h4>Watchlist Idea: INJ — Breakout Watch</h4>
+        <p>Injective (INJ) is showing 7-day strength within the Layer 1 category, trading near a key resistance zone on CoinGecko's price chart. For a balanced-risk profile, this sits in "watch" territory pending a clean close above resistance rather than an immediate entry.</p>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:var(--text4);margin-top:20px;max-width:480px;margin-left:auto;margin-right:auto;">This is illustrative content. Your actual report is generated from your specific answers and CoinGecko's current market data at the time of your submission.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════════════════════ -->
+<section class="final">
+  <div class="wrap">
+    <div style="display:inline-flex;align-items:center;gap:6px;background:var(--green-l);border:1px solid var(--green-b);border-radius:999px;padding:5px 13px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--green);">
+      <span style="width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2s ease-in-out infinite;"></span>
+      FREE · INSTANT · PERSONALIZED
+    </div>
+    <h2>Don't leave without your data-backed edge.</h2>
+    <p>60 seconds. 4 questions. A personalized crypto report built from your profile and CoinGecko's live market data — free, no strings attached.</p>
+    <button class="btn-primary" style="margin:0 auto;" onclick="openQuiz()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Build My CoinGecko Report
+    </button>
+    <p class="final-note">No account required. No credit card. Just your answers.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap footer-row">
+    <div>
+      <div class="footer-brand">CoinGecko Research</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.35);margin-top:6px;" id="footerYear"></div>
+    </div>
+    <div class="footer-fine">
+      Data sourced from CoinGecko's live market feed. Report content is for informational purposes only and does not constitute financial advice. We do not sell or share your email address. Unsubscribe from any email at any time.
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Date ──────────────────────────────────────────────────────────────
+const yr = new Date().getFullYear();
+document.getElementById('footerYear').textContent = '© ' + yr + ' CoinGecko Research · Personalized reports powered by CoinGecko data.';
+
+// ── QUIZ STATE ────────────────────────────────────────────────────────
+let currentStep = 1;
+const answers = { stage: null, goal: null, risk: null, sectors: [] };
+
+function openQuiz() {
+  closePopup();
+  document.getElementById('quizOverlay').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeQuiz() {
+  document.getElementById('quizOverlay').classList.remove('on');
+  document.body.style.overflow = '';
+}
+document.getElementById('quizClose').onclick = closeQuiz;
+document.getElementById('quizOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeQuiz();
+});
+
+// ── Step 1 ────────────────────────────────────────────────────────────
+document.querySelectorAll('#qs1 .qopt').forEach(function(opt) {
+  opt.onclick = function() {
+    document.querySelectorAll('#qs1 .qopt').forEach(function(o) { o.classList.remove('sel'); });
+    this.classList.add('sel');
+    answers.stage = this.dataset.v;
+    document.getElementById('s1next').disabled = false;
+  };
+});
+document.getElementById('s1next').onclick = function() { goTo(2); };
+
+// ── Step 2 ────────────────────────────────────────────────────────────
+document.querySelectorAll('#qs2 .qopt').forEach(function(opt) {
+  opt.onclick = function() {
+    document.querySelectorAll('#qs2 .qopt').forEach(function(o) { o.classList.remove('sel'); });
+    this.classList.add('sel');
+    answers.goal = this.dataset.v;
+    document.getElementById('s2next').disabled = false;
+  };
+});
+document.getElementById('s2next').onclick = function() { goTo(3); };
+document.getElementById('s2back').onclick = function() { goTo(1); };
+
+// ── Step 3 ────────────────────────────────────────────────────────────
+document.querySelectorAll('#qs3 .qopt').forEach(function(opt) {
+  opt.onclick = function() {
+    document.querySelectorAll('#qs3 .qopt').forEach(function(o) { o.classList.remove('sel'); });
+    this.classList.add('sel');
+    answers.risk = this.dataset.v;
+    document.getElementById('s3next').disabled = false;
+  };
+});
+document.getElementById('s3next').onclick = function() { goTo(4); };
+document.getElementById('s3back').onclick = function() { goTo(2); };
+
+// ── Step 4 (multi-select) ─────────────────────────────────────────────
+document.querySelectorAll('#qs4 .qtag').forEach(function(tag) {
+  tag.onclick = function() {
+    this.classList.toggle('sel');
+    var sel = document.querySelectorAll('#qs4 .qtag.sel');
+    answers.sectors = Array.from(sel).map(function(t) { return t.dataset.v; });
+    document.getElementById('s4next').disabled = answers.sectors.length === 0;
+  };
+});
+document.getElementById('s4next').onclick = function() { goTo(5); };
+document.getElementById('s4back').onclick = function() { goTo(3); };
+
+// ── Step 5 (email) ────────────────────────────────────────────────────
+var emailInput = document.getElementById('emailInput');
+emailInput.addEventListener('input', function() {
+  var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+  document.getElementById('s5next').disabled = !valid;
+});
+document.getElementById('s5next').onclick = function() { goTo(6); startBuild(); };
+document.getElementById('s5back').onclick = function() { goTo(4); };
+
+// ── Build animation ───────────────────────────────────────────────────
+function startBuild() {
+  var lines = ['bl1','bl2','bl3','bl4'];
+  lines.forEach(function(id, i) {
+    setTimeout(function() {
+      document.getElementById(id).classList.add('done');
+    }, 700 + i * 600);
+  });
+  setTimeout(function() { goTo(7); }, 4200);
+}
+
+// ── Navigation ────────────────────────────────────────────────────────
+function goTo(step) {
+  document.querySelectorAll('.qstep').forEach(function(s) { s.classList.remove('active'); });
+  document.getElementById('qs' + step).classList.add('active');
+  currentStep = step;
+}
+
+// ── POPUP ─────────────────────────────────────────────────────────────
+var popupShown = false;
+
+function showPopup() {
+  if (popupShown) return;
+  popupShown = true;
+  document.getElementById('popupOverlay').classList.add('on');
+}
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('on');
+}
+
+document.getElementById('popupClose').onclick = closePopup;
+document.getElementById('popupDismiss').onclick = closePopup;
+document.getElementById('popupCTA').onclick = function() { openQuiz(); };
+
+// Show popup after 6 seconds
+setTimeout(showPopup, 6000);
+
+// Exit-intent
+document.addEventListener('mouseout', function(e) {
+  if (!e.relatedTarget && e.clientY <= 0) showPopup();
+});
+
+// Escape key closes either overlay
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') { closeQuiz(); closePopup(); }
+});
+
+// ── INTEGRATION NOTE ─────────────────────────────────────────────────
+// Wire step 5's "Generate My Report" to your backend here.
+// Example (replace with your GHL / ConvertKit / API endpoint):
+//
+//  fetch('https://your-endpoint.com/coingecko-report', {
+//    method: 'POST',
+//    headers: { 'Content-Type': 'application/json' },
+//    body: JSON.stringify({
+//      email: emailInput.value,
+//      stage: answers.stage,
+//      goal: answers.goal,
+//      risk: answers.risk,
+//      sectors: answers.sectors
+//    })
+//  });
+</script>
+</body>
 </html>

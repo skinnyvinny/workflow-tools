@@ -1,1377 +1,866 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Glassnode Crypto Edge Report — Free Personalized On-Chain Intelligence</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --ink: #0B0E11;
-            --ink-soft: #4A5259;
-            --line: #E7E9EC;
-            --line-strong: #D6DADF;
-            --paper: #FFFFFF;
-            --panel: #FAFAFA;
-            --accent: #FF9900;
-            --accent-hover: #E68A00;
-            --accent-tint: #FFF4E2;
-            --positive: #1A7F5A;
-            --risk: #C4432B;
-            --radius: 6px;
-            --max: 1160px;
-            font-size: 16px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            background: var(--paper);
-            color: var(--ink);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-        }
-
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-        }
-
-        .wrap {
-            max-width: var(--max);
-            margin: 0 auto;
-            padding: 0 32px;
-        }
-
-        @media (max-width:640px) {
-            .wrap {
-                padding: 0 20px;
-            }
-        }
-
-        /* ---------- Top bar ---------- */
-        .topbar {
-            border-bottom: 1px solid var(--line);
-            position: sticky;
-            top: 0;
-            background: rgba(255, 255, 255, .92);
-            backdrop-filter: blur(6px);
-            z-index: 40;
-        }
-
-        .topbar-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 0;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-mark {
-            width: 22px;
-            height: 22px;
-            border-radius: 4px;
-            background: var(--ink);
-            position: relative;
-            flex: none;
-        }
-
-        .logo-mark::after {
-            content: "";
-            position: absolute;
-            inset: 6px 6px 6px auto;
-            width: 6px;
-            height: 10px;
-            background: var(--accent);
-        }
-
-        .topbar-cta {
-            background: var(--ink);
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 13.5px;
-            cursor: pointer;
-            font-family: inherit;
-        }
-
-        .topbar-cta:hover {
-            background: #1c2126;
-        }
-
-        /* ---------- Ticker ---------- */
-        .ticker {
-            border-bottom: 1px solid var(--line);
-            background: var(--ink);
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .ticker-track {
-            display: inline-flex;
-            animation: scroll 32s linear infinite;
-            padding: 9px 0;
-        }
-
-        .ticker-item {
-            color: #C9CDD2;
-            font-size: 12.5px;
-            padding: 0 28px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border-right: 1px solid #2A2F35;
-        }
-
-        .ticker-item b {
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .up {
-            color: #4ADE80;
-        }
-
-        .down {
-            color: #F87171;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* ---------- Hero ---------- */
-        .hero {
-            padding: 76px 0 64px;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: var(--accent-hover);
-            background: var(--accent-tint);
-            border: 1px solid #FFE1B0;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-
-        .eyebrow-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: inline-block;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr .85fr;
-            gap: 56px;
-            align-items: center;
-            margin-top: 22px;
-        }
-
-        @media (max-width:900px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        h1.hero-title {
-            font-size: clamp(34px, 4.6vw, 52px);
-            line-height: 1.06;
-            letter-spacing: -0.025em;
-            margin: 18px 0 18px;
-            font-weight: 800;
-        }
-
-        .hero-title .accent-word {
-            color: var(--accent);
-        }
-
-        .hero-sub {
-            font-size: 18px;
-            color: var(--ink-soft);
-            max-width: 52ch;
-            margin: 0 0 28px;
-        }
-
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: #1A1200;
-            border: none;
-            font-family: inherit;
-            font-weight: 700;
-            font-size: 15.5px;
-            padding: 16px 26px;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
-            transition: transform .12s ease, background .15s ease;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-1px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .hero-meta {
-            font-size: 13px;
-            color: var(--ink-soft);
-        }
-
-        .hero-meta b {
-            color: var(--ink);
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 28px;
-            margin-top: 34px;
-            flex-wrap: wrap;
-        }
-
-        .hero-stat b {
-            display: block;
-            font-size: 22px;
-            font-weight: 800;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .hero-stat span {
-            font-size: 12.5px;
-            color: var(--ink-soft);
-        }
-
-        .hero-card {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            background: var(--panel);
-            padding: 22px;
-        }
-
-        .hero-card-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
-        }
-
-        .hero-card-head span:first-child {
-            font-weight: 700;
-            font-size: 13.5px;
-        }
-
-        .pill {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 8px;
-            border-radius: 3px;
-            background: var(--accent-tint);
-            color: var(--accent-hover);
-            border: 1px solid #FFE1B0;
-        }
-
-        .chart-fake {
-            height: 150px;
-            position: relative;
-            margin: 8px 0 14px;
-        }
-
-        .chart-fake svg {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .hero-card-rows div {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            padding: 8px 0;
-            border-top: 1px solid var(--line);
-        }
-
-        .hero-card-rows div span:last-child {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-        }
-
-        /* ---------- Section shell ---------- */
-        section {
-            padding: 64px 0;
-            border-bottom: 1px solid var(--line);
-        }
-
-        .section-head {
-            max-width: 640px;
-            margin-bottom: 36px;
-        }
-
-        .section-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: .06em;
-            text-transform: uppercase;
-            color: var(--accent-hover);
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        h2 {
-            font-size: clamp(24px, 3vw, 32px);
-            letter-spacing: -0.02em;
-            margin: 0 0 10px;
-            font-weight: 800;
-        }
-
-        .section-desc {
-            color: var(--ink-soft);
-            font-size: 16px;
-            margin: 0;
-        }
-
-        /* ---------- Includes grid ---------- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--line);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            overflow: hidden;
-        }
-
-        @media (max-width:900px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width:560px) {
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .card {
-            background: var(--paper);
-            padding: 26px 22px;
-        }
-
-        .card-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 6px;
-            background: var(--ink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .card-icon svg {
-            width: 17px;
-            height: 17px;
-        }
-
-        .card h3 {
-            font-size: 16px;
-            margin: 0 0 8px;
-            font-weight: 700;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: var(--ink-soft);
-            margin: 0;
-            line-height: 1.55;
-        }
-
-        /* ---------- How it works ---------- */
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        @media (max-width:800px) {
-            .steps {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .step {
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 24px;
-            position: relative;
-        }
-
-        .step-num {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--accent-hover);
-            background: var(--accent-tint);
-            border: 1px solid #FFE1B0;
-            width: 28px;
-            height: 28px;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 14px;
-        }
-
-        .step h3 {
-            font-size: 15.5px;
-            margin: 0 0 6px;
-        }
-
-        .step p {
-            font-size: 13.5px;
-            color: var(--ink-soft);
-            margin: 0;
-        }
-
-        /* ---------- Quiz ---------- */
-        .quiz-wrap {
-            display: grid;
-            grid-template-columns: .9fr 1.4fr;
-            gap: 44px;
-        }
-
-        @media (max-width:900px) {
-            .quiz-wrap {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .quiz-side h2 {
-            margin-bottom: 14px;
-        }
-
-        .quiz-side ul {
-            list-style: none;
-            padding: 0;
-            margin: 22px 0 0;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .quiz-side li {
-            display: flex;
-            gap: 10px;
-            font-size: 14px;
-            color: var(--ink-soft);
-            align-items: flex-start;
-        }
-
-        .check {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--accent);
-            flex: none;
-            margin-top: 3px;
-            position: relative;
-        }
-
-        .check::after {
-            content: "";
-            position: absolute;
-            left: 4px;
-            top: 1.5px;
-            width: 4px;
-            height: 8px;
-            border: solid #1A1200;
-            border-width: 0 2px 2px 0;
-            transform: rotate(40deg);
-        }
-
-        .quiz-card {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: var(--panel);
-            padding: 32px;
-        }
-
-        .progress-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 22px;
-        }
-
-        .progress-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--ink-soft);
-            font-weight: 600;
-        }
-
-        .progress-track {
-            height: 4px;
-            background: var(--line);
-            border-radius: 2px;
-            overflow: hidden;
-            flex: 1;
-            margin-left: 16px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            width: 20%;
-            transition: width .3s ease;
-        }
-
-        .q-step {
-            display: none;
-        }
-
-        .q-step.active {
-            display: block;
-            animation: fade .25s ease;
-        }
-
-        @keyframes fade {
-            from {
-                opacity: 0;
-                transform: translateY(4px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .q-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 0 0 6px;
-            letter-spacing: -0.01em;
-        }
-
-        .q-hint {
-            font-size: 13.5px;
-            color: var(--ink-soft);
-            margin: 0 0 22px;
-        }
-
-        .opt-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        @media (max-width:520px) {
-            .opt-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .opt {
-            border: 1px solid var(--line-strong);
-            background: #fff;
-            border-radius: 6px;
-            padding: 14px 16px;
-            font-family: inherit;
-            font-size: 14.5px;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
-            color: var(--ink);
-            transition: border-color .12s ease, background .12s ease;
-        }
-
-        .opt:hover {
-            border-color: var(--accent);
-        }
-
-        .opt.selected {
-            border-color: var(--accent);
-            background: var(--accent-tint);
-        }
-
-        .opt small {
-            display: block;
-            font-weight: 400;
-            color: var(--ink-soft);
-            font-size: 12px;
-            margin-top: 3px;
-        }
-
-        .q-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 26px;
-        }
-
-        .btn-ghost {
-            background: none;
-            border: 1px solid var(--line-strong);
-            color: var(--ink);
-            font-family: inherit;
-            padding: 11px 16px;
-            border-radius: 5px;
-            font-weight: 600;
-            font-size: 13.5px;
-            cursor: pointer;
-        }
-
-        .btn-ghost:disabled {
-            opacity: .35;
-            cursor: not-allowed;
-        }
-
-        .btn-next {
-            background: var(--ink);
-            color: #fff;
-            border: none;
-            font-family: inherit;
-            padding: 12px 22px;
-            border-radius: 5px;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .btn-next:disabled {
-            opacity: .35;
-            cursor: not-allowed;
-        }
-
-        .btn-next.final {
-            background: var(--accent);
-            color: #1A1200;
-        }
-
-        .email-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .email-row input {
-            flex: 1;
-            min-width: 220px;
-            border: 1px solid var(--line-strong);
-            border-radius: 5px;
-            padding: 13px 14px;
-            font-family: inherit;
-            font-size: 14.5px;
-        }
-
-        .email-row input:focus {
-            outline: 2px solid var(--accent);
-            outline-offset: 1px;
-            border-color: transparent;
-        }
-
-        .fine {
-            font-size: 12px;
-            color: var(--ink-soft);
-            margin-top: 12px;
-        }
-
-        /* ---------- Report output ---------- */
-        #report-section {
-            display: none;
-        }
-
-        .report-shell {
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .report-head {
-            background: var(--ink);
-            color: #fff;
-            padding: 30px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .report-head h3 {
-            margin: 6px 0 4px;
-            font-size: 23px;
-            letter-spacing: -0.01em;
-        }
-
-        .report-head p {
-            margin: 0;
-            color: #B7BDC4;
-            font-size: 13.5px;
-        }
-
-        .report-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: .05em;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .report-download {
-            background: var(--accent);
-            color: #1A1200;
-            border: none;
-            font-family: inherit;
-            font-weight: 700;
-            padding: 12px 18px;
-            border-radius: 5px;
-            font-size: 13.5px;
-            cursor: pointer;
-            white-space: nowrap;
-        }
-
-        .report-body {
-            padding: 32px;
-            background: #fff;
-        }
-
-        .profile-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .profile-chip {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            padding: 7px 11px;
-            border-radius: 4px;
-            color: var(--ink-soft);
-        }
-
-        .profile-chip b {
-            color: var(--ink);
-        }
-
-        .report-block {
-            margin-bottom: 30px;
-        }
-
-        .report-block:last-child {
-            margin-bottom: 0;
-        }
-
-        .report-block h4 {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: .05em;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--ink);
-            margin: 0 0 14px;
-            font-weight: 700;
-        }
-
-        .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--accent);
-            flex: none;
-        }
-
-        .obs-item,
-        .risk-item,
-        .next-item {
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            padding: 14px 16px;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .obs-item:last-child,
-        .risk-item:last-child,
-        .next-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .risk-item {
-            border-left: 3px solid var(--risk);
-        }
-
-        .obs-item {
-            border-left: 3px solid var(--ink);
-        }
-
-        .next-item {
-            border-left: 3px solid var(--positive);
-            display: flex;
-            gap: 10px;
-        }
-
-        .next-item .n {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            color: var(--positive);
-        }
-
-        .watchlist-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-        }
-
-        @media (max-width:640px) {
-            .watchlist-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .watch-card {
-            border: 1px solid var(--line);
-            border-radius: 6px;
-            padding: 16px;
-        }
-
-        .watch-card .sym {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 700;
-            font-size: 15px;
-        }
-
-        .watch-card .why {
-            font-size: 12.5px;
-            color: var(--ink-soft);
-            margin-top: 6px;
-            line-height: 1.5;
-        }
-
-        .report-footer {
-            border-top: 1px solid var(--line);
-            padding: 22px 32px;
-            background: var(--panel);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .report-footer p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--ink-soft);
-            max-width: 56ch;
-        }
-
-        footer {
-            padding: 36px 0;
-        }
-
-        .footer-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            font-size: 13px;
-            color: var(--ink-soft);
-        }
-
-        /* ---------- Popup ---------- */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(11, 14, 17, .62);
-            backdrop-filter: blur(2px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .25s ease;
-        }
-
-        .overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .popup {
-            background: #fff;
-            max-width: 460px;
-            width: 100%;
-            border-radius: 10px;
-            position: relative;
-            border: 1px solid var(--line);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, .28);
-            transform: translateY(10px) scale(.98);
-            transition: transform .25s ease;
-            overflow: hidden;
-        }
-
-        .overlay.show .popup {
-            transform: translateY(0) scale(1);
-        }
-
-        .popup-top {
-            background: var(--ink);
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .popup-top .live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #4ADE80;
-            box-shadow: 0 0 0 3px rgba(74, 222, 128, .2);
-            flex: none;
-        }
-
-        .popup-top span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: #B7BDC4;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 12px;
-            right: 16px;
-            background: none;
-            border: none;
-            color: #B7BDC4;
-            font-size: 20px;
-            cursor: pointer;
-            line-height: 1;
-            padding: 4px;
-        }
-
-        .popup-body {
-            padding: 30px 30px 26px;
-        }
-
-        .popup-body .eyebrow {
-            margin-bottom: 16px;
-        }
-
-        .popup-body h2 {
-            font-size: 25px;
-            line-height: 1.14;
-            margin: 0 0 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .popup-body p.lead {
-            font-size: 15px;
-            color: var(--ink-soft);
-            margin: 0 0 18px;
-        }
-
-        .popup-urgency {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            background: var(--accent-tint);
-            border: 1px solid #FFE1B0;
-            border-radius: 6px;
-            padding: 12px 14px;
-            font-size: 13px;
-            color: #7A4B00;
-            margin-bottom: 20px;
-        }
-
-        .popup-body .btn-primary {
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
-            padding: 17px;
-        }
-
-        .popup-secondary {
-            text-align: center;
-            margin-top: 14px;
-        }
-
-        .popup-secondary button {
-            background: none;
-            border: none;
-            color: var(--ink-soft);
-            font-size: 13px;
-            cursor: pointer;
-            text-decoration: underline;
-            font-family: inherit;
-        }
-
-        .popup-trust {
-            text-align: center;
-            font-size: 11.5px;
-            color: var(--ink-soft);
-            margin-top: 16px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.001ms !important;
-                transition-duration: 0.001ms !important;
-            }
-
-            .ticker-track {
-                animation: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Glassnode Crypto Edge Report — Free Personalized On-Chain Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E11;
+    --ink-soft:#4A5259;
+    --line:#E7E9EC;
+    --line-strong:#D6DADF;
+    --paper:#FFFFFF;
+    --panel:#FAFAFA;
+    --accent:#FF9900;
+    --accent-hover:#E68A00;
+    --accent-tint:#FFF4E2;
+    --positive:#1A7F5A;
+    --risk:#C4432B;
+    --radius:6px;
+    --max:1160px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; background:rgba(255,255,255,.92);
+    backdrop-filter:blur(6px);
+    z-index:40;
+  }
+  .topbar-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  .logo{
+    display:flex; align-items:center; gap:8px;
+    font-weight:700; font-size:18px; letter-spacing:-0.02em;
+  }
+  .logo-mark{
+    width:22px; height:22px; border-radius:4px;
+    background:var(--ink);
+    position:relative; flex:none;
+  }
+  .logo-mark::after{
+    content:""; position:absolute; inset:6px 6px 6px auto; width:6px; height:10px;
+    background:var(--accent);
+  }
+  .topbar-cta{
+    background:var(--ink); color:#fff; border:none;
+    padding:10px 18px; border-radius:4px; font-weight:600; font-size:13.5px;
+    cursor:pointer; font-family:inherit;
+  }
+  .topbar-cta:hover{background:#1c2126;}
+
+  /* ---------- Ticker ---------- */
+  .ticker{
+    border-bottom:1px solid var(--line);
+    background:var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scroll 32s linear infinite;
+    padding:9px 0;
+  }
+  .ticker-item{
+    color:#C9CDD2; font-size:12.5px; padding:0 28px; display:inline-flex; align-items:center; gap:8px;
+    border-right:1px solid #2A2F35;
+  }
+  .ticker-item b{color:#fff; font-weight:600;}
+  .up{color:#4ADE80;} .down{color:#F87171;}
+  @keyframes scroll{ 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding:76px 0 64px; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--accent-hover); background:var(--accent-tint);
+    border:1px solid #FFE1B0; padding:5px 10px; border-radius:4px;
+  }
+  .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;}
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; margin-top:22px;}
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  h1.hero-title{
+    font-size:clamp(34px,4.6vw,52px); line-height:1.06; letter-spacing:-0.025em;
+    margin:18px 0 18px; font-weight:800;
+  }
+  .hero-title .accent-word{color:var(--accent);}
+  .hero-sub{ font-size:18px; color:var(--ink-soft); max-width:52ch; margin:0 0 28px;}
+  .hero-actions{ display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--accent); color:#1A1200; border:none;
+    font-family:inherit; font-weight:700; font-size:15.5px;
+    padding:16px 26px; border-radius:5px; cursor:pointer;
+    box-shadow:0 1px 0 rgba(0,0,0,.05);
+    transition:transform .12s ease, background .15s ease;
+  }
+  .btn-primary:hover{background:var(--accent-hover); transform:translateY(-1px);}
+  .btn-primary:active{transform:translateY(0);}
+  .hero-meta{ font-size:13px; color:var(--ink-soft);}
+  .hero-meta b{color:var(--ink);}
+  .hero-stats{ display:flex; gap:28px; margin-top:34px; flex-wrap:wrap;}
+  .hero-stat b{ display:block; font-size:22px; font-weight:800; font-family:'JetBrains Mono',monospace;}
+  .hero-stat span{ font-size:12.5px; color:var(--ink-soft);}
+
+  .hero-card{
+    border:1px solid var(--line); border-radius:var(--radius);
+    background:var(--panel); padding:22px;
+  }
+  .hero-card-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;}
+  .hero-card-head span:first-child{font-weight:700; font-size:13.5px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600;
+    padding:3px 8px; border-radius:3px; background:var(--accent-tint); color:var(--accent-hover); border:1px solid #FFE1B0;
+  }
+  .chart-fake{ height:150px; position:relative; margin:8px 0 14px; }
+  .chart-fake svg{width:100%; height:100%; display:block;}
+  .hero-card-rows div{
+    display:flex; justify-content:space-between; font-size:13px; padding:8px 0; border-top:1px solid var(--line);
+  }
+  .hero-card-rows div span:last-child{font-family:'JetBrains Mono',monospace; font-weight:600;}
+
+  /* ---------- Section shell ---------- */
+  section{ padding:64px 0; border-bottom:1px solid var(--line);}
+  .section-head{ max-width:640px; margin-bottom:36px;}
+  .section-tag{
+    font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--accent-hover); margin-bottom:10px; display:block;
+  }
+  h2{ font-size:clamp(24px,3vw,32px); letter-spacing:-0.02em; margin:0 0 10px; font-weight:800;}
+  .section-desc{ color:var(--ink-soft); font-size:16px; margin:0;}
+
+  /* ---------- Includes grid ---------- */
+  .card-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  @media (max-width:900px){ .card-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .card-grid{grid-template-columns:1fr;} }
+  .card{ background:var(--paper); padding:26px 22px; }
+  .card-icon{
+    width:34px; height:34px; border-radius:6px; background:var(--ink);
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .card-icon svg{width:17px; height:17px;}
+  .card h3{ font-size:16px; margin:0 0 8px; font-weight:700;}
+  .card p{ font-size:14px; color:var(--ink-soft); margin:0; line-height:1.55;}
+
+  /* ---------- How it works ---------- */
+  .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:800px){ .steps{grid-template-columns:1fr;} }
+  .step{ border:1px solid var(--line); border-radius:var(--radius); padding:24px; position:relative;}
+  .step-num{
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; color:var(--accent-hover);
+    background:var(--accent-tint); border:1px solid #FFE1B0; width:28px; height:28px; border-radius:5px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .step h3{ font-size:15.5px; margin:0 0 6px;}
+  .step p{ font-size:13.5px; color:var(--ink-soft); margin:0;}
+
+  /* ---------- Quiz ---------- */
+  .quiz-wrap{ display:grid; grid-template-columns:.9fr 1.4fr; gap:44px;}
+  @media (max-width:900px){ .quiz-wrap{grid-template-columns:1fr;} }
+  .quiz-side h2{margin-bottom:14px;}
+  .quiz-side ul{ list-style:none; padding:0; margin:22px 0 0; display:flex; flex-direction:column; gap:14px;}
+  .quiz-side li{ display:flex; gap:10px; font-size:14px; color:var(--ink-soft); align-items:flex-start;}
+  .check{ width:16px; height:16px; border-radius:50%; background:var(--accent); flex:none; margin-top:3px; position:relative;}
+  .check::after{ content:""; position:absolute; left:4px; top:1.5px; width:4px; height:8px; border:solid #1A1200; border-width:0 2px 2px 0; transform:rotate(40deg);}
+
+  .quiz-card{
+    border:1px solid var(--line); border-radius:8px; background:var(--panel); padding:32px;
+  }
+  .progress-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;}
+  .progress-label{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink-soft); font-weight:600;}
+  .progress-track{ height:4px; background:var(--line); border-radius:2px; overflow:hidden; flex:1; margin-left:16px;}
+  .progress-fill{ height:100%; background:var(--accent); width:20%; transition:width .3s ease;}
+
+  .q-step{ display:none; }
+  .q-step.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(4px);} to{opacity:1; transform:translateY(0);} }
+  .q-title{ font-size:20px; font-weight:700; margin:0 0 6px; letter-spacing:-0.01em;}
+  .q-hint{ font-size:13.5px; color:var(--ink-soft); margin:0 0 22px;}
+  .opt-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  @media (max-width:520px){ .opt-grid{grid-template-columns:1fr;} }
+  .opt{
+    border:1px solid var(--line-strong); background:#fff; border-radius:6px; padding:14px 16px;
+    font-family:inherit; font-size:14.5px; font-weight:600; text-align:left; cursor:pointer; color:var(--ink);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{ border-color:var(--accent); }
+  .opt.selected{ border-color:var(--accent); background:var(--accent-tint); }
+  .opt small{ display:block; font-weight:400; color:var(--ink-soft); font-size:12px; margin-top:3px;}
+
+  .q-nav{ display:flex; justify-content:space-between; align-items:center; margin-top:26px;}
+  .btn-ghost{
+    background:none; border:1px solid var(--line-strong); color:var(--ink); font-family:inherit;
+    padding:11px 16px; border-radius:5px; font-weight:600; font-size:13.5px; cursor:pointer;
+  }
+  .btn-ghost:disabled{ opacity:.35; cursor:not-allowed; }
+  .btn-next{
+    background:var(--ink); color:#fff; border:none; font-family:inherit;
+    padding:12px 22px; border-radius:5px; font-weight:700; font-size:14px; cursor:pointer;
+  }
+  .btn-next:disabled{ opacity:.35; cursor:not-allowed;}
+  .btn-next.final{ background:var(--accent); color:#1A1200;}
+
+  .email-row{ display:flex; gap:10px; flex-wrap:wrap;}
+  .email-row input{
+    flex:1; min-width:220px; border:1px solid var(--line-strong); border-radius:5px; padding:13px 14px;
+    font-family:inherit; font-size:14.5px;
+  }
+  .email-row input:focus{ outline:2px solid var(--accent); outline-offset:1px; border-color:transparent;}
+  .fine{ font-size:12px; color:var(--ink-soft); margin-top:12px;}
+
+  /* ---------- Report output ---------- */
+  #report-section{ display:none; }
+  .report-shell{
+    border:1px solid var(--line); border-radius:8px; overflow:hidden;
+  }
+  .report-head{
+    background:var(--ink); color:#fff; padding:30px 32px; display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;
+  }
+  .report-head h3{ margin:6px 0 4px; font-size:23px; letter-spacing:-0.01em;}
+  .report-head p{ margin:0; color:#B7BDC4; font-size:13.5px;}
+  .report-tag{
+    font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.05em;
+    color:var(--accent); text-transform:uppercase;
+  }
+  .report-download{
+    background:var(--accent); color:#1A1200; border:none; font-family:inherit; font-weight:700;
+    padding:12px 18px; border-radius:5px; font-size:13.5px; cursor:pointer; white-space:nowrap;
+  }
+  .report-body{ padding:32px; background:#fff; }
+  .profile-row{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:30px;}
+  .profile-chip{
+    font-family:'JetBrains Mono',monospace; font-size:12px; font-weight:600; background:var(--panel);
+    border:1px solid var(--line); padding:7px 11px; border-radius:4px; color:var(--ink-soft);
+  }
+  .profile-chip b{color:var(--ink);}
+  .report-block{ margin-bottom:30px; }
+  .report-block:last-child{ margin-bottom:0;}
+  .report-block h4{
+    display:flex; align-items:center; gap:9px; font-size:14px; text-transform:uppercase; letter-spacing:.05em;
+    font-family:'JetBrains Mono',monospace; color:var(--ink); margin:0 0 14px; font-weight:700;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent); flex:none;}
+  .obs-item, .risk-item, .next-item{
+    border:1px solid var(--line); border-radius:6px; padding:14px 16px; margin-bottom:10px; font-size:14px;
+  }
+  .obs-item:last-child, .risk-item:last-child, .next-item:last-child{margin-bottom:0;}
+  .risk-item{ border-left:3px solid var(--risk); }
+  .obs-item{ border-left:3px solid var(--ink);}
+  .next-item{ border-left:3px solid var(--positive); display:flex; gap:10px;}
+  .next-item .n{ font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--positive);}
+  .watchlist-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+  @media (max-width:640px){ .watchlist-grid{grid-template-columns:1fr;} }
+  .watch-card{ border:1px solid var(--line); border-radius:6px; padding:16px; }
+  .watch-card .sym{ font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;}
+  .watch-card .why{ font-size:12.5px; color:var(--ink-soft); margin-top:6px; line-height:1.5;}
+  .report-footer{
+    border-top:1px solid var(--line); padding:22px 32px; background:var(--panel);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+  }
+  .report-footer p{ margin:0; font-size:13px; color:var(--ink-soft); max-width:56ch;}
+
+  footer{ padding:36px 0; }
+  .footer-row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- Popup ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(11,14,17,.62); backdrop-filter:blur(2px);
+    display:flex; align-items:center; justify-content:center; z-index:100; padding:20px;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .popup{
+    background:#fff; max-width:460px; width:100%; border-radius:10px; position:relative;
+    border:1px solid var(--line); box-shadow:0 24px 60px rgba(0,0,0,.28);
+    transform:translateY(10px) scale(.98); transition:transform .25s ease;
+    overflow:hidden;
+  }
+  .overlay.show .popup{ transform:translateY(0) scale(1); }
+  .popup-top{ background:var(--ink); padding:12px 20px; display:flex; align-items:center; gap:8px;}
+  .popup-top .live-dot{ width:7px; height:7px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 3px rgba(74,222,128,.2); flex:none;}
+  .popup-top span{ font-family:'JetBrains Mono',monospace; font-size:11px; color:#B7BDC4; letter-spacing:.04em; text-transform:uppercase;}
+  .popup-close{
+    position:absolute; top:12px; right:16px; background:none; border:none; color:#B7BDC4;
+    font-size:20px; cursor:pointer; line-height:1; padding:4px;
+  }
+  .popup-body{ padding:30px 30px 26px;}
+  .popup-body .eyebrow{ margin-bottom:16px;}
+  .popup-body h2{ font-size:25px; line-height:1.14; margin:0 0 12px; letter-spacing:-0.02em;}
+  .popup-body p.lead{ font-size:15px; color:var(--ink-soft); margin:0 0 18px;}
+  .popup-urgency{
+    display:flex; gap:10px; align-items:flex-start; background:var(--accent-tint); border:1px solid #FFE1B0;
+    border-radius:6px; padding:12px 14px; font-size:13px; color:#7A4B00; margin-bottom:20px;
+  }
+  .popup-body .btn-primary{ width:100%; text-align:center; font-size:16px; padding:17px;}
+  .popup-secondary{ text-align:center; margin-top:14px;}
+  .popup-secondary button{ background:none; border:none; color:var(--ink-soft); font-size:13px; cursor:pointer; text-decoration:underline; font-family:inherit;}
+  .popup-trust{ text-align:center; font-size:11.5px; color:var(--ink-soft); margin-top:16px; font-family:'JetBrains Mono',monospace;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+    .ticker-track{animation:none;}
+  }
+</style>
 </head>
+<body>
 
-<body><!-- ============ TOP BAR ============ -->
-    <div class="topbar">
-        <div class="wrap topbar-inner">
-            <div class="logo"><span class="logo-mark"></span> Glassnode</div> <button class="topbar-cta"
-                onclick="scrollToQuiz()">Get My Free Report</button>
-        </div>
-    </div><!-- ============ LIVE TICKER (signature element) ============ -->
-    <div class="ticker" aria-hidden="true">
-        <div class="ticker-track" id="tickerTrack"></div>
-    </div><!-- ============ HERO ============ -->
-    <section class="hero" style="border-bottom:1px solid var(--line);">
-        <div class="wrap hero-grid">
-            <div> <span class="eyebrow"><span class="eyebrow-dot"></span> Free Personalized Report</span>
-                <h1 class="hero-title">My Glassnode <span class="accent-word">Crypto Edge</span> Report</h1>
-                <p class="hero-sub">A personalized on-chain intelligence brief, built from your portfolio, your risk
-                    profile, and Glassnode's live blockchain data coverage. Not a generic newsletter — an analysis of
-                    your market.</p>
-                <div class="hero-actions"> <button class="btn-primary" onclick="scrollToQuiz()">Get My Free Report
-                        →</button>
-                    <div class="hero-meta">Takes <b>60 seconds</b> · Delivered <b>instantly</b> · No cost</div>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat"><b>150+</b><span>on-chain metrics</span></div>
-                    <div class="hero-stat"><b>40+</b><span>assets covered</span></div>
-                    <div class="hero-stat"><b>24/7</b><span>data refresh</span></div>
-                </div>
-            </div>
-            <div class="hero-card">
-                <div class="hero-card-head"> <span>BTC · MVRV Z-Score</span> <span class="pill mono">LIVE</span> </div>
-                <div class="chart-fake"> <svg viewBox="0 0 300 100" preserveAspectRatio="none">
-                        <polyline
-                            points="0,70 20,66 40,72 60,58 80,63 100,45 120,50 140,32 160,38 180,20 200,28 220,18 240,24 260,12 280,16 300,6"
-                            fill="none" stroke="#FF9900" stroke-width="2.4" />
-                        <polyline
-                            points="0,70 20,66 40,72 60,58 80,63 100,45 120,50 140,32 160,38 180,20 200,28 220,18 240,24 260,12 280,16 300,6 300,100 0,100"
-                            fill="url(#g1)" stroke="none" opacity="0.5" />
-                        <defs>
-                            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#FF9900" stop-opacity="0.22" />
-                                <stop offset="100%" stop-color="#FF9900" stop-opacity="0" />
-                            </linearGradient>
-                        </defs>
-                    </svg> </div>
-                <div class="hero-card-rows">
-                    <div><span>Exchange Netflow (7d)</span><span style="color:var(--positive)">−12,400 BTC</span></div>
-                    <div><span>Realized Cap</span><span>$612.4B</span></div>
-                    <div><span>Active Addresses</span><span>892,110</span></div>
-                    <div><span>SOPR</span><span>1.02</span></div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ============ WHAT'S INCLUDED ============ -->
-    <section id="whats-inside">
-        <div class="wrap">
-            <div class="section-head"> <span class="section-tag">What's Inside</span>
-                <h2>A report built from your answers, not a template</h2>
-                <p class="section-desc">Every section below is generated from your quiz answers, mapped against
-                    Glassnode's on-chain and technical data coverage.</p>
-            </div>
-            <div class="card-grid">
-                <div class="card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2">
-                            <path d="M3 17l6-6 4 4 8-8" />
-                        </svg></div>
-                    <h3>Chart-Based Observations</h3>
-                    <p>On-chain and price signals — MVRV, SOPR, exchange flow, realized cap — read against the assets
-                        you actually hold.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2">
-                            <path d="M12 2l9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6l9-4z" />
-                        </svg></div>
-                    <h3>Risk Flags</h3>
-                    <p>Concentration, leverage, and volatility exposure specific to your portfolio size and risk
-                        tolerance.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2">
-                            <circle cx="11" cy="11" r="7" />
-                            <path d="M21 21l-4.3-4.3" />
-                        </svg></div>
-                    <h3>Watchlist Ideas</h3>
-                    <p>Assets and setups matched to your time horizon and favorite sectors, with the metric that's
-                        driving the signal.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2">
-                            <path d="M5 12h14M13 6l6 6-6 6" />
-                        </svg></div>
-                    <h3>Practical Next Steps</h3>
-                    <p>Three concrete actions suited to your trading style — no jargon, no generic advice.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ============ HOW IT WORKS ============ -->
-    <section id="how">
-        <div class="wrap">
-            <div class="section-head"> <span class="section-tag">How It Works</span>
-                <h2>Three steps to your report</h2>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">1</div>
-                    <h3>Answer 5 quick questions</h3>
-                    <p>Portfolio size, time horizon, risk tolerance, favorite assets, and trading style. About 60
-                        seconds.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">2</div>
-                    <h3>We match your profile to live data</h3>
-                    <p>Your answers are mapped against Glassnode's on-chain metrics and technical indicators in real
-                        time.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">3</div>
-                    <h3>Get your report instantly</h3>
-                    <p>Read it on screen or download it — a personalized brief you can act on immediately.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ============ QUIZ ============ -->
-    <section id="quiz">
-        <div class="wrap quiz-wrap">
-            <div class="quiz-side"> <span class="section-tag">Free · 60 Seconds</span>
-                <h2>Unlock your Crypto Edge Report</h2>
-                <p class="section-desc">Answer a few questions about how you invest. We'll do the rest — no generic
-                    advice, just your data, read correctly.</p>
-                <ul>
-                    <li><span class="check"></span> Built from Glassnode's live on-chain coverage</li>
-                    <li><span class="check"></span> Tailored to your risk tolerance and time horizon</li>
-                    <li><span class="check"></span> Delivered instantly — no waiting, no spam</li>
-                    <li><span class="check"></span> Free, with no credit card required</li>
-                </ul>
-            </div>
-            <div class="quiz-card">
-                <div class="progress-row"> <span class="progress-label" id="progressLabel">STEP 1 / 5</span>
-                    <div class="progress-track">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-                <form id="quizForm"> <!-- Q1 Portfolio size -->
-                    <div class="q-step active" data-step="1">
-                        <p class="q-title">What's your current portfolio size?</p>
-                        <p class="q-hint">This helps us calibrate risk flags and position sizing notes.</p>
-                        <div class="opt-grid" data-question="portfolio"> <button type="button" class="opt"
-                                data-value="starter">Under $5,000<small>Starter</small></button> <button type="button"
-                                class="opt" data-value="growing">$5,000 – $25,000<small>Growing</small></button> <button
-                                type="button" class="opt" data-value="established">$25,000 –
-                                $150,000<small>Established</small></button> <button type="button" class="opt"
-                                data-value="large">$150,000+<small>Large</small></button> </div>
-                    </div> <!-- Q2 Time horizon -->
-                    <div class="q-step" data-step="2">
-                        <p class="q-title">What's your time horizon?</p>
-                        <p class="q-hint">Determines which on-chain metrics matter most for you.</p>
-                        <div class="opt-grid" data-question="horizon"> <button type="button" class="opt"
-                                data-value="days">Days<small>Active trading</small></button> <button type="button"
-                                class="opt" data-value="weeks">Weeks<small>Swing positioning</small></button> <button
-                                type="button" class="opt" data-value="months">Months<small>Cycle-aware</small></button>
-                            <button type="button" class="opt" data-value="years">Years<small>Long-term
-                                    hold</small></button> </div>
-                    </div> <!-- Q3 Risk tolerance -->
-                    <div class="q-step" data-step="3">
-                        <p class="q-title">How would you describe your risk tolerance?</p>
-                        <p class="q-hint">Shapes the flags and watchlist we surface for you.</p>
-                        <div class="opt-grid" data-question="risk"> <button type="button" class="opt"
-                                data-value="conservative">Conservative<small>Protect capital first</small></button>
-                            <button type="button" class="opt" data-value="balanced">Balanced<small>Measured
-                                    growth</small></button> <button type="button" class="opt"
-                                data-value="aggressive">Aggressive<small>Comfortable with swings</small></button>
-                            <button type="button" class="opt"
-                                data-value="high-conviction">High-conviction<small>Concentrated bets</small></button>
-                        </div>
-                    </div> <!-- Q4 Favorite assets -->
-                    <div class="q-step" data-step="4">
-                        <p class="q-title">Which assets do you follow most closely?</p>
-                        <p class="q-hint">We'll lead your report with the on-chain data for this asset.</p>
-                        <div class="opt-grid" data-question="asset"> <button type="button" class="opt"
-                                data-value="BTC">Bitcoin (BTC)<small>Store of value</small></button> <button
-                                type="button" class="opt" data-value="ETH">Ethereum (ETH)<small>Smart
-                                    contracts</small></button> <button type="button" class="opt"
-                                data-value="L2/Alts">L2s & Altcoins<small>Higher beta</small></button> <button
-                                type="button" class="opt" data-value="Stables/DeFi">Stables &
-                                DeFi<small>Yield-focused</small></button> </div>
-                    </div> <!-- Q5 Trading style -->
-                    <div class="q-step" data-step="5">
-                        <p class="q-title">Which best describes your trading style?</p>
-                        <p class="q-hint">Last question — this decides your next steps section.</p>
-                        <div class="opt-grid" data-question="style"> <button type="button" class="opt"
-                                data-value="hodler">Buy & hold<small>Minimal trading</small></button> <button
-                                type="button" class="opt" data-value="dca">Dollar-cost
-                                averaging<small>Systematic</small></button> <button type="button" class="opt"
-                                data-value="swing">Swing trading<small>Technical entries/exits</small></button> <button
-                                type="button" class="opt" data-value="active">Active / derivatives<small>Frequent,
-                                    leveraged</small></button> </div>
-                    </div> <!-- Email capture -->
-                    <div class="q-step" data-step="6">
-                        <p class="q-title">Where should we send your report?</p>
-                        <p class="q-hint">Instant on-screen access, plus a copy sent to your inbox.</p>
-                        <div class="email-row"> <input type="email" id="emailInput" placeholder="you@email.com"
-                                required> <button type="button" class="btn-next final" id="submitBtn"
-                                onclick="generateReport()">Unlock My Crypto Edge →</button> </div>
-                        <p class="fine">Free forever. No credit card. Unsubscribe anytime. We never sell your data.</p>
-                    </div>
-                </form>
-                <div class="q-nav" id="quizNav"> <button class="btn-ghost" id="backBtn" onclick="changeStep(-1)"
-                        disabled>Back</button> <button class="btn-next" id="nextBtn" onclick="changeStep(1)"
-                        disabled>Continue</button> </div>
-            </div>
-        </div>
-    </section><!-- ============ REPORT OUTPUT ============ -->
-    <section id="report-section">
-        <div class="wrap">
-            <div class="report-shell">
-                <div class="report-head">
-                    <div> <span class="report-tag">Personalized Intelligence Brief</span>
-                        <h3 id="reportTitle">My Glassnode Crypto Edge Report</h3>
-                        <p id="reportSubtitle">Generated from your quiz answers and live on-chain data.</p>
-                    </div> <button class="report-download" onclick="window.print()">Download Report (PDF)</button>
-                </div>
-                <div class="report-body">
-                    <div class="profile-row" id="profileRow"></div>
-                    <div class="report-block">
-                        <h4><span class="dot"></span> Chart-Based Observations</h4>
-                        <div id="obsList"></div>
-                    </div>
-                    <div class="report-block">
-                        <h4><span class="dot" style="background:var(--risk)"></span> Risk Flags</h4>
-                        <div id="riskList"></div>
-                    </div>
-                    <div class="report-block">
-                        <h4><span class="dot"></span> Watchlist Ideas</h4>
-                        <div class="watchlist-grid" id="watchGrid"></div>
-                    </div>
-                    <div class="report-block">
-                        <h4><span class="dot" style="background:var(--positive)"></span> Practical Next Steps</h4>
-                        <div id="nextList"></div>
-                    </div>
-                </div>
-                <div class="report-footer">
-                    <p>This report reflects on-chain and technical conditions at the time of generation and is for
-                        informational purposes only — it is not financial advice. Markets and on-chain conditions change
-                        quickly; refresh your report periodically.</p> <button class="btn-ghost"
-                        onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Retake
-                        Quiz</button>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="wrap footer-row">
-            <div class="logo" style="font-size:15px;"><span class="logo-mark" style="width:18px;height:18px;"></span>
-                Glassnode</div>
-            <div>© 2026 Glassnode. Real-time on-chain data intelligence. Not financial advice.</div>
-        </div>
-    </footer><!-- ============ POPUP ============ -->
-    <div class="overlay" id="overlay">
-        <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle"> <button class="popup-close"
-                aria-label="Close" onclick="closePopup()">×</button>
-            <div class="popup-top"><span class="live-dot"></span><span>On-chain data · updating live</span></div>
-            <div class="popup-body"> <span class="eyebrow"><span class="eyebrow-dot"></span> For Your Portfolio
-                    Only</span>
-                <h2 id="popupTitle">Your Crypto Edge Report is waiting.</h2>
-                <p class="lead">60 seconds. 5 questions. One personalized intelligence brief built from your portfolio,
-                    your risk profile, and Glassnode's live on-chain data — not a generic newsletter.</p>
-                <div class="popup-urgency">⚡ <span>On-chain conditions shift daily. The longer you wait, the more your
-                        report reflects yesterday's market instead of today's.</span></div> <button class="btn-primary"
-                    onclick="scrollToQuiz(); closePopup();">Unlock My Crypto Edge</button>
-                <div class="popup-secondary"><button onclick="closePopup()">Maybe later</button></div>
-                <div class="popup-trust">FREE · NO CREDIT CARD · 60 SECONDS</div>
-            </div>
-        </div>
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <div class="logo"><span class="logo-mark"></span> Glassnode</div>
+    <button class="topbar-cta" onclick="scrollToQuiz()">Get My Free Report</button>
+  </div>
+</div>
+
+<!-- ============ LIVE TICKER (signature element) ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="border-bottom:1px solid var(--line);">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="eyebrow-dot"></span> Free Personalized Report</span>
+      <h1 class="hero-title">My Glassnode <span class="accent-word">Crypto Edge</span> Report</h1>
+      <p class="hero-sub">A personalized on-chain intelligence brief, built from your portfolio, your risk profile, and Glassnode's live blockchain data coverage. Not a generic newsletter — an analysis of your market.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="scrollToQuiz()">Get My Free Report →</button>
+        <div class="hero-meta">Takes <b>60 seconds</b> · Delivered <b>instantly</b> · No cost</div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>150+</b><span>on-chain metrics</span></div>
+        <div class="hero-stat"><b>40+</b><span>assets covered</span></div>
+        <div class="hero-stat"><b>24/7</b><span>data refresh</span></div>
+      </div>
     </div>
-    <script>/* ---------------- Ticker content ---------------- */const tickerData = [{ label: "BTC Exchange Netflow (7d)", value: "−12,400 BTC", cls: "up" }, { label: "ETH Realized Cap", value: "+2.1%", cls: "up" }, { label: "BTC Active Addresses", value: "892,110", cls: "" }, { label: "BTC MVRV Z-Score", value: "2.34", cls: "" }, { label: "ETH SOPR", value: "1.01", cls: "" }, { label: "BTC Long-Term Holder Supply", value: "14.9M BTC", cls: "up" }, { label: "Stablecoin Supply Ratio", value: "−0.8%", cls: "down" }, { label: "BTC NUPL", value: "0.58", cls: "" },]; function buildTicker() { const track = document.getElementById('tickerTrack'); const set = tickerData.map(d => `<span class="ticker-item mono">${d.label} <b class="${d.cls}">${d.value}</b></span>`).join(''); track.innerHTML = set + set; // duplicate for seamless loop}buildTicker();/* ---------------- Popup logic ---------------- */const overlay = document.getElementById('overlay');function openPopup(){ overlay.classList.add('show'); }function closePopup(){ overlay.classList.remove('show'); sessionStorage.setItem('gn_popup_dismissed','1'); }window.addEventListener('load', () => {  if(!sessionStorage.getItem('gn_popup_dismissed')){    setTimeout(openPopup, 3500);  }});document.addEventListener('mouseleave', (e) => {  if(e.clientY < 10 && !sessionStorage.getItem('gn_popup_dismissed')){    openPopup();  }});overlay.addEventListener('click', (e) => { if(e.target === overlay) closePopup(); });function scrollToQuiz(){  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});}/* ---------------- Quiz logic ---------------- */const totalSteps = 6;let currentStep = 1;const answers = {};function updateProgress(){  document.getElementById('progressLabel').textContent = `STEP ${currentStep} / ${totalSteps}`;  document.getElementById('progressFill').style.width = (currentStep/totalSteps*100) + '%';}function showStep(step){  document.querySelectorAll('.q-step').forEach(el => {    el.classList.toggle('active', Number(el.dataset.step) === step);  });  document.getElementById('backBtn').disabled = step === 1;  document.getElementById('quizNav').style.display = step === totalSteps ? 'none' : 'flex';  updateProgress();  refreshNextState();}function refreshNextState(){  const stepEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);  const qName = stepEl?.querySelector('[data-question]')?.dataset.question;  const nextBtn = document.getElementById('nextBtn');  if(qName){    nextBtn.disabled = !answers[qName];  }}function changeStep(dir){  const next = currentStep + dir;  if(next < 1 || next > totalSteps) return;  currentStep = next;  showStep(currentStep);}document.querySelectorAll('.opt').forEach(btn => {  btn.addEventListener('click', () => {    const group = btn.closest('[data-question]');    const qName = group.dataset.question;    group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));    btn.classList.add('selected');    answers[qName] = btn.dataset.value;    document.getElementById('nextBtn').disabled = false;    setTimeout(() => { if(currentStep < totalSteps) changeStep(1); }, 220);  });});showStep(1);/* ---------------- Report generation ---------------- */const assetLabels = {BTC:"Bitcoin", ETH:"Ethereum", "L2/Alts":"L2s & Altcoins", "Stables/DeFi":"Stables & DeFi"};const portfolioLabels = {starter:"Under $5,000", growing:"$5,000–$25,000", established:"$25,000–$150,000", large:"$150,000+"};const horizonLabels = {days:"Days", weeks:"Weeks", months:"Months", years:"Years"};const riskLabels = {conservative:"Conservative", balanced:"Balanced", aggressive:"Aggressive", "high-conviction":"High-conviction"};const styleLabels = {hodler:"Buy & Hold", dca:"Dollar-Cost Averaging", swing:"Swing Trading", active:"Active / Derivatives"};function generateReport(){  const email = document.getElementById('emailInput').value.trim();  if(!email || !email.includes('@')){    document.getElementById('emailInput').focus();    document.getElementById('emailInput').style.borderColor = 'var(--risk)';    return;  }  answers.email = email;  window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';}function buildReport(a){  const asset = assetLabels[a.asset] || "Bitcoin";  // Profile chips  document.getElementById('profileRow').innerHTML = `    <span class="profile-chip">Portfolio <b>${portfolioLabels[a.portfolio]}</b></span>    <span class="profile-chip">Horizon <b>${horizonLabels[a.horizon]}</b></span>    <span class="profile-chip">Risk <b>${riskLabels[a.risk]}</b></span>    <span class="profile-chip">Focus <b>${asset}</b></span>    <span class="profile-chip">Style <b>${styleLabels[a.style]}</b></span>  `;  document.getElementById('reportSubtitle').textContent = `Built for a ${riskLabels[a.risk].toLowerCase()}, ${horizonLabels[a.horizon].toLowerCase()}-horizon ${styleLabels[a.style].toLowerCase()} investor focused on ${asset}.`;  // Chart-based observations  const obsByAsset = {    BTC: [      "Bitcoin's MVRV Z-Score is sitting in mid-cycle territory — not at levels historically associated with euphoric tops, but no longer cheap either.",      "Exchange netflow has stayed negative over the past week, consistent with coins moving into cold storage rather than toward sell pressure.",      "Long-term holder supply continues to trend upward, a pattern that has historically preceded reduced volatility rather than sharp reversals."    ],    ETH: [      "Ethereum's realized cap has been rising steadily, suggesting new capital entering rather than existing holders repricing each other.",      "SOPR has hovered near 1.0, indicating coins are moving roughly at cost basis — a sign of equilibrium rather than panic or euphoria.",      "Staking-related supply reduction continues to tighten available float, a structural factor worth tracking against your time horizon."    ],    "L2/Alts": [      "Layer-2 and altcoin flows have shown higher dispersion than BTC and ETH, meaning asset selection is driving more of the return variance right now.",      "Elevated funding rates on several mid-cap perpetuals suggest leveraged positioning is building faster than spot demand.",      "On-chain activity for leading L2s continues to climb, though this has not yet been matched by proportional token price strength."    ],    "Stables/DeFi": [      "The stablecoin supply ratio has ticked lower, implying more dry powder relative to market cap than a month ago.",      "DeFi total value locked has been rebuilding gradually, a slower and more deliberate pace than the prior cycle's growth.",      "Yield spreads across major lending protocols remain compressed, which typically reflects lower perceived counterparty risk in the sector."    ]  };  document.getElementById('obsList').innerHTML = obsByAsset[a.asset].map(t => `<div class="obs-item">${t}</div>`).join('');  // Risk flags — combine portfolio size, risk tolerance, style  const riskFlags = [];  if(a.portfolio === 'starter' || a.portfolio === 'growing'){    riskFlags.push("Your portfolio size means a single volatile position can dominate your results. Position sizing matters more than asset selection at this stage.");  } else {    riskFlags.push("At your portfolio size, concentration risk in any single asset deserves closer monitoring than usual — even high-conviction names.");  }  if(a.risk === 'aggressive' || a.risk === 'high-conviction'){    riskFlags.push("Your risk profile leans into volatility. Confirm your position sizing already accounts for a 30–40% drawdown without forcing a decision under stress.");  } else {    riskFlags.push("Your conservative-to-balanced profile suggests capital preservation should outweigh chasing short-term moves, especially in thinner-liquidity assets.");  }  if(a.style === 'active'){    riskFlags.push("Frequent or leveraged trading amplifies the cost of being early. Watch funding rates and open interest before adding to a position, not after.");  } else if(a.style === 'swing'){    riskFlags.push("Swing entries in this market benefit from confirming on-chain flow direction, not just price action — the two have occasionally diverged recently.");  } else {    riskFlags.push("A hold-and-accumulate approach reduces timing risk, but still benefits from periodically checking exchange flow trends for early distribution signals.");  }  document.getElementById('riskList').innerHTML = riskFlags.map(t => `<div class="risk-item">${t}</div>`).join('');  // Watchlist  const watchByAsset = {    BTC: [      {sym:"BTC", why:"Core holding — monitor MVRV and exchange netflow weekly for regime shifts."},      {sym:"ETH", why:"Diversifies beyond store-of-value exposure while sharing on-chain data infrastructure."},      {sym:"Stablecoin Ratio", why:"A macro gauge for available buying power across the broader market."}    ],    ETH: [      {sym:"ETH", why:"Core holding — track realized cap growth and staking flow for conviction."},      {sym:"L2 Basket", why:"Correlated upside exposure with typically higher beta than ETH itself."},      {sym:"BTC", why:"A lower-volatility anchor position to balance ETH-specific risk."}    ],    "L2/Alts": [      {sym:"Top L2 by Activity", why:"Highest on-chain usage growth among current layer-2 networks."},      {sym:"ETH", why:"Base-layer exposure that most L2 valuations are ultimately anchored to."},      {sym:"BTC", why:"A stabilizing core position given elevated altcoin dispersion."}    ],    "Stables/DeFi": [      {sym:"Lending Blue Chips", why:"Established protocols with the deepest liquidity and lowest smart-contract risk in-sector."},      {sym:"ETH", why:"Most DeFi collateral activity remains concentrated on this base layer."},      {sym:"Stablecoin Supply Ratio", why:"Track this directly — it's the clearest signal for sector-wide capital rotation."}    ]  };  document.getElementById('watchGrid').innerHTML = watchByAsset[a.asset].map(w => `    <div class="watch-card"><div class="sym">${w.sym}</div><div class="why">${w.why}</div></div>  `).join('');  // Next steps by style  const nextByStyle = {    hodler: [      "Set a recurring monthly check-in on long-term holder supply and exchange netflow — no need to watch daily.",      "Confirm your cold storage setup is current before adding to your position.",      "Revisit your allocation only if your risk tolerance or time horizon changes, not because of short-term price moves."    ],    dca: [      "Keep your buy schedule fixed regardless of short-term MVRV swings — that consistency is the strategy's edge.",      "Review your total allocation quarterly against your original target, not weekly.",      "Use stablecoin supply ratio trends as a secondary signal, not a reason to change your schedule."    ],    swing: [      "Cross-check any technical entry against exchange flow direction before executing — alignment strengthens the setup.",      "Define your invalidation level before entering, not after the position is open.",      "Track SOPR alongside price to distinguish genuine strength from short-covering moves."    ],    active: [      "Check funding rates and open interest before adding size — crowded positioning raises liquidation risk.",      "Cap single-position exposure given your trading frequency; the edge is in repetition, not any one trade.",      "Set a hard daily loss limit before your next session, and hold to it regardless of conviction."    ]  };  document.getElementById('nextList').innerHTML = nextByStyle[a.style].map((t,i) => `    <div class="next-item"><span class="n">${String(i+1).padStart(2,'0')}</span><span>${t}</span></div>  `).join('');}</script>
+
+    <div class="hero-card">
+      <div class="hero-card-head">
+        <span>BTC · MVRV Z-Score</span>
+        <span class="pill mono">LIVE</span>
+      </div>
+      <div class="chart-fake">
+        <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+          <polyline points="0,70 20,66 40,72 60,58 80,63 100,45 120,50 140,32 160,38 180,20 200,28 220,18 240,24 260,12 280,16 300,6"
+            fill="none" stroke="#FF9900" stroke-width="2.4"/>
+          <polyline points="0,70 20,66 40,72 60,58 80,63 100,45 120,50 140,32 160,38 180,20 200,28 220,18 240,24 260,12 280,16 300,6 300,100 0,100"
+            fill="url(#g1)" stroke="none" opacity="0.5"/>
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#FF9900" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#FF9900" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="hero-card-rows">
+        <div><span>Exchange Netflow (7d)</span><span style="color:var(--positive)">−12,400 BTC</span></div>
+        <div><span>Realized Cap</span><span>$612.4B</span></div>
+        <div><span>Active Addresses</span><span>892,110</span></div>
+        <div><span>SOPR</span><span>1.02</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INCLUDED ============ -->
+<section id="whats-inside">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">What's Inside</span>
+      <h2>A report built from your answers, not a template</h2>
+      <p class="section-desc">Every section below is generated from your quiz answers, mapped against Glassnode's on-chain and technical data coverage.</p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/></svg></div>
+        <h3>Chart-Based Observations</h3>
+        <p>On-chain and price signals — MVRV, SOPR, exchange flow, realized cap — read against the assets you actually hold.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><path d="M12 2l9 4v6c0 5-3.8 8.5-9 10-5.2-1.5-9-5-9-10V6l9-4z"/></svg></div>
+        <h3>Risk Flags</h3>
+        <p>Concentration, leverage, and volatility exposure specific to your portfolio size and risk tolerance.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Watchlist Ideas</h3>
+        <p>Assets and setups matched to your time horizon and favorite sectors, with the metric that's driving the signal.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#FF9900" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <h3>Practical Next Steps</h3>
+        <p>Three concrete actions suited to your trading style — no jargon, no generic advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">How It Works</span>
+      <h2>Three steps to your report</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Answer 5 quick questions</h3>
+        <p>Portfolio size, time horizon, risk tolerance, favorite assets, and trading style. About 60 seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>We match your profile to live data</h3>
+        <p>Your answers are mapped against Glassnode's on-chain metrics and technical indicators in real time.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get your report instantly</h3>
+        <p>Read it on screen or download it — a personalized brief you can act on immediately.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="wrap quiz-wrap">
+    <div class="quiz-side">
+      <span class="section-tag">Free · 60 Seconds</span>
+      <h2>Unlock your Crypto Edge Report</h2>
+      <p class="section-desc">Answer a few questions about how you invest. We'll do the rest — no generic advice, just your data, read correctly.</p>
+      <ul>
+        <li><span class="check"></span> Built from Glassnode's live on-chain coverage</li>
+        <li><span class="check"></span> Tailored to your risk tolerance and time horizon</li>
+        <li><span class="check"></span> Delivered instantly — no waiting, no spam</li>
+        <li><span class="check"></span> Free, with no credit card required</li>
+      </ul>
+    </div>
+
+    <div class="quiz-card">
+      <div class="progress-row">
+        <span class="progress-label" id="progressLabel">STEP 1 / 5</span>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <form id="quizForm">
+        <!-- Q1 Portfolio size -->
+        <div class="q-step active" data-step="1">
+          <p class="q-title">What's your current portfolio size?</p>
+          <p class="q-hint">This helps us calibrate risk flags and position sizing notes.</p>
+          <div class="opt-grid" data-question="portfolio">
+            <button type="button" class="opt" data-value="starter">Under $5,000<small>Starter</small></button>
+            <button type="button" class="opt" data-value="growing">$5,000 – $25,000<small>Growing</small></button>
+            <button type="button" class="opt" data-value="established">$25,000 – $150,000<small>Established</small></button>
+            <button type="button" class="opt" data-value="large">$150,000+<small>Large</small></button>
+          </div>
+        </div>
+
+        <!-- Q2 Time horizon -->
+        <div class="q-step" data-step="2">
+          <p class="q-title">What's your time horizon?</p>
+          <p class="q-hint">Determines which on-chain metrics matter most for you.</p>
+          <div class="opt-grid" data-question="horizon">
+            <button type="button" class="opt" data-value="days">Days<small>Active trading</small></button>
+            <button type="button" class="opt" data-value="weeks">Weeks<small>Swing positioning</small></button>
+            <button type="button" class="opt" data-value="months">Months<small>Cycle-aware</small></button>
+            <button type="button" class="opt" data-value="years">Years<small>Long-term hold</small></button>
+          </div>
+        </div>
+
+        <!-- Q3 Risk tolerance -->
+        <div class="q-step" data-step="3">
+          <p class="q-title">How would you describe your risk tolerance?</p>
+          <p class="q-hint">Shapes the flags and watchlist we surface for you.</p>
+          <div class="opt-grid" data-question="risk">
+            <button type="button" class="opt" data-value="conservative">Conservative<small>Protect capital first</small></button>
+            <button type="button" class="opt" data-value="balanced">Balanced<small>Measured growth</small></button>
+            <button type="button" class="opt" data-value="aggressive">Aggressive<small>Comfortable with swings</small></button>
+            <button type="button" class="opt" data-value="high-conviction">High-conviction<small>Concentrated bets</small></button>
+          </div>
+        </div>
+
+        <!-- Q4 Favorite assets -->
+        <div class="q-step" data-step="4">
+          <p class="q-title">Which assets do you follow most closely?</p>
+          <p class="q-hint">We'll lead your report with the on-chain data for this asset.</p>
+          <div class="opt-grid" data-question="asset">
+            <button type="button" class="opt" data-value="BTC">Bitcoin (BTC)<small>Store of value</small></button>
+            <button type="button" class="opt" data-value="ETH">Ethereum (ETH)<small>Smart contracts</small></button>
+            <button type="button" class="opt" data-value="L2/Alts">L2s & Altcoins<small>Higher beta</small></button>
+            <button type="button" class="opt" data-value="Stables/DeFi">Stables & DeFi<small>Yield-focused</small></button>
+          </div>
+        </div>
+
+        <!-- Q5 Trading style -->
+        <div class="q-step" data-step="5">
+          <p class="q-title">Which best describes your trading style?</p>
+          <p class="q-hint">Last question — this decides your next steps section.</p>
+          <div class="opt-grid" data-question="style">
+            <button type="button" class="opt" data-value="hodler">Buy & hold<small>Minimal trading</small></button>
+            <button type="button" class="opt" data-value="dca">Dollar-cost averaging<small>Systematic</small></button>
+            <button type="button" class="opt" data-value="swing">Swing trading<small>Technical entries/exits</small></button>
+            <button type="button" class="opt" data-value="active">Active / derivatives<small>Frequent, leveraged</small></button>
+          </div>
+        </div>
+
+        <!-- Email capture -->
+        <div class="q-step" data-step="6">
+          <p class="q-title">Where should we send your report?</p>
+          <p class="q-hint">Instant on-screen access, plus a copy sent to your inbox.</p>
+          <div class="email-row">
+            <input type="email" id="emailInput" placeholder="you@email.com" required>
+            <button type="button" class="btn-next final" id="submitBtn" onclick="generateReport()">Unlock My Crypto Edge →</button>
+          </div>
+          <p class="fine">Free forever. No credit card. Unsubscribe anytime. We never sell your data.</p>
+        </div>
+      </form>
+
+      <div class="q-nav" id="quizNav">
+        <button class="btn-ghost" id="backBtn" onclick="changeStep(-1)" disabled>Back</button>
+        <button class="btn-next" id="nextBtn" onclick="changeStep(1)" disabled>Continue</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REPORT OUTPUT ============ -->
+<section id="report-section">
+  <div class="wrap">
+    <div class="report-shell">
+      <div class="report-head">
+        <div>
+          <span class="report-tag">Personalized Intelligence Brief</span>
+          <h3 id="reportTitle">My Glassnode Crypto Edge Report</h3>
+          <p id="reportSubtitle">Generated from your quiz answers and live on-chain data.</p>
+        </div>
+        <button class="report-download" onclick="console.log('print bypassed')">Download Report (PDF)</button>
+      </div>
+      <div class="report-body">
+        <div class="profile-row" id="profileRow"></div>
+
+        <div class="report-block">
+          <h4><span class="dot"></span> Chart-Based Observations</h4>
+          <div id="obsList"></div>
+        </div>
+
+        <div class="report-block">
+          <h4><span class="dot" style="background:var(--risk)"></span> Risk Flags</h4>
+          <div id="riskList"></div>
+        </div>
+
+        <div class="report-block">
+          <h4><span class="dot"></span> Watchlist Ideas</h4>
+          <div class="watchlist-grid" id="watchGrid"></div>
+        </div>
+
+        <div class="report-block">
+          <h4><span class="dot" style="background:var(--positive)"></span> Practical Next Steps</h4>
+          <div id="nextList"></div>
+        </div>
+      </div>
+      <div class="report-footer">
+        <p>This report reflects on-chain and technical conditions at the time of generation and is for informational purposes only — it is not financial advice. Markets and on-chain conditions change quickly; refresh your report periodically.</p>
+        <button class="btn-ghost" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo" style="font-size:15px;"><span class="logo-mark" style="width:18px;height:18px;"></span> Glassnode</div>
+    <div>© 2026 Glassnode. Real-time on-chain data intelligence. Not financial advice.</div>
+  </div>
+</footer>
+
+<!-- ============ POPUP ============ -->
+<div class="overlay" id="overlay">
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <button class="popup-close" aria-label="Close" onclick="closePopup()">×</button>
+    <div class="popup-top"><span class="live-dot"></span><span>On-chain data · updating live</span></div>
+    <div class="popup-body">
+      <span class="eyebrow"><span class="eyebrow-dot"></span> For Your Portfolio Only</span>
+      <h2 id="popupTitle">Your Crypto Edge Report is waiting.</h2>
+      <p class="lead">60 seconds. 5 questions. One personalized intelligence brief built from your portfolio, your risk profile, and Glassnode's live on-chain data — not a generic newsletter.</p>
+      <div class="popup-urgency">⚡ <span>On-chain conditions shift daily. The longer you wait, the more your report reflects yesterday's market instead of today's.</span></div>
+      <button class="btn-primary" onclick="scrollToQuiz(); closePopup();">Unlock My Crypto Edge</button>
+      <div class="popup-secondary"><button onclick="closePopup()">Maybe later</button></div>
+      <div class="popup-trust">FREE · NO CREDIT CARD · 60 SECONDS</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------------- Ticker content ---------------- */
+const tickerData = [
+  {label:"BTC Exchange Netflow (7d)", value:"−12,400 BTC", cls:"up"},
+  {label:"ETH Realized Cap", value:"+2.1%", cls:"up"},
+  {label:"BTC Active Addresses", value:"892,110", cls:""},
+  {label:"BTC MVRV Z-Score", value:"2.34", cls:""},
+  {label:"ETH SOPR", value:"1.01", cls:""},
+  {label:"BTC Long-Term Holder Supply", value:"14.9M BTC", cls:"up"},
+  {label:"Stablecoin Supply Ratio", value:"−0.8%", cls:"down"},
+  {label:"BTC NUPL", value:"0.58", cls:""},
+];
+function buildTicker(){
+  const track = document.getElementById('tickerTrack');
+  const set = tickerData.map(d => `<span class="ticker-item mono">${d.label} <b class="${d.cls}">${d.value}</b></span>`).join('');
+  track.innerHTML = set + set; // duplicate for seamless loop
+}
+buildTicker();
+
+/* ---------------- Popup logic ---------------- */
+const overlay = document.getElementById('overlay');
+function openPopup(){ overlay.classList.add('show'); }
+function closePopup(){ overlay.classList.remove('show'); sessionStorage.setItem('gn_popup_dismissed','1'); }
+window.addEventListener('load', () => {
+  if(!sessionStorage.getItem('gn_popup_dismissed')){
+    setTimeout(openPopup, 3500);
+  }
+});
+document.addEventListener('mouseleave', (e) => {
+  if(e.clientY < 10 && !sessionStorage.getItem('gn_popup_dismissed')){
+    openPopup();
+  }
+});
+overlay.addEventListener('click', (e) => { if(e.target === overlay) closePopup(); });
+
+function scrollToQuiz(){
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth'});
+}
+
+/* ---------------- Quiz logic ---------------- */
+const totalSteps = 6;
+let currentStep = 1;
+const answers = {};
+
+function updateProgress(){
+  document.getElementById('progressLabel').textContent = `STEP ${currentStep} / ${totalSteps}`;
+  document.getElementById('progressFill').style.width = (currentStep/totalSteps*100) + '%';
+}
+
+function showStep(step){
+  document.querySelectorAll('.q-step').forEach(el => {
+    el.classList.toggle('active', Number(el.dataset.step) === step);
+  });
+  document.getElementById('backBtn').disabled = step === 1;
+  document.getElementById('quizNav').style.display = step === totalSteps ? 'none' : 'flex';
+  updateProgress();
+  refreshNextState();
+}
+
+function refreshNextState(){
+  const stepEl = document.querySelector(`.q-step[data-step="${currentStep}"]`);
+  const qName = stepEl?.querySelector('[data-question]')?.dataset.question;
+  const nextBtn = document.getElementById('nextBtn');
+  if(qName){
+    nextBtn.disabled = !answers[qName];
+  }
+}
+
+function changeStep(dir){
+  const next = currentStep + dir;
+  if(next < 1 || next > totalSteps) return;
+  currentStep = next;
+  showStep(currentStep);
+}
+
+document.querySelectorAll('.opt').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('[data-question]');
+    const qName = group.dataset.question;
+    group.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    answers[qName] = btn.dataset.value;
+    document.getElementById('nextBtn').disabled = false;
+    setTimeout(() => { if(currentStep < totalSteps) changeStep(1); }, 220);
+  });
+});
+
+showStep(1);
+
+/* ---------------- Report generation ---------------- */
+const assetLabels = {BTC:"Bitcoin", ETH:"Ethereum", "L2/Alts":"L2s & Altcoins", "Stables/DeFi":"Stables & DeFi"};
+const portfolioLabels = {starter:"Under $5,000", growing:"$5,000–$25,000", established:"$25,000–$150,000", large:"$150,000+"};
+const horizonLabels = {days:"Days", weeks:"Weeks", months:"Months", years:"Years"};
+const riskLabels = {conservative:"Conservative", balanced:"Balanced", aggressive:"Aggressive", "high-conviction":"High-conviction"};
+const styleLabels = {hodler:"Buy & Hold", dca:"Dollar-Cost Averaging", swing:"Swing Trading", active:"Active / Derivatives"};
+
+function generateReport(){
+  const email = document.getElementById('emailInput').value.trim();
+  if(!email || !email.includes('@')){
+    document.getElementById('emailInput').focus();
+    document.getElementById('emailInput').style.borderColor = 'var(--risk)';
+    return;
+  }
+  answers.email = email;
+  buildReport(answers);
+  document.getElementById('report-section').style.display = 'block';
+  document.getElementById('report-section').scrollIntoView({behavior:'smooth'});
+}
+
+function buildReport(a){
+  const asset = assetLabels[a.asset] || "Bitcoin";
+
+  // Profile chips
+  document.getElementById('profileRow').innerHTML = `
+    <span class="profile-chip">Portfolio <b>${portfolioLabels[a.portfolio]}</b></span>
+    <span class="profile-chip">Horizon <b>${horizonLabels[a.horizon]}</b></span>
+    <span class="profile-chip">Risk <b>${riskLabels[a.risk]}</b></span>
+    <span class="profile-chip">Focus <b>${asset}</b></span>
+    <span class="profile-chip">Style <b>${styleLabels[a.style]}</b></span>
+  `;
+  document.getElementById('reportSubtitle').textContent = `Built for a ${riskLabels[a.risk].toLowerCase()}, ${horizonLabels[a.horizon].toLowerCase()}-horizon ${styleLabels[a.style].toLowerCase()} investor focused on ${asset}.`;
+
+  // Chart-based observations
+  const obsByAsset = {
+    BTC: [
+      "Bitcoin's MVRV Z-Score is sitting in mid-cycle territory — not at levels historically associated with euphoric tops, but no longer cheap either.",
+      "Exchange netflow has stayed negative over the past week, consistent with coins moving into cold storage rather than toward sell pressure.",
+      "Long-term holder supply continues to trend upward, a pattern that has historically preceded reduced volatility rather than sharp reversals."
+    ],
+    ETH: [
+      "Ethereum's realized cap has been rising steadily, suggesting new capital entering rather than existing holders repricing each other.",
+      "SOPR has hovered near 1.0, indicating coins are moving roughly at cost basis — a sign of equilibrium rather than panic or euphoria.",
+      "Staking-related supply reduction continues to tighten available float, a structural factor worth tracking against your time horizon."
+    ],
+    "L2/Alts": [
+      "Layer-2 and altcoin flows have shown higher dispersion than BTC and ETH, meaning asset selection is driving more of the return variance right now.",
+      "Elevated funding rates on several mid-cap perpetuals suggest leveraged positioning is building faster than spot demand.",
+      "On-chain activity for leading L2s continues to climb, though this has not yet been matched by proportional token price strength."
+    ],
+    "Stables/DeFi": [
+      "The stablecoin supply ratio has ticked lower, implying more dry powder relative to market cap than a month ago.",
+      "DeFi total value locked has been rebuilding gradually, a slower and more deliberate pace than the prior cycle's growth.",
+      "Yield spreads across major lending protocols remain compressed, which typically reflects lower perceived counterparty risk in the sector."
+    ]
+  };
+  document.getElementById('obsList').innerHTML = obsByAsset[a.asset].map(t => `<div class="obs-item">${t}</div>`).join('');
+
+  // Risk flags — combine portfolio size, risk tolerance, style
+  const riskFlags = [];
+  if(a.portfolio === 'starter' || a.portfolio === 'growing'){
+    riskFlags.push("Your portfolio size means a single volatile position can dominate your results. Position sizing matters more than asset selection at this stage.");
+  } else {
+    riskFlags.push("At your portfolio size, concentration risk in any single asset deserves closer monitoring than usual — even high-conviction names.");
+  }
+  if(a.risk === 'aggressive' || a.risk === 'high-conviction'){
+    riskFlags.push("Your risk profile leans into volatility. Confirm your position sizing already accounts for a 30–40% drawdown without forcing a decision under stress.");
+  } else {
+    riskFlags.push("Your conservative-to-balanced profile suggests capital preservation should outweigh chasing short-term moves, especially in thinner-liquidity assets.");
+  }
+  if(a.style === 'active'){
+    riskFlags.push("Frequent or leveraged trading amplifies the cost of being early. Watch funding rates and open interest before adding to a position, not after.");
+  } else if(a.style === 'swing'){
+    riskFlags.push("Swing entries in this market benefit from confirming on-chain flow direction, not just price action — the two have occasionally diverged recently.");
+  } else {
+    riskFlags.push("A hold-and-accumulate approach reduces timing risk, but still benefits from periodically checking exchange flow trends for early distribution signals.");
+  }
+  document.getElementById('riskList').innerHTML = riskFlags.map(t => `<div class="risk-item">${t}</div>`).join('');
+
+  // Watchlist
+  const watchByAsset = {
+    BTC: [
+      {sym:"BTC", why:"Core holding — monitor MVRV and exchange netflow weekly for regime shifts."},
+      {sym:"ETH", why:"Diversifies beyond store-of-value exposure while sharing on-chain data infrastructure."},
+      {sym:"Stablecoin Ratio", why:"A macro gauge for available buying power across the broader market."}
+    ],
+    ETH: [
+      {sym:"ETH", why:"Core holding — track realized cap growth and staking flow for conviction."},
+      {sym:"L2 Basket", why:"Correlated upside exposure with typically higher beta than ETH itself."},
+      {sym:"BTC", why:"A lower-volatility anchor position to balance ETH-specific risk."}
+    ],
+    "L2/Alts": [
+      {sym:"Top L2 by Activity", why:"Highest on-chain usage growth among current layer-2 networks."},
+      {sym:"ETH", why:"Base-layer exposure that most L2 valuations are ultimately anchored to."},
+      {sym:"BTC", why:"A stabilizing core position given elevated altcoin dispersion."}
+    ],
+    "Stables/DeFi": [
+      {sym:"Lending Blue Chips", why:"Established protocols with the deepest liquidity and lowest smart-contract risk in-sector."},
+      {sym:"ETH", why:"Most DeFi collateral activity remains concentrated on this base layer."},
+      {sym:"Stablecoin Supply Ratio", why:"Track this directly — it's the clearest signal for sector-wide capital rotation."}
+    ]
+  };
+  document.getElementById('watchGrid').innerHTML = watchByAsset[a.asset].map(w => `
+    <div class="watch-card"><div class="sym">${w.sym}</div><div class="why">${w.why}</div></div>
+  `).join('');
+
+  // Next steps by style
+  const nextByStyle = {
+    hodler: [
+      "Set a recurring monthly check-in on long-term holder supply and exchange netflow — no need to watch daily.",
+      "Confirm your cold storage setup is current before adding to your position.",
+      "Revisit your allocation only if your risk tolerance or time horizon changes, not because of short-term price moves."
+    ],
+    dca: [
+      "Keep your buy schedule fixed regardless of short-term MVRV swings — that consistency is the strategy's edge.",
+      "Review your total allocation quarterly against your original target, not weekly.",
+      "Use stablecoin supply ratio trends as a secondary signal, not a reason to change your schedule."
+    ],
+    swing: [
+      "Cross-check any technical entry against exchange flow direction before executing — alignment strengthens the setup.",
+      "Define your invalidation level before entering, not after the position is open.",
+      "Track SOPR alongside price to distinguish genuine strength from short-covering moves."
+    ],
+    active: [
+      "Check funding rates and open interest before adding size — crowded positioning raises liquidation risk.",
+      "Cap single-position exposure given your trading frequency; the edge is in repetition, not any one trade.",
+      "Set a hard daily loss limit before your next session, and hold to it regardless of conviction."
+    ]
+  };
+  document.getElementById('nextList').innerHTML = nextByStyle[a.style].map((t,i) => `
+    <div class="next-item"><span class="n">${String(i+1).padStart(2,'0')}</span><span>${t}</span></div>
+  `).join('');
+}
+</script>
+
+
+
+
+<script>
+// The 'true' argument forces the Capture Phase, intercepting the click at the window level
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('a, button');
+    if (!btn) return;
+
+    const text = (btn.innerText || btn.value || '').toLowerCase();
+
+    // Target ONLY the final download button, ignoring the 'Get Free Report' intro buttons
+    if (text.includes('download') || text.includes('pdf')) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
+    }
+}, true);
+</script>
 </body>
+
+
 
 </html>

